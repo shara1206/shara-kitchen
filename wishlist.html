@@ -361,325 +361,32 @@ const PASSWORD   = 'shara2026';        // change to your preferred password
 const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE'; // paste your deployed Apps Script URL here
 // ══════════════════════════════════════
 
-// ── Menu Data ──
-const MENU_DATA = [
-  {
-    "id": "sucai",
-    "zh": "素菜",
-    "en": "Vegetables",
-    "dishes": [
-      "蚝油生菜",
-      "手撕包菜",
-      "炝炒白菜",
-      "上汤娃娃菜",
-      "炒油菜花",
-      "炒花菜",
-      "腐乳空心菜",
-      "清炒豆苗",
-      "素炒莴笋",
-      "素炒丝瓜",
-      "干煸四季豆",
-      "炒豆芽",
-      "西芹百合",
-      "芦笋炒肉/虾",
-      "青椒+豆豉",
-      "蒜香烤茄子",
-      "香辣茄子",
-      "炒苦瓜",
-      "酿苦瓜",
-      "醋溜土豆丝",
-      "炒莲藕",
-      "烧南瓜",
-      "咸蛋黄焗南瓜",
-      "烧冬瓜",
-      "西红柿鸡蛋",
-      "韭菜鸡蛋",
-      "香椿炒鸡蛋",
-      "糖拌蒸芋头"
-    ]
-  },
-  {
-    "id": "mianshi",
-    "zh": "面食主食",
-    "en": "Noodles & Staples",
-    "dishes": [
-      "蛋炒饭",
-      "扬州炒饭",
-      "煲仔饭",
-      "卤肉饭",
-      "吉野家肥牛饭",
-      "皮蛋瘦肉粥",
-      "生滚牛肉粥",
-      "牛肉面",
-      "干炒牛河",
-      "炒面",
-      "烤冷面",
-      "酸辣粉",
-      "桂林米粉",
-      "兰州牛肉面",
-      "衡阳米粉",
-      "热干面",
-      "葱面",
-      "拉面",
-      "馒头",
-      "花卷",
-      "豆包",
-      "流沙包",
-      "叉烧包",
-      "肉夹馍",
-      "油条（提前一周）",
-      "饺子",
-      "小笼包",
-      "北海道汤种面包",
-      "小面包",
-      "葱油饼",
-      "鸡蛋饼",
-      "糊塌子",
-      "煎饼果子",
-      "煎年糕",
-      "酸奶饼",
-      "绿豆/咸蛋黄/红枣粽子",
-      "烤土豆",
-      "烤红薯/紫薯"
-    ]
-  },
-  {
-    "id": "jiya",
-    "zh": "鸡鸭",
-    "en": "Chicken & Duck",
-    "dishes": [
-      "白斩鸡",
-      "豉油鸡",
-      "口水鸡（很辣）",
-      "黄焖鸡",
-      "辣子鸡",
-      "大盘鸡",
-      "板栗鸡",
-      "香菇鸡",
-      "鸡公煲",
-      "蒸鸡翼",
-      "叉烧鸡/鸡腿",
-      "叉烧鸡翅/鸡腿",
-      "红烧鸡翅/鸡腿",
-      "蒜香鸡翅",
-      "可乐鸡翅",
-      "奥尔良鸡翅",
-      "空气炸锅炸鸡翅",
-      "盐酥鸡",
-      "盐水鸭",
-      "啤酒鸭",
-      "炖鸭子"
-    ]
-  },
-  {
-    "id": "niuyang",
-    "zh": "牛羊",
-    "en": "Beef & Lamb",
-    "dishes": [
-      "煎/烤 BBQ 牛仔骨",
-      "烤牛排骨（烧烤式）",
-      "烤羊排",
-      "烤羊腿",
-      "羊肉串",
-      "红烧牛肉",
-      "番茄牛腩",
-      "土豆炖牛肉",
-      "番茄牛筋",
-      "麻辣牛筋",
-      "金针菇肥牛",
-      "牛肉脯"
-    ]
-  },
-  {
-    "id": "yuxia",
-    "zh": "鱼虾",
-    "en": "Fish & Shrimp",
-    "dishes": [
-      "清蒸鲈鱼/其它",
-      "白灼虾",
-      "红烧鱼",
-      "酸菜鱼",
-      "番茄带鱼",
-      "黄焖黄鳝",
-      "啤酒鱼",
-      "香煎鲫鱼",
-      "香煎带鱼",
-      "锡纸鲈鱼糖醋",
-      "烤鱼",
-      "烤黄鱼",
-      "空气炸锅鱼豆腐",
-      "剁椒鱼头",
-      "鱼头豆腐锅",
-      "鱼头汤（炖）",
-      "天妇罗",
-      "美乃滋炸虾球",
-      "蒜蓉龙虾",
-      "Hot n Juicy"
-    ]
-  },
-  {
-    "id": "zhu",
-    "zh": "猪",
-    "en": "Pork",
-    "dishes": [
-      "无锡糖醋小排",
-      "糖醋排骨 金黄",
-      "蒜香排骨",
-      "笋尖烧排骨",
-      "椒盐排骨",
-      "红烧肉+腐竹/鸡蛋",
-      "东坡肉",
-      "梅菜扣肉",
-      "芋头扣肉",
-      "粉蒸肉",
-      "蒸肉饼",
-      "卤肉/鸡蛋",
-      "叉烧",
-      "烤猪蹄",
-      "香辣美容蹄",
-      "西芹腊肉",
-      "煎香肠 整/切片",
-      "香煎五花肉",
-      "炸莲藕丸子",
-      "炸藕盒",
-      "炸茄盒",
-      "油豆腐丸子",
-      "锅包肉",
-      "脆皮酥肉",
-      "烤猪排",
-      "京酱肉丝",
-      "日式汉堡排",
-      "培根卷芦笋（烤）",
-      "培根卷金针菇",
-      "酸菜肉末"
-    ]
-  },
-  {
-    "id": "qita",
-    "zh": "豆腐",
-    "en": "Tofu",
-    "dishes": [
-      "麻婆豆腐",
-      "葱香肉末豆腐",
-      "烧日本豆腐",
-      "香煎豆腐",
-      "韩式豆腐煲",
-      "嫩豆腐蒸鸡蛋",
-      "魔芋豆腐"
-    ]
-  },
-  {
-    "id": "tiandian",
-    "zh": "甜点",
-    "en": "Desserts",
-    "dishes": [
-      "绿豆沙",
-      "红豆沙",
-      "冰糖雪梨汤",
-      "白凉粉",
-      "龟苓膏",
-      "双皮奶",
-      "布丁（抹茶/椰香/芒果）",
-      "抹茶奶冻",
-      "Mochi",
-      "芝麻馅汤圆",
-      "糯米糍",
-      "南瓜饼",
-      "麻团",
-      "鸡蛋仔",
-      "芋泥",
-      "芋圆",
-      "香葱麻薯魔芋卷",
-      "雪花酥",
-      "戚风蛋糕",
-      "抹茶戚风蛋糕卷",
-      "提拉米苏",
-      "泡芙",
-      "蛋挞",
-      "黄金糕",
-      "黄油曲奇",
-      "蛋黄酱肉松卷",
-      "Lemon Blueberry Cake",
-      "传统月饼（莲蓉/豆沙）",
-      "冰皮月饼 奶黄",
-      "炸糕",
-      "绿豆糕",
-      "秋梨膏",
-      "炸香蕉"
-    ]
-  },
-  {
-    "id": "liangcai",
-    "zh": "凉菜小吃",
-    "en": "Cold Dishes & Snacks",
-    "dishes": [
-      "盐水花生",
-      "盐水毛豆",
-      "炸花生米",
-      "脆皮黄瓜",
-      "拍黄瓜",
-      "凉拌皮蛋",
-      "皮蛋豆腐",
-      "凉拌菠菜花生",
-      "蓝莓山药",
-      "花生酪",
-      "萝卜干",
-      "五香茶叶蛋",
-      "溏心蛋",
-      "咸鸭蛋",
-      "卤牛腱",
-      "卤猪耳",
-      "卤鸡爪",
-      "糟鸡爪",
-      "泡椒凤爪",
-      "糟鸭舌"
-    ]
-  },
-  {
-    "id": "tang",
-    "zh": "汤",
-    "en": "Soups",
-    "dishes": [
-      "莲藕排骨汤",
-      "萝卜排骨汤",
-      "海带排骨汤",
-      "筒骨汤",
-      "猪蹄黄豆汤",
-      "天麻猪脑汤",
-      "三黄鸡汤",
-      "乌鸡汤",
-      "牛尾山药汤",
-      "羊肉萝卜汤",
-      "山药骨头汤",
-      "番茄骨头汤",
-      "丸子汤",
-      "蛋花紫菜汤"
-    ]
-  },
-  {
-    "id": "yinpin",
-    "zh": "饮品",
-    "en": "Drinks",
-    "dishes": [
-      "酸梅汤",
-      "小吊梨汤",
-      "400次咖啡",
-      "王老吉"
-    ]
-  },
-  {
-    "id": "huoguo",
-    "zh": "火锅锅底",
-    "en": "Hot Pot",
-    "dishes": [
-      "骨汤",
-      "番茄",
-      "香辣",
-      "菌菇",
-      "寿喜锅"
-    ]
+// ── Menu Data: parsed live from menu.html (source of truth) ──
+let MENU_DATA = [];
+
+async function loadMenuData() {
+  try {
+    const res = await fetch('menu.html');
+    const text = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    const sections = doc.querySelectorAll('.menu-section');
+    MENU_DATA = Array.from(sections).map(sec => {
+      const id = sec.id;
+      const h2 = sec.querySelector('h2');
+      const enSpan = h2 ? h2.querySelector('.en-label') : null;
+      const en = enSpan ? enSpan.textContent.trim() : '';
+      const zh = h2 ? h2.childNodes[0].textContent.trim() : '';
+      const dishes = Array.from(sec.querySelectorAll('.dish-item'))
+        .map(d => d.textContent.trim())
+        .filter(d => d.length > 0);
+      return { id, zh, en, dishes };
+    });
+  } catch (e) {
+    console.error('Failed to load menu.html:', e);
+    MENU_DATA = [];
   }
-];
+}
 
 // ── State ──
 let currentLang = 'zh';
@@ -738,11 +445,12 @@ document.getElementById('pw-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPassword();
 });
 
-function checkPassword() {
+async function checkPassword() {
   const val = document.getElementById('pw-input').value;
   if (val === PASSWORD) {
     document.getElementById('gate').style.display = 'none';
     document.getElementById('app').style.display = 'block';
+    await loadMenuData();
     buildMenu();
   } else {
     document.getElementById('gate-error').textContent = STR[currentLang].gateError;
