@@ -221,6 +221,44 @@
     opacity: 0.8;
   }
 
+  /* ── Mobile scaling (phones) ── */
+  @media (max-width: 640px) {
+    /* extra top padding so the centered title clears the top control row */
+    header { padding: 54px 14px 18px; }
+    header h1 { font-size: 1.5rem; }
+    header p  { font-size: 0.82rem; }
+    .back-link { top: 14px; left: 12px; font-size: 0.82rem; }
+    .header-right { top: 12px; right: 12px; gap: 8px; }
+    /* collapse wish-list link to its icon so it can't overlap the title */
+    .wish-link {
+      font-size: 0; gap: 0; padding: 6px 10px;
+      background: rgba(255,255,255,0.2);
+    }
+    .wish-link::before { content: '🎁'; font-size: 1rem; }
+
+    .category-nav { padding: 0 10px; }
+    .category-nav li a { padding: 12px 12px; font-size: 0.88rem; }
+    .nav-total { padding: 0 12px; font-size: 0.76rem; }
+    .nav-total strong { font-size: 0.9rem; }
+
+    main { padding: 16px 14px 40px; }
+
+    .menu-section { margin-bottom: 20px; scroll-margin-top: 54px; }
+    .section-title h2 { font-size: 1.05rem; }
+    .section-title .count { font-size: 0.72rem; }
+
+    .dish-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .dish-item { font-size: 0.9rem; padding: 9px 11px; line-height: 1.35; }
+    a.dish-item::after { font-size: 0.7rem; }
+    .dish-label { font-size: 0.72rem; padding: 10px 2px 4px; }
+  }
+
+  /* ── Very narrow phones ── */
+  @media (max-width: 380px) {
+    .dish-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.35rem; }
+  }
+
   footer {
     text-align: center; color: var(--muted);
     font-size: 0.85rem; padding: 20px;
