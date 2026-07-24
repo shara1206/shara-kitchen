@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="胡椒 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pepper &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); position: relative; }
+  header .nav { max-width: 820px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 820px; margin: 0 auto; font-size: 2.2rem; }
+  .header-icon { position: absolute; right: 32px; top: 50%; transform: translateY(-50%); font-size: 3.2rem; line-height: 1; display: flex; align-items: center; }
+  header p { max-width: 820px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 820px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .pepper-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; }
+  .pepper-card h3 { margin: 0 0 10px; font-size: 1.15rem; color: var(--accent); }
+  .pepper-card .zh { font-size: 0.9rem; color: var(--muted); margin-bottom: 12px; }
+  .pepper-card ul { margin: 0; padding-left: 18px; }
+  .pepper-card li { margin-bottom: 6px; color: var(--ink); font-size: 0.95rem; }
+  .use-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .use-table th { background: var(--accent); color: white; padding: 10px 14px; text-align: left; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .use-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.93rem; }
+  .use-table tr:last-child td { border-bottom: none; }
+  .use-table tr:hover td { background: #fef9f3; }
+  .badge { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.78rem; padding: 2px 10px; border-radius: 10px; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+  @media (max-width: 540px) { .compare-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1><span class="header-icon"><svg width="1em" height="1em" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+              <rect x="14.5" y="2" width="7" height="4.5" rx="2.2" fill="#c0b8a0" stroke="#908060" stroke-width="0.5"/>
+              <rect x="11" y="5.5" width="14" height="7" rx="4" fill="#d0c8b0" stroke="#a09070" stroke-width="0.6"/>
+              <rect x="10" y="11" width="16" height="16" rx="4" fill="#e8e0d0" stroke="#b0a080" stroke-width="0.7"/>
+              <rect x="11.5" y="13" width="13" height="10" rx="2" fill="#f8f4ec" stroke="#c0b090" stroke-width="0.5" opacity="0.95"/>
+              <circle cx="15" cy="16" r="1.8" fill="#2a2018"/>
+              <circle cx="18.5" cy="15" r="1.6" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/>
+              <circle cx="22" cy="16.5" r="1.8" fill="#2a2018"/>
+              <circle cx="16" cy="20" r="1.6" fill="#2a2018"/>
+              <circle cx="20.5" cy="19.5" r="1.5" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/>
+              <rect x="10.5" y="26" width="15" height="5" rx="2.5" fill="#c8c0a8" stroke="#a09070" stroke-width="0.6"/>
+              <circle cx="14" cy="33" r="1.1" fill="#2a2018" opacity="0.7"/>
+              <circle cx="18" cy="34.5" r="0.9" fill="#2a2018" opacity="0.6"/>
+              <circle cx="22" cy="32.5" r="0.9" fill="#2a2018" opacity="0.55"/>
+            </svg></span><span data-en="Pepper" data-zh="胡椒">Pepper</span></h1>
+    <p data-en="Black vs white pepper — when to use each."
+       data-zh="黑胡椒 vs 白胡椒——何时用哪种。">Black vs white pepper — when to use each.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="Black and white pepper come from the same plant but taste very different. Black pepper is aromatic and enhances fragrance; white pepper is sharper and adds heat. Knowing which to reach for makes a real difference."
+         data-zh="黑胡椒和白胡椒来自同一种植物，但风味截然不同。黑胡椒香气浓郁、提升香味；白胡椒辛辣感强、带来热感。知道该用哪种很重要。">Black and white pepper come from the same plant but taste very different. Black pepper is aromatic and enhances fragrance; white pepper is sharper and adds heat. Knowing which to reach for makes a real difference.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Black vs White" data-zh="黑胡椒 vs 白胡椒">Black vs White</h2>
+
+    <div class="compare-grid">
+      <div class="pepper-card">
+        <h3 data-en="Black Pepper" data-zh="黑胡椒">Black Pepper</h3>
+        <div class="zh">黑胡椒</div>
+        <ul>
+          <li data-en="Enhances aroma (提香) — adds a warm, fragrant depth"
+              data-zh="提香——增添温润的香气层次">Enhances aroma (提香) — adds a warm, fragrant depth</li>
+          <li data-en="Made from unripe berries, dried with skin on"
+              data-zh="由未熟浆果带皮晒干制成">Made from unripe berries, dried with skin on</li>
+          <li data-en="Flavor: complex, woody, slightly floral"
+              data-zh="风味：复合、木质感、略带花香">Flavor: complex, woody, slightly floral</li>
+          <li data-en="Best used in marinades, stir-fries, pasta, grilled meats"
+              data-zh="适合腌料、爆炒、意大利面、烤肉">Best used in marinades, stir-fries, pasta, grilled meats</li>
+        </ul>
+      </div>
+      <div class="pepper-card">
+        <h3 data-en="White Pepper" data-zh="白胡椒">White Pepper</h3>
+        <div class="zh">白胡椒</div>
+        <ul>
+          <li data-en="Has spicy heat (有辣味) — sharper, more pungent"
+              data-zh="有辣味——更刺激、更辛辣">Has spicy heat (有辣味) — sharper, more pungent</li>
+          <li data-en="Made from ripe berries with skin removed"
+              data-zh="由成熟浆果去皮后制成">Made from ripe berries with skin removed</li>
+          <li data-en="Flavor: clean, hot, earthy"
+              data-zh="风味：干净、辛辣、泥土感">Flavor: clean, hot, earthy</li>
+          <li data-en="Best used in soups, light-colored sauces, Chinese stir-fries, dumplings"
+              data-zh="适合汤品、浅色酱汁、中式炒菜、饺子馅">Best used in soups, light-colored sauces, Chinese stir-fries, dumplings</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section-title" data-en="When to Use Which" data-zh="何时用哪种">When to Use Which</h2>
+
+    <table class="use-table">
+      <thead>
+        <tr>
+          <th data-en="Dish / Use" data-zh="菜肴 / 用途">Dish / Use</th>
+          <th data-en="Pepper" data-zh="胡椒">Pepper</th>
+          <th data-en="Why" data-zh="原因">Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-en="Beef steak / grilled meats" data-zh="牛排 / 烤肉">Beef steak / grilled meats</td>
+          <td><span class="badge">Black</span></td>
+          <td data-en="Aromatic crust and depth" data-zh="形成香气焦壳">Aromatic crust and depth</td>
+        </tr>
+        <tr>
+          <td data-en="Chinese soups (e.g. hot &amp; sour, egg drop)" data-zh="中式汤（如酸辣汤、蛋花汤）">Chinese soups (e.g. hot &amp; sour, egg drop)</td>
+          <td><span class="badge">White</span></td>
+          <td data-en="Heat without dark specks; clean flavor" data-zh="增加辣感而不留黑点；风味干净">Heat without dark specks; clean flavor</td>
+        </tr>
+        <tr>
+          <td data-en="Dumpling filling (猪肉馅)" data-zh="饺子馅（猪肉）">Dumpling filling (猪肉馅)</td>
+          <td><span class="badge">White</span></td>
+          <td data-en="Traditional; removes gaminess" data-zh="传统做法；去腥提味">Traditional; removes gaminess</td>
+        </tr>
+        <tr>
+          <td data-en="Pasta (cacio e pepe, carbonara)" data-zh="意大利面（如卡邦尼）">Pasta (cacio e pepe, carbonara)</td>
+          <td><span class="badge">Black</span></td>
+          <td data-en="Core flavor; visible pepper is part of the dish" data-zh="核心风味；可见胡椒是菜的一部分">Core flavor; visible pepper is part of the dish</td>
+        </tr>
+        <tr>
+          <td data-en="Light cream sauces / white fish" data-zh="浅色奶油酱 / 白肉鱼">Light cream sauces / white fish</td>
+          <td><span class="badge">White</span></td>
+          <td data-en="Keeps sauce color clean; subtle heat" data-zh="保持酱汁颜色干净；辣味更细腻">Keeps sauce color clean; subtle heat</td>
+        </tr>
+        <tr>
+          <td data-en="Stir-fried vegetables" data-zh="蔬菜炒菜">Stir-fried vegetables</td>
+          <td><span class="badge">Either</span></td>
+          <td data-en="Black for fragrance; white for a clean spicy kick" data-zh="黑胡椒提香；白胡椒提辣">Black for fragrance; white for a clean spicy kick</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

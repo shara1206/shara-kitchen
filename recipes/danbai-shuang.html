@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="蛋白酱 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Egg White Sauce — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: min(92vw, 900px); margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: min(92vw, 900px); margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .empty-state { background: var(--card); border: 2px dashed var(--border); border-radius: 10px; padding: 40px 32px; text-align: center; color: var(--muted); margin-bottom: 32px; }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state h2 { margin: 0 0 10px; color: var(--accent); font-size: 1.2rem; }
+  .empty-state p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+  .sections { display: grid; gap: 20px; }
+  .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 26px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .section-card h3 { margin: 0 0 12px; color: var(--accent); font-size: 1.05rem; border-bottom: 1px dashed var(--border); padding-bottom: 8px; font-family: 'Helvetica', 'PingFang SC', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; }
+  .section-card .content { min-height: 48px; color: var(--muted); font-style: italic; font-size: 0.95rem; }
+  .section-card .content.filled { color: var(--ink); font-style: normal; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-top: 0; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Egg White Sauce" data-zh="蛋白酱">Egg White Sauce</h1>
+        <div class="meta" data-en="Desserts" data-zh="甜点">Desserts</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/danbai-shuang/Final.png" alt="danbai-shuang" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+    <main>
+    <div class="recipe-notes">
+
+      <h3 data-en="Ingredients (Egg White Sauce / Egg Salad)" data-zh="食材（蛋白酱 / 蛋白沙拉酱）">食材（蛋白酱 / 蛋白沙拉酱）</h3>
+      <ul>
+        <li data-zh="鸡蛋白 1 个（约 30–35g）" data-en="Egg white 1 (about 30–35g)">鸡蛋白 1 个（约 30–35g）</li>
+        <li data-zh="玉米油 约 180g（原方 250g，实际 180g 即可；油越多酱越稠，过多破坏风味）" data-en="Corn oil ~180g (original recipe says 250g, but 180g is enough; more oil = thicker but can overpower flavor)">玉米油 约 180g（原方 250g，实际 180g 即可；油越多酱越稠，过多破坏风味）</li>
+        <li data-zh="糖 35g" data-en="Sugar 35g">糖 35g</li>
+        <li data-zh="醋（或柠檬汁）5g" data-en="Vinegar (or lemon juice) 5g">醋（或柠檬汁）5g</li>
+        <li data-zh="盐 3g" data-en="Salt 3g">盐 3g</li>
+        <li data-zh="味精 1g" data-en="MSG 1g">味精 1g</li>
+        <li data-zh="淡奶油 8g" data-en="Heavy cream 8g">淡奶油 8g</li>
+      </ul>
+      <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+      <ol>
+        <li data-zh="蛋清打发至略微起泡，分两次加入白糖继续打，随后加入醋（或柠檬汁）、味精打匀" data-en="Whip egg white until slightly foamy; add sugar in 2 additions, continue whipping; mix in vinegar (or lemon juice) and MSG">蛋清打发至略微起泡，分两次加入白糖继续打，随后加入醋（或柠檬汁）、味精打匀</li>
+        <li data-zh="烧开水，把盛蛋清的碗放在水上隔水打发 30–60 秒（不要太久，防止蛋花），使蛋清略熟定性（此步可选，不愿麻烦可跳过）" data-en="Boil water, set the bowl over it and whip for 30–60 sec (don't overcook or it scrambles) — slightly cooks and stabilizes the egg white (optional step)">烧开水，把盛蛋清的碗放在水上隔水打发 30–60 秒（不要太久，防止蛋花），使蛋清略熟定性（此步可选，不愿麻烦可跳过）</li>
+        <li data-zh="⚠️ 玉米油&lt;strong&gt;分次&lt;/strong&gt;加入打发蛋白，十次八次都不为过；每次等油完全被吸收再加下一次，否则会油水分离失败" data-en="⚠️ Add corn oil &lt;strong&gt;in many small increments&lt;/strong&gt; — 8–10 additions is not too many; wait for each addition to fully absorb before adding more, or it will split">⚠️ 玉米油<strong>分次</strong>加入打发蛋白，十次八次都不为过；每次等油完全被吸收再加下一次，否则会油水分离失败</li>
+        <li data-zh="最后加入淡奶油打均匀即可" data-en="Finally mix in the heavy cream until smooth">最后加入淡奶油打均匀即可</li>
+      </ol>
+      <h3>备注</h3>
+      <p data-zh="配肉松三明治、面包绝配！美国买的肉松有点柴，配这个酱正好。" data-en="Perfect with pork floss sandwiches or bread! US pork floss tends to be a bit dry — this sauce is the ideal pairing.">配肉松三明治、面包绝配！美国买的肉松有点柴，配这个酱正好。</p>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></sc

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="茉莉针王奶茶 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jasmine Silver Needle Milk Tea — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-top: 0; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 10px; font-size: 0.93rem; line-height: 1.7; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Jasmine Silver Needle Milk Tea" data-zh="茉莉针王">Jasmine Silver Needle Milk Tea</h1>
+        <div class="meta" data-en="Drinks · ~500 ml · with cream cap" data-zh="饮品 · 约500ml · 含奶盖">Drinks · ~500 ml · with cream cap</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/jasmine-zhenwang-naicha/Final.png" alt="jasmine-zhenwang-naicha" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="recipe-notes">
+
+      <p data-zh="以茉莉银针为底，花香幽雅、茶感清透，鲜奶托底而不夺香。" data-en="Jasmine silver needle as the base — the floral aroma is delicate and the tea itself clean and translucent. Fresh milk supports without overpowering.">以茉莉银针为底，花香幽雅、茶感清透，鲜奶托底而不夺香。</p>
+
+      <h3 data-en="Ingredients" data-zh="材料">材料</h3>
+      <ul>
+        <li data-zh="茉莉银针茶叶" data-en="Jasmine silver needle tea leaves" data-base="6" data-unit="g">茉莉银针茶叶</li>
+        <li data-zh="热水（85°C）" data-en="Hot water (85°C)" data-base="220" data-unit="ml">热水（85°C）</li>
+        <li data-zh="全脂鲜牛奶" data-en="Whole fresh milk" data-base="100" data-unit="ml">全脂鲜牛奶</li>
+        <li data-zh="冰糖糖浆" data-en="Rock sugar syrup" data-base="20" data-unit="ml">冰糖糖浆</li>
+        <li data-zh="冰块" data-en="Ice" data-base="150" data-unit="g">冰块</li>
+        <li data-zh="淡奶油" data-en="Heavy cream" data-base="60" data-unit="ml">淡奶油</li>
+        <li data-zh="盐" data-en="Salt">盐 少许</li>
+      </ul>
+
+      <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+      <ol>
+        <li data-timer="210" data-zh="&lt;strong&gt;冲泡茶底：&lt;/strong&gt;将6g茉莉银针茶叶放入茶壶，注入220ml 85°C热水，浸泡3分30秒后过滤。茶底放至室温或冷藏备用。时间不要超过4分钟，否则茶底发苦。" data-en="&lt;strong&gt;Brew the tea base:&lt;/strong&gt; place 6g jasmine silver needle leaves in a teapot, pour over 220ml 85°C water, steep 3 min 30 sec then strain. Cool to room temperature or refrigerate. Do not exceed 4 minutes or the base will turn bitter."><strong>冲泡茶底：</strong>将6g茉莉银针茶叶放入茶壶，注入220ml 85°C热水，浸泡3分30秒后过滤。茶底放至室温或冷藏备用。时间不要超过4分钟，否则茶底发苦。</li>
+        <li data-zh="&lt;strong&gt;打发奶盖：&lt;/strong&gt;将60ml淡奶油和一小撮盐混合，用电动打蛋器打发至浓稠流动状（提起滴落成缎带但不硬挺）。不要过度打发，奶盖要能缓缓流动。" data-en="&lt;strong&gt;Whip the cream cap:&lt;/strong&gt; combine 60ml heavy cream with a pinch of salt, whip with an electric hand mixer until thick and pourable (ribbons form when lifted but not stiff). Do not over-whip — the cap should flow gently."><strong>打发奶盖：</strong>将60ml淡奶油和一小撮盐混合，用电动打蛋器打发至浓稠流动状（提起滴落成缎带但不硬挺）。不要过度打发，奶盖要能缓缓流动。</li>
+        <li data-zh="&lt;strong&gt;组合饮品：&lt;/strong&gt;杯中放入150g冰块，加入20ml冰糖糖浆，倒入冷却好的茶底至七分满，缓缓注入100ml全脂牛奶。" data-en="&lt;strong&gt;Assemble:&lt;/strong&gt; fill a glass with 150g ice, add 20ml rock sugar syrup, pour cooled tea base to about seven-tenths full, then gently pour in 100ml whole milk."><strong>组合饮品：</strong>杯中放入150g冰块，加入20ml冰糖糖浆，倒入冷却好的茶底至七分满，缓缓注入100ml全脂牛奶。</li>
+        <li data-zh="&lt;strong&gt;加奶盖收尾：&lt;/strong&gt;用汤匙背面引流，将奶盖缓缓铺在液面上，注满至杯口。喝时不要搅拌，让奶盖与茶底分层入口。" data-en="&lt;strong&gt;Top with cream cap:&lt;/strong&gt; use the back of a spoon to guide the cream cap gently onto the surface, filling to the rim. Do not stir — drink through the layers for the full effect."><strong>加奶盖收尾：</strong>用汤匙背面引流，将奶盖缓缓铺在液面上，注满至杯口。喝时不要搅拌，让奶盖与茶底分层入口。</li>
+      </ol>
+
+      <div class="tip">
+        <span data-zh="&lt;strong&gt;茶叶选购：&lt;/strong&gt;茉莉银针在各大茶叶店或网购均可找到，等级越高花香越幽雅。银针采用白茶嫩芽，花香是窨制而来，不是茶叶本身的味道——所以窨制次数和鲜花用量直接决定香气层次。" data-en="&lt;strong&gt;Buying tea:&lt;/strong&gt; jasmine silver needle is widely available at tea shops and online. Higher grade = more refined floral aroma. The jasmine scent comes from scenting (窨制) with fresh flowers, not from the tea itself — number of scenting passes and flower quantity directly determine the aromatic depth."><strong>茶叶选购：</strong>茉莉银针在各大茶叶店或网购均可找到，等级越高花香越幽雅。银针采用白茶嫩芽，花香是窨制而来，不是茶叶本身的味道——所以窨制次数和鲜花用量直接决定香气层次。</span>
+      </div>
+
+      <div class="tip">
+        <span data-zh="&lt;strong&gt;冰糖糖浆自制：&lt;/strong&gt;冰糖与等量水小火加热融化，比白砂糖糖浆更清甜不抢味，更适合衬托茉莉的幽香。冷藏可保存2周。" data-en="&lt;strong&gt;Make rock sugar syrup:&lt;/strong&gt; simmer equal parts rock sugar and water over low heat until dissolved. Cleaner and less assertive than white sugar syrup — better at letting jasmine's delicate aroma shine. Keeps refrigerated for 2 weeks."><strong>冰糖糖浆自制：</strong>冰糖与等量水小火加热融化，比白砂糖糖浆更清甜不抢味，更适合衬托茉莉的幽香。冷藏可保存2周。</span>
+      </div>
+
+      <div class="tip">
+        <span data-zh="&lt;strong&gt;牛奶比例：&lt;/strong&gt;茉莉银针茶底清透，牛奶只用100ml是刻意保留茶香主导地位。喜欢更厚奶感可加到120ml，但不建议超过——银针花香很轻，牛奶过多会完全压住。" data-en="&lt;strong&gt;Milk ratio:&lt;/strong&gt; the jasmine silver needle base is clean and light; using only 100ml milk is intentional to keep the tea aroma front and center. You can go up to 120ml for a creamier feel, but no more — silver needle's floral notes are delicate and too much milk will smother them."><strong>牛奶比例：</strong>茉莉银针茶底清透，牛奶只用100ml是刻意保留茶香主导地位。喜欢更厚奶感可加到120ml，但不建议超过——银针花香很轻，牛奶过多会完全压住。</span>
+      </div>
+
+      <h3 data-en="Why silver needle" data-zh="原理：为什么用银针">原理：为什么用银针</h3>
+      <p data-zh="茉莉银针用的是白茶嫩芽（单芽或一芽一叶），细胞壁薄、汤色浅、茶多酚含量低，这使得茶底清透不苦，在窨制时能更均匀地吸收茉莉花香，且不会用茶本身的重味覆盖花香——这是它比茉莉绿茶或茉莉红茶更适合做奶盖茶底的核心原因。" data-en="Jasmine silver needle uses the tender buds of white tea (single buds or one bud with one leaf). The thin cell walls, pale liquor, and low polyphenol content make the base clean and non-bitter. During scenting, the buds absorb jasmine fragrance more evenly, and the tea's own flavor is subtle enough not to compete with the floral notes — this is why it makes a better cream-cap base than jasmine green or jasmine black tea.">茉莉银针用的是白茶嫩芽（单芽或一芽一叶），细胞壁薄、汤色浅、茶多酚含量低，这使得茶底清透不苦，在窨制时能更均匀地吸收茉莉花香，且不会用茶本身的重味覆盖花香——这是它比茉莉绿茶或茉莉红茶更适合做奶盖茶底的核心原因。</p>
+      <p data-zh="85°C是平衡点：温度再低花香和茶味都出不来，温度再高嫩芽中的氨基酸受损、涩感增加。3分30秒的浸泡时间也是同样逻辑——银针释放慢，需要足够时间，但白茶的苦涩后发酵保护比黑茶弱，超过4分钟就容易翻车。" data-en="85°C is the sweet spot: lower and neither the floral nor the tea character fully develops; higher and the amino acids in the tender buds degrade, increasing astringency. The 3 min 30 sec steep time follows the same logic — silver needle releases slowly and needs adequate time, but white tea has less post-fermentation protection against bitterness than dark tea, so going past 4 minutes is risky.">85°C是平衡点：温度再低花香和茶味都出不来，温度再高嫩芽中的氨基酸受损、涩感增加。3分30秒的浸泡时间也是同样逻辑——银针释放慢，需要足够时间，但白茶的苦涩后发酵保护比黑茶弱，超过4分钟就容易翻车。</p>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/recipe-ui.js"></script>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Menu · Shara's Kitchen</title>
+<link rel="stylesheet" href="assets/lang.css" />
+<style>
+  :root {
+    --bg: #fdf6ec;
+    --card: #ffffff;
+    --ink: #2b2b2b;
+    --muted: #6b6b6b;
+    --accent: #c97b3a;
+    --accent-soft: #f3d9b1;
+    --border: #ead7b7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  }
+
+  /* ── Header ── */
+  header {
+    position: relative;
+    background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%);
+    color: white;
+    padding: 28px 24px 22px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+  header h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.5px; }
+  header p  { margin: 5px 0 0; opacity: 0.9; font-style: italic; font-size: 0.9rem; }
+  .back-link {
+    position: absolute; top: 14px; left: 18px;
+    color: rgba(255,255,255,0.9); text-decoration: none;
+    font-size: 0.85rem; display: flex; align-items: center; gap: 5px;
+    transition: opacity 0.15s;
+  }
+  .back-link:hover { opacity: 0.7; }
+  .header-right {
+    position: absolute; top: 14px; right: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  /* override lang.css absolute positioning when inside header-right */
+  .header-right .lang-toggle { position: static; }
+  .wish-link {
+    color: rgba(255,255,255,0.95); text-decoration: none;
+    font-size: 0.82rem; white-space: nowrap;
+    display: flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 20px; padding: 5px 12px;
+    transition: background 0.15s;
+  }
+  .wish-link:hover { background: rgba(255,255,255,0.3); }
+
+
+  /* ── Sticky nav ── */
+  .category-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  .category-nav::-webkit-scrollbar { display: none; }
+  .category-nav ul {
+    list-style: none; margin: 0; padding: 0;
+    display: inline-flex; gap: 0;
+  }
+  .nav-total {
+    position: sticky;
+    right: 0;
+    background: var(--card);
+    border-left: 1px solid var(--border);
+    padding: 0 16px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav-total strong {
+    color: var(--accent);
+    font-size: 0.88rem;
+  }
+  .category-nav li a {
+    display: block; padding: 9px 13px;
+    text-decoration: none; font-size: 0.82rem;
+    color: var(--muted); border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .category-nav li a:hover,
+  .category-nav li a.active {
+    color: var(--accent); border-bottom-color: var(--accent);
+  }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 24px 28px 48px;
+  }
+  @media (min-width: 1400px) { main { padding: 28px 36px 56px; } }
+  @media (min-width: 1800px) { main { padding: 28px 48px 56px; } }
+
+  /* ── Multi-column section layout ── */
+  .menu-columns {
+    columns: 1;
+    column-gap: 24px;
+  }
+  @media (min-width: 860px)  { .menu-columns { columns: 2; column-gap: 24px; } }
+  @media (min-width: 1300px) { .menu-columns { columns: 3; column-gap: 28px; } }
+  @media (min-width: 1800px) { .menu-columns { columns: 3; column-gap: 36px; } }
+
+  /* ── Section blocks ── */
+  .menu-section {
+    break-inside: avoid;
+    margin-bottom: 24px;
+    scroll-margin-top: 48px;
+  }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    margin: 0 0 10px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid var(--accent-soft);
+  }
+  .section-title .icon { font-size: 1.2rem; }
+  .section-title h2 {
+    margin: 0; font-size: 1rem; color: var(--accent);
+  }
+  .section-title .en-label {
+    font-size: 0.72rem; color: var(--muted);
+    font-weight: 400; letter-spacing: 0.4px;
+  }
+  .section-title .count {
+    margin-left: auto;
+    font-size: 0.7rem; color: var(--muted);
+    background: var(--accent-soft);
+    padding: 1px 8px; border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  /* ── Sub-group labels inside dish grid ── */
+  .dish-label {
+    grid-column: 1 / -1;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--muted);
+    font-family: 'Helvetica', 'PingFang SC', sans-serif;
+    padding: 8px 2px 3px;
+    border-bottom: 1px dashed var(--border);
+    margin-bottom: 1px;
+  }
+  .dish-label:first-child { padding-top: 2px; }
+
+  /* ── Dish grid inside each section ── */
+  .dish-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 5px;
+  }
+  @media (min-width: 1300px) { .dish-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); } }
+  @media (min-width: 1800px) { .dish-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
+
+  .dish-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.83rem;
+    color: var(--ink);
+    cursor: default;
+    transition: background 0.12s, border-color 0.12s;
+    display: flex; align-items: center; gap: 7px;
+    line-height: 1.3;
+  }
+  .dish-item::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--accent-soft);
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1.5px solid var(--accent);
+  }
+  .dish-item:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  a.dish-item {
+    text-decoration: none;
+    border-color: #d4b896;
+    background: #fffaf5;
+  }
+  a.dish-item::after {
+    content: '↗';
+    font-size: 0.65rem;
+    margin-left: auto;
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+  a.dish-item:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  a.dish-item:hover::after {
+    opacity: 0.8;
+  }
+
+  footer {
+    text-align: center; color: var(--muted);
+    font-size: 0.85rem; padding: 20px;
+    border-top: 1px solid var(--border); margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="back-link" href="index.html">← Home</a>
+  <div class="header-right">
+    <a class="wish-link" href="wishlist.html" data-en="🎁 Your Wish List" data-zh="🎁 你的心愿菜单">🎁 你的心愿菜单</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="zh" class="active">中文</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+  <h1 data-en="My Menu" data-zh="我的菜单">我的菜单</h1>
+  <p data-en="My cooking repertoire" data-zh="我的厨房清单">我的厨房清单</p>
+</header>
+
+<!-- sticky category nav -->
+<nav class="category-nav">
+  <ul>
+    <li><a href="#sucai" data-en="🥬 Vegetables" data-zh="🥬 素菜">🥬 素菜</a></li>
+    <li><a href="#mianshi" data-en="🍜 Noodles &amp; Staples" data-zh="🍜 面食主食">🍜 面食主食</a></li>
+    <li><a href="#jiya" data-en="🍗 Chicken &amp; Duck" data-zh="🍗 鸡鸭">🍗 鸡鸭</a></li>
+    <li><a href="#niuyang" data-en="🥩 Beef &amp; Lamb" data-zh="🥩 牛羊">🥩 牛羊</a></li>
+    <li><a href="#yuxia" data-en="🐟 Fish &amp; Seafood" data-zh="🐟 鱼虾">🐟 鱼虾</a></li>
+    <li><a href="#zhu" data-en="🍖 Pork" data-zh="🍖 猪">🍖 猪</a></li>
+    <li><a href="#qita" data-en="🍲 Tofu" data-zh="🍲 豆腐">🍲 豆腐</a></li>
+    <li><a href="#tiandian" data-en="🍮 Desserts" data-zh="🍮 甜点">🍮 甜点</a></li>
+    <li><a href="#liangcai" data-en="🥗 Cold Dishes &amp; Snacks" data-zh="🥗 凉菜小吃">🥗 凉菜小吃</a></li>
+    <li><a href="#tang" data-en="🍵 Soups" data-zh="🍵 汤">🍵 汤</a></li>
+    <li><a href="#yinpin" data-en="🥤 Drinks" data-zh="🥤 饮品">🥤 饮品</a></li>
+    <li><a href="#huoguo" data-en=" Hot Pot" data-zh=" 火锅"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" style="vertical-align:-0.15em;flex-shrink:0"><circle cx="12" cy="12" r="9.5" fill="#9a5c28"/><path d="M12,2.5 A9.5,9.5 0 0,0 12,21.5 Z" fill="#cc2222"/><path d="M12,2.5 A9.5,9.5 0 0,1 12,21.5 Z" fill="#fdf0dc"/><path d="M12,2.5 C7.5,7 16.5,17 12,21.5" stroke="#9a5c28" stroke-width="1.2" fill="none"/><path d="M2.5,9.5 Q0,12 2.5,14.5" stroke="#9a5c28" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M21.5,9.5 Q24,12 21.5,14.5" stroke="#9a5c28" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg> 火锅</a></li>
+  </ul>
+  <div class="nav-total">共 <strong id="total-count"></strong> 道</div>
+</nav>
+
+<main>
+<div class="menu-columns">
+
+  <!-- 素菜 -->
+  <div class="menu-section" id="sucai">
+    <div class="section-title">
+      <span class="icon">🥬</span>
+      <h2 data-en="Vegetables" data-zh="素菜">素菜</h2>
+      <span class="count">25 道</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-label" data-en="Leafy Greens" data-zh="叶菜">叶菜</div>
+      <div class="dish-item" data-en="Romaine with oyster sauce" data-zh="蚝油生菜">蚝油生菜</div>
+      <div class="dish-item" data-en="Hand-torn cabbage" data-zh="手撕包菜">手撕包菜</div>
+      <div class="dish-item" data-en="Stir-fried Napa cabbage" data-zh="炝炒白菜">炝炒白菜</div>
+      <div class="dish-item" data-en="Baby cabbage in superior broth" data-zh="上汤娃娃菜">上汤娃娃菜</div>
+      <div class="dish-item" data-en="Sautéed rapeseed flowers" data-zh="炒油菜花">炒油菜花</div>
+      <div class="dish-item" data-en="Stir-fried cauliflower" data-zh="炒花菜">炒花菜</div>
+      <div class="dish-item" data-en="Water spinach with fermented tofu" data-zh="腐乳空心菜">腐乳空心菜</div>
+      <div class="dish-item" data-en="Sautéed pea shoots" data-zh="清炒豆苗">清炒豆苗</div>
+      <div class="dish-label" data-en="Stems, Pods &amp; Squash" data-zh="茎叶瓜">茎叶瓜</div>
+      <div class="dish-item" data-en="Stir-fried lettuce stems" data-zh="素炒莴笋">素炒莴笋</div>
+      <div class="dish-item" data-en="Sautéed luffa" data-zh="素炒丝瓜">素炒丝瓜</div>
+      <div class="dish-item" data-en="Dry-fried green beans" data-zh="干煸四季豆">干煸四季豆</div>
+      <div class="dish-item" data-en="Stir-fried bean sprouts" data-zh="炒豆芽">炒豆芽</div>
+      <div class="dish-item" data-en="Celery with lily bulbs" data-zh="西芹百合">西芹百合</div>
+      <div class="dish-item" data-en="Asparagus with pork or shrimp" data-zh="芦笋炒肉/虾">芦笋炒肉/虾</div>
+      <div class="dish-item" data-en="Green peppers with black bean sauce" data-zh="青椒+豆豉">青椒+豆豉</div>
+      <div class="dish-label" data-en="Eggplant &amp; Bitter Melon" data-zh="茄子苦瓜">茄子苦瓜</div>
+      <div class="dish-item" data-en="Garlic-roasted eggplant" data-zh="蒜香烤茄子">蒜香烤茄子</div>
+      <div class="dish-item" data-en="Spicy eggplant" data-zh="香辣茄子">香辣茄子</div>
+      <div class="dish-item" data-en="Stir-fried bitter melon" data-zh="炒苦瓜">炒苦瓜</div>
+      <div class="dish-item" data-en="Stuffed bitter melon" data-zh="酿苦瓜">酿苦瓜</div>
+      <div class="dish-label" data-en="Root Vegetables" data-zh="根茎瓜">根茎瓜</div>
+      <a class="dish-item" href="recipes/culiu-tudousi.html" data-en="Vinegar potato shreds" data-zh="醋溜土豆丝">醋溜土豆丝</a>
+      <div class="dish-item" data-en="Stir-fried lotus root" data-zh="炒莲藕">炒莲藕</div>
+      <div class="dish-item" data-en="Braised pumpkin" data-zh="烧南瓜">烧南瓜</div>
+      <div class="dish-item" data-en="Pumpkin with salted egg yolk" data-zh="咸蛋黄焗南瓜">咸蛋黄焗南瓜</div>
+      <div class="dish-item" data-en="Braised winter melon" data-zh="烧冬瓜">烧冬瓜</div>
+      <div class="dish-label" data-en="Home-style" data-zh="家常菜">家常菜</div>
+      <a class="dish-item" href="recipes/xihongshi-chaodan.html" data-en="Tomato and egg" data-zh="西红柿鸡蛋">西红柿鸡蛋</a>
+      <div class="dish-item" data-en="Garlic chives with egg" data-zh="韭菜鸡蛋">韭菜鸡蛋</div>
+      <div class="dish-item" data-en="Chinese toon with scrambled egg" data-zh="香椿炒鸡蛋">香椿炒鸡蛋</div>
+      <div class="dish-item" data-en="Steamed taro with sugar" data-zh="糖拌蒸芋头">糖拌蒸芋头</div>
+    </div>
+  </div>
+
+  <!-- 面食主食 -->
+  <div class="menu-section" id="mianshi">
+    <div class="section-title">
+      <span class="icon">🍜</span>
+      <h2 data-en="Noodles &amp; Staples" data-zh="面食主食">面食主食</h2>
+      <span class="count">30 道</span>
+    </div>
+    <div class="dish-grid">
+      <!-- 米饭 rice -->
+      <div class="dish-item" data-en="Egg fried rice" data-zh="蛋炒饭">蛋炒饭</div>
+      <div class="dish-item" data-en="Yangzhou fried rice" data-zh="扬州炒饭">扬州炒饭</div>
+      <a class="dish-item" href="recipes/baozai-fan.html" data-en="Claypot rice" data-zh="煲仔饭">煲仔饭</a>
+      <div class="dish-item" data-en="Braised pork rice" data-zh="卤肉饭">卤肉饭</div>
+      <div class="dish-item" data-en="Yoshinoya-style beef rice" data-zh="吉野家肥牛饭">吉野家肥牛饭</div>
+      <!-- 粥 porridge -->
+      <div class="dish-item" data-en="Century egg &amp; pork congee" data-zh="皮蛋瘦肉粥">皮蛋瘦肉粥</div>
+      <div class="dish-item" data-en="Fresh beef congee" data-zh="生滚牛肉粥">生滚牛肉粥</div>
+      <!-- 面条粉 noodles -->
+      <div class="dish-item" data-en="Beef noodle soup" data-zh="牛肉面">牛肉面</div>
+      <div class="dish-item" data-en="Dry-fried beef ho fun" data-zh="干炒牛河">干炒牛河</div>
+      <div class="dish-item" data-en="Stir-fried noodles" data-zh="炒面">炒面</div>
+      <div class="dish-item" data-en="Grilled cold noodles" data-zh="烤冷面">烤冷面</div>
+      <div class="dish-item" data-en="Sour and spicy vermicelli" data-zh="酸辣粉">酸辣粉</div>
+      <div class="dish-item" data-en="Guilin rice noodles" data-zh="桂林米粉">桂林米粉</div>
+      <div class="dish-item" data-en="Lanzhou beef noodles" data-zh="兰州牛肉面">兰州牛肉面</div>
+      <div class="dish-item" data-en="Hengyang rice noodles" data-zh="衡阳米粉">衡阳米粉</div>
+      <a class="dish-item" href="recipes/reganmian.html" data-en="Wuhan hot dry noodles" data-zh="热干面">热干面</a>
+      <a class="dish-item" href="recipes/congmian.html" data-en="Scallion noodles" data-zh="葱面">葱面</a>
+      <a class="dish-item" href="recipes/lamian.html" data-en="Hand-pulled noodles" data-zh="拉面">拉面</a>
+      <!-- 包子馒头饺子 buns, breads & dumplings -->
+      <a class="dish-item" href="recipes/mantou-huajuan.html" data-en="Steamed buns" data-zh="馒头">馒头</a>
+      <a class="dish-item" href="recipes/mantou-huajuan.html" data-en="Flower rolls" data-zh="花卷">花卷</a>
+      <div class="dish-item" data-en="Red bean buns" data-zh="豆包">豆包</div>
+      <div class="dish-item" data-en="Molten salted egg custard buns" data-zh="流沙包">流沙包</div>
+      <div class="dish-item" data-en="BBQ pork buns" data-zh="叉烧包">叉烧包</div>
+      <div class="dish-item" data-en="Chinese pulled pork sandwich" data-zh="肉夹馍">肉夹馍</div>
+      <a class="dish-item" href="recipes/youtiao.html" data-en="Crullers (prep 1 week ahead)" data-zh="油条（提前一周）">油条（提前一周）</a>
+      <a class="dish-item" href="recipes/jiaozi.html" data-en="Dumplings" data-zh="饺子">饺子</a>
+      <a class="dish-item" href="recipes/xiaolongbao.html" data-en="Soup dumplings" data-zh="小笼包">小笼包</a>
+      <a class="dish-item" href="recipes/beihaidao-mianbao.html" data-en="Hokkaido milk bread (tangzhong)" data-zh="北海道汤种面包">北海道汤种面包</a>
+      <a class="dish-item" href="recipes/xiao-mianbao.html" data-en="Dinner rolls" data-zh="小面包">小面包</a>
+      <!-- 饼 flatbreads & pancakes -->
+      <div class="dish-item" data-en="Scallion pancake" data-zh="葱油饼">葱油饼</div>
+      <a class="dish-item" href="recipes/jidan-bing.html" data-en="Egg crepe" data-zh="鸡蛋饼">鸡蛋饼</a>
+      <div class="dish-item" data-en="Zucchini egg pancake" data-zh="糊塌子">糊塌子</div>
+      <a class="dish-item" href="recipes/jianbing-guozi.html" data-en="Jianbing (savory crepe)" data-zh="煎饼果子">煎饼果子</a>
+      <div class="dish-item" data-en="Pan-fried rice cakes" data-zh="煎年糕">煎年糕</div>
+      <a class="dish-item" href="recipes/suannai-bing.html" data-en="Yogurt pancakes" data-zh="酸奶饼">酸奶饼</a>
+      <!-- 其它 other -->
+      <a class="dish-item" href="recipes/zongzi.html" data-en="Glutinous rice dumplings (mung bean / salted egg / red date)" data-zh="绿豆/咸蛋黄/红枣粽子">绿豆/咸蛋黄/红枣粽子</a>
+      <div class="dish-item" data-en="Baked potato" data-zh="烤土豆">烤土豆</div>
+      <div class="dish-item" data-en="Baked sweet potato / purple yam" data-zh="烤红薯/紫薯">烤红薯/紫薯</div>
+    </div>
+  </div>
+
+  <!-- 鸡鸭 -->
+  <div class="menu-section" id="jiya">
+    <div class="section-title">
+      <span class="icon">🍗</span>
+      <h2 data-en="Chicken &amp; Duck" data-zh="鸡鸭">鸡鸭</h2>
+      <span class="count">23 道</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-label" data-en="Whole Chicken" data-zh="整鸡">整鸡</div>
+      <a class="dish-item" href="recipes/baizhan-ji.html" data-en="Poached white-cut chicken" data-zh="白斩鸡">白斩鸡</a>
+      <a class="dish-item" href="recipes/chiyou-ji.html" data-en="Soy sauce chicken" data-zh="豉油鸡">豉油鸡</a>
+      <div class="dish-item" data-en="Mouthwatering chicken (very spicy)" data-zh="口水鸡（很辣）">口水鸡（很辣）</div>
+      <div class="dish-item" data-en="Yellow braised chicken" data-zh="黄焖鸡">黄焖鸡</div>
+      <div class="dish-item" data-en="Chongqing crispy chili chicken" data-zh="辣子鸡">辣子鸡</div>
+      <div class="dish-item" data-en="Big plate chicken (Xinjiang)" data-zh="大盘鸡">大盘鸡</div>
+      <div class="dish-item" data-en="Chicken with chestnuts" data-zh="板栗鸡">板栗鸡</div>
+      <div class="dish-item" data-en="Chicken with shiitake" data-zh="香菇鸡">香菇鸡</div>
+      <div class="dish-item" data-en="Spicy chicken claypot" data-zh="鸡公煲">鸡公煲</div>
+      <div class="dish-label" data-en="Wings &amp; Legs" data-zh="鸡翅腿">鸡翅腿</div>
+      <div class="dish-item" data-en="Steamed chicken wings" data-zh="蒸鸡翼">蒸鸡翼</div>
+      <a class="dish-item" href="recipes/chashao.html" data-en="BBQ chicken / chicken legs" data-zh="叉烧鸡/鸡腿">叉烧鸡/鸡腿</a>
+      <a class="dish-item" href="recipes/chashao.html" data-en="BBQ chicken wings / legs" data-zh="叉烧鸡翅/鸡腿">叉烧鸡翅/鸡腿</a>
+      <div class="dish-item" data-en="Braised chicken wings / legs" data-zh="红烧鸡翅/鸡腿">红烧鸡翅/鸡腿</div>
+      <a class="dish-item" href="recipes/suanxiang-jichi.html" data-en="Garlic chicken wings" data-zh="蒜香鸡翅">蒜香鸡翅</a>
+      <div class="dish-item" data-en="Cola chicken wings" data-zh="可乐鸡翅">可乐鸡翅</div>
+      <div class="dish-item" data-en="New Orleans chicken wings" data-zh="奥尔良鸡翅">奥尔良鸡翅</div>
+      <a class="dish-item" href="recipes/zha-jichi.html" data-en="Air fryer fried chicken wings" data-zh="空气炸锅炸鸡翅">空气炸锅炸鸡翅</a>
+      <a class="dish-item" href="recipes/yan-su-ji.html" data-en="Taiwanese popcorn chicken" data-zh="盐酥鸡">盐酥鸡</a>
+      <div class="dish-label" data-en="Duck" data-zh="鸭">鸭</div>
+      <a class="dish-item" href="recipes/yanshui-ya.html" data-en="Salt-brined duck" data-zh="盐水鸭">盐水鸭</a>
+      <div class="dish-item" data-en="Beer duck" data-zh="啤酒鸭">啤酒鸭</div>
+      <div class="dish-item" data-en="Braised duck" data-zh="炖鸭子">炖鸭子</div>
+    </div>
+  </div>
+
+  <!-- 牛羊 -->
+  <div class="menu-section" id="niuyang">
+    <div class="section-title">
+      <span class="icon">🥩</span>
+      <h2 data-en="Beef &amp; Lamb" data-zh="牛羊">牛羊</h2>
+      <span class="count">10 道</span>
+    </div>
+    <div class="dish-grid">
+      <!-- 烤/煎 grilled & seared -->
+      <div class="dish-item" data-en="Pan-seared / grilled short ribs" data-zh="煎/烤 BBQ 牛仔骨">煎/烤 BBQ 牛仔骨</div>
+      <div class="dish-item" data-en="Grilled beef ribs (BBQ style)" data-zh="烤牛排骨（烧烤式）">烤牛排骨（烧烤式）</div>
+      <div class="dish-item" data-en="Roasted lamb rack" data-zh="烤羊排">烤羊排</div>
+      <a class="dish-item" href="recipes/kao-yangtui.html" data-en="Roasted lamb leg" data-zh="烤羊腿">烤羊腿</a>
+      <a class="dish-item" href="recipes/yangrouchuan.html" data-en="Lamb skewers" data-zh="羊肉串">羊肉串</a>
+      <!-- 红烧/炖 braised & stewed -->
+      <div class="dish-item" data-en="Braised beef" data-zh="红烧牛肉">红烧牛肉</div>
+      <div class="dish-item" data-en="Tomato beef brisket" data-zh="番茄牛腩">番茄牛腩</div>
+      <div class="dish-item" data-en="Potato beef stew" data-zh="土豆炖牛肉">土豆炖牛肉</div>
+      <!-- 其它 other cuts -->
+      <div class="dish-item" data-en="Tomato beef tendon" data-zh="番茄牛筋">番茄牛筋</div>
+      <div class="dish-item" data-en="Spicy numbing beef tendon" data-zh="麻辣牛筋">麻辣牛筋</div>
+      <div class="dish-item" data-en="Enoki mushrooms with beef" data-zh="金针菇肥牛">金针菇肥牛</div>
+      <a class="dish-item" href="recipes/niurou-fu.html" data-en="Beef jerky" data-zh="牛肉脯">牛肉脯</a>
+    </div>
+  </div>
+
+  <!-- 鱼虾 -->
+  <div class="menu-section" id="yuxia">
+    <div class="section-title">
+      <span class="icon">🐟</span>
+      <h2 data-en="Fish &amp; Seafood" data-zh="鱼虾">鱼虾</h2>
+      <span class="count">17 道</span>
+    </div>
+    <div class="dish-grid">
+      <!-- 蒸/白灼 steamed & poached -->
+      <div class="dish-item" data-en="Steamed sea bass / other fish" data-zh="清蒸鲈鱼/其它">清蒸鲈鱼/其它</div>
+      <a class="dish-item" href="recipes/boiling-shrimp.html" data-en="Blanched shrimp" data-zh="白灼虾">白灼虾</a>
+      <!-- 红烧/炖 braised & stewed -->
+      <div class="dish-item" data-en="Braised fish" data-zh="红烧鱼">红烧鱼</div>
+      <div class="dish-item" data-en="Sauerkraut fish" data-zh="酸菜鱼">酸菜鱼</div>
+      <div class="dish-item" data-en="Tomato hairtail fish" data-zh="番茄带鱼">番茄带鱼</div>
+      <div class="dish-item" data-en="Braised eel" data-zh="黄焖黄鳝">黄焖黄鳝</div>
+      <div class="dish-item" data-en="Beer fish" data-zh="啤酒鱼">啤酒鱼</div>
+      <!-- 煎/烤 pan-fried & grilled -->
+      <div class="dish-item" data-en="Pan-fried crucian carp" data-zh="香煎鲫鱼">香煎鲫鱼</div>
+      <div class="dish-item" data-en="Pan-fried hairtail fish" data-zh="香煎带鱼">香煎带鱼</div>
+      <div class="dish-item" data-en="Foil-baked sweet and sour sea bass" data-zh="锡纸鲈鱼糖醋">锡纸鲈鱼糖醋</div>
+      <a class="dish-item" href="recipes/kao-yu.html" data-en="Grilled fish" data-zh="烤鱼">烤鱼</a>
+      <a class="dish-item" href="recipes/kao-huangyu.html" data-en="Grilled yellow croaker" data-zh="烤黄鱼">烤黄鱼</a>
+      <a class="dish-item" href="recipes/kongqi-yudoufu.html" data-en="Air fryer fish tofu" data-zh="空气炸锅鱼豆腐">空气炸锅鱼豆腐</a>
+      <!-- 鱼头 fish head -->
+      <div class="dish-item" data-en="Fish head with chopped chilies" data-zh="剁椒鱼头">剁椒鱼头</div>
+      <div class="dish-item" data-en="Fish head and tofu soup" data-zh="鱼头豆腐锅">鱼头豆腐锅</div>
+      <div class="dish-item" data-en="Fish head broth (simmered)" data-zh="鱼头汤（炖）">鱼头汤（炖）</div>
+      <!-- 虾蟹 shrimp & seafood -->
+      <div class="dish-item" data-en="Tempura" data-zh="天妇罗">天妇罗</div>
+      <div class="dish-item" data-en="Mayo shrimp balls" data-zh="美乃滋炸虾球">美乃滋炸虾球</div>
+      <div class="dish-item" data-en="Garlic lobster" data-zh="蒜蓉龙虾">蒜蓉龙虾</div>
+      <a class="dish-item" href="recipes/hot-n-juicy.html" data-en="Hot n Juicy" data-zh="Hot n Juicy">Hot n Juicy</a>
+    </div>
+  </div>
+
+  <!-- 猪 -->
+  <div class="menu-section" id="zhu">
+    <div class="section-title">
+      <span class="icon">🍖</span>
+      <h2 data-en="Pork" data-zh="猪">猪</h2>
+      <span class="count">24 道</span>
+    </div>
+    <div class="dish-grid">
+      <!-- 排骨 ribs -->
+      <div class="dish-item" data-en="Wuxi sweet and sour pork ribs" data-zh="无锡糖醋小排">无锡糖醋小排</div>
+      <div class="dish-item" data-en="Golden crispy sweet and sour ribs" data-zh="糖醋排骨 金黄">糖醋排骨 金黄</div>
+      <div class="dish-item" data-en="Garlic pork ribs" data-zh="蒜香排骨">蒜香排骨</div>
+      <div class="dish-item" data-en="Braised ribs with bamboo shoots" data-zh="笋尖烧排骨">笋尖烧排骨</div>
+      <a class="dish-item" href="recipes/jiaoyan-paigu.html" data-en="Salt-and-pepper pork ribs" data-zh="椒盐排骨">椒盐排骨</a>
+      <!-- 红烧/扣肉 braised pork belly -->
+      <div class="dish-item" data-en="Red-braised pork belly with tofu skin / egg" data-zh="红烧肉+腐竹/鸡蛋">红烧肉+腐竹/鸡蛋</div>
+      <a class="dish-item" href="recipes/dongpo-rou.html" data-en="Dongpo braised pork belly" data-zh="东坡肉">东坡肉</a>
+      <div class="dish-item" data-en="Steamed pork with preserved mustard greens" data-zh="梅菜扣肉">梅菜扣肉</div>
+      <div class="dish-item" data-en="Steamed pork belly with taro" data-zh="芋头扣肉">芋头扣肉</div>
+      <div class="dish-item" data-en="Steamed pork with rice flour" data-zh="粉蒸肉">粉蒸肉</div>
+      <div class="dish-item" data-en="Steamed pork patty" data-zh="蒸肉饼">蒸肉饼</div>
+      <div class="dish-item" data-en="Braised pork / eggs" data-zh="卤肉/鸡蛋">卤肉/鸡蛋</div>
+      <a class="dish-item" href="recipes/chashao.html" data-en="BBQ pork (char siu)" data-zh="叉烧">叉烧</a>
+      <!-- 猪蹄 trotters -->
+      <div class="dish-item" data-en="Roasted pig's feet" data-zh="烤猪蹄">烤猪蹄</div>
+      <div class="dish-item" data-en="Spicy braised pig's feet" data-zh="香辣美容蹄">香辣美容蹄</div>
+      <!-- 腊肉香肠 cured & sausage -->
+      <a class="dish-item" href="recipes/la-rou.html" data-en="Celery with cured pork" data-zh="西芹腊肉">西芹腊肉</a>
+      <a class="dish-item" href="recipes/sichuan-xiangchang.html" data-en="Pan-fried sausage whole / sliced" data-zh="煎香肠 整/切片">煎香肠 整/切片</a>
+      <div class="dish-item" data-en="Pan-seared pork belly" data-zh="香煎五花肉">香煎五花肉</div>
+      <!-- 炸 deep-fried -->
+      <div class="dish-item" data-en="Deep-fried lotus root balls" data-zh="炸莲藕丸子">炸莲藕丸子</div>
+      <div class="dish-item" data-en="Deep-fried lotus root sandwiches" data-zh="炸藕盒">炸藕盒</div>
+      <div class="dish-item" data-en="Deep-fried eggplant sandwiches" data-zh="炸茄盒">炸茄盒</div>
+      <div class="dish-item" data-en="Tofu puff meatballs" data-zh="油豆腐丸子">油豆腐丸子</div>
+      <a class="dish-item" href="recipes/guobaorou.html" data-en="Crispy sweet and sour pork (Manchurian)" data-zh="锅包肉">锅包肉</a>
+      <a class="dish-item" href="recipes/cuipi-surou.html" data-en="Crispy fried pork strips" data-zh="脆皮酥肉">脆皮酥肉</a>
+      <!-- 其它 other -->
+      <a class="dish-item" href="recipes/kao-zhupai.html" data-en="Grilled pork chops" data-zh="烤猪排">烤猪排</a>
+      <a class="dish-item" href="recipes/jingjiang-rousi.html" data-en="Shredded pork in sweet bean sauce" data-zh="京酱肉丝">京酱肉丝</a>
+      <a class="dish-item" href="recipes/rishi-hambao.html" data-en="Japanese hamburger steak" data-zh="日式汉堡排">日式汉堡排</a>
+      <div class="dish-item" data-en="Bacon-wrapped asparagus (grilled)" data-zh="培根卷芦笋（烤）">培根卷芦笋（烤）</div>
+      <div class="dish-item" data-en="Bacon-wrapped enoki mushrooms" data-zh="培根卷金针菇">培根卷金针菇</div>
+      <div class="dish-item" data-en="Pork mince with pickled cabbage" data-zh="酸菜肉末">酸菜肉末</div>
+    </div>
+  </div>
+
+  <!-- 豆腐 -->
+  <div class="menu-section" id="qita">
+    <div class="section-title">
+      <span class="icon">🍲</span>
+      <h2 data-en="Tofu" data-zh="豆腐">豆腐</h2>
+      <span class="count">5 道</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-item" data-en="Mapo tofu" data-zh="麻婆豆腐">麻婆豆腐</div>
+      <div class="dish-item" data-en="Tofu with minced pork and scallions" data-zh="葱香肉末豆腐">葱香肉末豆腐</div>
+      <div class="dish-item" data-en="Braised Japanese tofu" data-zh="烧日本豆腐">烧日本豆腐</div>
+      <div class="dish-item" data-en="Pan-fried tofu" data-zh="香煎豆腐">香煎豆腐</div>
+      <div class="dish-item" data-en="Korean spicy tofu stew" data-zh="韩式豆腐煲">韩式豆腐煲</div>
+      <a class="dish-item" href="recipes/nen-doufu-jidan.html" data-en="Silken tofu with steamed egg" data-zh="嫩豆腐蒸鸡蛋">嫩豆腐蒸鸡蛋</a>
+      <a class="dish-item" href="recipes/moyu-doufu.html" data-en="Konjac tofu" data-zh="魔芋豆腐">魔芋豆腐</a>
+    </div>
+  </div>
+
+  <!-- 甜点 -->
+  <div class="menu-section" id="tiandian">
+    <div class="section-title">
+      <span class="icon">🍮</span>
+      <h2 data-en="Desserts" data-zh="甜点">甜点</h2>
+      <span class="count">20 道</span>
+    </div>
+    <div class="dish-grid">
+      <!-- 甜汤 sweet soups -->
+      <div class="dish-item" data-en="Sweet mung bean soup" data-zh="绿豆沙">绿豆沙</div>
+      <div class="dish-item" data-en="Sweet red bean soup" data-zh="红豆沙">红豆沙</div>
+      <div class="dish-item" data-en="Rock sugar snow pear soup" data-zh="冰糖雪梨汤">冰糖雪梨汤</div>
+      <!-- 冷点 chilled & cold -->
+      <div class="dish-item" data-en="White grass jelly" data-zh="白凉粉">白凉粉</div>
+      <div class="dish-item" data-en="Guilin turtle jelly" data-zh="龟苓膏">龟苓膏</div>
+      <div class="dish-item" data-en="Double-layered milk pudding" data-zh="双皮奶">双皮奶</div>
+      <a class="dish-item" href="recipes/jiaotang-buding.html" data-en="Pudding (matcha / coconut / mango)" data-zh="布丁（抹茶/椰香/芒果）">布丁（抹茶/椰香/芒果）</a>
+      <a class="dish-item" href="recipes/mocha-naidong.html" data-en="Matcha panna cotta" data-zh="抹茶奶冻">抹茶奶冻</a>
+      <a class="dish-item" href="recipes/mochi.html" data-en="Mochi" data-zh="Mochi">Mochi</a>
+      <!-- 糯米/米制 rice-based -->
+      <div class="dish-item" data-en="Sesame-filled glutinous rice balls" data-zh="芝麻馅汤圆">芝麻馅汤圆</div>
+      <a class="dish-item" href="recipes/nuomici.html" data-en="Sticky rice cake with red bean" data-zh="糯米糍">糯米糍</a>
+      <a class="dish-item" href="recipes/nangua-bing.html" data-en="Pumpkin pancake" data-zh="南瓜饼">南瓜饼</a>
+      <a class="dish-item" href="recipes/matuan.html" data-en="Sesame balls" data-zh="麻团">麻团</a>
+      <a class="dish-item" href="recipes/jidan-zai.html" data-en="Egg waffle (gai daan jai)" data-zh="鸡蛋仔">鸡蛋仔</a>
+      <a class="dish-item" href="recipes/yu-ni.html" data-en="Taro paste" data-zh="芋泥">芋泥</a>
+      <a class="dish-item" href="recipes/yuyuan.html" data-en="Taro balls" data-zh="芋圆">芋圆</a>
+      <a class="dish-item" href="recipes/moshu-moyu-juan.html" data-en="Scallion mochi konjac roll" data-zh="香葱麻薯魔芋卷">香葱麻薯魔芋卷</a>
+      <div class="dish-item" data-en="Snowflake candy" data-zh="雪花酥">雪花酥</div>
+      <!-- 烘焙 baked & pastry -->
+      <a class="dish-item" href="recipes/qifeng-dangao.html" data-en="Chiffon cake" data-zh="戚风蛋糕">戚风蛋糕</a>
+      <a class="dish-item" href="recipes/matcha-dangao-juan.html" data-en="Matcha chiffon roll cake" data-zh="抹茶戚风蛋糕卷">抹茶戚风蛋糕卷</a>
+      <a class="dish-item" href="recipes/tiramisu.html" data-en="Tiramisu" data-zh="提拉米苏">提拉米苏</a>
+      <a class="dish-item" href="recipes/paofu.html" data-en="Cream puffs (choux)" data-zh="泡芙">泡芙</a>
+      <a class="dish-item" href="recipes/danta.html" data-en="Egg tarts" data-zh="蛋挞">蛋挞</a>
+      <a class="dish-item" href="recipes/huangjin-gao.html" data-en="Golden cake (water chestnut)" data-zh="黄金糕">黄金糕</a>
+      <a class="dish-item" href="recipes/huangyou-quqi.html" data-en="Butter cookies" data-zh="黄油曲奇">黄油曲奇</a>
+      <a class="dish-item" href="recipes/danhuang-rousong.html" data-en="Egg yolk mayo pork floss roll" data-zh="蛋黄酱肉松卷">蛋黄酱肉松卷</a>
+      <a class="dish-item" href="recipes/lemon-blueberry-cake.html" data-en="Lemon Blueberry Cake" data-zh="Lemon Blueberry Cake">Lemon Blueberry Cake</a>
+      <!-- 月饼 mooncakes -->
+      <a class="dish-item" href="recipes/yuebing.html" data-en="Traditional mooncakes (lotus paste / red bean)" data-zh="传统月饼（莲蓉/豆沙）">传统月饼（莲蓉/豆沙）</a>
+      <div class="dish-item" data-en="Snow skin mooncakes with custard" data-zh="冰皮月饼 奶黄">冰皮月饼 奶黄</div>
+      <!-- 其它 other -->
+      <a class="dish-item" href="recipes/zha-gao.html" data-en="Deep-fried sticky rice cake" data-zh="炸糕">炸糕</a>
+      <a class="dish-item" href="recipes/lvdou-gao.html" data-en="Mung bean cake" data-zh="绿豆糕">绿豆糕</a>
+      <a class="dish-item" href="recipes/qiuli-gao.html" data-en="Autumn pear syrup" data-zh="秋梨膏">秋梨膏</a>
+      <div class="dish-item" data-en="Fried banana" data-zh="炸香蕉">炸香蕉</div>
+    </div>
+  </div>
+
+  <!-- 凉菜小吃 -->
+  <div class="menu-section" id="liangcai">
+    <div class="section-title">
+      <span class="icon">🥗</span>
+      <h2 data-en="Cold Dishes &amp; Snacks" data-zh="凉菜小吃">凉菜小吃</h2>
+      <span class="count">16 道</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-label" data-en="Nuts &amp; Legumes" data-zh="坚果豆类">坚果豆类</div>
+      <div class="dish-item" data-en="Boiled salted peanuts" data-zh="盐水花生">盐水花生</div>
+      <div class="dish-item" data-en="Boiled salted edamame" data-zh="盐水毛豆">盐水毛豆</div>
+      <div class="dish-item" data-en="Fried peanuts" data-zh="炸花生米">炸花生米</div>
+      <div class="dish-label" data-en="Cold-tossed" data-zh="凉拌">凉拌</div>
+      <a class="dish-item" href="recipes/cuipi-huanggua.html" data-en="Crunchy smashed cucumber" data-zh="脆皮黄瓜">脆皮黄瓜</a>
+      <div class="dish-item" data-en="Smashed cucumber" data-zh="拍黄瓜">拍黄瓜</div>
+      <div class="dish-item" data-en="Century egg salad" data-zh="凉拌皮蛋">凉拌皮蛋</div>
+      <div class="dish-item" data-en="Century egg with tofu" data-zh="皮蛋豆腐">皮蛋豆腐</div>
+      <div class="dish-item" data-en="Spinach and peanut salad" data-zh="凉拌菠菜花生">凉拌菠菜花生</div>
+      <div class="dish-item" data-en="Chinese yam with blueberry" data-zh="蓝莓山药">蓝莓山药</div>
+      <a class="dish-item" href="recipes/huasheng-lao.html" data-en="Peanut pudding" data-zh="花生酪">花生酪</a>
+      <a class="dish-item" href="recipes/luobo-gan.html" data-en="Pickled radish strips" data-zh="萝卜干">萝卜干</a>
+      <div class="dish-label" data-en="Braised &amp; Marinated" data-zh="卤味">卤味</div>
+      <div class="dish-item" data-en="Five-spice tea eggs" data-zh="五香茶叶蛋">五香茶叶蛋</div>
+      <a class="dish-item" href="recipes/tangxin-dan.html" data-en="Soft-boiled soy eggs" data-zh="溏心蛋">溏心蛋</a>
+      <a class="dish-item" href="recipes/xian-yadan.html" data-en="Salted duck eggs" data-zh="咸鸭蛋">咸鸭蛋</a>
+      <div class="dish-item" data-en="Braised beef shank" data-zh="卤牛腱">卤牛腱</div>
+      <div class="dish-item" data-en="Braised pig ears" data-zh="卤猪耳">卤猪耳</div>
+      <div class="dish-item" data-en="Braised chicken feet" data-zh="卤鸡爪">卤鸡爪</div>
+      <div class="dish-item" data-en="Wine-marinated chicken feet" data-zh="糟鸡爪">糟鸡爪</div>
+      <div class="dish-item" data-en="Pickled chili chicken feet" data-zh="泡椒凤爪">泡椒凤爪</div>
+      <div class="dish-item" data-en="Wine-marinated duck tongues" data-zh="糟鸭舌">糟鸭舌</div>
+    </div>
+  </div>
+
+  <!-- 汤 -->
+  <div class="menu-section" id="tang">
+    <div class="section-title">
+      <span class="icon">🍵</span>
+      <h2 data-en="Soups" data-zh="汤">汤</h2>
+      <span class="count">14 道</span>
+    </div>
+    <div class="dish-grid">
+      <!-- 猪骨汤 pork bone -->
+      <div class="dish-item" data-en="Lotus root and pork rib soup" data-zh="莲藕排骨汤">莲藕排骨汤</div>
+      <div class="dish-item" data-en="Radish and pork rib soup" data-zh="萝卜排骨汤">萝卜排骨汤</div>
+      <div class="dish-item" data-en="Seaweed and pork rib soup" data-zh="海带排骨汤">海带排骨汤</div>
+      <div class="dish-item" data-en="Pork marrow bone soup" data-zh="筒骨汤">筒骨汤</div>
+      <div class="dish-item" data-en="Pig's feet and soybean soup" data-zh="猪蹄黄豆汤">猪蹄黄豆汤</div>
+      <div class="dish-item" data-en="Gastrodia and pork brain soup" data-zh="天麻猪脑汤">天麻猪脑汤</div>
+      <!-- 鸡汤 chicken -->
+      <div class="dish-item" data-en="Yellow chicken soup" data-zh="三黄鸡汤">三黄鸡汤</div>
+      <div class="dish-item" data-en="Black silkie chicken soup" data-zh="乌鸡汤">乌鸡汤</div>
+      <!-- 牛羊汤 beef & lamb -->
+      <div class="dish-item" data-en="Oxtail and yam soup" data-zh="牛尾山药汤">牛尾山药汤</div>
+      <div class="dish-item" data-en="Lamb and radish soup" data-zh="羊肉萝卜汤">羊肉萝卜汤</div>
+      <!-- 其它 light soups -->
+      <div class="dish-item" data-en="Chinese yam and bone soup" data-zh="山药骨头汤">山药骨头汤</div>
+      <div class="dish-item" data-en="Tomato and bone soup" data-zh="番茄骨头汤">番茄骨头汤</div>
+      <div class="dish-item" data-en="Meatball soup" data-zh="丸子汤">丸子汤</div>
+      <div class="dish-item" data-en="Egg drop and seaweed soup" data-zh="蛋花紫菜汤">蛋花紫菜汤</div>
+    </div>
+  </div>
+
+  <!-- 饮品 -->
+  <div class="menu-section" id="yinpin">
+    <div class="section-title">
+      <span class="icon">🥤</span>
+      <h2 data-en="Drinks" data-zh="饮品">饮品</h2>
+      <span class="count"></span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-item" data-en="Sour plum drink" data-zh="酸梅汤">酸梅汤</div>
+      <div class="dish-item" data-en="Pear and osmanthus tea" data-zh="小吊梨汤">小吊梨汤</div>
+      <a class="dish-item" href="recipes/kafei.html" data-en="Dalgona coffee (400-whisk)" data-zh="400次咖啡">400次咖啡</a>
+      <div class="dish-item" data-en="Wang Lao Ji herbal drink" data-zh="王老吉">王老吉</div>
+    </div>
+  </div>
+
+  <!-- 火锅锅底 -->
+  <div class="menu-section" id="huoguo">
+    <div class="section-title">
+      <span class="icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" style="vertical-align:-0.2em;flex-shrink:0"><circle cx="12" cy="12" r="9.5" fill="#9a5c28"/><path d="M12,2.5 A9.5,9.5 0 0,0 12,21.5 Z" fill="#cc2222"/><path d="M12,2.5 A9.5,9.5 0 0,1 12,21.5 Z" fill="#fdf0dc"/><path d="M12,2.5 C7.5,7 16.5,17 12,21.5" stroke="#9a5c28" stroke-width="1.2" fill="none"/><path d="M2.5,9.5 Q0,12 2.5,14.5" stroke="#9a5c28" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M21.5,9.5 Q24,12 21.5,14.5" stroke="#9a5c28" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></span>
+      <h2 data-en="Hot Pot Broths" data-zh="火锅锅底">火锅锅底</h2>
+      <span class="count">5 道</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-item" data-en="Pork bone broth" data-zh="骨汤">骨汤</div>
+      <div class="dish-item" data-en="Tomato broth" data-zh="番茄">番茄</div>
+      <div class="dish-item" data-en="Spicy broth" data-zh="香辣">香辣</div>
+      <div class="dish-item" data-en="Mushroom broth" data-zh="菌菇">菌菇</div>
+      <a class="dish-item" href="recipes/shouxi-guo.html" data-en="Sukiyaki" data-zh="寿喜锅">寿喜锅</a>
+    </div>
+  </div>
+
+</div><!-- end menu-columns -->
+</main>
+
+<footer>
+  <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+        data-zh="用心打造 &mdash; Shara Wang &copy; 2026">用心打造 &mdash; Shara Wang &copy; 2026</span>
+</footer>
+
+<script src="assets/lang.js"></script>
+<script>
+  // Auto-count per section and total
+  document.querySelectorAll('.menu-section').forEach(section => {
+    const count = section.querySelectorAll('.dish-item').length;
+    section.querySelector('.count').textContent = count + ' 道';
+  });
+  document.getElementById('total-count').textContent = document.querySelectorAll('.dish-item').length;
+
+  // Highlight active nav item on scroll
+  const sections = document.querySelectorAll('.menu-section');
+  const navLinks = document.querySelectorAll('.category-nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.category-nav a[href="#${entry.target.id}"]`);
+        if (active) {
+          active.classList.add('active');
+          active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>

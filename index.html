@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shara's Study Notes</title>
+<link rel="stylesheet" href="assets/lang.css" />
+<style>
+  :root {
+    --bg: #fdf6ec;
+    --card: #ffffff;
+    --ink: #2b2b2b;
+    --muted: #6b6b6b;
+    --accent: #c97b3a;
+    --accent-soft: #f3d9b1;
+    --border: #ead7b7;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header {
+    position: relative;
+    background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%);
+    color: white; padding: 56px 24px 44px; text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+  header h1 { margin: 0; font-size: 2.6rem; letter-spacing: 0.5px; }
+  header p { margin: 10px 0 0; opacity: 0.92; font-style: italic; font-size: 1.1rem; }
+  @media (min-width: 1800px) {
+    header { padding: 72px 48px 56px; }
+    header h1 { font-size: 3.2rem; }
+    header p { font-size: 1.25rem; margin-top: 12px; }
+  }
+  main { max-width: 1800px; margin: 0 auto; padding: 40px 32px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 36px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro h2 { margin: 0 0 8px; font-size: 1.2rem; color: var(--accent); }
+  .intro p { margin: 0; color: var(--muted); }
+  .two-col { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 32px; align-items: start; }
+  @media (min-width: 1500px) {
+    .two-col { gap: 44px; }
+    .topic-card { padding: 20px 22px; gap: 14px; }
+    .topic-icon { font-size: 2rem; }
+    .topic-info h3 { font-size: 1.08rem; }
+    .topic-info p { font-size: 0.9rem; }
+    .recipe-list { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .recipe-list a { font-size: 1rem; padding: 6px 8px; }
+  }
+  @media (min-width: 1800px) {
+    main { padding: 48px 48px 72px; }
+    .two-col { gap: 56px; grid-template-columns: 1.2fr 1fr 1fr; }
+    .column-title { font-size: 1.55rem; margin-bottom: 20px; }
+    .topic-card { padding: 22px 24px; gap: 16px; }
+    .topic-icon { font-size: 2.1rem; }
+    .topic-info h3 { font-size: 1.12rem; }
+    .topic-info .count { font-size: 0.8rem; }
+    .topic-info p { font-size: 0.93rem; line-height: 1.45; }
+    .topics { gap: 14px; }
+    .recipes { padding: 24px 28px; }
+    .recipe-section { margin-bottom: 26px; }
+    .recipe-section h4 { font-size: 0.82rem; margin-bottom: 10px; }
+    .recipe-list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 5px 14px; }
+    .recipe-list a { font-size: 1.02rem; padding: 6px 8px; }
+    .intro { padding: 22px 28px; }
+  }
+  @media (max-width: 1000px) {
+    .two-col { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .two-col > section:first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .two-col > section:first-child { grid-column: auto; }
+  }
+  .column-title { font-size: 1.4rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .column-title .notebook-link { font-size: 0.78rem; font-family: 'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; color: var(--accent); text-decoration: none; font-weight: 500; padding: 4px 10px; border: 1px solid var(--accent); border-radius: 14px; transition: background 0.15s ease, color 0.15s ease; }
+  .column-title .notebook-link:hover { background: var(--accent); color: white; }
+  .recipes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .recipe-section { margin-bottom: 22px; }
+  .recipe-section:last-child { margin-bottom: 0; }
+  .recipe-section h4 { margin: 0 0 8px; font-size: 0.78rem; font-family: 'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; color: var(--accent); text-transform: uppercase; letter-spacing: 0.8px; padding-bottom: 4px; border-bottom: 1px dashed var(--border); }
+  .recipe-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 4px 12px; }
+  .recipe-list a { display: block; padding: 5px 6px; color: var(--ink); text-decoration: none; border-radius: 4px; font-size: 0.95rem; transition: background 0.12s ease, color 0.12s ease; }
+  .recipe-list a:hover { background: var(--accent-soft); color: #6b3e16; }
+  .topics { display: grid; grid-template-columns: 1fr; gap: 12px; align-content: start; }
+  .topic-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; text-decoration: none; color: inherit; display: flex; align-items: flex-start; gap: 12px; }
+  .topic-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201,123,58,0.2); border-color: var(--accent); }
+  .topic-icon { font-size: 1.7rem; flex-shrink: 0; margin-top: 2px; }
+  .topic-info { flex: 1; min-width: 0; }
+  .topic-info h3 { margin: 0 0 3px; font-size: 1rem; color: var(--accent); }
+  .topic-info .count { font-size: 0.75rem; color: var(--muted); margin-bottom: 4px; font-family: 'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; }
+  .topic-info p { margin: 0; color: var(--ink); font-size: 0.85rem; line-height: 1.4; }
+  .menu-banner { margin-top: 44px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); overflow: hidden; transition: box-shadow 0.2s ease, transform 0.2s ease; }
+  .menu-banner:hover { box-shadow: 0 6px 20px rgba(201,123,58,0.18); transform: translateY(-2px); }
+  .menu-banner a { display: flex; align-items: center; gap: 20px; padding: 22px 28px; text-decoration: none; color: inherit; }
+  .menu-banner-icon { font-size: 2.4rem; flex-shrink: 0; }
+  .menu-banner-text h2 { margin: 0 0 4px; font-size: 1.2rem; color: var(--accent); }
+  .menu-banner-text p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+  .menu-banner-arrow { margin-left: auto; font-size: 1.4rem; color: var(--accent); opacity: 0.6; flex-shrink: 0; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <h1>Shara's Study Notes</h1>
+    <p data-en="A personal collection of things I'm learning" data-zh="我的个人学习记录">A personal collection of things I'm learning</p>
+  </header>
+
+  <main>
+    <div class="menu-banner">
+      <a href="menu.html">
+        <span class="menu-banner-icon">🍽️</span>
+        <div class="menu-banner-text">
+          <h2 data-en="My Menu" data-zh="我的菜单">My Menu</h2>
+          <p data-en="Browse all dishes I make — vegetables, mains, meat, soups, desserts &amp; more" data-zh="浏览我会做的所有菜——素菜、主食、肉类、汤品、甜点等">Browse all dishes I make — vegetables, mains, meat, soups, desserts &amp; more</p>
+        </div>
+        <span class="menu-banner-arrow">→</span>
+      </a>
+    </div>
+
+
+    <div class="two-col">
+      <!-- LEFT: Recipes -->
+      <section>
+        <h2 class="column-title">
+          <span data-en="My Recipes" data-zh="我的食谱">My Recipes</span>
+          <a class="notebook-link" href="https://1drv.ms/o/c/2c2de775ac85e749/IgBJ54WsdectIIAscQAAAAAAAZ882gSu-yXuG2TMrxyd9xg?e=ZCjcdc" target="_blank" data-en="Open in OneNote &rarr;" data-zh="在 OneNote 打开 &rarr;">Open in OneNote &rarr;</a>
+        </h2>
+        <div class="recipes">
+          <div class="recipe-section">
+            <h4 data-en="Noodles (面条)" data-zh="面条">Noodles (面条)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/lamian.html" data-en="La Mian" data-zh="拉面">La Mian</a></li>
+              <li><a href="recipes/congmian.html" data-en="Scallion Noodles" data-zh="葱面">Scallion Noodles</a></li>
+              <li><a href="recipes/reganmian.html" data-en="Hot Dry Noodles" data-zh="热干面">Hot Dry Noodles</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Dumplings &amp; Buns (包点)" data-zh="包点">Dumplings &amp; Buns (包点)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/jiaozi.html" data-en="Dumplings" data-zh="饺子">Dumplings</a></li>
+              <li><a href="recipes/xiaolongbao.html" data-en="Soup Dumplings" data-zh="小笼包">Soup Dumplings</a></li>
+              <li><a href="recipes/mantou-huajuan.html" data-en="Mantou &amp; Hua Juan" data-zh="馒头花卷发面">Mantou &amp; Hua Juan</a></li>
+              <li><a href="recipes/zongzi.html" data-en="Sticky Rice Dumplings" data-zh="粽子">Sticky Rice Dumplings</a></li>
+              <li><a href="recipes/wannen-miantuan.html" data-en="All-Purpose Dough" data-zh="万能面团">All-Purpose Dough</a></li>
+              <li><a href="recipes/tangmian.html" data-en="Hot Water Dough" data-zh="烫面">Hot Water Dough</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Pancakes &amp; Flatbreads (饼类)" data-zh="饼类">Pancakes &amp; Flatbreads (饼类)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/jidan-bing.html" data-en="Egg Pancake" data-zh="鸡蛋饼">Egg Pancake</a></li>
+              <li><a href="recipes/suannai-bing.html" data-en="Yogurt Pancake" data-zh="酸奶饼">Yogurt Pancake</a></li>
+              <li><a href="recipes/jianbing-guozi.html" data-en="Jianbing Crepe" data-zh="煎饼果子">Jianbing Crepe</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Fried Dough (炸面食)" data-zh="炸面食">Fried Dough (炸面食)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/youtiao.html" data-en="Youtiao" data-zh="油条">Youtiao</a></li>
+              <li><a href="recipes/mahua.html" data-en="Fried Twist" data-zh="麻花">Fried Twist</a></li>
+              <li><a href="recipes/da-mahua.html" data-en="Twist Breadsticks (NE)" data-zh="大麻花（东北）">Twist Breadsticks (NE)</a></li>
+              <li><a href="recipes/matuan.html" data-en="Sesame Balls" data-zh="麻团">Sesame Balls</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Poultry (禽类)" data-zh="禽类">Poultry (禽类)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/yanshui-ya.html" data-en="Salt Water Duck" data-zh="盐水鸭">Salt Water Duck</a></li>
+              <li><a href="recipes/chiyou-ji.html" data-en="Soy Sauce Chicken" data-zh="豉油鸡">Soy Sauce Chicken</a></li>
+              <li><a href="recipes/baizhan-ji.html" data-en="White Cut Chicken" data-zh="白斩鸡 顺德">White Cut Chicken</a></li>
+              <li><a href="recipes/zha-jichi.html" data-en="Fried Chicken Wings" data-zh="炸鸡翅">Fried Chicken Wings</a></li>
+              <li><a href="recipes/suanxiang-jichi.html" data-en="Garlic Chicken Wings" data-zh="蒜香鸡翅">Garlic Chicken Wings</a></li>
+              <li><a href="recipes/yan-su-ji.html" data-en="Taiwanese Popcorn Chicken" data-zh="盐酥鸡">Taiwanese Popcorn Chicken</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Pork (猪肉)" data-zh="猪肉">Pork (猪肉)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/dongpo-rou.html" data-en="Dongpo Pork" data-zh="东坡肉">Dongpo Pork</a></li>
+              <li><a href="recipes/cuipi-surou.html" data-en="Crispy Pork Belly" data-zh="脆皮酥肉">Crispy Pork Belly</a></li>
+              <li><a href="recipes/chashao.html" data-en="Char Siu" data-zh="叉烧">Char Siu</a></li>
+              <li><a href="recipes/jingjiang-rousi.html" data-en="Beijing Pork Strips" data-zh="京酱肉丝">Beijing Pork Strips</a></li>
+              <li><a href="recipes/jiaoyan-paigu.html" data-en="Salt &amp; Pepper Ribs" data-zh="椒盐排骨">Salt &amp; Pepper Ribs</a></li>
+              <li><a href="recipes/kao-zhupai.html" data-en="Grilled Pork Chop" data-zh="烤猪排">Grilled Pork Chop</a></li>
+              <li><a href="recipes/la-rou.html" data-en="Cured Pork Belly" data-zh="腊肉">Cured Pork Belly</a></li>
+              <li><a href="recipes/sichuan-xiangchang.html" data-en="Sichuan Sausage" data-zh="四川香肠">Sichuan Sausage</a></li>
+              <li><a href="recipes/guobaorou.html" data-en="Crispy Sweet &amp; Sour Pork" data-zh="锅包肉">Crispy Sweet &amp; Sour Pork</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Beef &amp; Lamb (牛羊肉)" data-zh="牛羊肉">Beef &amp; Lamb (牛羊肉)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/niurou-fu.html" data-en="Beef Jerky" data-zh="牛肉脯">Beef Jerky</a></li>
+              <li><a href="recipes/wuxiang-niurougan.html" data-en="Five-Spice Beef Jerky (T&amp;T)" data-zh="五香牛肉干（大统华）">Five-Spice Beef Jerky (T&amp;T)</a></li>
+              <li><a href="recipes/rishi-hambao.html" data-en="Japanese Hamburger Steak" data-zh="日式汉堡排">Japanese Hamburger Steak</a></li>
+              <li><a href="recipes/yangrouchuan.html" data-en="Lamb Skewers" data-zh="羊肉串">Lamb Skewers</a></li>
+              <li><a href="recipes/yangrou.html" data-en="Lamb" data-zh="羊肉">Lamb</a></li>
+              <li><a href="recipes/kao-yangtui.html" data-en="Roasted Lamb Leg" data-zh="烤羊腿">Roasted Lamb Leg</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Seafood (海鲜)" data-zh="海鲜">Seafood (海鲜)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/kao-huangyu.html" data-en="Grilled Yellow Croaker" data-zh="烤黄鱼">Grilled Yellow Croaker</a></li>
+              <li><a href="recipes/kao-yu.html" data-en="Grilled Fish" data-zh="烤鱼">Grilled Fish</a></li>
+              <li><a href="recipes/boiling-shrimp.html" data-en="Boiling Shrimp" data-zh="沸腾大虾">Boiling Shrimp</a></li>
+              <li><a href="recipes/hot-n-juicy.html" data-en="Hot n Juicy" data-zh="麻辣小龙虾">Hot n Juicy</a></li>
+              <li><a href="recipes/kongqi-yudoufu.html" data-en="Air-Fried Fish Tofu" data-zh="空气炸锅鱼豆腐">Air-Fried Fish Tofu</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Vegetables &amp; Tofu (素菜豆腐)" data-zh="素菜豆腐">Vegetables &amp; Tofu (素菜豆腐)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/xihongshi-chaodan.html" data-en="Tomato &amp; Egg Stir-fry" data-zh="西红柿炒蛋">Tomato &amp; Egg Stir-fry</a></li>
+              <li><a href="recipes/culiu-tudousi.html" data-en="Vinegar Potato Shreds" data-zh="醋溜土豆丝">Vinegar Potato Shreds</a></li>
+              <li><a href="recipes/nen-doufu-jidan.html" data-en="Steamed Tofu &amp; Egg" data-zh="嫩豆腐蒸鸡蛋">Steamed Tofu &amp; Egg</a></li>
+              <li><a href="recipes/moyu-doufu.html" data-en="Konjac Tofu" data-zh="魔芋豆腐">Konjac Tofu</a></li>
+              <li><a href="recipes/cuipi-huanggua.html" data-en="Smashed Cucumber" data-zh="脆皮黄瓜">Smashed Cucumber</a></li>
+              <li><a href="recipes/luobo-gan.html" data-en="Dried Radish" data-zh="萝卜干">Dried Radish</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Rice &amp; One-Pot (米饭锅物)" data-zh="米饭锅物">Rice &amp; One-Pot (米饭锅物)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/baozai-fan.html" data-en="Clay Pot Rice" data-zh="煲仔饭">Clay Pot Rice</a></li>
+              <li><a href="recipes/shouxi-guo.html" data-en="Sukiyaki" data-zh="寿喜锅">Sukiyaki</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Baking &amp; Pastry (烘焙)" data-zh="烘焙">Baking &amp; Pastry (烘焙)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/qifeng-dangao.html" data-en="Chiffon Cake" data-zh="原味戚风蛋糕">Chiffon Cake</a></li>
+              <li><a href="recipes/matcha-dangao-juan.html" data-en="Matcha Chiffon Roll" data-zh="抹茶戚风蛋糕卷">Matcha Chiffon Roll</a></li>
+              <li><a href="recipes/lemon-blueberry-cake.html" data-en="Lemon Blueberry Cake" data-zh="柠檬蓝莓蛋糕">Lemon Blueberry Cake</a></li>
+              <li><a href="recipes/tiramisu.html" data-en="Tiramisu" data-zh="提拉米苏">Tiramisu</a></li>
+              <li><a href="recipes/paofu.html" data-en="Choux Puffs" data-zh="泡芙">Choux Puffs</a></li>
+              <li><a href="recipes/danta.html" data-en="Egg Tarts" data-zh="蛋挞">Egg Tarts</a></li>
+              <li><a href="recipes/huangyou-quqi.html" data-en="Butter Cookies" data-zh="黄油曲奇">Butter Cookies</a></li>
+              <li><a href="recipes/danbai-shuang.html" data-en="Egg White Sauce" data-zh="蛋白酱">Egg White Sauce</a></li>
+              <li><a href="recipes/biahua-cailiao.html" data-en="Piping &amp; Frosting" data-zh="裱花材料">Piping &amp; Frosting</a></li>
+              <li><a href="recipes/beihaidao-mianbao.html" data-en="Hokkaido Milk Bread" data-zh="北海道汤种面包">Hokkaido Milk Bread</a></li>
+              <li><a href="recipes/xiao-mianbao.html" data-en="Dinner Rolls" data-zh="小面包">Dinner Rolls</a></li>
+              <li><a href="recipes/danhuang-rousong.html" data-en="Mayo Pork Floss Roll" data-zh="蛋黄酱肉松卷">Mayo Pork Floss Roll</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Chinese Sweets &amp; Street Food (中式甜点小吃)" data-zh="中式甜点小吃">Chinese Sweets &amp; Street Food (中式甜点小吃)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/mochi.html" data-en="Mochi" data-zh="麻糬">Mochi</a></li>
+              <li><a href="recipes/nuomici.html" data-en="Mochi Balls" data-zh="糯米糍">Mochi Balls</a></li>
+              <li><a href="recipes/yuyuan.html" data-en="Taro Balls" data-zh="芋圆">Taro Balls</a></li>
+              <li><a href="recipes/yu-ni.html" data-en="Taro Paste" data-zh="芋泥">Taro Paste</a></li>
+              <li><a href="recipes/moshu-moyu-juan.html" data-en="Scallion Mochi Konjac Roll" data-zh="香葱麻薯魔芋卷">Scallion Mochi Konjac Roll</a></li>
+              <li><a href="recipes/yuebing.html" data-en="Mooncakes" data-zh="月饼">Mooncakes</a></li>
+              <li><a href="recipes/nangua-bing.html" data-en="Pumpkin Cakes" data-zh="南瓜饼">Pumpkin Cakes</a></li>
+              <li><a href="recipes/lvdou-gao.html" data-en="Mung Bean Cake" data-zh="绿豆糕">Mung Bean Cake</a></li>
+              <li><a href="recipes/huangjin-gao.html" data-en="Golden Cake" data-zh="黄金糕">Golden Cake</a></li>
+              <li><a href="recipes/zha-gao.html" data-en="Fried Cake" data-zh="炸糕">Fried Cake</a></li>
+              <li><a href="recipes/jidan-zai.html" data-en="Egg Waffles" data-zh="鸡蛋仔">Egg Waffles</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Puddings &amp; Jellies (布丁冻品)" data-zh="布丁冻品">Puddings &amp; Jellies (布丁冻品)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/mocha-naidong.html" data-en="Matcha Milk Jelly" data-zh="抹茶奶冻">Matcha Milk Jelly</a></li>
+              <li><a href="recipes/jiaotang-buding.html" data-en="Caramel Pudding" data-zh="焦糖布丁">Caramel Pudding</a></li>
+              <li><a href="recipes/meigui.html" data-en="Rose Jelly" data-zh="玫瑰">Rose Jelly</a></li>
+              <li><a href="recipes/huasheng-lao.html" data-en="Peanut Pudding" data-zh="花生酪">Peanut Pudding</a></li>
+              <li><a href="recipes/yangzhi-ganlue.html" data-en="Mango Sago Dessert" data-zh="杨枝甘露">Mango Sago Dessert</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Drinks (饮品)" data-zh="饮品">Drinks (饮品)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/boyajuexian-naicha.html" data-en="Boyajuexian Milk Tea" data-zh="伯牙绝弦奶茶">Boyajuexian Milk Tea</a></li>
+              <li><a href="recipes/anhua-naicha.html" data-en="Anhua Dark Tea Milk Tea" data-zh="安化黑茶奶茶">Anhua Dark Tea Milk Tea</a></li>
+              <li><a href="recipes/matcha-bailan-naicha.html" data-en="Matcha Jasmine White Tea Latte" data-zh="抹茶白兰">Matcha Jasmine White Tea Latte</a></li>
+              <li><a href="recipes/jasmine-zhenwang-naicha.html" data-en="Jasmine Silver Needle Milk Tea" data-zh="茉莉针王">Jasmine Silver Needle Milk Tea</a></li>
+              <li><a href="recipes/niuyouguo-mangmang-ganlu.html" data-en="Avocado Mango Ganlu" data-zh="牛油果芒芒甘露">Avocado Mango Ganlu</a></li>
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h4 data-en="Condiments &amp; Preserved (小料腌制)" data-zh="小料腌制">Condiments &amp; Preserved (小料腌制)</h4>
+            <ul class="recipe-list">
+              <li><a href="recipes/hong-congsu.html" data-en="Crispy Shallots" data-zh="红葱酥">Crispy Shallots</a></li>
+              <li><a href="recipes/you-lazi.html" data-en="Chili Oil" data-zh="油浸辣子">Chili Oil</a></li>
+              <li><a href="recipes/tangcu.html" data-en="Sweet &amp; Sour Sauce" data-zh="糖醋">Sweet &amp; Sour Sauce</a></li>
+              <li><a href="recipes/dajiang.html" data-en="Fermented Bean Paste" data-zh="大酱">Fermented Bean Paste</a></li>
+              <li><a href="recipes/rousong-jiang.html" data-en="Pork Floss Sauce" data-zh="肉松酱">Pork Floss Sauce</a></li>
+              <li><a href="recipes/tangxin-dan.html" data-en="Soft-Boiled Soy Eggs" data-zh="溏心蛋">Soft-Boiled Soy Eggs</a></li>
+              <li><a href="recipes/xian-yadan.html" data-en="Salted Duck Eggs" data-zh="咸鸭蛋">Salted Duck Eggs</a></li>
+              <li><a href="recipes/you-doufu.html" data-en="Fried Tofu Puffs" data-zh="油豆腐">Fried Tofu Puffs</a></li>
+              <li><a href="recipes/qiuli-gao.html" data-en="Autumn Pear Syrup" data-zh="秋梨膏">Autumn Pear Syrup</a></li>
+              <li><a href="recipes/huoguo-zhanjiang.html" data-en="Hot Pot Dipping Sauce" data-zh="火锅蘸酱">火锅蘸酱</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- MIDDLE: Cooking Tips -->
+      <section>
+        <h2 class="column-title">
+          <span data-en="Cooking Tips" data-zh="烹饪技巧">Cooking Tips</span>
+        </h2>
+        <div class="topics">
+          <a class="topic-card" href="cooking-tips/zhajiao-mianhu.html">
+            <span class="topic-icon"><svg width="1em" height="1em" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;"><circle cx="18" cy="18" r="16" fill="#f5f0e8" stroke="#d8c890" stroke-width="0.8"/><circle cx="18" cy="18" r="13.5" fill="none" stroke="#e8d8a0" stroke-width="0.5" opacity="0.5"/><line x1="5" y1="17" x2="9" y2="11" stroke="#f0e4cc" stroke-width="2.2" stroke-linecap="round"/><circle cx="4.5" cy="18" r="2.2" fill="#f0e4cc" stroke="#ddd0b8" stroke-width="0.5"/><ellipse cx="13" cy="9" rx="6" ry="5" fill="#f0b020" stroke="#c88008" stroke-width="0.7"/><circle cx="9.5" cy="7.5" r="1.2" fill="#d09010" opacity="0.55"/><circle cx="13" cy="4.5" r="1" fill="#c88008" opacity="0.5"/><circle cx="17" cy="6" r="1.4" fill="#d09010" opacity="0.55"/><circle cx="18.5" cy="10" r="1" fill="#c88008" opacity="0.5"/><circle cx="15" cy="13" r="1.2" fill="#d09010" opacity="0.5"/><g transform="rotate(10,24,15)"><ellipse cx="24" cy="15" rx="8" ry="5.5" fill="#e8a818" stroke="#b87808" stroke-width="0.7"/><circle cx="24" cy="15" r="1.1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="24" cy="10.5" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="27.5" cy="11.8" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="29" cy="15" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="27.2" cy="18.2" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="23.5" cy="19.5" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="20" cy="18" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="19.2" cy="14.5" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="27" cy="10.2" r="0.6" fill="#f5e8c8" stroke="#a87818" stroke-width="0.35"/><circle cx="20.5" cy="19.8" r="0.6" fill="#f5e8c8" stroke="#a87818" stroke-width="0.35"/></g><circle cx="16" cy="26" r="6.5" fill="#d89818" stroke="#a87008" stroke-width="0.7"/><line x1="16" y1="26" x2="16" y2="19.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="19.6" y2="20.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="22" y2="23.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="22.5" y2="26" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="22" y2="28.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="19.5" y2="31.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="16" y2="32.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="12.5" y2="31.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="10" y2="28.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="9.5" y2="26" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="10" y2="23.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="12.4" y2="20.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><circle cx="16" cy="26" r="2" fill="#c08010" opacity="0.5"/></svg></span>
+            <div class="topic-info">
+              <h3 data-en="Frying Batter Guide" data-zh="油炸面糊">Frying Batter Guide</h3>
+              <div class="count" data-en="4 batter types" data-zh="4 种面糊">4 batter types</div>
+              <p data-en="Crispy coating, hard-fry, and airy tempura-style batters — ratios and best uses for each." data-zh="脆皮糊、硬炸糊、气泡糊的配方与适用场景。">Crispy coating, hard-fry, and airy tempura-style batters — ratios and best uses for each.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="cooking-tips/tang-guide.html">
+            <span class="topic-icon"><svg width="1em" height="1em" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;"><rect x="9" y="8" width="6" height="26" rx="3" fill="#6a9a3a" stroke="#4a7a20" stroke-width="0.8"/><rect x="9" y="15" width="6" height="1.8" rx="0.5" fill="#4a7a20" opacity="0.6"/><rect x="9" y="22" width="6" height="1.8" rx="0.5" fill="#4a7a20" opacity="0.6"/><ellipse cx="12" cy="8" rx="3" ry="1.4" fill="#f0f0e0" stroke="#4a7a20" stroke-width="0.6"/><rect x="14" y="11" width="6" height="23" rx="3" fill="#7a5a9a" stroke="#5a3a7a" stroke-width="0.8"/><rect x="14" y="18" width="6" height="1.8" rx="0.5" fill="#5a3a7a" opacity="0.6"/><rect x="14" y="25" width="6" height="1.8" rx="0.5" fill="#5a3a7a" opacity="0.6"/><ellipse cx="17" cy="11" rx="3" ry="1.4" fill="#f0f0e0" stroke="#5a3a7a" stroke-width="0.6"/><path d="M12 8 Q6 4 4 1" fill="none" stroke="#4a8a20" stroke-width="2" stroke-linecap="round"/><path d="M12 8 Q10 2 11 -1" fill="none" stroke="#5a9a28" stroke-width="1.8" stroke-linecap="round"/><path d="M12 8 Q16 3 18 1" fill="none" stroke="#4a8a20" stroke-width="1.6" stroke-linecap="round"/><path d="M17 11 Q22 6 25 3" fill="none" stroke="#5a9a28" stroke-width="1.8" stroke-linecap="round"/><path d="M17 11 Q20 5 20 2" fill="none" stroke="#4a8a20" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <div class="topic-info">
+              <h3 data-en="Sugar Guide" data-zh="糖的指南">Sugar Guide</h3>
+              <div class="count" data-en="Types &amp; techniques" data-zh="种类与技法">Types &amp; techniques</div>
+              <p data-en="糖色, 拔丝, caramel stages — sugar types and when to use each in Chinese cooking." data-zh="糖色、拔丝、焦糖阶段——各种糖在中式烹饪中的用法。">糖色, 拔丝, caramel stages — sugar types and when to use each in Chinese cooking.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="cooking-tips/moyu-huansuan.html">
+            <span class="topic-icon">🍃</span>
+            <div class="topic-info">
+              <h3 data-en="Konjac Powder Guide" data-zh="魔芋粉换算">Konjac Powder Guide</h3>
+              <div class="count" data-en="Ratios &amp; substitutes" data-zh="比例与代换">Ratios &amp; substitutes</div>
+              <p data-en="Konjac powder glucomannan content, xanthan gum substitution ratio, and usage notes." data-zh="魔芋粉葡聚糖含量、黄原胶换算比例与实际用量建议。">Konjac powder glucomannan content, xanthan gum substitution ratio, and usage notes.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="cooking-tips/fuzhu-paofa.html">
+            <span class="topic-icon"><svg width="1em" height="1em" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;"><circle cx="18" cy="18" r="16" fill="#fdecc8" stroke="#f0b030" stroke-width="1.4"/><circle cx="18" cy="18" r="13" fill="#bde8f5" opacity="0.9"/><g transform="rotate(-11,18,16)"><rect x="4" y="12" width="28" height="5.5" rx="2" fill="#fad84a" stroke="#d4a010" stroke-width="0.5" opacity="0.95"/><line x1="5" y1="13.8" x2="31" y2="13.8" stroke="#a07800" stroke-width="0.35" opacity="0.45"/><line x1="5" y1="15.4" x2="31" y2="15.4" stroke="#faeea0" stroke-width="0.3" opacity="0.55"/><line x1="5" y1="17" x2="31" y2="17" stroke="#a07800" stroke-width="0.35" opacity="0.45"/></g><g transform="rotate(7,18,21)"><rect x="6" y="18" width="23" height="4.5" rx="2" fill="#f0c828" stroke="#c09010" stroke-width="0.45" opacity="0.88"/><line x1="7" y1="19.7" x2="28" y2="19.7" stroke="#907000" stroke-width="0.3" opacity="0.42"/><line x1="7" y1="21.2" x2="28" y2="21.2" stroke="#f5e070" stroke-width="0.28" opacity="0.48"/><line x1="7" y1="22.4" x2="28" y2="22.4" stroke="#907000" stroke-width="0.3" opacity="0.38"/></g><g transform="rotate(-3,16,26)"><rect x="9" y="24" width="15" height="3.5" rx="1.8" fill="#e0b010" stroke="#a07808" stroke-width="0.4" opacity="0.75"/><line x1="10" y1="25.5" x2="23" y2="25.5" stroke="#7a5800" stroke-width="0.28" opacity="0.4"/><line x1="10" y1="27" x2="23" y2="27" stroke="#7a5800" stroke-width="0.28" opacity="0.36"/></g><circle cx="9" cy="10" r="1.4" fill="white" opacity="0.55"/><circle cx="7.5" cy="8.8" r="0.6" fill="white" opacity="0.65"/><circle cx="27" cy="9" r="1" fill="white" opacity="0.45"/><circle cx="29" cy="26" r="0.9" fill="white" opacity="0.38"/></svg></span>
+            <div class="topic-info">
+              <h3 data-en="Rehydrating Yuba" data-zh="腐竹泡发">Rehydrating Yuba</h3>
+              <div class="count" data-en="Tips &amp; timing" data-zh="技巧与时间">Tips &amp; timing</div>
+              <p data-en="How to rehydrate dried tofu skin (腐竹) — warm water and salt." data-zh="腐竹泡发方法：温水加盐。">How to rehydrate dried tofu skin (腐竹) — warm water and salt.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="cooking-tips/pepper.html">
+            <span class="topic-icon"><svg width="1em" height="1em" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;"><rect x="14.5" y="2" width="7" height="4.5" rx="2.2" fill="#c0b8a0" stroke="#908060" stroke-width="0.5"/><rect x="11" y="5.5" width="14" height="7" rx="4" fill="#d0c8b0" stroke="#a09070" stroke-width="0.6"/><rect x="10" y="11" width="16" height="16" rx="4" fill="#e8e0d0" stroke="#b0a080" stroke-width="0.7"/><rect x="11.5" y="13" width="13" height="10" rx="2" fill="#f8f4ec" stroke="#c0b090" stroke-width="0.5" opacity="0.95"/><circle cx="15" cy="16" r="1.8" fill="#2a2018"/><circle cx="18.5" cy="15" r="1.6" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/><circle cx="22" cy="16.5" r="1.8" fill="#2a2018"/><circle cx="16" cy="20" r="1.6" fill="#2a2018"/><circle cx="20.5" cy="19.5" r="1.5" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/><rect x="10.5" y="26" width="15" height="5" rx="2.5" fill="#c8c0a8" stroke="#a09070" stroke-width="0.6"/><circle cx="14" cy="33" r="1.1" fill="#2a2018" opacity="0.7"/><circle cx="18" cy="34.5" r="0.9" fill="#2a2018" opacity="0.6"/><circle cx="22" cy="32.5" r="0.9" fill="#2a2018" opacity="0.55"/></svg></span>
+            <div class="topic-info">
+              <h3 data-en="Pepper" data-zh="胡椒">Pepper</h3>
+              <div class="count" data-en="Black &amp; white" data-zh="黑胡椒与白胡椒">Black &amp; white</div>
+              <p data-en="Black pepper enhances aroma; white pepper adds spicy heat. Know when to use which." data-zh="黑胡椒提香，白胡椒有辣味。了解何时该用哪种。">Black pepper enhances aroma; white pepper adds spicy heat. Know when to use which.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="recipes/jilidin.html">
+            <span class="topic-icon">🧊</span>
+            <div class="topic-info">
+              <h3 data-en="Gelatin Guide" data-zh="吉利丁用法">Gelatin Guide</h3>
+              <div class="count" data-en="Powder &amp; sheets" data-zh="吉利丁粉与片">Powder &amp; sheets</div>
+              <p data-en="Gelatin powder vs. sheets — ratios, bloom method, and how to substitute one for the other." data-zh="吉利丁粉与吉利丁片的区别、用量换算与泡发方法。">Gelatin powder vs. sheets — ratios, bloom method, and how to substitute one for the other.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="cooking-tips/huoguo-zhanliao.html">
+            <span class="topic-icon">🍲</span>
+            <div class="topic-info">
+              <h3 data-en="Hot Pot Dipping Sauces" data-zh="火锅蘸料指南">Hot Pot Dipping Sauces</h3>
+              <div class="count" data-en="6 broth types" data-zh="6 种锅底">6 种锅底</div>
+              <p data-en="Match your dipping sauce to the broth — mala, clear, Beijing lamb, Chaoshan beef, seafood, dry dip." data-zh="根据锅底选蘸料——麻辣、清汤、老北京涮羊肉、潮汕牛肉、海鲜、干碟。">Match your dipping sauce to the broth — mala, clear, Beijing lamb, Chaoshan beef, seafood, dry dip.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- RIGHT: Study Topics -->
+      <section>
+        <h2 class="column-title">
+          <span data-en="Study Topics" data-zh="学习主题">Study Topics</span>
+        </h2>
+        <div class="topics">
+          <a class="topic-card" href="study-topics/eggs.html">
+            <span class="topic-icon">&#127859;</span>
+            <div class="topic-info">
+              <h3 data-en="Eggs" data-zh="鸡蛋">Eggs</h3>
+              <div class="count" data-en="2 notes" data-zh="2 篇笔记">2 notes</div>
+              <p data-en="Nutrition differences, brand quality, what &ldquo;organic&rdquo; really means on a carton." data-zh="营养差异、品牌质量，以及包装上的&ldquo;有机&rdquo;到底意味着什么。">Nutrition differences, brand quality, what "organic" really means on a carton.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="study-topics/milk.html">
+            <span class="topic-icon">&#129371;</span>
+            <div class="topic-info">
+              <h3 data-en="Milk" data-zh="牛奶">Milk</h3>
+              <div class="count" data-en="2 notes" data-zh="2 篇笔记">2 notes</div>
+              <p data-en="Whole vs skim, A2, grass-fed, organic &mdash; and which brands actually live up to their labels." data-zh="全脂与脱脂、A2、草饲、有机——以及哪些品牌真正名副其实。">Whole vs skim, A2, grass-fed, organic &mdash; and which brands actually live up to their labels.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="study-topics/flour.html">
+            <span class="topic-icon">&#127838;</span>
+            <div class="topic-info">
+              <h3 data-en="Flour" data-zh="面粉">Flour</h3>
+              <div class="count" data-en="3 notes + converter" data-zh="3 篇笔记 + 转换器">3 notes + converter</div>
+              <p data-en="Types of flour, protein content, top brands, Canada-Japan supply chain, plus a protein blend converter." data-zh="面粉种类、蛋白质含量、顶级品牌、加拿大—日本供应链，外加一个蛋白质混合计算器。">Types of flour, protein content, top brands, Canada-Japan supply chain, plus a protein blend converter.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="study-topics/seafood.html">
+            <span class="topic-icon">🐟</span>
+            <div class="topic-info">
+              <h3 data-en="Seafood" data-zh="海鲜">Seafood</h3>
+              <div class="count" data-en="Fish, crab &amp; shrimp" data-zh="鱼、蟹与虾">Fish, crab &amp; shrimp</div>
+              <p data-en="Fish species, crab safety, and US shrimp varieties — identification, selection, and cooking methods." data-zh="鱼类品种、螃蟹安全与美国虾种——识别、选购与烹饪指南。">Fish species, crab safety, and US shrimp varieties — identification, selection, and cooking methods.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="study-topics/beef.html">
+            <span class="topic-icon">&#127830;</span>
+            <div class="topic-info">
+              <h3 data-en="Beef" data-zh="牛肉">Beef</h3>
+              <div class="count" data-en="2 notes" data-zh="2 篇笔记">2 notes</div>
+              <p data-en="Cuts &amp; grades, Cornucopia&rsquo;s organic brand scorecard, and Bellevue buying tips including PCC sourcing standards." data-zh="部位与等级、Cornucopia 有机品牌评分，以及含 PCC 采购标准的 Bellevue 购买建议。">Cuts &amp; grades, Cornucopia&rsquo;s organic brand scorecard, and Bellevue buying tips including PCC sourcing standards.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="study-topics/tudou-guide.html">
+            <span class="topic-icon">&#129364;</span>
+            <div class="topic-info">
+              <h3 data-en="Potato" data-zh="土豆">Potato</h3>
+              <div class="count" data-en="Varieties &amp; uses" data-zh="品种与用途">Varieties &amp; uses</div>
+              <p data-en="Yukon Gold vs Russet vs red — which potato for mashing, frying, or stewing." data-zh="黄心、白心、红皮土豆的区别，以及哪种适合做泥、炸或炖。">Yukon Gold vs Russet vs red — which potato for mashing, frying, or stewing.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="study-topics/coffee.html">
+            <span class="topic-icon">☕</span>
+            <div class="topic-info">
+              <h3 data-en="Coffee" data-zh="咖啡">Coffee</h3>
+              <div class="count" data-en="Brewing &amp; beans" data-zh="冲泡与豆子">Brewing &amp; beans</div>
+              <p data-en="Coffee brewing notes and techniques, bean varieties, and grind guides." data-zh="咖啡冲泡笔记与技巧、豆子品种与研磨指南。">Coffee brewing notes and techniques, bean varieties, and grind guides.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="assets/lang.js"></script>
+</body>
+</html>

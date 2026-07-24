@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="牛肉 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beef &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 820px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 820px; margin: 0 auto; font-size: 2.2rem; }
+  header p { max-width: 820px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 820px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  .notes-list { display: grid; gap: 16px; }
+  .note-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; transition: transform 0.15s ease, box-shadow 0.15s ease; text-decoration: none; color: inherit; display: block; }
+  .note-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(201, 123, 58, 0.18); border-color: var(--accent); }
+  .note-card h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--accent); }
+  .note-card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+  .note-card p { margin: 0; color: var(--ink); font-size: 0.98rem; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-right: 6px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>&#127830; <span data-en="Beef" data-zh="牛肉">Beef</span></h1>
+    <p data-en="Cuts, grades, and how to choose the best organic brands."
+       data-zh="部位、等级，以及如何挑选最好的有机牛肉品牌。">Cuts, grades, and how to choose the best organic brands.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="From understanding Wagyu vs Prime vs Choice to knowing which organic brands are actually worth the price &mdash; everything I've learned about beef."
+         data-zh="从和牛、Prime 与 Choice 的区别，到哪些有机品牌真正物有所值——我学到的关于牛肉的一切。">From understanding Wagyu vs Prime vs Choice to knowing which organic brands are actually worth the price &mdash; everything I've learned about beef.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Notes" data-zh="笔记">Notes</h2>
+    <div class="notes-list">
+      <a class="note-card" href="niu-guide.html">
+        <h3 data-en="Beef Cuts &amp; Grades Guide" data-zh="牛肉部位与等级指南">Beef Cuts &amp; Grades Guide</h3>
+        <div class="meta"><span class="tag" data-en="Reference" data-zh="参考">Reference</span></div>
+        <p data-en="Wagyu vs Prime vs Choice vs Select, which cuts suit which cooking methods, and how to choose at the store."
+           data-zh="和牛、Prime、Choice 与 Select 的区别，各部位适合的烹饪方式，以及如何在超市挑选牛肉。">Wagyu vs Prime vs Choice vs Select, which cuts suit which cooking methods, and how to choose at the store.</p>
+      </a>
+      <a class="note-card" href="organic-beef-scorecard.html">
+        <h3 data-en="Organic Beef Buying Guide" data-zh="有机牛肉选购指南">Organic Beef Buying Guide</h3>
+        <div class="meta"><span class="tag" data-en="Buying Guide" data-zh="选购指南">Buying Guide</span></div>
+        <p data-en="Cornucopia&rsquo;s 1&ndash;5 cow scorecard for 150+ brands, plus Bellevue shopping tips &mdash; PCC standards, top 3 picks, and brands to avoid."
+           data-zh="Cornucopia 对 150+ 个品牌的 1–5 头牛评分，加 Bellevue 本地购买建议——PCC 标准、最优三选及应避免的品牌。">Cornucopia&rsquo;s 1&ndash;5 cow scorecard for 150+ brands, plus Bellevue shopping tips &mdash; PCC standards, top 3 picks, and brands to avoid.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="虾的品种 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shrimp Varieties — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 960px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: min(92vw, 960px); margin: 0 auto; font-size: 2rem; }
+  header p { max-width: min(92vw, 960px); margin: 8px auto 0; opacity: 0.92; font-style: italic; font-family: 'Helvetica', sans-serif; font-size: 0.9rem; }
+  main { max-width: min(92vw, 960px); margin: 0 auto; padding: 36px 24px 60px; }
+
+  .shrimp-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); font-size: 0.9rem; margin-bottom: 32px; }
+  .shrimp-table th { background: var(--accent); color: white; padding: 11px 14px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; font-family: 'Helvetica', sans-serif; }
+  .shrimp-table td { padding: 13px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .shrimp-table tr:last-child td { border-bottom: none; }
+  .shrimp-table tr:hover td { background: #fef9f3; }
+  .shrimp-name { font-weight: 700; color: var(--accent); font-size: 1rem; }
+  .shrimp-en { display: block; font-size: 0.8rem; color: var(--muted); font-weight: normal; font-family: 'Helvetica', sans-serif; margin-top: 2px; }
+  .fav { background: #fffbf0; }
+  .fav td:first-child { border-left: 3px solid #e0a020; }
+  .tag { display: inline-block; font-size: 0.72rem; padding: 2px 7px; border-radius: 10px; margin-top: 4px; font-family: 'Helvetica', sans-serif; }
+  .tag-fresh { background: #e0f3e0; color: #2a6a2a; }
+  .tag-frozen { background: #ddeeff; color: #1a4a8a; }
+  .tag-any { background: #f0e8ff; color: #5a2a8a; }
+
+  .note-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; }
+  .note-card h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 10px; font-family: 'Helvetica', sans-serif; }
+  .note-card p, .note-card li { margin: 6px 0; line-height: 1.7; font-size: 0.95rem; }
+  .note-card ul, .note-card ol { padding-left: 20px; margin: 8px 0; }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 12px; font-size: 0.93rem; }
+  .section-title { font-size: 1.15rem; margin: 32px 0 14px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; color: var(--ink); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  @media (max-width: 680px) {
+    .shrimp-table { font-size: 0.82rem; }
+    .shrimp-table th, .shrimp-table td { padding: 9px 10px; }
+    .hide-sm { display: none; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>🦐 <span data-en="Shrimp Varieties in the US" data-zh="美国常见虾的品种">Shrimp Varieties in the US</span></h1>
+    <p data-en="Fresh vs. frozen, Pacific vs. Atlantic — how to tell them apart and cook each one right."
+       data-zh="鲜虾与冷冻虾、太平洋与大西洋——品种识别、购买渠道与烹饪建议。">Fresh vs. frozen, Pacific vs. Atlantic — how to tell them apart and cook each one right.</p>
+  </header>
+
+  <main>
+
+    <h2 class="section-title" data-en="⭐ My Favorites" data-zh="⭐ 我的最爱">⭐ My Favorites</h2>
+
+    <table class="shrimp-table">
+      <thead>
+        <tr>
+          <th data-en="Name" data-zh="名称">Name</th>
+          <th data-en="Characteristics" data-zh="特点">Characteristics</th>
+          <th data-en="Where to Buy" data-zh="购买渠道">Where to Buy</th>
+          <th class="hide-sm" data-en="Best For" data-zh="适合做法">Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="fav">
+          <td>
+            <div class="shrimp-name">珊瑚虾 / 斑点虾</div>
+            <span class="shrimp-en">Spot Prawns<br><em>Pandalus platyceros</em></span>
+            <br><span class="tag tag-fresh">鲜活</span>
+          </td>
+          <td data-zh="太平洋西北最顶级的虾。外壳橙红色、有白色斑点，肉质极甜、细嫩，类似龙虾质感。体型大（可达25cm）。&lt;strong&gt;去头要快&lt;/strong&gt;——死后头部会迅速释放酶，使肉变黑变苦。活虾买回后立刻去头或当天吃完。" data-en="The Pacific Northwest's finest shrimp. Orange-red shell with white spots, incredibly sweet flesh with a lobster-like texture. Large (up to 25cm). &lt;strong&gt;Remove the head immediately&lt;/strong&gt; — enzymes from the head rapidly blacken and bitter the meat after death. Remove head or eat same day.">太平洋西北最顶级的虾。外壳橙红色、有白色斑点，肉质极甜、细嫩，类似龙虾质感。体型大（可达25cm）。<strong>去头要快</strong>——死后头部会迅速释放酶，使肉变黑变苦。活虾买回后立刻去头或当天吃完。</td>
+          <td data-zh="西雅图海鲜仓库（渔船直供，季节性：4–11月为主）；Pike Place Market；太平洋沿岸渔市" data-en="Seattle fish warehouse (boat-to-buyer, seasonal: mainly Apr–Nov); Pike Place Market; Pacific Coast fish markets">西雅图海鲜仓库（渔船直供，季节性：4–11月为主）；Pike Place Market；太平洋沿岸渔市</td>
+          <td class="hide-sm" data-zh="白灼、清蒸、刺身（极鲜时可生吃）、黄油煎；不适合重口味腌制" data-en="Blanched, steamed, sashimi (can eat raw when very fresh), butter-seared; not suitable for heavy seasoning">白灼、清蒸、刺身（极鲜时可生吃）、黄油煎；不适合重口味腌制</td>
+        </tr>
+        <tr class="fav">
+          <td>
+            <div class="shrimp-name">芝麻虾</div>
+            <span class="shrimp-en">Small Pacific Shrimp<br>(Dock / Sidestriped Shrimp)</span>
+            <br><span class="tag tag-fresh">鲜活</span>
+          </td>
+          <td data-zh="西雅图渔船直供的小粒鲜虾，因个头小如芝麻而得名。甜度高，壳薄易剥，整虾连壳炸或白灼风味极佳。可能为 dock shrimp（Pandalus danae）或 coonstripe shrimp 等小型太平洋虾种。" data-en="Tiny fresh shrimp boat-direct from Seattle, nicknamed for their sesame-seed size. Very sweet, thin shell, excellent whole-fried or blanched. Likely dock shrimp (Pandalus danae) or coonstripe shrimp.">西雅图渔船直供的小粒鲜虾，因个头小如芝麻而得名。甜度高，壳薄易剥，整虾连壳炸或白灼风味极佳。可能为 dock shrimp（Pandalus danae）或 coonstripe shrimp 等小型太平洋虾种。</td>
+          <td data-zh="西雅图海鲜仓库（季节性鲜货，渔船直供）；亮货时间不定" data-en="Seattle fish warehouse (seasonal, boat-direct); availability varies">西雅图海鲜仓库（季节性鲜货，渔船直供）；亮货时间不定</td>
+          <td class="hide-sm" data-zh="整虾油炸（壳可一起吃）、白灼、盐水煮；因体型小火候要快" data-en="Deep-fry whole (shell edible), blanch, or salt-boil; short cook time due to small size">整虾油炸（壳可一起吃）、白灼、盐水煮；因体型小火候要快</td>
+        </tr>
+        <tr class="fav">
+          <td>
+            <div class="shrimp-name">北极甜虾</div>
+            <span class="shrimp-en">Arctic Sweet Shrimp<br><em>Pandalus borealis</em></span>
+            <br><span class="tag tag-frozen">冷冻</span>
+          </td>
+          <td data-zh="产自北大西洋/北极海域的冷水小虾，与斑点虾同属但不同种。个头小、肉质极甜。市售多为预熟冷冻（粉红色），也有生冻版本。甜度是其最大特点，被称为"甜虾（sweet shrimp）"。" data-en="Cold-water shrimp from the North Atlantic/Arctic, same genus as spot prawns but different species. Small, extremely sweet. Sold mostly pre-cooked frozen (pink); also available raw-frozen. Called 'sweet shrimp' for good reason.">产自北大西洋/北极海域的冷水小虾，与斑点虾同属但不同种。个头小、肉质极甜。市售多为预熟冷冻（粉红色），也有生冻版本。甜度是其最大特点，被称为"甜虾（sweet shrimp）"。</td>
+          <td data-zh="东海岸亚超、H Mart、99Ranch、Costco（冷冻区）；日本超市也有生冻版（甜虾刺身）" data-en="East Coast Asian markets, H Mart, 99 Ranch, Costco (frozen section); Japanese supermarkets carry the raw-frozen version (ama-ebi sashimi)">东海岸亚超、H Mart、99Ranch、Costco（冷冻区）；日本超市也有生冻版（甜虾刺身）</td>
+          <td class="hide-sm" data-zh="冷冻熟虾直接解冻吃；生冻版可做刺身；不适合高温炒——肉太嫩易老" data-en="Thaw and eat (pre-cooked); raw-frozen version for sashimi; not suitable for high-heat stir-fry — flesh is too delicate">冷冻熟虾直接解冻吃；生冻版可做刺身；不适合高温炒——肉太嫩易老</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title" data-en="Other Common US Market Varieties" data-zh="其他常见品种">Other Common US Market Varieties</h2>
+
+    <table class="shrimp-table">
+      <thead>
+        <tr>
+          <th data-en="Name" data-zh="名称">Name</th>
+          <th data-en="Characteristics" data-zh="特点">Characteristics</th>
+          <th data-en="Where to Buy" data-zh="购买渠道">Where to Buy</th>
+          <th class="hide-sm" data-en="Best For" data-zh="适合做法">Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="shrimp-name">南美白虾 / 白对虾</div>
+            <span class="shrimp-en">Pacific White / Whiteleg Shrimp<br><em>Litopenaeus vannamei</em></span>
+            <br><span class="tag tag-any">鲜/冻均有</span>
+          </td>
+          <td data-zh="美国市场最常见虾种，绝大多数超市冷冻虾都是这个。养殖为主，产自东南亚/南美。肉质弹脆、味道中性，适合各种烹饪方式。价格实惠。" data-en="The most common shrimp in US markets — most frozen supermarket shrimp is this species. Farmed, from Southeast Asia or South America. Firm, springy, neutral flavor, versatile. Budget-friendly.">美国市场最常见虾种，绝大多数超市冷冻虾都是这个。养殖为主，产自东南亚/南美。肉质弹脆、味道中性，适合各种烹饪方式。价格实惠。</td>
+          <td data-zh="所有超市（Costco、Walmart、Whole Foods）；亚超鲜货区也有" data-en="All supermarkets (Costco, Walmart, Whole Foods); also in Asian market fresh sections">所有超市（Costco、Walmart、Whole Foods）；亚超鲜货区也有</td>
+          <td class="hide-sm" data-zh="油焖大虾、盐焗虾、炒虾仁、蒜蓉虾——百搭" data-en="Braised shrimp, salt-baked shrimp, stir-fried shrimp, garlic butter shrimp — works for everything">油焖大虾、盐焗虾、炒虾仁、蒜蓉虾——百搭</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="shrimp-name">黑虎虾 / 草虾 / 斑节虾</div>
+            <span class="shrimp-en">Black Tiger Shrimp<br><em>Penaeus monodon</em></span>
+            <br><span class="tag tag-any">鲜/冻均有</span>
+          </td>
+          <td data-zh="体型大、壳上有黑色条纹，肉厚实，口感偏扎实不如白对虾嫩。亚超常见，整只带壳卖，视觉冲击强。" data-en="Large shrimp with black tiger stripes; meaty but firmer than white shrimp. Common in Asian markets, sold whole in-shell — impressive presentation.">体型大、壳上有黑色条纹，肉厚实，口感偏扎实不如白对虾嫩。亚超常见，整只带壳卖，视觉冲击强。</td>
+          <td data-zh="H Mart、99Ranch、亚超活鱼池或冷冻区" data-en="H Mart, 99 Ranch, Asian market live tanks or frozen section">H Mart、99Ranch、亚超活鱼池或冷冻区</td>
+          <td class="hide-sm" data-zh="白灼、蒜蓉粉丝蒸虾、BBQ整虾" data-en="Blanched, garlic-vermicelli steamed, whole-shrimp BBQ">白灼、蒜蓉粉丝蒸虾、BBQ整虾</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="shrimp-name">明虾 / 基围虾</div>
+            <span class="shrimp-en">Kuruma Prawn · <em>Metapenaeus ensis</em></span>
+            <br><span class="tag tag-fresh">游水活虾 · 东海岸亚超</span>
+          </td>
+          <td data-zh="东海岸亚超鱼缸里的游水虾就是这个。从东南亚（越南/泰国/广东）&lt;strong&gt;空运进口&lt;/strong&gt;，箱内铺湿草、充氧保活。灰白透明、体型小。到货当天最新鲜，买前可问店员进货日。比南美白虾鲜甜很多，港式餐厅白灼基围虾同款。" data-en="The live swimming shrimp in East Coast Asian market tanks. &lt;strong&gt;Air-flown&lt;/strong&gt; from Southeast Asia (Vietnam/Thailand/Guangdong), packed in wet grass and oxygenated. Gray-white, translucent, small. Freshest on delivery day — ask staff when they arrive. Far sweeter than farmed white shrimp; same species used in Hong Kong-style blanched shrimp.">东海岸亚超鱼缸里的游水虾就是这个。从东南亚（越南/泰国/广东）<strong>空运进口</strong>，箱内铺湿草、充氧保活。灰白透明、体型小。到货当天最新鲜，买前可问店员进货日。比南美白虾鲜甜很多，港式餐厅白灼基围虾同款。</td>
+          <td data-zh="H Mart、99Ranch 活鱼池（东海岸）；到货日当天买最佳" data-en="H Mart, 99 Ranch live tanks (East Coast); best to buy on delivery day">H Mart、99Ranch 活鱼池（东海岸）；到货日当天买最佳</td>
+          <td class="hide-sm" data-zh="白灼（最能体现鲜味）、盐焗、椒盐" data-en="Blanched (best showcases freshness), salt-baked, pepper-salt">白灼（最能体现鲜味）、盐焗、椒盐</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="shrimp-name">岩虾 / 石虾</div>
+            <span class="shrimp-en">Rock Shrimp<br><em>Sicyonia brevirostris</em></span>
+            <br><span class="tag tag-frozen">多为冷冻</span>
+          </td>
+          <td data-zh="壳极硬，肉质类似龙虾，甜度高。通常已去壳出售（因壳太难剥）。美国东南部特产。" data-en="Rock-hard shell, lobster-like flesh, very sweet. Usually sold shelled (shell is too hard to peel). A specialty of the US Southeast.">壳极硬，肉质类似龙虾，甜度高。通常已去壳出售（因壳太难剥）。美国东南部特产。</td>
+          <td data-zh="东海岸海鲜市场；部分Whole Foods冷冻区" data-en="East Coast seafood markets; some Whole Foods frozen sections">东海岸海鲜市场；部分Whole Foods冷冻区</td>
+          <td class="hide-sm" data-zh="黄油炒、大蒜炒、配意面；可替代龙虾尾" data-en="Butter-sautéed, garlic-sautéed, with pasta; substitute for lobster tail">黄油炒、大蒜炒、配意面；可替代龙虾尾</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title" data-en="Quick Tips" data-zh="实用笔记">Quick Tips</h2>
+
+    <div class="note-card">
+      <h3>斑点虾（珊瑚虾）去头时机</h3>
+      <p data-zh="斑点虾死后，头部的消化腺会迅速降解虾肉，导致虾肉变黑、变苦——这个过程在室温下可以在几小时内发生。买到活虾后：立刻掐头（或整虾放冰上低温保存，当天吃完）。冷冻保存要去头后再冻，否则解冻后肉质变差。" data-en="After spot prawns die, the digestive glands in the head rapidly break down the flesh, turning it black and bitter — this can happen within hours at room temperature. Once you get live prawns: remove the heads immediately (or keep whole on ice and eat the same day). For freezing, always remove the head first, or the thawed meat will deteriorate.">斑点虾死后，头部的消化腺会迅速降解虾肉，导致虾肉变黑、变苦——这个过程在室温下可以在几小时内发生。买到活虾后：立刻掐头（或整虾放冰上低温保存，当天吃完）。冷冻保存要去头后再冻，否则解冻后肉质变差。</p>
+      <div class="tip">💡 西雅图渔市买的活斑点虾，可以请摊主当场去头，或自己带冰盒带回家立即处理。</div>
+    </div>
+
+    <div class="note-card">
+      <h3>北极甜虾：熟冻 vs 生冻</h3>
+      <ul>
+        <li data-zh="&lt;strong&gt;熟冻（最常见）：&lt;/strong&gt;买来直接解冻就能吃，适合凉菜、寿司配料。不要再加热，否则肉会变老缩水。" data-en="&lt;strong&gt;Pre-cooked frozen (most common):&lt;/strong&gt; just thaw and eat; good for cold dishes and sushi toppings. Do not reheat — the flesh will toughen and shrink."><strong>熟冻（最常见）：</strong>买来直接解冻就能吃，适合凉菜、寿司配料。不要再加热，否则肉会变老缩水。</li>
+        <li data-zh="&lt;strong&gt;生冻（日本超市有售）：&lt;/strong&gt;橙红色虾头，肉透明粉嫩，可做刺身（甜虾军舰卷同款）。虾头可单独炸脆或煮味噌汤。" data-en="&lt;strong&gt;Raw-frozen (Japanese supermarkets):&lt;/strong&gt; orange-red head, translucent pink flesh; use for sashimi (ama-ebi gunkan). Heads can be deep-fried crispy or used in miso soup."><strong>生冻（日本超市有售）：</strong>橙红色虾头，肉透明粉嫩，可做刺身（甜虾军舰卷同款）。虾头可单独炸脆或煮味噌汤。</li>
+      </ul>
+    </div>
+
+    <div class="note-card">
+      <h3 data-en="Freshness Check" data-zh="鲜度判断">鲜度判断</h3>
+      <ul>
+        <li data-zh="鲜虾：壳紧贴肉身、半透明、有海鲜香气；尾部弯曲自然" data-en="Fresh shrimp: shell tightly adheres to flesh, semi-translucent, smells of sea; tail curves naturally">鲜虾：壳紧贴肉身、半透明、有海鲜香气；尾部弯曲自然</li>
+        <li data-zh="不新鲜：头颈处发黑、有氨味/腥臭味、壳与肉分离" data-en="Not fresh: blackening at head/neck, ammonia or fishy odor, shell separating from flesh">不新鲜：头颈处发黑、有氨味/腥臭味、壳与肉分离</li>
+        <li data-zh="冷冻虾解冻后有白色冰晶残留多、肉质松散，说明反复冻融过——尽量选真空包装" data-en="Frozen shrimp with lots of white ice crystals and mushy texture after thawing has been freeze-thawed multiple times — choose vacuum-sealed packaging when possible">冷冻虾解冻后有白色冰晶残留多、肉质松散，说明反复冻融过——尽量选真空包装</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

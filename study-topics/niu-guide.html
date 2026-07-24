@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="牛肉学习笔记 — Shara">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beef Guide — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 22px; margin-bottom: 24px; font-size: 0.92rem; }
+  .toc strong { display: block; color: var(--accent); font-family: 'Helvetica', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; margin-bottom: 8px; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { margin: 3px 0; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--accent); text-decoration: underline; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 28px 0 10px; padding-top: 4px; border-top: 1px dashed var(--border); }
+  .recipe-notes h3:first-child { margin-top: 0; border-top: none; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 5px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  table { width:100%; border-collapse:collapse; font-size:0.92rem; margin:10px 0 16px; }
+  thead tr { background: var(--accent-soft); }
+  th { padding:7px 10px; text-align:left; border:1px solid var(--border); font-family: 'Helvetica', sans-serif; font-size: 0.82rem; }
+  td { padding:7px 10px; border:1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) { background:#fdf9f4; }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.93rem; }
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .header-icon-slot { width: 180px; height: 180px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 5rem; line-height: 1; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="beef.html" data-en="&larr; Beef" data-zh="&larr; 牛肉">&larr; Beef</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Beef Guide" data-zh="牛肉学习笔记">Beef Guide</h1>
+        <div class="meta" data-en="Cuts &middot; Grades &middot; Origins &middot; Where to Buy" data-zh="部位 &middot; 分级 &middot; 产地 &middot; 购买攻略">Cuts &middot; Grades &middot; Origins &middot; Where to Buy</div>
+      </div>
+      <div class="header-icon-slot">🥩</div>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="toc">
+      <strong data-en="Contents" data-zh="目录">Contents</strong>
+      <ol>
+        <li><a href="#cuts" data-en="Beef Cuts Diagram" data-zh="部位示意图">Beef Cuts Diagram</a></li>
+        <li><a href="#grades" data-en="Grading Systems" data-zh="牛肉分级系统">Grading Systems</a></li>
+        <li><a href="#origins" data-en="Origins &amp; Characteristics" data-zh="知名产地与特点">Origins &amp; Characteristics</a></li>
+        <li><a href="#bellevue" data-en="Buying Guide — Bellevue Area" data-zh="Bellevue 周边选购攻略">Buying Guide — Bellevue Area</a></li>
+      </ol>
+    </nav>
+
+    <div class="recipe-notes">
+
+      <!-- ① Cuts -->
+      <h3 id="cuts" data-en="Beef Cuts Diagram" data-zh="部位示意图">Beef Cuts Diagram</h3>
+      <div style="margin:10px 0 6px;">
+        <img src="images/beef-cuts.jpg" alt="Beef cuts diagram"
+             style="width:100%;max-width:860px;border-radius:10px;border:1px solid #ead7b7;display:block;">
+      </div>
+      <p data-en="Tender cuts (tenderloin, striploin, ribeye) suit quick high-heat cooking; cuts with more connective tissue (brisket, shank, short rib) reward long, slow braising."
+         data-zh="嫩度高的部位（里脊、西冷、肋眼）适合快煎；结缔组织多的部位（牛腩、牛腱、短肋）适合长时间炖煮。">嫩度高的部位（里脊、西冷、肋眼）适合快煎；结缔组织多的部位（牛腩、牛腱、短肋）适合长时间炖煮。</p>
+
+      <!-- ② Grades -->
+      <h3 id="grades" data-en="Grading Systems" data-zh="牛肉分级系统">Grading Systems</h3>
+
+      <p data-en="&lt;strong&gt;US USDA Grades&lt;/strong&gt; — most common in American supermarkets"
+         data-zh="&lt;strong&gt;美国 USDA 等级&lt;/strong&gt;（超市最常见）"><strong>美国 USDA 等级</strong>（超市最常见）</p>
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Grade" data-zh="等级">等级</th>
+            <th data-en="Marbling" data-zh="花纹">花纹</th>
+            <th data-en="Where to Buy" data-zh="在哪买">在哪买</th>
+            <th data-en="Notes" data-zh="备注">备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--accent);">Prime ⭐⭐⭐</strong></td>
+            <td data-en="Rich" data-zh="丰富">丰富</td>
+            <td data-en="Costco, upscale markets, restaurants" data-zh="Costco、高端超市、餐厅">Costco、高端超市、餐厅</td>
+            <td data-en="Only ~5% of US beef qualifies; best seared thick as-is" data-zh="全美约 5% 的牛能达到，直接厚煎最好">全美约 5% 的牛能达到，直接厚煎最好</td>
+          </tr>
+          <tr>
+            <td><strong>Choice ⭐⭐</strong></td>
+            <td data-en="Moderate" data-zh="中等">中等</td>
+            <td data-en="Most grocery stores" data-zh="普通超市主力">普通超市主力</td>
+            <td data-en="Upper 1/3 Choice is the sweet spot for value" data-zh="选上段 Choice（Upper 1/3）性价比最高">选上段 Choice（Upper 1/3）性价比最高</td>
+          </tr>
+          <tr>
+            <td><strong>Select</strong></td>
+            <td data-en="Light" data-zh="少">少</td>
+            <td data-en="Budget supermarkets" data-zh="平价超市">平价超市</td>
+            <td data-en="Best braised or marinated before grilling; tends to be tough seared plain" data-zh="适合炖煮、腌制后再烤，直接煎偏柴">适合炖煮、腌制后再烤，直接煎偏柴</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p data-en="&lt;strong&gt;Japanese Wagyu — BMS Marbling Score&lt;/strong&gt;"
+         data-zh="&lt;strong&gt;日本和牛等级&lt;/strong&gt;（BMS 大理石花纹评分）"><strong>日本和牛等级</strong>（BMS 大理石花纹评分）</p>
+      <p data-en="Two axes: &lt;strong&gt;Yield grade A/B/C&lt;/strong&gt; (A = highest cutability) × &lt;strong&gt;Quality grade 1–5&lt;/strong&gt; (marbling, color, texture, fat color). &quot;A5&quot; = yield A + quality 5 — the highest possible."
+         data-zh="双轴评分：&lt;strong&gt;产量等级 A/B/C&lt;/strong&gt;（A = 出肉率最高）× &lt;strong&gt;肉质等级 1–5&lt;/strong&gt;（综合花纹、色泽、纹理、脂肪色）。"A5"= 产量 A + 肉质 5，最高规格。">双轴评分：<strong>产量等级 A/B/C</strong>（A = 出肉率最高）× <strong>肉质等级 1–5</strong>（综合花纹、色泽、纹理、脂肪色）。"A5"= 产量 A + 肉质 5，最高规格。</p>
+      <table>
+        <thead>
+          <tr>
+            <th data-en="BMS Score" data-zh="BMS 分数">BMS 分数</th>
+            <th data-en="Quality Grade" data-zh="肉质等级">肉质等级</th>
+            <th data-en="Characteristics" data-zh="特征">特征</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BMS 8–12</td>
+            <td>4–5</td>
+            <td data-en="Dense snowflake marbling; melts in your mouth; overwhelming in large portions" data-zh="超密集雪花，入口即化，一次吃不了太多">超密集雪花，入口即化，一次吃不了太多</td>
+          </tr>
+          <tr>
+            <td>BMS 4–7</td>
+            <td>3–4</td>
+            <td data-en="Visible marbling; well-balanced flavor and texture — the sweet spot" data-zh="花纹明显，兼顾香气与口感的平衡点">花纹明显，兼顾香气与口感的平衡点</td>
+          </tr>
+          <tr>
+            <td>BMS 1–3</td>
+            <td>1–2</td>
+            <td data-en="Closer to regular beef; stronger beefy aroma, less fat richness" data-zh="接近普通牛，牛肉香气更强，脂肪感少">接近普通牛，牛肉香气更强，脂肪感少</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p data-en="&lt;strong&gt;Australian Marble Score (MB)&lt;/strong&gt;: 0–9+, used for Australian wagyu. MB 4–5 ≈ Japanese A3; MB 8–9+ ≈ Japanese A5. Regular Australian Angus uses the MSA tenderness certification instead."
+         data-zh="&lt;strong&gt;澳洲 MB（Marble Score）&lt;/strong&gt;：0–9+，专用于澳洲和牛。MB 4–5 ≈ 日本 A3，MB 8–9+ ≈ 日本 A5。普通澳洲安格斯走 MSA 嫩度认证，不用此评分。"><strong>澳洲 MB（Marble Score）</strong>：0–9+，专用于澳洲和牛。MB 4–5 ≈ 日本 A3，MB 8–9+ ≈ 日本 A5。普通澳洲安格斯走 MSA 嫩度认证，不用此评分。</p>
+
+      <div class="tip" data-en="💡 Quick comparison: Japanese A5 ≈ Australian MB 8–9. US Prime ≈ Japanese BMS 3–4 — decent marbling but far from wagyu. Go Japanese/Australian wagyu for snowflake fat; go US Prime or Argentine grass-fed for intense beefy flavor."
+           data-zh="💡 横向对照：日本 A5 ≈ 澳洲 MB 8–9。美国 Prime ≈ 日本 BMS 3–4——花纹有但差距明显。追求雪花选日本/澳洲和牛，追求浓郁牛肉香气选美国 Prime 或阿根廷草饲。">💡 横向对照：日本 A5 ≈ 澳洲 MB 8–9。美国 Prime ≈ 日本 BMS 3–4——花纹有但差距明显。追求雪花选日本/澳洲和牛，追求浓郁牛肉香气选美国 Prime 或阿根廷草饲。</div>
+
+      <!-- ③ Origins -->
+      <h3 id="origins" data-en="Origins &amp; Characteristics" data-zh="知名产地与特点">知名产地与特点</h3>
+
+      <p data-en="&lt;strong&gt;🇯🇵 Japan — The Four Grand Wagyu&lt;/strong&gt;" data-zh="&lt;strong&gt;🇯🇵 日本——四大名牛&lt;/strong&gt;"><strong>🇯🇵 日本——四大名牛</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Brand" data-zh="品牌">品牌</th>
+            <th data-en="Region" data-zh="产地">产地</th>
+            <th data-en="Characteristics" data-zh="特点">特点</th>
+            <th data-en="Available in US?" data-zh="在美国能买到？">在美国能买到？</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong data-en="Kobe" data-zh="神户牛">神户牛 Kobe</strong></td>
+            <td data-en="Hyogo Pref. (Tajima breed)" data-zh="兵库县（但马牛品系）">兵库县（但马牛品系）</td>
+            <td data-en="Most famous, strictest certification. Fat is uniquely sweet and delicate with a distinctive aroma." data-zh="名气最大，认证最严，脂肪甜而细腻，香气独特。">名气最大，认证最严，脂肪甜而细腻，香气独特。</td>
+            <td data-en="Only a handful of top restaurants; extremely expensive" data-zh="仅少数顶级餐厅；价格极高">仅少数顶级餐厅；价格极高</td>
+          </tr>
+          <tr>
+            <td><strong data-en="Matsusaka" data-zh="松阪牛">松阪牛 Matsusaka</strong></td>
+            <td data-en="Mie Prefecture" data-zh="三重县">三重县</td>
+            <td data-en="Only unborn heifers raised. Lowest fat melting point; considered the &quot;ultimate beef.&quot;" data-zh="只养未生育母牛，脂肪融点极低，号称"牛肉界的极致"。">只养未生育母牛，脂肪融点极低，号称"牛肉界的极致"。</td>
+            <td data-en="Essentially unavailable; Japan only" data-zh="几乎买不到，日本当地限量">几乎买不到，日本当地限量</td>
+          </tr>
+          <tr>
+            <td><strong data-en="Ohmi" data-zh="近江牛">近江牛 Ohmi</strong></td>
+            <td data-en="Shiga Prefecture" data-zh="滋贺县">滋贺县</td>
+            <td data-en="Oldest of the three grand wagyu. Balanced flavor; slightly less marbled than Kobe." data-zh="三大和牛历史最悠久，风味均衡，花纹稍逊于神户。">三大和牛历史最悠久，风味均衡，花纹稍逊于神户。</td>
+            <td data-en="Occasional imports; best value of the three" data-zh="偶见进口，性价比最高">偶见进口，性价比最高</td>
+          </tr>
+          <tr>
+            <td><strong data-en="Kagoshima Wagyu" data-zh="鹿儿岛和牛">鹿儿岛和牛</strong></td>
+            <td data-en="Kagoshima Prefecture" data-zh="鹿儿岛县">鹿儿岛县</td>
+            <td data-en="High volume, consistent A4/A5 quality. Japan's largest wagyu exporter." data-zh="产量大，品质稳定，A4/A5 容易买到，出口量最大。">产量大，品质稳定，A4/A5 容易买到，出口量最大。</td>
+            <td data-en="✅ Asian markets &amp; online" data-zh="✅ 亚超、网购均有">✅ 亚超、网购均有</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p data-en="&lt;strong&gt;🇺🇸 United States — Corn-Fed Grain-Fed&lt;/strong&gt;" data-zh="&lt;strong&gt;🇺🇸 美国——玉米谷饲 Grain-Fed&lt;/strong&gt;"><strong>🇺🇸 美国——玉米谷饲 Grain-Fed</strong></p>
+      <ul>
+        <li data-en="Main breed: &lt;strong&gt;Black Angus&lt;/strong&gt; (Certified Angus Beef = CAB, Upper Choice or Prime). Pasture-raised 6–8 months, then grain-fed 120–200 days for moderate marbling. Strong beefy flavor; best showcased as a thick seared steak." data-zh="主流品种：&lt;strong&gt;黑安格斯 Black Angus&lt;/strong&gt;（Certified Angus Beef = CAB，Choice 上段或 Prime）。先放牧 6–8 个月，再谷仓玉米饲育 120–200 天，花纹适中、牛肉香气浓。厚切直接煎最能发挥风味。">主流品种：<strong>黑安格斯 Black Angus</strong>（Certified Angus Beef = CAB，Choice 上段或 Prime）。先放牧 6–8 个月，再谷仓玉米饲育 120–200 天，花纹适中、牛肉香气浓。厚切直接煎最能发挥风味。</li>
+        <li data-en="&lt;strong&gt;Costco Prime&lt;/strong&gt; is the best value thick-cut option in the Bellevue area." data-zh="&lt;strong&gt;Costco Prime&lt;/strong&gt; 是 Bellevue 地区性价比最高的厚切选择。"><strong>Costco Prime</strong> 是 Bellevue 地区性价比最高的厚切选择。</li>
+        <li data-en="&lt;strong&gt;Snake River Farms&lt;/strong&gt; (Idaho): American Wagyu (Wagyu × Angus cross), BMS up to 6–9 — the ceiling of domestic wagyu. Available to order online." data-zh="&lt;strong&gt;Snake River Farms&lt;/strong&gt;（爱达荷州）：美式和牛（Wagyu × Angus 杂交），BMS 可达 6–9，是美国和牛天花板，可官网邮购。"><strong>Snake River Farms</strong>（爱达荷州）：美式和牛（Wagyu × Angus 杂交），BMS 可达 6–9，是美国和牛天花板，可官网邮购。</li>
+      </ul>
+
+      <p data-en="&lt;strong&gt;🇦🇺 Australia&lt;/strong&gt;" data-zh="&lt;strong&gt;🇦🇺 澳洲&lt;/strong&gt;"><strong>🇦🇺 澳洲</strong></p>
+      <ul>
+        <li data-en="&lt;strong&gt;Black Angus&lt;/strong&gt;: grass-fed or grain-fed; clean, mild flavor; MSA certification guarantees tenderness; slightly leaner than US." data-zh="&lt;strong&gt;黑安格斯 Black Angus&lt;/strong&gt;：草饲或谷饲，风味干净，MSA 认证保障嫩度，口感比美国稍瘦。"><strong>黑安格斯 Black Angus</strong>：草饲或谷饲，风味干净，MSA 认证保障嫩度，口感比美国稍瘦。</li>
+        <li data-en="&lt;strong&gt;Australian Wagyu F1–Fullblood&lt;/strong&gt;: F1 = 50% wagyu genetics (MB 3–5); Fullblood = 100% wagyu (MB 8–9+). Flavor very close to Japanese A5 at 30–50% lower cost. H Mart and 99 Ranch carry thin-cut slices." data-zh="&lt;strong&gt;澳洲和牛 F1/Fullblood&lt;/strong&gt;：F1 = 50% 和牛血统（MB 3–5）；Fullblood = 100% 和牛（MB 8–9+）。风味接近日本 A5，价格低 30–50%，H Mart、99 Ranch 常有薄片。"><strong>澳洲和牛 F1/Fullblood</strong>：F1 = 50% 和牛血统（MB 3–5）；Fullblood = 100% 和牛（MB 8–9+）。风味接近日本 A5，价格低 30–50%，H Mart、99 Ranch 常有薄片。</li>
+        <li data-en="Grass-fed Australian beef is high in omega-3, deep red in color, with yellowish fat — normal, from carotene in the grass." data-zh="澳洲草饲牛 omega-3 含量高，肉色深红，脂肪偏黄属正常（来自牧草胡萝卜素）。">澳洲草饲牛 omega-3 含量高，肉色深红，脂肪偏黄属正常（来自牧草胡萝卜素）。</li>
+      </ul>
+
+      <p data-en="&lt;strong&gt;🇦🇷 Argentina / 🇺🇾 Uruguay — Grass-Fed&lt;/strong&gt;" data-zh="&lt;strong&gt;🇦🇷 阿根廷 / 🇺🇾 乌拉圭——草饲 Grass-Fed&lt;/strong&gt;"><strong>🇦🇷 阿根廷 / 🇺🇾 乌拉圭——草饲 Grass-Fed</strong></p>
+      <ul>
+        <li data-en="Pampas natural pasture, minimal grain. Little marbling but &lt;strong&gt;intensely beefy, mineral flavor&lt;/strong&gt;." data-zh="潘帕斯草原天然放牧，几乎不喂谷物，花纹少但&lt;strong&gt;牛肉风味极强烈&lt;/strong&gt;，铁质/矿物感明显。">潘帕斯草原天然放牧，几乎不喂谷物，花纹少但<strong>牛肉风味极强烈</strong>，铁质/矿物感明显。</li>
+        <li data-en="Best served thick-cut with just salt over charcoal. Not ideal if you want soft, buttery texture." data-zh="最适合厚切简单撒盐、碳火烤。不适合追求软糯口感的做法。">最适合厚切简单撒盐、碳火烤。不适合追求软糯口感的做法。</li>
+      </ul>
+
+      <p data-en="&lt;strong&gt;🇨🇦 Canada — Alberta&lt;/strong&gt;" data-zh="&lt;strong&gt;🇨🇦 加拿大——阿尔伯塔 Alberta&lt;/strong&gt;"><strong>🇨🇦 加拿大——阿尔伯塔 Alberta</strong></p>
+      <ul>
+        <li data-en="Grades: Canada Prime / AAA / AA — AAA ≈ US Choice. Cold climate means more fat accumulation; Alberta grain-fed marbling often rivals US Prime." data-zh="分级：Canada Prime / AAA / AA，AAA ≈ 美国 Choice。气候寒冷使牛积脂多，阿尔伯塔谷饲牛花纹常接近 Prime。">分级：Canada Prime / AAA / AA，AAA ≈ 美国 Choice。气候寒冷使牛积脂多，阿尔伯塔谷饲牛花纹常接近 Prime。</li>
+      </ul>
+
+      <!-- ④ Bellevue -->
+      <h3 id="bellevue" data-en="Buying Guide — Bellevue Area" data-zh="Bellevue 周边选购攻略">Bellevue 周边选购攻略</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Store" data-zh="地点">地点</th>
+            <th data-en="Best For" data-zh="适合买">适合买</th>
+            <th data-en="Notes" data-zh="备注">备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>H Mart (Bellevue)</strong></td>
+            <td data-en="Shabu-shabu slices, Korean BBQ cuts, Australian wagyu" data-zh="涮锅薄片、韩式烤肉切法、澳洲和牛片">涮锅薄片、韩式烤肉切法、澳洲和牛片</td>
+            <td data-en="Diverse Asian-style cuts; wagyu thin slices are great value; occasionally has Prime thick cuts" data-zh="切法多样，和牛薄片性价比好；有时有 Prime 厚切">切法多样，和牛薄片性价比好；有时有 Prime 厚切</td>
+          </tr>
+          <tr>
+            <td><strong>Costco (Kirkland / Issaquah)</strong></td>
+            <td data-en="USDA Prime thick cuts, occasional Japanese A5" data-zh="USDA Prime 厚切、偶尔日本 A5 薄片">USDA Prime 厚切、偶尔日本 A5 薄片</td>
+            <td data-en="Best price on Prime bone-in steaks; A5 appears irregularly — stock up when you see it" data-zh="Prime 带骨牛排价格最实惠；A5 不定期上架，见到即囤">Prime 带骨牛排价格最实惠；A5 不定期上架，见到即囤</td>
+          </tr>
+          <tr>
+            <td><strong>99 Ranch (Bellevue)</strong></td>
+            <td data-en="Chinese-style cuts: brisket, shank, bone-in" data-zh="中式切法：牛腩、牛腱、牛骨">中式切法：牛腩、牛腱、牛骨</td>
+            <td data-en="Best selection for braising cuts; Australian wagyu slices reliably in stock" data-zh="炖菜部位最齐全；澳洲和牛薄片也稳定有货">炖菜部位最齐全；澳洲和牛薄片也稳定有货</td>
+          </tr>
+          <tr>
+            <td><strong>Whole Foods (Bellevue)</strong></td>
+            <td data-en="Grass-fed &amp; premium cuts; Panorama Organic (5&#9733;) when in stock" data-zh="草饲与高端部位；有货时可找 Panorama Organic（5&#9733;）">草饲与高端部位；有货时可找 Panorama Organic（5&#9733;）</td>
+            <td data-en="Best for grass-fed thick cuts; for a full organic brand guide see &rarr; Organic Beef Buying Guide" data-zh="草饲厚切首选；有机品牌详细对比请见 &rarr; 有机牛肉选购指南">草饲厚切首选；有机品牌详细对比请见 &rarr; 有机牛肉选购指南</td>
+          </tr>
+          <tr>
+            <td><strong>QFC / Safeway</strong></td>
+            <td data-en="Everyday Choice" data-zh="日常 Choice 级">日常 Choice 级</td>
+            <td data-en="Upper Choice on sale is great value; good for everyday braise or stir-fry" data-zh="促销时 Choice 上段很划算，适合家常炖炒">促销时 Choice 上段很划算，适合家常炖炒</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip"
+           data-en="💡 H Mart cuts lean Korean/Japanese style — great for grilling and hot pot. 99 Ranch has the best Chinese-style cut selection for braising. For thick steaks, start at Costco Prime. For wagyu hot pot, go to H Mart or 99 Ranch for Australian Fullblood slices. For top-tier American wagyu, order Snake River Farms online."
+           data-zh="💡 H Mart 切法偏日韩（适合烤、涮），99 Ranch 中式分割齐（适合炖）。想买厚切煎牛排首选 Costco Prime；和牛涮锅首选 H Mart 或 99 Ranch 的澳洲 Fullblood 片；想试美国顶级和牛可网购 Snake River Farms。">💡 H Mart 切法偏日韩（适合烤、涮），99 Ranch 中式分割齐（适合炖）。想买厚切煎牛排首选 Costco Prime；和牛涮锅首选 H Mart 或 99 Ranch 的澳洲 Fullblood 片；想试美国顶级和牛可网购 Snake River Farms。</div>
+
+      <p style="margin-top:16px;font-size:0.93rem;" data-en="For choosing between organic brands at Whole Foods, PCC, or QFC, see the <a href='organic-beef-scorecard.html' style='color:var(--accent)'>Organic Beef Buying Guide &rarr;</a>"
+         data-zh="如需在 Whole Foods、PCC 或 QFC 的有机品牌之间做选择，请参阅<a href='organic-beef-scorecard.html' style='color:var(--accent)'>有机牛肉选购指南 &rarr;</a>">For choosing between organic brands at Whole Foods, PCC, or QFC, see the <a href="organic-beef-scorecard.html" style="color:var(--accent)">Organic Beef Buying Guide &rarr;</a></p>
+
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

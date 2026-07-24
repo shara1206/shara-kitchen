@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="魔芋豆腐 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Konjac Tofu — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: min(92vw, 900px); margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: min(92vw, 900px); margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .empty-state { background: var(--card); border: 2px dashed var(--border); border-radius: 10px; padding: 40px 32px; text-align: center; color: var(--muted); margin-bottom: 32px; }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state h2 { margin: 0 0 10px; color: var(--accent); font-size: 1.2rem; }
+  .empty-state p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+  .sections { display: grid; gap: 20px; }
+  .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 26px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .section-card h3 { margin: 0 0 12px; color: var(--accent); font-size: 1.05rem; border-bottom: 1px dashed var(--border); padding-bottom: 8px; font-family: 'Helvetica', 'PingFang SC', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; }
+  .section-card .content { min-height: 48px; color: var(--muted); font-style: italic; font-size: 0.95rem; }
+  .section-card .content.filled { color: var(--ink); font-style: normal; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-top: 0; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Konjac Tofu" data-zh="魔芋豆腐">Konjac Tofu</h1>
+        <div class="meta" data-en="Desserts" data-zh="甜点">Desserts</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/moyu-doufu/Final.png" alt="moyu-doufu" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+  <main>
+        <div class="recipe-notes">
+        <h3 data-en="Ingredients" data-zh="材料">材料</h3>
+        <ul>
+          <li data-zh="魔芋粉 50克（1小袋）" data-en="Konjac powder 50g (1 small packet)">魔芋粉 50克（1小袋）</li>
+          <li data-zh="碱粉 5-7克（1小袋）" data-en="Alkaline powder (食用碱) 5–7g (1 small packet)">碱粉 5-7克（1小袋）</li>
+          <li data-zh="清水 4~6斤（根据喜好软硬度调整）" data-en="Water 2–3 kg (adjust for desired firmness)">清水 4~6斤（根据喜好软硬度调整）</li>
+          <li data-zh="温水 100毫升（溶化碱粉用）" data-en="Warm water 100ml (for dissolving the alkaline powder)">温水 100毫升（溶化碱粉用）</li>
+        </ul>
+        <p data-zh="50克魔芋粉 + 7克碱粉 ≈ 魔芋豆腐 6斤" data-en="50g konjac powder + 7g alkaline powder ≈ 3 kg of konjac tofu">50克魔芋粉 + 7克碱粉 ≈ 魔芋豆腐 6斤</p>
+        <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+        <ol>
+          <li data-zh="&lt;strong&gt;溶化碱粉&lt;/strong&gt;：碗内先放 100 毫升温水，再将 1 小袋 5-7 克碱粉加入碗内搅拌溶化后备用。" data-en="&lt;strong&gt;Dissolve the alkaline powder&lt;/strong&gt;: pour 100ml warm water into a bowl, add the alkaline powder packet and stir until dissolved; set aside."><strong>溶化碱粉</strong>：碗内先放 100 毫升温水，再将 1 小袋 5-7 克碱粉加入碗内搅拌溶化后备用。</li>
+          <li data-zh="&lt;strong&gt;搅拌溶浆&lt;/strong&gt;：锅内加入清水 4~6 斤，小火加热，趋冷水时，将 1 小袋 50 克魔芋粉缓慢加入，边加边用筷子等工具搅拌。" data-en="&lt;strong&gt;Mix the slurry&lt;/strong&gt;: add 2–3 kg water to pot, heat on low; while still cold, slowly add 50g konjac powder, stirring continuously as you pour."><strong>搅拌溶浆</strong>：锅内加入清水 4~6 斤，小火加热，趋冷水时，将 1 小袋 50 克魔芋粉缓慢加入，边加边用筷子等工具搅拌。</li>
+          <li data-zh="&lt;strong&gt;搅拌熬浆&lt;/strong&gt;：保持小火搅拌，从魔芋浆开始冒泡时计算，一直搅拌 10 分钟以上，保持锅内沸腾状态，要搅拌到锅底防止糊锅。搅拌熬浆时间越长越好，能使魔芋粉充分溶胀、熟透。" data-en="&lt;strong&gt;Cook the slurry&lt;/strong&gt;: keep stirring on low; once it starts bubbling, stir for 10+ more minutes at a steady boil, reaching to the bottom to prevent sticking. Longer = better hydration."><strong>搅拌熬浆</strong>：保持小火搅拌，从魔芋浆开始冒泡时计算，一直搅拌 10 分钟以上，保持锅内沸腾状态，要搅拌到锅底防止糊锅。搅拌熬浆时间越长越好，能使魔芋粉充分溶胀、熟透。</li>
+          <li data-zh="&lt;strong&gt;下碱凝固&lt;/strong&gt;：将备用的碱水溶液边均匀倒入，快速搅拌均匀，搅拌 30 秒至 1 分钟以内，关火，盖上锅盖，冷却静置 15 分钟以上（越长越好）。" data-en="&lt;strong&gt;Add the alkaline solution&lt;/strong&gt;: pour it in while stirring quickly and evenly for 30 sec–1 min; turn off heat, cover the pot, rest for 15+ minutes (longer = better set)."><strong>下碱凝固</strong>：将备用的碱水溶液边均匀倒入，快速搅拌均匀，搅拌 30 秒至 1 分钟以内，关火，盖上锅盖，冷却静置 15 分钟以上（越长越好）。</li>
+          <li data-zh="&lt;strong&gt;切块查沸&lt;/strong&gt;：倒开锅盖，在已凝固的豆腐表面加入冷水（水量要高于豆腐几公分），将魔芋豆腐切划成块，中大火煮沸 10 分钟以上。" data-en="&lt;strong&gt;Cut and boil&lt;/strong&gt;: uncover, add cold water to cover the set tofu by a few cm; cut into blocks, boil on medium-high for 10+ minutes."><strong>切块查沸</strong>：倒开锅盖，在已凝固的豆腐表面加入冷水（水量要高于豆腐几公分），将魔芋豆腐切划成块，中大火煮沸 10 分钟以上。</li>
+          <li data-zh="&lt;strong&gt;换水查沸&lt;/strong&gt;：滤掉沸水，换上清水再煮 10 分钟，去除碱味、苦腥味。冷后不变软，常温保存，不必用水浸泡，可冷藏但不能冷冻。" data-en="&lt;strong&gt;Second boil&lt;/strong&gt;: drain and refill with fresh water, boil 10 more minutes to remove the alkaline bitterness. Stays firm when cooled; store at room temp (no soaking needed); refrigerate but do not freeze."><strong>换水查沸</strong>：滤掉沸水，换上清水再煮 10 分钟，去除碱味、苦腥味。冷后不变软，常温保存，不必用水浸泡，可冷藏但不能冷冻。</li>
+        </ol>
+        <p data-zh="制作时候一定要搅拌，搅拌，搅拌！" data-en="Stir, stir, stir throughout the whole process!">制作时候一定要搅拌，搅拌，搅拌！</p>
+    </div>
+  </main>
+  <footer data-en="Shara's Study Notes" data-zh="Shara的学习笔记">Shara's Study Notes</footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

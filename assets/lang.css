@@ -1,0 +1,38 @@
+/* Language toggle button — shared across all pages */
+.lang-toggle {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.78rem;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+.lang-toggle button {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 5px 12px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+.lang-toggle button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.lang-toggle button.active {
+  background: white;
+  color: #c97b3a;
+  font-weight: 700;
+}
+header { position: relative; }
+/* Ensure Chinese font fallback works site-wide */
+body {
+  font-family: 'Georgia', 'Times New Roman', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', serif;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="海鲜 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seafood &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 820px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 820px; margin: 0 auto; font-size: 2.2rem; }
+  header p { max-width: 820px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 820px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 32px 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  .section-title:first-of-type { margin-top: 0; }
+  .notes-list { display: grid; gap: 16px; }
+  .note-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; transition: transform 0.15s ease, box-shadow 0.15s ease; text-decoration: none; color: inherit; display: block; }
+  .note-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(201, 123, 58, 0.18); border-color: var(--accent); }
+  .note-card h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--accent); }
+  .note-card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+  .note-card p { margin: 0; color: var(--ink); font-size: 0.98rem; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-right: 6px; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>🐟 <span data-en="Seafood" data-zh="海鲜">Seafood</span></h1>
+    <p data-en="Fish varieties and crab safety — identification, selection, and cooking guides."
+       data-zh="鱼类品种与螃蟹安全——识别、选购与烹饪指南。">Fish varieties and crab safety — identification, selection, and cooking guides.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="Notes on seafood — from identifying fish varieties and their best cooking methods, to comparing crab species by safety and habitat."
+         data-zh="关于海鲜的笔记——从识别鱼类品种及其最佳烹饪方式，到按安全性和栖息地对比各种螃蟹。">Notes on seafood — from identifying fish varieties and their best cooking methods, to comparing crab species by safety and habitat.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Fish" data-zh="鱼类">Fish</h2>
+    <div class="notes-list">
+      <a class="note-card" href="../cooking-tips/yu-guide.html">
+        <h3 data-en="Fish Guide — 30 Species" data-zh="鱼类指南——30 种鱼">Fish Guide — 30 Species</h3>
+        <div class="meta"><span class="tag" data-en="Reference" data-zh="参考">Reference</span></div>
+        <p data-en="Fish classification, Chinese names, and best cooking methods for each variety — steaming, braising, frying, and more."
+           data-zh="鱼类分类与中文名，以及各品种最适合的烹饪方式——蒸、焖、炸等。">Fish classification, Chinese names, and best cooking methods for each variety — steaming, braising, frying, and more.</p>
+      </a>
+    </div>
+
+    <h2 class="section-title" data-en="Crab" data-zh="蟹">Crab</h2>
+    <div class="notes-list">
+      <a class="note-card" href="crab.html">
+        <h3 data-en="Crab Comparison — 5 Varieties" data-zh="螃蟹对比——5 种蟹">Crab Comparison — 5 Varieties</h3>
+        <div class="meta"><span class="tag" data-en="Safety" data-zh="安全">Safety</span> <span class="tag" data-en="Reference" data-zh="参考">Reference</span></div>
+        <p data-en="Stone crab, snow crab, blue crab, Dungeness, and hairy crab — contaminant risk ratings, habitat, and how to eat each safely."
+           data-zh="石蟹、雪蟹、蓝蟹、珍宝蟹、大闸蟹——污染风险评级、栖息地与安全食用建议。">Stone crab, snow crab, blue crab, Dungeness, and hairy crab — contaminant risk ratings, habitat, and how to eat each safely.</p>
+      </a>
+    </div>
+    <h2 class="section-title" data-en="Shrimp" data-zh="虾">Shrimp</h2>
+    <div class="notes-list">
+      <a class="note-card" href="xia-guide.html">
+        <h3 data-en="Shrimp Varieties — 6 Species" data-zh="虾的品种——6 种虾">Shrimp Varieties — 6 Species</h3>
+        <div class="meta"><span class="tag" data-en="Reference" data-zh="参考">Reference</span> <span class="tag" data-en="US Sourcing" data-zh="美国购买">US Sourcing</span></div>
+        <p data-en="Spot prawns, Arctic sweet shrimp, sesame shrimp, tiger shrimp and more — Pacific vs. Atlantic, fresh vs. frozen, East Coast live tanks explained."
+           data-zh="斑点虾、北极甜虾、芝麻虾、黑虎虾等——太平洋与大西洋品种、鲜活与冷冻的区别，东海岸游水虾解析。">Spot prawns, Arctic sweet shrimp, sesame shrimp, tiger shrimp and more — Pacific vs. Atlantic, fresh vs. frozen, East Coast live tanks explained.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

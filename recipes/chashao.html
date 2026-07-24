@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="叉烧 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Char Siu — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: min(92vw, 900px); margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: min(92vw, 900px); margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .empty-state { background: var(--card); border: 2px dashed var(--border); border-radius: 10px; padding: 40px 32px; text-align: center; color: var(--muted); margin-bottom: 32px; }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state h2 { margin: 0 0 10px; color: var(--accent); font-size: 1.2rem; }
+  .empty-state p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+  .sections { display: grid; gap: 20px; }
+  .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 26px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .section-card h3 { margin: 0 0 12px; color: var(--accent); font-size: 1.05rem; border-bottom: 1px dashed var(--border); padding-bottom: 8px; font-family: 'Helvetica', 'PingFang SC', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; }
+  .section-card .content { min-height: 48px; color: var(--muted); font-style: italic; font-size: 0.95rem; }
+  .section-card .content.filled { color: var(--ink); font-style: normal; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-top: 0; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Char Siu" data-zh="叉烧">Char Siu</h1>
+        <div class="meta" data-en="Meat" data-zh="肉">Meat</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/chashao/Final.png" alt="chashao" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+    <main>
+    <div class="recipe-notes">
+
+
+      <h3 data-en="Ingredients" data-zh="材料">材料</h3>
+      <ul>
+        <li data-zh="梅花肉 500g" data-en="Pork collar/shoulder 500g">梅花肉 500g</li>
+        <li data-zh="红曲米 15g" data-en="Red yeast rice 15g (natural red color)">红曲米 15g</li>
+        <li data-zh="蚝油 2tbsp" data-en="Oyster sauce 2 tbsp">蚝油 2tbsp</li>
+        <li data-zh="黑胡椒 1/2 tsp" data-en="Black pepper 1/2 tsp">黑胡椒 1/2 tsp</li>
+        <li data-zh="玫瑰露酒 2tbsp（可用低度白酒代替）" data-en="Rose liquor 2 tbsp (or substitute mild Chinese baijiu)">玫瑰露酒 2tbsp（可用低度白酒代替）</li>
+        <li data-zh="蒜片姜片若干" data-en="Sliced garlic and ginger, several pieces">蒜片姜片若干</li>
+        <li data-zh="生抽 4tbsp" data-en="Light soy sauce 4 tbsp">生抽 4tbsp</li>
+        <li data-zh="蜂蜜（传统用麦芽糖）3tbsp" data-en="Honey 3 tbsp (traditionally maltose syrup)">蜂蜜（传统用麦芽糖）3tbsp</li>
+        <li data-zh="沙姜粉 1/2tsp" data-en="Sand ginger powder 1/2 tsp">沙姜粉 1/2tsp</li>
+        <li data-zh="五香粉 1/2tsp" data-en="Five spice powder 1/2 tsp">五香粉 1/2tsp</li>
+      </ul>
+      <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+      <ol>
+        <li data-zh="红曲米+玫瑰露酒混合，浸泡半小时，偶尔用勺子压，让颜色出来" data-en="Mix red yeast rice with rose liquor, soak 30 min, occasionally press with a spoon to extract color">红曲米+玫瑰露酒混合，浸泡半小时，偶尔用勺子压，让颜色出来</li>
+        <li data-zh="把红曲米滤掉，只保留汁；加入蚝油、黑胡椒、蜂蜜、沙姜粉、五香粉" data-en="Strain out the rice grains, keep only the liquid; mix in oyster sauce, black pepper, honey, sand ginger powder, and five spice">把红曲米滤掉，只保留汁；加入蚝油、黑胡椒、蜂蜜、沙姜粉、五香粉</li>
+        <li data-zh="混合好后加入蒜片姜片，把肉连同酱汁放进保鲜袋冷藏一天（至少过夜）" data-en="Add garlic and ginger slices, place pork with marinade in a bag, refrigerate 1 day (at least overnight)">混合好后加入蒜片姜片，把肉连同酱汁放进保鲜袋冷藏一天（至少过夜）</li>
+        <li data-zh="把腌了一天的肉放在烤盘架子上烤（架子烤受热均匀），烤盘下垫锡纸" data-en="Place marinated pork on a wire rack over a foil-lined pan (rack allows even heat)">把腌了一天的肉放在烤盘架子上烤（架子烤受热均匀），烤盘下垫锡纸</li>
+        <li data-zh="刷酱：腌制剩下的酱料倒一勺，加上油一勺、蜂蜜一勺，混匀刷在肉上" data-en="Glaze: mix 1 spoon leftover marinade + 1 spoon oil + 1 spoon honey; brush over pork">刷酱：腌制剩下的酱料倒一勺，加上油一勺、蜂蜜一勺，混匀刷在肉上</li>
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

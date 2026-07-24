@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="有机牛肉选购指南 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organic Beef Buying Guide &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; --good:#4a8a4a; --ok:#b8902a; --warn:#c06020; --bad:#b04a3a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 760px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 760px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 760px; margin: 8px auto 0; opacity: 0.92; font-size: 0.95rem; font-style: italic; }
+  main { max-width: 760px; margin: 0 auto; padding: 36px 24px 60px; }
+  .tldr { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tldr h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .tldr p { margin: 0; }
+  h2.section { font-size: 1.35rem; margin: 36px 0 12px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  p { margin: 12px 0; }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 16px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tier.best  { border-left: 5px solid var(--good); }
+  .tier.great { border-left: 5px solid #5aaa5a; }
+  .tier.good  { border-left: 5px solid var(--ok); }
+  .tier.fair  { border-left: 5px solid var(--warn); }
+  .tier.avoid { border-left: 5px solid var(--bad); }
+  .tier-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .tier-header h3 { margin: 0; font-size: 1.2rem; }
+  .tier.best  h3 { color: var(--good); }
+  .tier.great h3 { color: #4a8a4a; }
+  .tier.good  h3 { color: var(--ok); }
+  .tier.fair  h3 { color: var(--warn); }
+  .tier.avoid h3 { color: var(--bad); }
+  .stars { font-size: 1.1rem; letter-spacing: 2px; }
+  .tier .desc { color: var(--muted); margin: 4px 0 12px; font-size: 0.95rem; }
+  .brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 6px 14px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.92rem; }
+  .brand-grid span { padding: 4px 0; border-bottom: 1px dotted var(--border); }
+  .brand-grid .nat { font-weight: 600; }
+  .callout { background: #fff4e0; padding: 14px 18px; border-radius: 6px; border: 1px dashed var(--border); margin: 18px 0; }
+  .callout strong { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  .tag-nat { display: inline-block; background: #e8f5e9; color: #2e7d32; font-size: 0.75rem; font-weight: 600; padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .tag-wf  { display: inline-block; background: #e3f0fa; color: #1565c0; font-size: 0.75rem; font-weight: 600; padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .sources { margin-top: 40px; padding: 18px 22px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; }
+  .sources h3 { margin: 0 0 10px; color: var(--accent); }
+  .sources ul { padding-left: 20px; margin: 0; }
+  .sources a { color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="beef.html" data-en="&larr; Beef" data-zh="&larr; 牛肉">&larr; Beef</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <h1 data-en="Organic Beef Buying Guide" data-zh="有机牛肉选购指南">Organic Beef Buying Guide</h1>
+    <div class="meta"
+         data-en="Source: Cornucopia Institute Organic Beef Scorecard &middot; Scorecard last updated Oct 28, 2022"
+         data-zh="来源：Cornucopia Institute 有机牛肉评分卡 &middot; 评分卡最后更新：2022年10月28日">Source: Cornucopia Institute Organic Beef Scorecard &middot; Scorecard last updated Oct 28, 2022</div>
+  </header>
+
+  <main>
+    <div class="tldr">
+      <h2 data-en="TL;DR" data-zh="摘要">TL;DR</h2>
+      <p data-en="The <strong>Cornucopia Institute</strong> rates organic beef brands on a 1&ndash;5 cow scale based on pasture management, animal welfare, land stewardship, and transparency. Top brands (4&ndash;5 cows) are typically small family farms with real pasture access. Avoid 1-star brands like <strong>Verde Farms</strong> and <strong>Strauss Brands</strong>, which Cornucopia suspects of sourcing from factory-farm-scale operations. The one widely available 5-star brand is <strong>Panorama Organic</strong> at Whole Foods."
+         data-zh="<strong>Cornucopia Institute</strong> 根据牧场管理、动物福利、土地保护和透明度，以 1–5 头牛的尺度对有机牛肉品牌进行评级。顶级品牌（4–5 头牛）通常是真正提供牧场放牧的小型家庭农场。避免选购 <strong>Verde Farms</strong> 和 <strong>Strauss Brands</strong> 等 1 星品牌，Cornucopia 怀疑它们的肉源来自工厂化养殖规模的农场。全国范围内最容易买到的 5 星品牌是在 Whole Foods 销售的 <strong>Panorama Organic</strong>。">The <strong>Cornucopia Institute</strong> rates organic beef brands on a 1&ndash;5 cow scale based on pasture management, animal welfare, land stewardship, and transparency. Top brands (4&ndash;5 cows) are typically small family farms with real pasture access. Avoid 1-star brands like <strong>Verde Farms</strong> and <strong>Strauss Brands</strong>, which Cornucopia suspects of sourcing from factory-farm-scale operations. The one widely available 5-star brand is <strong>Panorama Organic</strong> at Whole Foods.</p>
+    </div>
+
+    <h2 class="section" data-en="Rating Scale" data-zh="评级体系">Rating Scale</h2>
+    <table>
+      <thead><tr><th data-en="Rating" data-zh="评级">Rating</th><th data-en="Meaning" data-zh="含义">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong data-en="⭐⭐⭐⭐⭐ 5 cows" data-zh="⭐⭐⭐⭐⭐ 5 头牛">⭐⭐⭐⭐⭐ 5 cows</strong></td>
+            <td data-en="Gold standard. Small-to-medium family farms. Pasture and forage make up all or the majority of feed; not finished in confinement. Completed Cornucopia survey." data-zh="金标准。小型至中型家庭农场。牧草和粗饲料占全部或大部分饲料；不在圈养状态下育肥。完成了 Cornucopia 调查问卷。">Gold standard. Small-to-medium family farms. Pasture and forage make up all or the majority of feed; not finished in confinement. Completed Cornucopia survey.</td></tr>
+        <tr><td><strong data-en="⭐⭐⭐⭐ 4 cows" data-zh="⭐⭐⭐⭐ 4 头牛">⭐⭐⭐⭐ 4 cows</strong></td>
+            <td data-en="Ample pasture, definitive effort toward natural behaviors and land stewardship. Good choice." data-zh="充足的牧场，明确致力于自然行为和土地保护。不错的选择。">Ample pasture, definitive effort toward natural behaviors and land stewardship. Good choice.</td></tr>
+        <tr><td><strong data-en="⭐⭐⭐ 3 cows" data-zh="⭐⭐⭐ 3 头牛">⭐⭐⭐ 3 cows</strong></td>
+            <td data-en="Didn't participate in survey but likely would rate 4&ndash;5 if they had. Confirmed to meet organic standards." data-zh="未参与调查问卷，但若参与可能评 4–5 分。已确认符合有机标准。">Didn't participate in survey but likely would rate 4&ndash;5 if they had. Confirmed to meet organic standards.</td></tr>
+        <tr><td><strong data-en="⭐⭐ 2 cows" data-zh="⭐⭐ 2 头牛">⭐⭐ 2 cows</strong></td>
+            <td data-en="Less transparent. Difficult to confirm practices; possible concerns about compliance." data-zh="透明度较低。难以确认实际做法；可能存在合规方面的疑虑。">Less transparent. Difficult to confirm practices; possible concerns about compliance.</td></tr>
+        <tr><td><strong data-en="⭐ 1 cow" data-zh="⭐ 1 头牛">⭐ 1 cow</strong></td>
+            <td data-en="Suspected factory-farm sourcing. Better than conventional, but lowest-rated organic brand." data-zh="疑似来自工厂化农场。好于普通非有机牛肉，但在有机品牌中评级最低。">Suspected factory-farm sourcing. Better than conventional, but lowest-rated organic brand.</td></tr>
+      </tbody>
+    </table>
+    <p data-en="Note: Cornucopia advises that even a 1-star organic brand beats conventional beef for avoiding the most toxic agrochemicals &mdash; but if you&rsquo;re paying a premium, aim for 4&ndash;5 stars."
+       data-zh="注：Cornucopia 指出，即使是 1 星有机品牌，在避免最毒农化品方面也优于普通牛肉——但既然花了高价，最好买 4–5 星的产品。">Note: Cornucopia advises that even a 1-star organic brand beats conventional beef for avoiding the most toxic agrochemicals &mdash; but if you&rsquo;re paying a premium, aim for 4&ndash;5 stars.</p>
+
+    <h2 class="section" data-en="Shopping in Bellevue" data-zh="Bellevue 购买指南">Shopping in Bellevue</h2>
+
+    <div class="callout">
+      <p data-en="<strong>Top 3 picks in order of preference:</strong> &nbsp;<strong>Panorama Organic</strong> (Whole Foods or PCC, 5&#9733;) &rarr; <strong>Stemple Creek Ranch</strong> (order online, 4&#9733;) &rarr; <strong>Thousand Hills</strong> (QFC / Fred Meyer, 4&#9733;)."
+         data-zh="<strong>Bellevue 最佳三选（优先级排序）：</strong>&nbsp;<strong>Panorama Organic</strong>（Whole Foods 或 PCC，5&#9733;）&rarr; <strong>Stemple Creek Ranch</strong>（网上下单，4&#9733;）&rarr; <strong>Thousand Hills</strong>（QFC / Fred Meyer，4&#9733;）。"><strong>Top 3 picks in order of preference:</strong> &nbsp;<strong>Panorama Organic</strong> (Whole Foods or PCC, 5&#9733;) &rarr; <strong>Stemple Creek Ranch</strong> (order online, 4&#9733;) &rarr; <strong>Thousand Hills</strong> (QFC / Fred Meyer, 4&#9733;).</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th data-en="Store" data-zh="店铺">Store</th>
+          <th data-en="Brand to Look For" data-zh="推荐品牌">Brand to Look For</th>
+          <th data-en="Rating" data-zh="评级">Rating</th>
+          <th data-en="Notes" data-zh="备注">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Whole Foods</strong></td>
+          <td><strong>Panorama Organic</strong></td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td data-en="First choice; mandatory third-party animal welfare cert (G.A.P./Certified Humane/AGW, 100+ criteria) + full farm traceability for all beef." data-zh="首选；所有牛肉强制第三方动物福利认证（G.A.P./Certified Humane/AGW，100+ 项标准）+ 完整农场溯源。">First choice; mandatory third-party animal welfare cert (G.A.P./Certified Humane/AGW, 100+ criteria) + full farm traceability for all beef.</td>
+        </tr>
+        <tr>
+          <td><strong>PCC (Bellevue)</strong></td>
+          <td data-en="Oregon Country Beef, or Panorama Organic if stocked" data-zh="Oregon Country Beef，或有货时选 Panorama Organic">Oregon Country Beef, or Panorama Organic if stocked</td>
+          <td data-en="3–4&#9733; (PCC floor)" data-zh="3–4&#9733;（PCC 基础标准）">3–4&#9733; (PCC floor)</td>
+          <td data-en="All beef here is organic or non-GMO (no conventional beef sold) — higher sourcing floor than WF. No antibiotics/hormones; pasture-raised prioritized." data-zh="此处所有牛肉均为有机或 non-GMO（不销售普通牛肉）——比 WF 采购基准线更高。无抗生素/激素；优先牧场放养。">All beef here is organic or non-GMO (no conventional beef sold) — higher sourcing floor than WF. No antibiotics/hormones; pasture-raised prioritized.</td>
+        </tr>
+        <tr>
+          <td><strong>QFC / Fred Meyer</strong></td>
+          <td><strong>Thousand Hills</strong></td>
+          <td>⭐⭐⭐⭐</td>
+          <td data-en="Widely stocked nationwide; solid 4-star fallback" data-zh="全国广泛有售；可靠的 4 星备选">Widely stocked nationwide; solid 4-star fallback</td>
+        </tr>
+        <tr>
+          <td><strong data-en="Online (ship to Bellevue)" data-zh="网购（寄到 Bellevue）">Online (ship to Bellevue)</strong></td>
+          <td><strong>Stemple Creek Ranch</strong></td>
+          <td>⭐⭐⭐⭐</td>
+          <td data-en="Ships nationwide; order directly from stemplecreek.com" data-zh="全国配送；直接从 stemplecreek.com 下单">Ships nationwide; order directly from stemplecreek.com</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.9rem;color:var(--muted);"
+       data-en="<strong>PCC vs Whole Foods:</strong> PCC has a higher <em>sourcing floor</em> — every piece of beef is certified organic or non-GMO; no conventional beef sold. Whole Foods allows conventional beef but has more rigorous <em>animal welfare certification</em>: all fresh beef must be independently certified to 100+ criteria (G.A.P./Certified Humane/AGW/ROC) with full farm traceability. Neither is strictly &ldquo;better&rdquo; — PCC raises the baseline, WF has more detailed third-party welfare auditing. &mdash; <a href='https://www.pccmarkets.com/sustainability/honest-transparent-products/animal-welfare/' target='_blank' style='color:var(--accent)'>PCC Standards</a> &middot; <a href='https://www.wholefoodsmarket.com/quality-standards/meat-standards' target='_blank' style='color:var(--accent)'>Whole Foods Meat Standards</a>"
+       data-zh="<strong>PCC vs Whole Foods：</strong>PCC 的<em>采购基准线</em>更高——所有牛肉均为有机认证或 non-GMO，不销售普通牛肉。Whole Foods 允许销售普通牛肉，但对<em>动物福利认证</em>要求更严格：所有生鲜牛肉必须通过 100+ 项标准的第三方独立认证（G.A.P./Certified Humane/AGW/ROC）并具备完整农场溯源。两者各有侧重——PCC 拉高了采购门槛，WF 有更详细的第三方动物福利审计。&mdash; <a href='https://www.pccmarkets.com/sustainability/honest-transparent-products/animal-welfare/' target='_blank' style='color:var(--accent)'>PCC 标准</a> &middot; <a href='https://www.wholefoodsmarket.com/quality-standards/meat-standards' target='_blank' style='color:var(--accent)'>Whole Foods 肉类标准</a>"><strong>PCC vs Whole Foods:</strong> PCC has a higher <em>sourcing floor</em> — every piece of beef is certified organic or non-GMO; no conventional beef sold. Whole Foods allows conventional beef but has more rigorous <em>animal welfare certification</em>: all fresh beef must be independently certified to 100+ criteria (G.A.P./Certified Humane/AGW/ROC) with full farm traceability. Neither is strictly "better" — PCC raises the baseline, WF has more detailed third-party welfare auditing. &mdash; <a href="https://www.pccmarkets.com/sustainability/honest-transparent-products/animal-welfare/" target="_blank" style="color:var(--accent)">PCC Standards</a> &middot; <a href="https://www.wholefoodsmarket.com/quality-standards/meat-standards" target="_blank" style="color:var(--accent)">Whole Foods Meat Standards</a></p>
+
+    <h2 class="section" data-en="5-Star Brands — Gold Standard" data-zh="5 星品牌 — 金标准">5-Star Brands — Gold Standard</h2>
+    <div class="tier best">
+      <div class="tier-header">
+        <h3 data-en="Top tier — best you can buy" data-zh="顶级——能买到的最好选择">Top tier — best you can buy</h3>
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+      </div>
+      <p class="desc" data-en="All participated in the Cornucopia survey. Pasture and forage make up all or most of the diet; cattle are not finished in confinement. Mostly small family farms sold direct, at farmers markets, or online. <strong>Bold = available in Bellevue.</strong>"
+         data-zh="均参与了 Cornucopia 调查。牧草和粗饲料占全部或大部分日粮；不在圈养状态下育肥。大多是通过直销、农贸市场或网络销售的小型家庭农场。<strong>粗体 = Bellevue 可购。</strong>">All participated in the Cornucopia survey. Pasture and forage make up all or most of the diet; cattle are not finished in confinement. Mostly small family farms sold direct, at farmers markets, or online. <strong>Bold = available in Bellevue.</strong></p>
+      <div class="brand-grid">
+        <span>Eight Mile Creek Farm <small>(NY)</small></span>
+        <span>Alderspring Ranch <small>(ID)</small></span>
+        <span>Wheatfield Hill Beef <small>(WI)</small></span>
+        <span>Misty Brook Farm <small>(ME)</small></span>
+        <span>Engelbert Farms <small>(NY)</small></span>
+        <span>Leafy Creek Farm <small>(TX)</small></span>
+        <span>Nick's Organic Farm <small>(MD)</small></span>
+        <span>Windy N Ranch <small>(WA)</small></span>
+        <span>Full Circle Community Farm <small>(WI)</small></span>
+        <span>Sublime Organics <small>(OR)</small></span>
+        <span>Pu'u O Hoku Ranch <small>(HI)</small></span>
+        <span>Earthwise Farm &amp; Forest <small>(VT)</small></span>
+        <span>Avenales Cattle Co. <small>(CA)</small></span>
+        <span>Williams Farm Organic <small>(IA)</small></span>
+        <span>Deck Family Farm <small>(OR)</small></span>
+        <span>Alden Hills Organic Farms <small>(WI)</small></span>
+        <span>Ayrshire Farm <small>(VA)</small></span>
+        <span>Red Hoof Farm <small>(WI)</small></span>
+        <span>Plaisance Ranch <small>(OR)</small></span>
+        <span>Prairie Grazed Meats <small>(MT)</small></span>
+        <span class="nat"><strong>Panorama Organic</strong> <small>(CO)</small></span>
+        <span>Lost Coast Ranch <small>(CA)</small></span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p data-en="<strong>Best nationally available 5-star pick:</strong> <strong>Panorama Organic</strong> (Westminster, CO) sells retail cuts and ground beef at Whole Foods nationwide and online. Score: 950/1100 — the highest of any broadly distributed brand. All other 5-star farms sell primarily farm direct, CSA, or regionally."
+         data-zh="<strong>全国最易购到的 5 星推荐：</strong><strong>Panorama Organic</strong>（科罗拉多州 Westminster）在全国 Whole Foods 和网上销售零售切割肉和碎牛肉。得分：950/1100——是所有广泛分销品牌中最高的。其余 5 星农场主要通过直销、CSA 或区域性渠道销售。"><strong>Best nationally available 5-star pick:</strong> <strong>Panorama Organic</strong> (Westminster, CO) sells retail cuts and ground beef at Whole Foods nationwide and online. Score: 950/1100 — the highest of any broadly distributed brand. All other 5-star farms sell primarily farm direct, CSA, or regionally.</p>
+    </div>
+
+    <h2 class="section" data-en="4-Star Brands — Excellent" data-zh="4 星品牌 — 优秀">4-Star Brands — Excellent</h2>
+    <div class="tier great">
+      <div class="tier-header">
+        <h3 data-en="Great choice — real pasture, good welfare" data-zh="很好的选择——真正的牧场放牧，动物福利良好">Great choice — real pasture, good welfare</h3>
+        <span class="stars">⭐⭐⭐⭐</span>
+      </div>
+      <p class="desc" data-en="Most of these farms didn&rsquo;t complete the survey, but their public information confirmed ample pasture and land stewardship. <strong>Bold = available in Bellevue.</strong>"
+         data-zh="大多数农场未完成调查问卷，但其公开信息确认了充足的牧场和土地保护措施。<strong>粗体 = Bellevue 可购。</strong>">Most of these farms didn't complete the survey, but their public information confirmed ample pasture and land stewardship. <strong>Bold = available in Bellevue.</strong></p>
+      <div class="brand-grid">
+        <span class="nat"><strong>Stemple Creek Ranch</strong> <small>(CA)</small></span>
+        <span class="nat"><strong>Thousand Hills</strong> <small>(MN)</small></span>
+        <span>Lifeline Farm <small>(MT)</small></span>
+        <span>Seven Seeds Organic Farm <small>(WI)</small></span>
+        <span>Starry Nights Farm <small>(WI)</small></span>
+        <span>King's Crown Organic Farm <small>(ID)</small></span>
+        <span>Cosmic Apple Gardens <small>(ID)</small></span>
+        <span>Cross Island Farms <small>(NY)</small></span>
+        <span>Hawthorne Valley Farm <small>(NY)</small></span>
+        <span>Saint John's Organic Farm <small>(ID)</small></span>
+        <span>Sugar Hill Farm <small>(PA)</small></span>
+        <span>Eel River Organic Beef <small>(CA)</small></span>
+        <span>BlueLoon Farm <small>(OH)</small></span>
+        <span>McCluskey Brothers Farms <small>(WI)</small></span>
+        <span>Star Walker Organic Farm <small>(CA)</small></span>
+        <span>Cannon Hill Farm <small>(VA)</small></span>
+        <span>Harvest Moon Organics <small>(WI)</small></span>
+        <span>Elixir Farm <small>(MO)</small></span>
+        <span>Winter Green Farm <small>(OR)</small></span>
+        <span>Keune Organic Meats <small>(WI)</small></span>
+        <span>Coulter Farms <small>(PA)</small></span>
+        <span>Tide Mill Organic Farm <small>(ME)</small></span>
+        <span>Dreamfarm <small>(WI)</small></span>
+        <span>Longest Acres Farm <small>(VT)</small></span>
+        <span>Badger Brook Meats <small>(VT)</small></span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p data-en="<strong>Best nationally available 4-star pick:</strong> <strong>Thousand Hills</strong> (Becker, MN) is sold nationwide. Score: 865. If you can&rsquo;t find Panorama Organic, this is the next-best widely stocked brand."
+         data-zh="<strong>全国最易购到的 4 星推荐：</strong><strong>Thousand Hills</strong>（明尼苏达州 Becker）在全国有售。得分：865。如果买不到 Panorama Organic，这是最容易找到的次优选择。"><strong>Best nationally available 4-star pick:</strong> <strong>Thousand Hills</strong> (Becker, MN) is sold nationwide. Score: 865. If you can&rsquo;t find Panorama Organic, this is the next-best widely stocked brand.</p>
+    </div>
+
+    <h2 class="section" data-en="3-Star Brands — Good (Didn't Survey)" data-zh="3 星品牌 — 良好（未参与调查）">3-Star Brands — Good (Didn't Survey)</h2>
+    <div class="tier good">
+      <div class="tier-header">
+        <h3 data-en="Safe pick — meets organic standards, but less verified" data-zh="可靠选择——符合有机标准，但核实程度较低">Safe pick — meets organic standards, but less verified</h3>
+        <span class="stars">⭐⭐⭐</span>
+      </div>
+      <p class="desc" data-en="These farms didn&rsquo;t answer Cornucopia&rsquo;s survey but are confirmed certified organic. Cornucopia believes most would rate 4&ndash;5 stars had they participated. Selected notable brands listed below &mdash; over 50 brands total in this tier."
+         data-zh="这些农场未回复 Cornucopia 的调查问卷，但已确认获得有机认证。Cornucopia 认为，若参与调查，大多数会得到 4–5 星。以下列出部分值得关注的品牌——该评级共有 50 余个品牌。">These farms didn&rsquo;t answer Cornucopia&rsquo;s survey but are confirmed certified organic. Cornucopia believes most would rate 4&ndash;5 stars had they participated. Selected notable brands listed below &mdash; over 50 brands total in this tier.</p>
+      <div class="brand-grid">
+        <span class="nat"><strong>Organic Prairie (CROPP)</strong> <small>(WI)</small></span>
+        <span>Skagit River Ranch <small>(WA)</small></span>
+        <span>Elmwood Stock Farm <small>(KY)</small></span>
+        <span>Reedy Fork Farm <small>(NC)</small></span>
+        <span>Cobblestone Valley Farm <small>(NY)</small></span>
+        <span>Freedom Food Farm <small>(MA)</small></span>
+        <span>Oreganic Beef Co. <small>(OR)</small></span>
+        <span>Providence Farms <small>(IN)</small></span>
+        <span>Harmony Valley Farm <small>(WI)</small></span>
+        <span>Mint Creek Farm <small>(IL)</small></span>
+        <span>High Ridge Meadows Farm <small>(VT)</small></span>
+        <span>Grassfat Farm <small>(SC)</small></span>
+        <span>Simon Certified Organic <small>(OH)</small></span>
+        <span>Luna Bleu Farm <small>(VT)</small></span>
+        <span>Flying Dog Farm <small>(VT)</small></span>
+      </div>
+    </div>
+
+    <h2 class="section" data-en="2-Star Brands — Less Transparent" data-zh="2 星品牌 — 透明度较低">2-Star Brands — Less Transparent</h2>
+    <div class="tier fair">
+      <div class="tier-header">
+        <h3 data-en="Proceed with caution" data-zh="谨慎选择">Proceed with caution</h3>
+        <span class="stars">⭐⭐</span>
+      </div>
+      <p class="desc" data-en="Less transparency about practices; possible concerns about compliance with USDA organic regulations. Avoid if 4&ndash;5 star options are available."
+         data-zh="对实际做法的透明度较低；可能存在关于符合美国农业部有机法规的疑虑。如果有 4–5 星选项，优先选择。">Less transparency about practices; possible concerns about compliance with USDA organic regulations. Avoid if 4&ndash;5 star options are available.</p>
+      <div class="brand-grid">
+        <span>PnD Organic Beef <small>(WA)</small></span>
+        <span>Parrott's Organic Farm <small>(ID)</small></span>
+        <span>Grassway Organics <small>(WI)</small></span>
+        <span>Odermann Organics <small>(ND)</small></span>
+        <span>Mesman Farm <small>(WA)</small></span>
+        <span>Rose Ridge Farm <small>(OH)</small></span>
+        <span>Bossie's Best <small>(KS)</small></span>
+        <span>Montana Better Beef <small>(MT)</small></span>
+        <span>B Bar Beef <small>(MT)</small></span>
+        <span>Good Earth Farms <small>(WI)</small></span>
+        <span>Snowball Ranch Organics <small>(NV)</small></span>
+        <span>Bowman Road Farm <small>(VT)</small></span>
+        <span><em data-en="+ 20 more" data-zh="+ 另外20个">+ 20 more</em></span>
+      </div>
+    </div>
+
+    <h2 class="section" data-en="1-Star Brands — Avoid" data-zh="1 星品牌 — 避免">1-Star Brands — Avoid</h2>
+    <div class="tier avoid">
+      <div class="tier-header">
+        <h3 data-en="Suspected factory-farm sourcing" data-zh="疑似工厂化农场肉源">Suspected factory-farm sourcing</h3>
+        <span class="stars">⭐</span>
+      </div>
+      <p class="desc" data-en="Cornucopia suspects these brands source from large-scale confinement operations. They are still better than conventional beef (no synthetic pesticides in feed), but are the worst performers among organic brands."
+         data-zh="Cornucopia 怀疑这些品牌的肉源来自大规模圈养养殖。虽然仍优于普通牛肉（饲料中无合成农药），但在有机品牌中表现最差。">Cornucopia suspects these brands source from large-scale confinement operations. They are still better than conventional beef (no synthetic pesticides in feed), but are the worst performers among organic brands.</p>
+      <div class="brand-grid">
+        <span class="nat"><strong>Verde Farms</strong> <small>(MA)</small></span>
+        <span class="nat"><strong>Strauss Brands Organic</strong></span>
+        <span class="nat"><strong>Raise American</strong> <small>(NE)</small></span>
+        <span>Greensbury Market <small>(NY)</small></span>
+        <span>Daniel's Gourmet Meats <small>(MT)</small></span>
+      </div>
+    </div>
+
+    <h2 class="section" data-en="Quick Reference: Nationally Available Brands" data-zh="速查：全国可购品牌">Quick Reference: Nationally Available Brands</h2>
+    <table>
+      <thead>
+        <tr>
+          <th data-en="Brand" data-zh="品牌">Brand</th>
+          <th data-en="Rating" data-zh="评级">Rating</th>
+          <th data-en="Where to Buy" data-zh="购买渠道">Where to Buy</th>
+          <th data-en="Verdict" data-zh="结论">Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Panorama Organic</strong></td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td data-en="Whole Foods, online" data-zh="Whole Foods、网购">Whole Foods, online</td>
+          <td data-en="Best pick for most shoppers" data-zh="大多数消费者的最佳选择">Best pick for most shoppers</td>
+        </tr>
+        <tr>
+          <td><strong>Thousand Hills</strong></td>
+          <td>⭐⭐⭐⭐</td>
+          <td data-en="Nationwide" data-zh="全国">Nationwide</td>
+          <td data-en="Great when Panorama isn't available" data-zh="买不到 Panorama 时的好选择">Great when Panorama isn't available</td>
+        </tr>
+        <tr>
+          <td><strong>Organic Prairie (CROPP)</strong></td>
+          <td>⭐⭐⭐</td>
+          <td data-en="Nationwide" data-zh="全国">Nationwide</td>
+          <td data-en="Acceptable; meets organic standards" data-zh="可接受；符合有机标准">Acceptable; meets organic standards</td>
+        </tr>
+        <tr>
+          <td><strong>Verde Farms</strong></td>
+          <td>⭐</td>
+          <td data-en="Nationwide, online" data-zh="全国、网购">Nationwide, online</td>
+          <td data-en="Avoid if possible" data-zh="尽量避免">Avoid if possible</td>
+        </tr>
+        <tr>
+          <td><strong>Strauss Brands Organic</strong></td>
+          <td>⭐</td>
+          <td data-en="Nationwide" data-zh="全国">Nationwide</td>
+          <td data-en="Avoid if possible" data-zh="尽量避免">Avoid if possible</td>
+        </tr>
+        <tr>
+          <td><strong>Raise American</strong></td>
+          <td>⭐</td>
+          <td data-en="Nationwide" data-zh="全国">Nationwide</td>
+          <td data-en="Avoid if possible" data-zh="尽量避免">Avoid if possible</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    
+    <div class="sources">
+      <h3 data-en="Source" data-zh="来源">Source</h3>
+      <ul>
+        <li><a href="https://www.cornucopia.org/scorecard/organic-beef-scorecard/" target="_blank">Cornucopia Institute — Organic Beef Scorecard</a> <span data-en="(last updated Oct 28, 2022)" data-zh="（最后更新：2022年10月28日）">(last updated Oct 28, 2022)</span></li>
+        <li><a href="https://www.cornucopia.org/research/organic-beef-report-and-scorecard/" target="_blank" data-en="Cornucopia — Organic Beef Research Report" data-zh="Cornucopia — 有机牛肉研究报告">Cornucopia — Organic Beef Research Report</a></li>
+        <li><a href="https://www.pccmarkets.com/sustainability/honest-transparent-products/animal-welfare/" target="_blank" data-en="PCC Community Markets — Animal Welfare Standards (updated May 2026)" data-zh="PCC Community Markets — 动物福利标准（2026年5月更新）">PCC Community Markets — Animal Welfare Standards (updated May 2026)</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p data-en="Shara's Study Notes &mdash; for personal reference" data-zh="Shara的学习笔记 &mdash; 供个人参考">Shara's Study Notes &mdash; for personal reference</p>
+  </footer>
+
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

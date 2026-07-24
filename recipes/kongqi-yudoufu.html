@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="空气炸锅鱼豆腐 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Air Fryer Fish Tofu — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: min(92vw, 900px); margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: min(92vw, 900px); margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .empty-state { background: var(--card); border: 2px dashed var(--border); border-radius: 10px; padding: 40px 32px; text-align: center; color: var(--muted); margin-bottom: 32px; }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state h2 { margin: 0 0 10px; color: var(--accent); font-size: 1.2rem; }
+  .empty-state p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+  .sections { display: grid; gap: 20px; }
+  .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 26px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .section-card h3 { margin: 0 0 12px; color: var(--accent); font-size: 1.05rem; border-bottom: 1px dashed var(--border); padding-bottom: 8px; font-family: 'Helvetica', 'PingFang SC', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; }
+  .section-card .content { min-height: 48px; color: var(--muted); font-style: italic; font-size: 0.95rem; }
+  .section-card .content.filled { color: var(--ink); font-style: normal; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-top: 0; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Air Fryer Fish Tofu" data-zh="空气炸锅鱼豆腐">Air Fryer Fish Tofu</h1>
+        <div class="meta" data-en="Meat" data-zh="肉">Meat</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/kongqi-yudoufu/Final.png" alt="kongqi-yudoufu" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+  <main>
+        <div class="recipe-notes">
+        <h3 data-en="Seasoning" data-zh="调味">调味</h3>
+        <p data-zh="香油、鸡粉、花椒粉、盐、辣椒粉。" data-en="Seasoning: sesame oil, chicken powder, Sichuan peppercorn powder, salt, chili powder.">香油、鸡粉、花椒粉、盐、辣椒粉。</p>
+        <h3 data-en="Air Fryer" data-zh="空气炸锅">空气炸锅</h3>
+        <p data-zh="350°F，先炸8分钟，翻面再炸5分钟。" data-en="350°F: air-fry 8 minutes, flip, then 5 more minutes.">350°F，先炸8分钟，翻面再炸5分钟。</p>
+    </div>
+  </main>
+  <footer data-en="Shara's Study Notes" data-zh="Shara的学习笔记">Shara's Study Notes</footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

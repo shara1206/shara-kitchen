@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="糖的指南 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sugar Guide — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.93rem; }
+  .sugar-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; }
+  .sugar-card h3 { color: var(--accent); font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+  .sugar-card p { margin: 5px 0; font-size: 0.95rem; }
+  .stage-list { list-style: none; padding: 0; margin: 10px 0; }
+  .stage-list li { padding: 6px 0 6px 20px; border-bottom: 1px dashed var(--border); font-size: 0.95rem; position: relative; }
+  .stage-list li:last-child { border-bottom: none; }
+  .stage-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .header-icon-slot { width: 180px; height: 180px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 5rem; line-height: 1; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Sugar Guide" data-zh="糖的指南">Sugar Guide</h1>
+        <div class="meta" data-en="Cooking Tips" data-zh="烹饪技巧">Cooking Tips</div>
+      </div>
+      <div class="header-icon-slot"><svg width="120" height="120" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="8" width="6" height="26" rx="3" fill="#6a9a3a" stroke="#4a7a20" stroke-width="0.8"/><rect x="9" y="15" width="6" height="1.8" rx="0.5" fill="#4a7a20" opacity="0.6"/><rect x="9" y="22" width="6" height="1.8" rx="0.5" fill="#4a7a20" opacity="0.6"/><ellipse cx="12" cy="8" rx="3" ry="1.4" fill="#f0f0e0" stroke="#4a7a20" stroke-width="0.6"/><rect x="14" y="11" width="6" height="23" rx="3" fill="#7a5a9a" stroke="#5a3a7a" stroke-width="0.8"/><rect x="14" y="18" width="6" height="1.8" rx="0.5" fill="#5a3a7a" opacity="0.6"/><rect x="14" y="25" width="6" height="1.8" rx="0.5" fill="#5a3a7a" opacity="0.6"/><ellipse cx="17" cy="11" rx="3" ry="1.4" fill="#f0f0e0" stroke="#5a3a7a" stroke-width="0.6"/><path d="M12 8 Q6 4 4 1" fill="none" stroke="#4a8a20" stroke-width="2" stroke-linecap="round"/><path d="M12 8 Q10 2 11 -1" fill="none" stroke="#5a9a28" stroke-width="1.8" stroke-linecap="round"/><path d="M12 8 Q16 3 18 1" fill="none" stroke="#4a8a20" stroke-width="1.6" stroke-linecap="round"/><path d="M17 11 Q22 6 25 3" fill="none" stroke="#5a9a28" stroke-width="1.8" stroke-linecap="round"/><path d="M17 11 Q20 5 20 2" fill="none" stroke="#4a8a20" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 炒糖色 -->
+    <div class="sugar-card">
+      <h3 data-en="Rock Sugar — Caramelizing" data-zh="精炼冰糖 — 炒糖色">精炼冰糖 — 炒糖色</h3>
+      <p data-zh="&lt;strong&gt;糖水比例：&lt;/strong&gt;1 : 1–1.2，加适量植物油" data-en="&lt;strong&gt;Sugar to water ratio:&lt;/strong&gt; 1 : 1–1.2, plus a little vegetable oil"><strong>糖水比例：</strong>1 : 1–1.2，加适量植物油</p>
+      <p data-zh="&lt;strong&gt;操作：&lt;/strong&gt;中小火下锅，转小火，持续搅动。" data-en="&lt;strong&gt;Method:&lt;/strong&gt; start on medium-low, reduce to low, stir constantly."><strong>操作：</strong>中小火下锅，转小火，持续搅动。</p>
+      <ul class="stage-list">
+        <li data-zh="一开始会起较大气泡，气泡慢慢消失 → 可以离火，上&lt;strong&gt;糖霜&lt;/strong&gt;" data-en="Starts with large bubbles that gradually disappear → remove from heat, use for &lt;strong&gt;sugar coating / frosting&lt;/strong&gt;">一开始会起较大气泡，气泡慢慢消失 → 可以离火，上<strong>糖霜</strong></li>
+        <li data-zh="继续加热至香油色 → &lt;strong&gt;拔丝&lt;/strong&gt;菜品" data-en="Continue until golden sesame-oil color → use for &lt;strong&gt;pulled-sugar (bāsī) dishes&lt;/strong&gt;">继续加热至香油色 → <strong>拔丝</strong>菜品</li>
+        <li data-zh="糖浆黄色继续加深 → &lt;strong&gt;冰糖葫芦&lt;/strong&gt;的糖" data-en="Color deepens further to amber → use for &lt;strong&gt;candied hawthorn skewers (tanghulu)&lt;/strong&gt;">糖浆黄色继续加深 → <strong>冰糖葫芦</strong>的糖</li>
+        <li data-zh="再继续约 10 秒，初级枣红色，离火用余温转成深枣色 → &lt;strong&gt;糖色&lt;/strong&gt;（卤味用）" data-en="10 more seconds to an early date-red; remove from heat and let residual heat deepen to dark date-red → &lt;strong&gt;caramel coloring (táng sè)&lt;/strong&gt; for braises">再继续约 10 秒，初级枣红色，离火用余温转成深枣色 → <strong>糖色</strong>（卤味用）</li>
+      </ul>
+      <p data-zh="&lt;strong&gt;加水：&lt;/strong&gt;加入两倍量的&lt;strong&gt;开水&lt;/strong&gt;（不能用冷水），继续熬煮 1 分钟，最终糖色无味、颜色红亮。" data-en="&lt;strong&gt;Adding water:&lt;/strong&gt; add double the volume of &lt;strong&gt;boiling water&lt;/strong&gt; (never cold water); simmer 1 more minute until the caramel is flavorless and deep red-glossy."><strong>加水：</strong>加入两倍量的<strong>开水</strong>（不能用冷水），继续熬煮 1 分钟，最终糖色无味、颜色红亮。</p>
+      <div class="tip">💡 初次做卤味：糖色要慢慢加入，不要一次加太多。卤好的菜出锅后要刷油保色，避免变黑。</div>
+    </div>
+
+    <!-- 糖的种类 -->
+    <div class="recipe-notes">
+      <h3 data-en="Types of Sugar" data-zh="糖的种类">糖的种类</h3>
+      <p data-zh="&lt;strong&gt;土冰糖&lt;/strong&gt;：淡黄色，营养成分保留更全面。适合熬甜粥、泡茶。" data-en="&lt;strong&gt;Raw rock sugar (土冰糖):&lt;/strong&gt; pale yellow, retains more nutrients. Good for sweet congee and tea."><strong>土冰糖</strong>：淡黄色，营养成分保留更全面。适合熬甜粥、泡茶。</p>
+      <p data-zh="&lt;strong&gt;片糖&lt;/strong&gt;：不易回潮，方便储存，质地硬。适合熬糖水。" data-en="&lt;strong&gt;Block cane sugar (片糖):&lt;/strong&gt; low humidity absorption, easy to store, hard texture. Good for sweet soups."><strong>片糖</strong>：不易回潮，方便储存，质地硬。适合熬糖水。</p>
+      <p data-zh="&lt;strong&gt;红糖&lt;/strong&gt;：松软，容易回潮。" data-en="&lt;strong&gt;Brown sugar (红糖):&lt;/strong&gt; soft and loose; absorbs moisture easily."><strong>红糖</strong>：松软，容易回潮。</p>
+      <p data-zh="&lt;strong&gt;白糖&lt;/strong&gt;：调味用，不适合炒糖色。" data-en="&lt;strong&gt;White sugar (白糖):&lt;/strong&gt; for general flavoring; not suitable for making caramel coloring."><strong>白糖</strong>：调味用，不适合炒糖色。</p>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

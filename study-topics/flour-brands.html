@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="面粉品牌与品质 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flour Brands &amp; Quality &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; --good:#4a8a4a; --ok:#b8902a; --bad:#b04a3a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 760px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 760px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 760px; margin: 8px auto 0; opacity: 0.92; font-size: 0.95rem; font-style: italic; }
+  main { max-width: 760px; margin: 0 auto; padding: 36px 24px 60px; }
+  .tldr { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tldr h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .tldr p { margin: 0; }
+  h2.section { font-size: 1.35rem; margin: 36px 0 12px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  h3.sub { font-size: 1.15rem; margin: 22px 0 8px; color: var(--accent); }
+  p { margin: 12px 0; }
+  .brand { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 16px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-left: 5px solid var(--accent); }
+  .brand h3 { margin: 0 0 6px; font-size: 1.2rem; color: var(--accent); }
+  .brand .tag-row { font-size: 0.85rem; color: var(--muted); font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  .callout { background: #fff4e0; padding: 14px 18px; border-radius: 6px; border: 1px dashed var(--border); margin: 18px 0; }
+  .callout strong { color: var(--accent); }
+  ul.clean { padding-left: 22px; }
+  ul.clean li { margin: 6px 0; }
+  .sources { margin-top: 40px; padding: 18px 22px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; }
+  .sources h3 { margin: 0 0 10px; color: var(--accent); }
+  .sources ul { padding-left: 20px; margin: 0; }
+  .sources a { color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="flour.html" data-en="&larr; All flour notes" data-zh="&larr; 所有面粉笔记">&larr; All flour notes</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <h1 data-en="Flour Brands &amp; Quality: What to Buy"
+        data-zh="面粉品牌与品质：买哪一种">Flour Brands &amp; Quality: What to Buy</h1>
+    <div class="meta" data-en="May 21, 2026 &middot; Flour &middot; Buying Guide"
+         data-zh="2026年5月21日 &middot; 面粉 &middot; 选购指南">May 21, 2026 &middot; Flour &middot; Buying Guide</div>
+  </header>
+
+  <main>
+    <div class="tldr">
+      <h2 data-en="TL;DR" data-zh="摘要">TL;DR</h2>
+      <p data-en="Unlike eggs and milk, there's no single independent watchdog rating flour brands. But there's strong consensus among bakers, food writers (Cook's Illustrated, Serious Eats, King Arthur's own bakers), and pro test kitchens: <strong>King Arthur</strong> wins on consistency and quality for everyday baking. <strong>Bob's Red Mill</strong> dominates whole grains and specialty flours. <strong>Central Milling, Janie's Mill, and Cairnspring Mills</strong> are the top tier for serious bread baking with regional/heritage grains. Generic store-brand flour is usable but inconsistent batch to batch."
+         data-zh="与鸡蛋、牛奶不同，面粉没有单一的独立评分机构。但烘焙圈、食品作家（Cook's Illustrated、Serious Eats、King Arthur 自家烘焙师）以及专业测试厨房有高度共识：<strong>King Arthur</strong> 在日常烘焙的稳定性和品质上拔得头筹。<strong>Bob's Red Mill</strong> 在全谷物和特色粉方面最强。<strong>Central Milling、Janie's Mill、Cairnspring Mills</strong> 是认真做面包、追求地方/传统品种的顶级选择。超市自营面粉勉强可用，但批次之间不太稳定。">Unlike eggs and milk, there's no single independent watchdog rating flour brands. But there's strong consensus among bakers, food writers (Cook's Illustrated, Serious Eats, King Arthur's own bakers), and pro test kitchens: <strong>King Arthur</strong> wins on consistency and quality for everyday baking. <strong>Bob's Red Mill</strong> dominates whole grains and specialty flours. <strong>Central Milling, Janie's Mill, and Cairnspring Mills</strong> are the top tier for serious bread baking with regional/heritage grains. Generic store-brand flour is usable but inconsistent batch to batch.</p>
+    </div>
+
+    <h2 class="section" data-en="The major brands" data-zh="主要品牌">The major brands</h2>
+
+    <div class="brand">
+      <h3>King Arthur Baking</h3>
+      <div class="tag-row" data-en="Employee-owned &middot; B-Corp certified &middot; Vermont"
+           data-zh="员工持股 &middot; B-Corp 认证 &middot; 佛蒙特州">Employee-owned &middot; B-Corp certified &middot; Vermont</div>
+      <p data-en="<strong>Why it's the default recommendation:</strong> King Arthur tests every batch for protein content and guarantees consistency &mdash; their AP is always 11.7%, bread flour always 12.7%. That's unusual; most brands let protein drift by ~1%. Cook's Illustrated and most pro recipe developers test against King Arthur because it's the most reliable baseline."
+         data-zh="<strong>为什么默认推荐它：</strong>King Arthur 对每一批都检测蛋白质并保证稳定——AP 始终 11.7%，面包粉始终 12.7%。这点很罕见，大多数品牌的蛋白质会有约 1% 的波动。Cook's Illustrated 等专业配方研发以 King Arthur 为基准，因为它最可靠。"><strong>Why it's the default recommendation:</strong> King Arthur tests every batch for protein content and guarantees consistency &mdash; their AP is always 11.7%, bread flour always 12.7%. That's unusual; most brands let protein drift by ~1%. Cook's Illustrated and most pro recipe developers test against King Arthur because it's the most reliable baseline.</p>
+      <p data-en="<strong>Best products:</strong> Unbleached AP, Bread Flour, Whole Wheat, &ldquo;00&rdquo; Pizza Flour, Sir Galahad (their pro AP)."
+         data-zh="<strong>主推产品：</strong>未漂白通用粉、面包粉、全麦粉、&ldquo;00&rdquo;披萨粉、Sir Galahad（专业版 AP）。"><strong>Best products:</strong> Unbleached AP, Bread Flour, Whole Wheat, "00" Pizza Flour, Sir Galahad (their pro AP).</p>
+      <p data-en="<strong>Downside:</strong> Slightly more expensive than supermarket brands. Hard to find some specialty lines outside their website."
+         data-zh="<strong>缺点：</strong>比超市品牌稍贵。部分特色产品线只在其官网才能买到。"><strong>Downside:</strong> Slightly more expensive than supermarket brands. Hard to find some specialty lines outside their website.</p>
+    </div>
+
+    <div class="brand">
+      <h3>Bob's Red Mill</h3>
+      <div class="tag-row" data-en="Employee-owned &middot; Stone-ground &middot; Oregon"
+           data-zh="员工持股 &middot; 石磨 &middot; 俄勒冈州">Employee-owned &middot; Stone-ground &middot; Oregon</div>
+      <p data-en="<strong>What it's known for:</strong> The widest lineup of specialty flours &mdash; whole grains, gluten-free, ancient grains (einkorn, spelt, kamut, teff). Stone-ground means more bran/germ retained, more flavor, shorter shelf life."
+         data-zh="<strong>主打特长：</strong>特色面粉品类最齐全——全谷物、无麸质、古老谷物（einkorn、斯佩耳特、kamut、teff）。石磨意味着保留更多麸皮和胚芽，风味更浓，但保质期更短。"><strong>What it's known for:</strong> The widest lineup of specialty flours &mdash; whole grains, gluten-free, ancient grains (einkorn, spelt, kamut, teff). Stone-ground means more bran/germ retained, more flavor, shorter shelf life.</p>
+      <p data-en="<strong>Best products:</strong> Stone-Ground Whole Wheat, Artisan Bread Flour, GF 1-to-1 Baking Flour, Spelt, Rye, Buckwheat."
+         data-zh="<strong>主推产品：</strong>石磨全麦粉、Artisan 面包粉、GF 1-to-1 无麸质烘焙粉、斯佩耳特粉、黑麦粉、荞麦粉。"><strong>Best products:</strong> Stone-Ground Whole Wheat, Artisan Bread Flour, GF 1-to-1 Baking Flour, Spelt, Rye, Buckwheat.</p>
+      <p data-en="<strong>Caveat:</strong> Their AP and bread flour get mixed reviews &mdash; some bakers find Bob's bread flour stickier and less consistent than King Arthur. For specialty flours, it's the best mainstream option."
+         data-zh="<strong>注意：</strong>其 AP 和面包粉口碑参差不齐——一些面包师反映 Bob's 的面包粉更黏、批次差别更大。但在特色面粉品类里，它仍是主流里最佳选择。"><strong>Caveat:</strong> Their AP and bread flour get mixed reviews &mdash; some bakers find Bob's bread flour stickier and less consistent than King Arthur. For specialty flours, it's the best mainstream option.</p>
+    </div>
+
+    <div class="brand">
+      <h3>Central Milling</h3>
+      <div class="tag-row" data-en="Family-run since 1867 &middot; Organic-focused &middot; Utah"
+           data-zh="自 1867 年起家族经营 &middot; 主打有机 &middot; 犹他州">Family-run since 1867 &middot; Organic-focused &middot; Utah</div>
+      <p data-en="<strong>Why bakers love it:</strong> The flour that supplies many top US bakeries (Tartine, etc.). Excellent protein quality, not just protein quantity &mdash; the gluten in Central Milling flours is stretchier and stronger feeling. Their &ldquo;Type 70&rdquo; high-extraction flour is a favorite for sourdough."
+         data-zh="<strong>面包师为什么爱它：</strong>美国许多顶级面包房（如 Tartine）都用它的面粉。蛋白质&ldquo;品质&rdquo;而不仅是&ldquo;数量&rdquo;出色——其面筋更有延展性、更有力。&ldquo;Type 70&rdquo;高提取率面粉是天然酵母面包的常用之选。"><strong>Why bakers love it:</strong> The flour that supplies many top US bakeries (Tartine, etc.). Excellent protein quality, not just protein quantity &mdash; the gluten in Central Milling flours is stretchier and stronger feeling. Their "Type 70" high-extraction flour is a favorite for sourdough.</p>
+      <p data-en="<strong>Downside:</strong> Sold mostly in bulk (25 or 50 lb bags) and online. Not at supermarkets."
+         data-zh="<strong>缺点：</strong>主要按大包装出售（25 或 50 磅），以网购为主，超市少见。"><strong>Downside:</strong> Sold mostly in bulk (25 or 50 lb bags) and online. Not at supermarkets.</p>
+    </div>
+
+    <div class="brand">
+      <h3>Cairnspring Mills</h3>
+      <div class="tag-row" data-en="Skagit Valley, WA &middot; Heritage Pacific NW grains &middot; Stone-milled"
+           data-zh="华盛顿州斯卡吉特山谷 &middot; 太平洋西北传统品种 &middot; 石磨">Skagit Valley, WA &middot; Heritage Pacific NW grains &middot; Stone-milled</div>
+      <p data-en="<strong>What it's about:</strong> Regional, identity-preserved wheat (you can trace flour back to a specific farm). Fresh-milled, so it has more flavor than industrial flour. The Pacific Northwest's answer to Central Milling."
+         data-zh="<strong>特点：</strong>区域性、可追溯到具体农场的小麦。新鲜研磨，所以比工业面粉更有风味。是太平洋西北地区对 Central Milling 的回应。"><strong>What it's about:</strong> Regional, identity-preserved wheat (you can trace flour back to a specific farm). Fresh-milled, so it has more flavor than industrial flour. The Pacific Northwest's answer to Central Milling.</p>
+    </div>
+
+    <div class="brand">
+      <h3>Gold Medal &amp; Pillsbury</h3>
+      <div class="tag-row" data-en="National &middot; General Mills" data-zh="全国 &middot; General Mills 旗下">National &middot; General Mills</div>
+      <p data-en="The default supermarket brands. Reliable enough for everyday cookies and quick breads. Protein content varies more batch-to-batch than King Arthur. Gold Medal AP runs ~10.5%, which makes it slightly weaker than King Arthur AP for bread. Fine for most home baking, sub-par for serious bread."
+         data-zh="超市里的默认品牌。日常做饼干、快速面包足够可靠。蛋白质含量比 King Arthur 波动更大。Gold Medal AP 约 10.5%，做面包时比 King Arthur AP 略弱。家庭常规烘焙完全够用，但要认真做面包就不够。">The default supermarket brands. Reliable enough for everyday cookies and quick breads. Protein content varies more batch-to-batch than King Arthur. Gold Medal AP runs ~10.5%, which makes it slightly weaker than King Arthur AP for bread. Fine for most home baking, sub-par for serious bread.</p>
+    </div>
+
+    <div class="brand">
+      <h3>White Lily</h3>
+      <div class="tag-row" data-en="Southern US &middot; Soft winter wheat" data-zh="美国南方 &middot; 软质冬小麦">Southern US &middot; Soft winter wheat</div>
+      <p data-en="Beloved for biscuits and Southern baking. White Lily AP is essentially pastry flour (~9% protein), milled from soft winter wheat. Don't use it for yeast bread &mdash; it'll be dense. Do use it for biscuits, pancakes, and pie crust where tenderness matters."
+         data-zh="美式南方烘焙和比司吉的最爱。White Lily AP 实际上接近糕点粉（蛋白质约 9%），用软质冬小麦研磨。不要用来做酵母面包——会很紧实。但用来做比司吉、煎饼、派皮等讲究松软的烘焙正合适。">Beloved for biscuits and Southern baking. White Lily AP is essentially pastry flour (~9% protein), milled from soft winter wheat. Don't use it for yeast bread &mdash; it'll be dense. Do use it for biscuits, pancakes, and pie crust where tenderness matters.</p>
+    </div>
+
+    <div class="brand">
+      <h3 data-en="Italian 00 brands (Caputo, Polselli, Le 5 Stagioni)" data-zh="意大利 00 号品牌（Caputo、Polselli、Le 5 Stagioni）">Italian 00 brands (Caputo, Polselli, Le 5 Stagioni)</h3>
+      <div class="tag-row" data-en="Imported &middot; Pizza &amp; pasta" data-zh="进口 &middot; 披萨与意面">Imported &middot; Pizza &amp; pasta</div>
+      <p data-en="For Neapolitan-style pizza, imported 00 makes a meaningful difference. <strong>Caputo Pizzeria (blue bag)</strong> is the gold standard &mdash; it's what most Italian pizzaiolos use. For pasta, <strong>Caputo Pasta Fresca</strong> or semolina-blend flours give the right bite."
+         data-zh="做拿坡里风格的披萨，进口 00 号差别明显。<strong>Caputo Pizzeria（蓝袋）</strong>是行业金标准——大多数意大利披萨师都用它。做意面则选 <strong>Caputo Pasta Fresca</strong>或粗粒小麦粉混合的面粉，更有口感。">For Neapolitan-style pizza, imported 00 makes a meaningful difference. <strong>Caputo Pizzeria (blue bag)</strong> is the gold standard &mdash; it's what most Italian pizzaiolos use. For pasta, <strong>Caputo Pasta Fresca</strong> or semolina-blend flours give the right bite.</p>
+    </div>
+
+    <h2 class="section" data-en="Quick recommendations by use case" data-zh="按用途的快速推荐">Quick recommendations by use case</h2>
+    <table>
+      <thead>
+        <tr><th data-en="Use case" data-zh="用途">Use case</th><th data-en="Brand to buy" data-zh="推荐品牌">Brand to buy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td data-en="Everyday all-purpose (one bag to own)" data-zh="日常通用粉（家中必备一袋）">Everyday all-purpose (one bag to own)</td><td>King Arthur Unbleached AP</td></tr>
+        <tr><td data-en="Serious yeast bread or sourdough" data-zh="认真做酵母面包或天然酵种">Serious yeast bread or sourdough</td><td>King Arthur Bread Flour / Central Milling Artisan Baker's Craft</td></tr>
+        <tr><td data-en="Sourdough with character" data-zh="风味突出的天然酵种">Sourdough with character</td><td>Cairnspring Edison / Central Milling Type 70</td></tr>
+        <tr><td data-en="Cakes" data-zh="蛋糕">Cakes</td><td>Swans Down / King Arthur Cake Flour</td></tr>
+        <tr><td data-en="Biscuits, Southern baking" data-zh="比司吉、美式南方烘焙">Biscuits, Southern baking</td><td>White Lily AP</td></tr>
+        <tr><td data-en="Pizza (Neapolitan)" data-zh="披萨（拿坡里风格）">Pizza (Neapolitan)</td><td>Caputo 00 Pizzeria</td></tr>
+        <tr><td data-en="Whole wheat bread" data-zh="全麦面包">Whole wheat bread</td><td>Bob's Red Mill / King Arthur White Whole Wheat</td></tr>
+        <tr><td data-en="Gluten-free baking" data-zh="无麸质烘焙">Gluten-free baking</td><td>Bob's Red Mill 1-to-1 Baking Flour</td></tr>
+        <tr><td data-en="Heritage / regional grain interest" data-zh="对传统/地方品种感兴趣">Heritage / regional grain interest</td><td>Cairnspring (West), Janie's Mill (Midwest), Maine Grains (Northeast)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p data-en="<strong>Why no Cornucopia scorecard for flour?</strong> Flour quality is mostly about <em>protein consistency, freshness, and milling style</em> &mdash; not about animal welfare or outdoor access. The questions a scorecard would answer (is it organic? is the wheat heritage? is it regional?) are visible on the bag."
+         data-zh="<strong>为什么面粉没有 Cornucopia 评分卡？</strong>面粉的品质主要看<em>蛋白质稳定性、新鲜度和磨制方式</em>——不涉及动物福利或户外活动。评分卡能回答的问题（是否有机？小麦是不是传统品种？是不是地方产？）通常都印在包装上。"><strong>Why no Cornucopia scorecard for flour?</strong> Flour quality is mostly about <em>protein consistency, freshness, and milling style</em> &mdash; not about animal welfare or outdoor access. The questions a scorecard would answer (is it organic? is the wheat heritage? is it regional?) are visible on the bag.</p>
+    </div>
+
+    <div class="sources">
+      <h3 data-en="Sources" data-zh="来源">Sources</h3>
+      <ul>
+        <li><a href="https://www.kingarthurbaking.com/blog/2019/07/12/types-of-flour" target="_blank">King Arthur Baking &mdash; Choosing the right flour</a></li>
+        <li><a href="https://www.kingarthurbaking.com/blog/2023/09/25/protein-percentage" target="_blank">King Arthur Baking &mdash; Why protein percentage matters</a></li>
+        <li><a href="https://support.bobsredmill.com/hc/en-us/articles/26292220612115-What-is-the-protein-content-of-your-flour" target="_blank">Bob's Red Mill &mdash; Flour protein chart</a></li>
+        <li><a href="https://centralmilling.com/" target="_blank">Central Milling</a></li>
+        <li><a href="https://cairnspring.com/" target="_blank">Cairnspring Mills</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

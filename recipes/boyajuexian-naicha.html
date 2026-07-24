@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="伯牙绝弦奶茶 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Boyajuexian Milk Tea — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-top: 0; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; line-height: 1.7; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Boyajuexian Milk Tea (Maple Hill)" data-zh="伯牙绝弦奶茶（Maple Hill版）">Boyajuexian Milk Tea (Maple Hill)</h1>
+        <div class="meta" data-en="Drinks · ~500 ml" data-zh="饮品 · 约500ml">Drinks · ~500 ml</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/boyajuexian-naicha/Final.png" alt="boyajuexian-naicha" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="recipe-notes">
+
+      <h3 data-en="Ingredients" data-zh="材料">材料</h3>
+      <ul>
+        <li data-zh="伯牙绝弦茶叶" data-en="Boya Juexian tea leaves" data-base="5" data-unit="g">伯牙绝弦茶叶</li>
+        <li data-zh="热水（预热用，随意温度）" data-en="Hot water (for preheating, any temp)" data-base="150" data-unit="ml">热水（预热用，随意温度）</li>
+        <li data-zh="热水（83°C，萃取用）" data-en="Hot water (83°C, for extraction)" data-base="150" data-unit="ml">热水（83°C，萃取用）</li>
+        <li data-zh="Maple Hill 草饲全脂牛奶（冷藏）" data-en="Maple Hill grass-fed whole milk (chilled)" data-base="210" data-unit="ml">Maple Hill 草饲全脂牛奶（冷藏）</li>
+        <li data-zh="糖浆（白糖+水各100g煮化，冷藏备用）" data-en="Simple syrup (recipe: 100g sugar + 100g water)" data-base="12" data-unit="ml">糖浆（白糖+水各100g煮化，冷藏备用）</li>
+        <li data-zh="冰块" data-en="Ice" data-base="200" data-unit="g">冰块</li>
+      </ul>
+
+      <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+      <ol>
+        <li data-timer="30" data-zh="&lt;strong&gt;预热保温杯：&lt;/strong&gt;往保温杯倒入150ml热水（随意温度），盖盖摇30秒后倒掉。杯壁充分预热，防止之后水温骤降。" data-en="&lt;strong&gt;Preheat the thermos:&lt;/strong&gt; pour 150ml hot water in, cap and shake for 30 sec, then discard. This warms the walls and prevents temperature drop."><strong>预热保温杯：</strong>往保温杯倒入150ml热水（随意温度），盖盖摇30秒后倒掉。杯壁充分预热，防止之后水温骤降。</li>
+        <li data-timer="150" data-zh="&lt;strong&gt;烧水控温：&lt;/strong&gt;水烧至沸腾后静置2分30秒，即约83°C。没有温度计时这是最简单可靠的方法。" data-en="&lt;strong&gt;Temperature control:&lt;/strong&gt; boil water then let it rest 2 min 30 sec — that reaches ~83°C. The simplest reliable method without a thermometer."><strong>烧水控温：</strong>水烧至沸腾后静置2分30秒，即约83°C。没有温度计时这是最简单可靠的方法。</li>
+        <li data-zh="&lt;strong&gt;恒温萃取：&lt;/strong&gt;将5g伯牙绝弦茶叶放入预热好的保温杯，倒入150ml 83°C热水，盖盖闷泡。全程不要摇晃，让茶叶自然舒展萃取。" data-en="&lt;strong&gt;Constant-temp extraction:&lt;/strong&gt; place 5g tea leaves in the preheated thermos, pour 150ml 83°C water over them, cap and steep. Do not shake — let leaves open naturally."><strong>恒温萃取：</strong>将5g伯牙绝弦茶叶放入预热好的保温杯，倒入150ml 83°C热水，盖盖闷泡。全程不要摇晃，让茶叶自然舒展萃取。</li>
+        <li data-timer="180" data-zh="&lt;strong&gt;过滤茶汤：&lt;/strong&gt;3分钟到立刻过滤，用手冲滤纸或茶滤将茶汤滤入另一个杯子。动作要快，茶叶离水越快越好。过滤后尝一口：清甜微涩不苦为佳。偏苦则下次缩短至2分30秒。" data-en="&lt;strong&gt;Strain immediately at 3 minutes:&lt;/strong&gt; use a pour-over filter or tea strainer into another cup. Move fast — separate leaves from liquid ASAP. Taste: clean, sweet, slightly astringent but not bitter. Bitter = reduce to 2:30 next time."><strong>过滤茶汤：</strong>3分钟到立刻过滤，用手冲滤纸或茶滤将茶汤滤入另一个杯子。动作要快，茶叶离水越快越好。过滤后尝一口：清甜微涩不苦为佳。偏苦则下次缩短至2分30秒。</li>
+        <li data-timer="20" data-zh="&lt;strong&gt;加糖降温：&lt;/strong&gt;趁茶汤热，加入12ml糖浆搅匀至完全溶解。然后加入200g冰块快速搅拌降温，静置20秒。" data-en="&lt;strong&gt;Sweeten and chill:&lt;/strong&gt; while tea is hot, stir in 12ml syrup until fully dissolved. Add 200g ice, stir vigorously to chill quickly, wait 20 sec."><strong>加糖降温：</strong>趁茶汤热，加入12ml糖浆搅匀至完全溶解。然后加入200g冰块快速搅拌降温，静置20秒。</li>
+        <li data-zh="&lt;strong&gt;合杯摇匀：&lt;/strong&gt;取密封瓶或大杯，倒入冷藏牛奶210ml，再倒入降温后的茶汤，盖紧用力摇20下。茶奶充分融合是口感顺滑的关键。" data-en="&lt;strong&gt;Shake to combine:&lt;/strong&gt; in a sealed bottle or large cup, pour in 210ml chilled milk, then the cooled tea; cap and shake hard 20 times. Full emulsification is the key to smooth texture."><strong>合杯摇匀：</strong>取密封瓶或大杯，倒入冷藏牛奶210ml，再倒入降温后的茶汤，盖紧用力摇20下。茶奶充分融合是口感顺滑的关键。</li>
+        <li data-zh="&lt;strong&gt;装杯：&lt;/strong&gt;大杯铺满剩余冰块，将摇好的奶茶倒入即可。马上喝，放久清香会散。" data-en="&lt;strong&gt;Serve:&lt;/strong&gt; fill a large glass with remaining ice, pour in the shaken milk tea. Drink immediately — the delicate aroma fades quickly."><strong>装杯：</strong>大杯铺满剩余冰块，将摇好的奶茶倒入即可。马上喝，放久清香会散。</li>
+      </ol>
+
+      <div class="tip">
+        <span data-zh="&lt;strong&gt;Maple Hill专属提示：&lt;/strong&gt;草饲奶本身有天然回甘，糖浆12ml约为四分甜，喜甜可加到15ml，不建议超过18ml否则会压住茶香。" data-en="&lt;strong&gt;Maple Hill tip:&lt;/strong&gt; grass-fed milk has natural sweetness; 12ml syrup ≈ 40% sweetness. Go to 15ml if you prefer sweeter; don't exceed 18ml or it overpowers the tea."><strong>Maple Hill专属提示：</strong>草饲奶本身有天然回甘，糖浆12ml约为四分甜，喜甜可加到15ml，不建议超过18ml否则会压住茶香。</span>
+      </div>
+
+      <div class="tip" style="margin-top:10px;">
+        <span data-zh="&lt;strong&gt;萃取判断：&lt;/strong&gt;茶汤深黄绿色、清甜微涩不苦 = 成功。偏苦 = 下次缩短至2分30秒或降温至80°C。偏淡 = 茶叶加到6g或延长30秒。" data-en="&lt;strong&gt;Extraction check:&lt;/strong&gt; deep yellow-green color, clean sweet slightly astringent = success. Too bitter = reduce time to 2:30 or lower temp to 80°C. Too weak = increase leaves to 6g or add 30 sec."><strong>萃取判断：</strong>茶汤深黄绿色、清甜微涩不苦 = 成功。偏苦 = 下次缩短至2分30秒或降温至80°C。偏淡 = 茶叶加到6g或延长30秒。</span>
+      </div>
+
+      <div class="tip" style="margin-top:10px;">
+        <span data-zh="&lt;strong&gt;进阶：&lt;/strong&gt;参数稳定后可一次泡300ml茶汤，热惰性更强，口感更稳定，更接近店里保温桶逻辑。" data-en="&lt;strong&gt;Advanced:&lt;/strong&gt; once you've dialed in the parameters, brew 300ml at once — the greater thermal mass keeps temp more stable and produces more consistent results, like a shop's large urn."><strong>进阶：</strong>参数稳定后可一次泡300ml茶汤，热惰性更强，口感更稳定，更接近店里保温桶逻辑。</span>
+      </div>
+
+      <h3>原理：为什么用保温杯恒温萃取</h3>
+      <p data-zh="奶茶店的茶汤泡在大保温桶里——茶叶下去之后温度几乎不变，萃取全程处于同一温度区间，出品稳定、可复制。家里烧完水直接冲，水温从100°C开始骤降，萃取前段过热（苦涩），后段过冷（淡薄），每次结果都不一样。" data-en="Milk tea shops brew in large insulated urns — once the leaves go in, temperature barely changes throughout extraction, giving consistent, reproducible results. At home, pouring boiling water directly causes a rapid drop from 100°C: the early extraction is too hot (bitter), the late stage too cool (weak), and every batch is different.">奶茶店的茶汤泡在大保温桶里——茶叶下去之后温度几乎不变，萃取全程处于同一温度区间，出品稳定、可复制。家里烧完水直接冲，水温从100°C开始骤降，萃取前段过热（苦涩），后段过冷（淡薄），每次结果都不一样。</p>
+      <p data-zh="预热好的保温杯模拟的就是保温桶逻辑：热惰性大，83°C倒进去之后温度几乎锁住，整个闷泡过程温度曲线平坦。茶叶在稳定温度下均匀释放，香气和甜度先出，苦涩后出，3分钟内过滤就能卡在甜区。温度越稳，出品越接近店里的一致性。" data-en="A preheated thermos mimics the urn logic: high thermal mass locks in 83°C after you pour, keeping the temperature flat throughout steeping. Leaves release evenly — aroma and sweetness come first, bitterness last. Straining within 3 minutes captures the sweet window. The more stable the temperature, the closer the result to a shop.">预热好的保温杯模拟的就是保温桶逻辑：热惰性大，83°C倒进去之后温度几乎锁住，整个闷泡过程温度曲线平坦。茶叶在稳定温度下均匀释放，香气和甜度先出，苦涩后出，3分钟内过滤就能卡在甜区。温度越稳，出品越接近店里的一致性。</p>
+      <p data-zh="进阶做300ml茶汤也是同理：水量大、热容量更高，温度更稳，就更像店里的大桶。" data-en="The same logic applies to brewing 300ml: more water = more thermal mass = more stable temperature = closer to the shop urn.">进阶做300ml茶汤也是同理：水量大、热容量更高，温度更稳，就更像店里的大桶。</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/recipe-ui.js"></script>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

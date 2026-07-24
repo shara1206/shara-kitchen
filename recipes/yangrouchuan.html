@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="羊肉串 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lamb Skewers — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 1200px); margin: 0 auto; padding: 36px 24px 60px; }
+  .versions { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 640px) { .versions { grid-template-columns: 1fr; } }
+  .version-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .version-card h2 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px dashed var(--border); font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  .version-card h3 { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 6px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  .version-card h3:first-of-type { margin-top: 0; }
+  .version-card ul, .version-card ol { margin: 6px 0 6px 20px; }
+  .version-card li { margin: 4px 0; line-height: 1.7; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* Header photo slot */
+  .header-title { max-width: min(92vw, 1200px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Lamb Skewers" data-zh="羊肉串">Lamb Skewers</h1>
+        <div class="meta" data-en="Meat" data-zh="肉">Meat</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/yangrouchuan/Final.png" alt="yangrouchuan" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="versions">
+
+      <!-- 版本一：烤箱 -->
+      <div class="version-card">
+        <h2>版本一 — 烤箱</h2>
+        <h3>材料（一条羊腿）</h3>
+        <ul>
+          <li data-zh="辣的一勺翠宏" data-en="Cuihong chili sauce, 1 spoon (spicy)">辣的一勺翠宏</li>
+          <li data-zh="半袋秦记孜然粉" data-en="Qinji cumin powder, half a packet">半袋秦记孜然粉</li>
+          <li data-zh="半袋秦记烧烤粉" data-en="Qinji BBQ spice powder, half a packet">半袋秦记烧烤粉</li>
+          <li data-zh="碳熏调料" data-en="Charcoal smoke seasoning">碳熏调料</li>
+        </ul>
+        <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+        <ol>
+          <li data-zh="羊肉切好，用洋葱牛奶腌制过夜" data-en="Cut lamb, marinate overnight with onion and milk">羊肉切好，用洋葱牛奶腌制过夜</li>
+          <li data-zh="第二天串好，上面撒盐" data-en="Next day: skewer the lamb, sprinkle with salt">第二天串好，上面撒盐</li>
+          <li data-zh="明火烤箱（broiler）上火 low，每面烤 7 分钟" data-en="Broil on low, 7 minutes per side">明火烤箱（broiler）上火 low，每面烤 7 分钟</li>
+          <li data-zh="出来撒辣椒面、孜然面" data-en="Remove and sprinkle chili flakes and cumin powder">出来撒辣椒面、孜然面</li>
+          <li data-zh="上火调 high，最后烤 1–2 分钟上色" data-en="Switch broiler to high, finish 1–2 min for color">上火调 high，最后烤 1–2 分钟上色</li>
+        </ol>
+      </div>
+
+      <!-- 版本二：Breville 空气炸锅 -->
+      <div class="version-card">
+        <h2>版本二 — Breville 空气炸锅</h2>
+        <h3 data-en="Marinade" data-zh="腌制">腌制</h3>
+        <ol>
+          <li data-zh="羊肉切好，先用烧烤粉拌匀" data-en="Cut lamb, toss with BBQ spice powder first">羊肉切好，先用烧烤粉拌匀</li>
+          <li data-zh="再铺上洋葱，盖好放冰箱腌制过夜" data-en="Layer sliced onion on top, cover and refrigerate overnight">再铺上洋葱，盖好放冰箱腌制过夜</li>
+        </ol>
+        <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+        <ol>
+          <li data-zh="第二天串好，撒盐" data-en="Next day: skewer and sprinkle salt">第二天串好，撒盐</li>
+          <li data-zh="Breville 空气炸锅 400°F，烤 15 分钟，中途翻面一次（约第 8 分钟）" data-en="Breville air fryer 400°F, cook 15 min, flip once around the 8-minute mark">Breville 空气炸锅 400°F，烤 15 分钟，中途翻面一次（约第 8 分钟）</li>
+          <li data-zh="出炉后撒孜然面、辣椒面" data-en="Finish with cumin powder and chili flakes">出炉后撒孜然面、辣椒面</li>
+        </ol>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

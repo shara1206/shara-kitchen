@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="面粉 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flour &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg: #fdf6ec; --card: #ffffff; --ink: #2b2b2b; --muted: #6b6b6b; --accent: #c97b3a; --accent-soft: #f3d9b1; --border: #ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 820px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 820px; margin: 0 auto; font-size: 2.2rem; }
+  header p { max-width: 820px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 820px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  .notes-list { display: grid; gap: 16px; }
+  .note-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; transition: transform 0.15s ease, box-shadow 0.15s ease; text-decoration: none; color: inherit; display: block; }
+  .note-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(201, 123, 58, 0.18); border-color: var(--accent); }
+  .note-card h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--accent); }
+  .note-card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+  .note-card p { margin: 0; color: var(--ink); font-size: 0.98rem; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-right: 6px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  /* Calculator */
+  .calculator {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 26px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-top: 16px;
+  }
+  .calculator .calc-intro {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 18px;
+  }
+  @media (max-width: 520px) {
+    .calc-grid { grid-template-columns: 1fr; }
+  }
+  .calc-section { margin-bottom: 18px; }
+  .calc-section-title {
+    font-size: 0.78rem;
+    font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .calc-field { display: flex; flex-direction: column; }
+  .calc-field label {
+    font-size: 0.82rem;
+    font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .calc-field input {
+    padding: 10px 12px;
+    font-size: 1.05rem;
+    font-family: 'Georgia', serif;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--ink);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .calc-field input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(201, 123, 58, 0.15);
+  }
+  .calc-result {
+    background: linear-gradient(135deg, var(--accent-soft) 0%, #fcebd1 100%);
+    border-radius: 8px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .result-block { text-align: center; }
+  .result-block .result-label {
+    font-size: 0.78rem;
+    color: #8a4d1f;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    margin-bottom: 4px;
+  }
+  .result-block .result-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .calc-note {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .mode-toggle {
+    display: inline-flex;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 0.88rem;
+  }
+  .mode-toggle button {
+    background: transparent;
+    border: none;
+    padding: 8px 18px;
+    cursor: pointer;
+    color: var(--muted);
+    font-weight: 500;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .mode-toggle button:hover {
+    color: var(--accent);
+  }
+  .mode-toggle button.active {
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+  }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+  .calc-error {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: #fce8e6;
+    border-left: 3px solid #b04a3a;
+    color: #7a2f23;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    display: none;
+  }
+  .calc-error.show { display: block; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>&#127838; <span data-en="Flour" data-zh="面粉">Flour</span></h1>
+    <p data-en="Everything I've learned about flour &mdash; types, protein content, and brands worth using."
+       data-zh="我学到的关于面粉的一切——种类、蛋白质含量，以及值得使用的品牌。">Everything I've learned about flour &mdash; types, protein content, and brands worth using.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="&ldquo;All-purpose&rdquo; hides a lot. The difference between a tender cake and a tough one is often just the flour. These notes cover how flours differ and which brands deliver consistent results."
+         data-zh="&ldquo;通用面粉&rdquo;背后藏着许多细节。蛋糕松软还是发硬，常常只是面粉的差别。这些笔记讲清楚不同面粉的差异，以及哪些品牌结果稳定。">"All-purpose" hides a lot. The difference between a tender cake and a tough one is often just the flour. These notes cover how flours differ and which brands deliver consistent results.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Notes" data-zh="笔记">Notes</h2>
+    <div class="notes-list">
+      <a class="note-card" href="flour-types.html">
+        <h3 data-en="Flour Types &amp; Protein: When to Use What"
+            data-zh="面粉种类与蛋白质：何时用哪一种">Flour Types &amp; Protein: When to Use What</h3>
+        <div class="meta">May 21, 2026 &middot; <span class="tag" data-en="Reference" data-zh="参考">Reference</span></div>
+        <p data-en="All-purpose, bread, cake, pastry, 00, whole wheat &mdash; protein content, when each shines, and how to swap."
+           data-zh="通用粉、面包粉、蛋糕粉、糕点粉、00 号、全麦——各自的蛋白质含量、适合的用途，以及如何替换。">All-purpose, bread, cake, pastry, 00, whole wheat &mdash; protein content, when each shines, and how to swap.</p>
+      </a>
+      <a class="note-card" href="flour-brands.html">
+        <h3 data-en="Flour Brands &amp; Quality: King Arthur, Bob's Red Mill, Central Milling, and More"
+            data-zh="面粉品牌与品质：King Arthur、Bob's Red Mill、Central Milling 等">Flour Brands &amp; Quality: King Arthur, Bob's Red Mill, Central Milling, and More</h3>
+        <div class="meta">May 21, 2026 &middot; <span class="tag" data-en="Buying Guide" data-zh="选购指南">Buying Guide</span></div>
+        <p data-en="How major flour brands stack up on consistency, protein content, organic certification, and what to buy for what."
+           data-zh="主要面粉品牌在稳定性、蛋白质含量、有机认证等方面的表现，以及不同用途该买哪一种。">How major flour brands stack up on consistency, protein content, organic certification, and what to buy for what.</p>
+      </a>
+      <a class="note-card" href="canada-japan-flour.html">
+        <h3 data-en="Canadian Wheat &rarr; Japanese Flour: The Hidden Supply Chain"
+            data-zh="加拿大小麦 &rarr; 日本面粉：隐藏的供应链">Canadian Wheat &rarr; Japanese Flour: The Hidden Supply Chain</h3>
+        <div class="meta">May 21, 2026 &middot; <span class="tag" data-en="Supply Chain" data-zh="供应链">Supply Chain</span></div>
+        <p data-en="How Nisshin's Camellia and other famous Japanese flour brands are actually made from Canadian wheat &mdash; and why CWRS is the gold standard."
+           data-zh="日清制粉的 Camellia 等日本知名面粉品牌为何其实是用加拿大小麦做的——以及 CWRS 为什么是行业的黄金标准。">How Nisshin's Camellia and other famous Japanese flour brands are actually made from Canadian wheat &mdash; and why CWRS is the gold standard.</p>
+      </a>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 36px;" data-en="Protein Converter" data-zh="蛋白质转换器">Protein Converter</h2>
+    <div class="calculator">
+      <p class="calc-intro"
+         data-en="Blend flour with vital wheat gluten to hit a target protein percentage. Works two ways &mdash; switch between modes below."
+         data-zh="把面粉与谷朊粉（活性小麦面筋）混合，达到目标蛋白质百分比。支持两个方向——在下方切换模式。">Blend flour with vital wheat gluten to hit a target protein percentage. Works two ways &mdash; switch between modes below.</p>
+
+      <div class="mode-toggle" role="group">
+        <button type="button" data-mode="forward" class="active"
+                data-en="Find final %" data-zh="算最终 %">Find final %</button>
+        <button type="button" data-mode="reverse"
+                data-en="Find amounts needed" data-zh="算所需用量">Find amounts needed</button>
+      </div>
+
+      <!-- Mode 1: Forward -->
+      <div class="mode-panel active" data-panel="forward">
+        <div class="calc-section">
+          <div class="calc-section-title" data-en="Flour" data-zh="面粉">Flour</div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label data-en="Weight (g)" data-zh="重量 (g)">Weight (g)</label>
+              <input type="number" id="fwd-flour-weight" value="500" min="0" step="1" />
+            </div>
+            <div class="calc-field">
+              <label data-en="Protein (%)" data-zh="蛋白质 (%)">Protein (%)</label>
+              <input type="number" id="fwd-flour-protein" value="12.7" min="0" max="100" step="0.1" />
+            </div>
+          </div>
+        </div>
+        <div class="calc-section">
+          <div class="calc-section-title" data-en="Vital wheat gluten" data-zh="活性谷朊粉">Vital wheat gluten</div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label data-en="Weight added (g)" data-zh="加入量 (g)">Weight added (g)</label>
+              <input type="number" id="fwd-gluten-weight" value="20" min="0" step="1" />
+            </div>
+            <div class="calc-field">
+              <label data-en="Protein (%)" data-zh="蛋白质 (%)">Protein (%)</label>
+              <input type="number" id="fwd-gluten-protein" value="77" min="0" max="100" step="0.1" />
+            </div>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="result-block">
+            <div class="result-label" data-en="Final weight" data-zh="最终重量">Final weight</div>
+            <div class="result-value"><span id="fwd-final-weight">520.0</span> g</div>
+          </div>
+          <div class="result-block">
+            <div class="result-label" data-en="Final protein" data-zh="最终蛋白质">Final protein</div>
+            <div class="result-value"><span id="fwd-final-protein">14.13</span>%</div>
+          </div>
+        </div>
+        <div class="calc-error" id="fwd-error"></div>
+      </div>
+
+      <!-- Mode 2: Reverse -->
+      <div class="mode-panel" data-panel="reverse">
+        <div class="calc-section">
+          <div class="calc-section-title" data-en="Target blend" data-zh="目标成品">Target blend</div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label data-en="Final weight (g)" data-zh="最终重量 (g)">Final weight (g)</label>
+              <input type="number" id="rev-final-weight" value="500" min="0" step="1" />
+            </div>
+            <div class="calc-field">
+              <label data-en="Final protein (%)" data-zh="最终蛋白质 (%)">Final protein (%)</label>
+              <input type="number" id="rev-final-protein" value="14.0" min="0" max="100" step="0.1" />
+            </div>
+          </div>
+        </div>
+        <div class="calc-section">
+          <div class="calc-section-title" data-en="Flour" data-zh="面粉">Flour</div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label data-en="Protein (%)" data-zh="蛋白质 (%)">Protein (%)</label>
+              <input type="number" id="rev-flour-protein" value="12.7" min="0" max="100" step="0.1" />
+            </div>
+          </div>
+        </div>
+        <div class="calc-section">
+          <div class="calc-section-title" data-en="Vital wheat gluten" data-zh="活性谷朊粉">Vital wheat gluten</div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label data-en="Protein (%)" data-zh="蛋白质 (%)">Protein (%)</label>
+              <input type="number" id="rev-gluten-protein" value="77" min="0" max="100" step="0.1" />
+            </div>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="result-block">
+            <div class="result-label" data-en="Flour needed" data-zh="所需面粉">Flour needed</div>
+            <div class="result-value"><span id="rev-flour-weight">479.4</span> g</div>
+          </div>
+          <div class="result-block">
+            <div class="result-label" data-en="Gluten needed" data-zh="所需谷朊粉">Gluten needed</div>
+            <div class="result-value"><span id="rev-gluten-weight">20.6</span> g</div>
+          </div>
+        </div>
+        <div class="calc-error" id="rev-error"></div>
+      </div>
+
+      <p class="calc-note"
+         data-en="Defaults: King Arthur Bread Flour (12.7% protein) and Anthony's Organic Vital Wheat Gluten (77% protein, 23&nbsp;g per 30&nbsp;g serving). Vital wheat gluten ranges 75&ndash;80% across brands &mdash; adjust if needed."
+         data-zh="默认值：King Arthur 面包粉（蛋白质 12.7%）与 Anthony's Organic 活性谷朊粉（蛋白质 77%，每 30&nbsp;g 含 23&nbsp;g）。不同品牌的谷朊粉一般在 75–80% 之间——如有差异请相应调整。">Defaults: King Arthur Bread Flour (12.7% protein) and Anthony's Organic Vital Wheat Gluten (77% protein, 23&nbsp;g per 30&nbsp;g serving). Vital wheat gluten ranges 75&ndash;80% across brands &mdash; adjust if needed.</p>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+
+<script>
+(function () {
+  // Mode toggle
+  const modeButtons = document.querySelectorAll('.mode-toggle button');
+  const panels = document.querySelectorAll('.mode-panel');
+  modeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.dataset.mode;
+      modeButtons.forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+      panels.forEach(p => p.classList.toggle('active', p.dataset.panel === mode));
+    });
+  });
+
+  const v = id => parseFloat(document.getElementById(id).value);
+
+  // Get current language for error messages
+  function lang() {
+    return document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+  }
+  function msg(en, zh) { return lang() === 'zh' ? zh : en; }
+
+  function showError(id, text) {
+    const el = document.getElementById(id);
+    if (text) { el.textContent = text; el.classList.add('show'); }
+    else { el.classList.remove('show'); }
+  }
+
+  // Forward: flour + gluten -> final
+  function calcForward() {
+    const fw = v('fwd-flour-weight');
+    const fp = v('fwd-flour-protein');
+    const gw = v('fwd-gluten-weight');
+    const gp = v('fwd-gluten-protein');
+    showError('fwd-error', '');
+    if ([fw, fp, gw, gp].some(x => isNaN(x) || x < 0)) {
+      showError('fwd-error', msg('Please enter non-negative numbers.', '请输入非负数。'));
+      return;
+    }
+    const total = fw + gw;
+    if (total === 0) {
+      document.getElementById('fwd-final-weight').textContent = '0.0';
+      document.getElementById('fwd-final-protein').textContent = '0.00';
+      return;
+    }
+    const proteinMass = fw * fp / 100 + gw * gp / 100;
+    const finalPercent = proteinMass / total * 100;
+    document.getElementById('fwd-final-weight').textContent = total.toFixed(1);
+    document.getElementById('fwd-final-protein').textContent = finalPercent.toFixed(2);
+  }
+
+  // Reverse: target weight + target % -> flour + gluten amounts
+  // W_total = W_f + W_g
+  // W_f*P_f + W_g*P_g = W_total*P_target
+  // -> W_f = W_total * (P_g - P_target) / (P_g - P_f)
+  // -> W_g = W_total - W_f
+  function calcReverse() {
+    const tw = v('rev-final-weight');
+    const tp = v('rev-final-protein');
+    const fp = v('rev-flour-protein');
+    const gp = v('rev-gluten-protein');
+    showError('rev-error', '');
+    if ([tw, tp, fp, gp].some(x => isNaN(x) || x < 0)) {
+      showError('rev-error', msg('Please enter non-negative numbers.', '请输入非负数。'));
+      return;
+    }
+    if (fp === gp) {
+      showError('rev-error', msg(
+        'Flour and gluten protein % cannot be equal.',
+        '面粉与谷朊粉的蛋白质百分比不能相同。'));
+      document.getElementById('rev-flour-weight').textContent = '—';
+      document.getElementById('rev-gluten-weight').textContent = '—';
+      return;
+    }
+    // Target must lie between the two protein levels
+    const lo = Math.min(fp, gp), hi = Math.max(fp, gp);
+    if (tp < lo || tp > hi) {
+      showError('rev-error', msg(
+        'Target protein must be between flour (' + fp + '%) and gluten (' + gp + '%).',
+        '目标蛋白质必须介于面粉（' + fp + '%）与谷朊粉（' + gp + '%）之间。'));
+      document.getElementById('rev-flour-weight').textContent = '—';
+      document.getElementById('rev-gluten-weight').textContent = '—';
+      return;
+    }
+    const flourWeight = tw * (gp - tp) / (gp - fp);
+    const glutenWeight = tw - flourWeight;
+    document.getElementById('rev-flour-weight').textContent = flourWeight.toFixed(1);
+    document.getElementById('rev-gluten-weight').textContent = glutenWeight.toFixed(1);
+  }
+
+  document.querySelectorAll('[data-panel="forward"] input').forEach(i => i.addEventListener('input', calcForward));
+  document.querySelectorAll('[data-panel="reverse"] input').forEach(i => i.addEventListener('input', calcReverse));
+
+  // Recompute when language changes so error messages re-localize
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    b.addEventListener('click', () => { setTimeout(() => { calcForward(); calcReverse(); }, 0); });
+  });
+
+  calcForward();
+  calcReverse();
+})();
+</script>
+
+<script src="../assets/lang.js"></script>
+</body>
+</html>

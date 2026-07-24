@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="鸡蛋 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Eggs &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 820px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 820px; margin: 0 auto; font-size: 2.2rem; }
+  header p { max-width: 820px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 820px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  .notes-list { display: grid; gap: 16px; }
+  .note-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; transition: transform 0.15s ease, box-shadow 0.15s ease; text-decoration: none; color: inherit; display: block; }
+  .note-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(201, 123, 58, 0.18); border-color: var(--accent); }
+  .note-card h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--accent); }
+  .note-card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+  .note-card p { margin: 0; color: var(--ink); font-size: 0.98rem; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-right: 6px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>&#127859; <span data-en="Eggs" data-zh="鸡蛋">Eggs</span></h1>
+    <p data-en="Everything I've learned about eggs &mdash; nutrition, labels, and brand quality."
+       data-zh="我学到的关于鸡蛋的一切——营养、标签与品牌质量。">Everything I've learned about eggs &mdash; nutrition, labels, and brand quality.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="Eggs look simple on the shelf, but the labels hide a lot. These notes cover what the differences actually mean nutritionally and which brands match the marketing."
+         data-zh="货架上的鸡蛋看似简单，但标签里藏着许多细节。这些笔记讲清楚不同种类在营养上的真实差异，以及哪些品牌真的对得起包装上的宣传。">Eggs look simple on the shelf, but the labels hide a lot. These notes cover what the differences actually mean nutritionally and which brands match the marketing.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Notes" data-zh="笔记">Notes</h2>
+    <div class="notes-list">
+      <a class="note-card" href="organic-eggs.html">
+        <h3 data-en="Not All Organic Eggs Are Equal: Nutrition &amp; Quality"
+            data-zh="并非所有有机鸡蛋都一样：营养与品质">Not All Organic Eggs Are Equal: Nutrition &amp; Quality</h3>
+        <div class="meta">May 21, 2026 &middot; <span class="tag" data-en="Nutrition" data-zh="营养">Nutrition</span></div>
+        <p data-en="Why pasture-raised, free-range, and standard organic eggs differ in omega-3s, vitamins, yolk color, and more."
+           data-zh="放牧、散养与普通有机鸡蛋在欧米伽-3、维生素、蛋黄颜色等方面的差异。">Why pasture-raised, free-range, and standard organic eggs differ in omega-3s, vitamins, yolk color, and more.</p>
+      </a>
+      <a class="note-card" href="organic-eggs-brands.html">
+        <h3 data-en="Organic Egg Brand Comparison (Cornucopia Scorecard)"
+            data-zh="有机鸡蛋品牌对比（Cornucopia 评分卡）">Organic Egg Brand Comparison (Cornucopia Scorecard)</h3>
+        <div class="meta">May 21, 2026 &middot; <span class="tag" data-en="Buying Guide" data-zh="选购指南">Buying Guide</span></div>
+        <p data-en="Which organic egg brands actually live up to the label &mdash; from the most trusted independent rating of 150+ brands."
+           data-zh="哪些有机鸡蛋品牌真正名副其实——来自最受信赖的独立机构对 150+ 品牌的评分。">Which organic egg brands actually live up to the label &mdash; from the most trusted independent rating of 150+ brands.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

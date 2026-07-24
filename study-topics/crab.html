@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="蟹 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crab &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 960px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 960px; margin: 0 auto; font-size: 2.2rem; }
+  header p { max-width: 960px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 960px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  /* Comparison table */
+  .crab-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); font-size: 0.93rem; }
+  .crab-table th { background: var(--accent); color: white; padding: 11px 14px; text-align: left; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .crab-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .crab-table tr:last-child td { border-bottom: none; }
+  .crab-table tr:hover td { background: #fef9f3; }
+  .crab-name { font-weight: 700; color: var(--accent); }
+  .crab-zh { display: block; font-size: 0.82rem; color: var(--muted); font-weight: normal; }
+  .stars { letter-spacing: 2px; color: #e07b20; }
+  .risk-low  { color: #2d7d2d; font-weight: 600; }
+  .risk-med  { color: #b07020; font-weight: 600; }
+  .risk-high { color: #c0392b; font-weight: 600; }
+  .risk-vhigh { color: #8b0000; font-weight: 700; }
+  .tip-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin-top: 24px; }
+  .tip-box h3 { margin: 0 0 10px; font-size: 1.05rem; color: var(--accent); }
+  .tip-box ul { margin: 0; padding-left: 20px; }
+  .tip-box li { margin-bottom: 6px; color: var(--ink); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+  @media (max-width: 680px) {
+    .crab-table { font-size: 0.82rem; }
+    .crab-table th, .crab-table td { padding: 9px 10px; }
+    .hide-mobile { display: none; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>🦀 <span data-en="Crab" data-zh="蟹">Crab</span></h1>
+    <p data-en="Comparing 5 varieties — safety, habitat, and how to eat each."
+       data-zh="对比 5 种螃蟹——安全风险、栖息地与食用建议。">Comparing 5 varieties — safety, habitat, and how to eat each.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="Not all crabs are equally safe to eat. This comparison covers the key contaminant risks, water quality of each variety's habitat, and how to eat them to minimize exposure."
+         data-zh="并非所有螃蟹的食用安全性都相同。本页对比各品种的污染风险、栖息水域质量，以及如何吃才能降低摄入风险。">Not all crabs are equally safe to eat. This comparison covers the key contaminant risks, water quality of each variety's habitat, and how to eat them to minimize exposure.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Variety Comparison" data-zh="品种对比">Variety Comparison</h2>
+
+    <table class="crab-table">
+      <thead>
+        <tr>
+          <th data-en="Crab" data-zh="蟹种">Crab</th>
+          <th data-en="Habitat" data-zh="生态位">Habitat</th>
+          <th class="hide-mobile" data-en="Water Quality" data-zh="水质背景">Water Quality</th>
+          <th data-en="Risk ☆" data-zh="富集风险 ☆">Risk ☆</th>
+          <th data-en="Key Concern" data-zh="主要关注点">Key Concern</th>
+          <th data-en="How to Eat" data-zh="建议食用方式">How to Eat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="crab-name">Snow Crab</span>
+            <span class="crab-zh">雪蟹</span>
+          </td>
+          <td data-en="Deep cold water" data-zh="深海冷水">Deep cold water</td>
+          <td class="hide-mobile" data-en="Class I (Excellent)" data-zh="I类（极优）">Class I (Excellent)</td>
+          <td><span class="stars">☆</span></td>
+          <td data-en="Microplastics (MPs) — very low chemical pollution, but trace MPs accumulate in long-lived deep-sea species."
+              data-zh="微塑料 (MPs)。化学污染极低，但深海沉积的微塑料在长寿品种中有所积累。">Microplastics (MPs) — very low chemical pollution, but trace MPs accumulate in long-lived deep-sea species.</td>
+          <td><span class="risk-low" data-en="Safest choice." data-zh="最安全。">Safest choice.</span> <span data-en="Eat the leg meat only — virtually zero chemical load." data-zh="只吃腿肉，基本无化学负荷。">Eat the leg meat only — virtually zero chemical load.</span></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="crab-name">Stone Crab</span>
+            <span class="crab-zh">石蟹</span>
+          </td>
+          <td data-en="Near-shore rocky reefs" data-zh="近海岩礁">Near-shore rocky reefs</td>
+          <td class="hide-mobile" data-en="Class II (Good)" data-zh="II类（优良）">Class II (Good)</td>
+          <td><span class="stars">☆☆</span></td>
+          <td data-en="Trace mercury (Hg) — Florida near-shore waters are clean, but low-level heavy metal accumulation occurs at the bottom of the food chain."
+              data-zh="微量汞 (Hg)。佛罗里达近海盐水良好，但仍为生物链底端的重金属积累。">Trace mercury (Hg) — Florida near-shore waters are clean, but low-level heavy metal accumulation occurs at the bottom of the food chain.</td>
+          <td><span class="risk-low" data-en="Very safe." data-zh="很安全。">Very safe.</span> <span data-en="Only the claw meat is eaten — this avoids the organs where metals concentrate." data-zh="只吃螯钳肉，成功避开内脏蓄集。">Only the claw meat is eaten — this avoids the organs where metals concentrate.</span></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="crab-name">Dungeness</span>
+            <span class="crab-zh">珍宝蟹</span>
+          </td>
+          <td data-en="Continental shelf sandy bottom" data-zh="大陆架沙底">Continental shelf sandy bottom</td>
+          <td class="hide-mobile" data-en="Class II–III (Moderate)" data-zh="II–III类（良好）">Class II–III (Moderate)</td>
+          <td><span class="stars">☆☆☆</span></td>
+          <td data-en="Domoic acid (Biotoxin) — seasonal warnings still issued on the West Coast as of early 2026. Natural toxin, not industrial pollution."
+              data-zh="软骨藻酸 (Biotoxin)。2026年初西海岸仍有季节性警报，这是天然毒素，非工业污染。">Domoic acid (Biotoxin) — seasonal warnings still issued on the West Coast as of early 2026. Natural toxin, not industrial pollution.</td>
+          <td><span class="risk-med" data-en="Moderate." data-zh="中等。">Moderate.</span> <span data-en="Avoid during red tide season — the meat itself is clean. Discard the innards." data-zh="只要避开赤潮发期，肉质很清净。但建议弃食内脏。">Avoid during red tide season — the meat itself is clean. Discard the innards.</span></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="crab-name">Blue Crab</span>
+            <span class="crab-zh">蓝蟹</span>
+          </td>
+          <td data-en="Estuaries (e.g. Chesapeake Bay)" data-zh="紫仃河口（如切萨皮克湾）">Estuaries (e.g. Chesapeake Bay)</td>
+          <td class="hide-mobile" data-en="Class III–IV (Poor)" data-zh="III–IV类（较差）">Class III–IV (Poor)</td>
+          <td><span class="stars">☆☆☆☆</span></td>
+          <td data-en="PCBs / Dioxins — heavily industrialized estuaries carry significant sediment contamination. Fat-soluble toxins concentrate strongly in the organs."
+              data-zh="PCBs / 二噁英。切萨皮克湾等老工业区底泥负担重，内脏脂肪极易富集。">PCBs / Dioxins — heavily industrialized estuaries carry significant sediment contamination. Fat-soluble toxins concentrate strongly in the organs.</td>
+          <td><span class="risk-high" data-en="High risk." data-zh="风险高。">High risk.</span> <span data-en="Never eat whole-crab style (popular in Chinese cooking). White claw/body meat only." data-zh="绝对不要模仿中式吃法吃整煮。只吃白肉。">Never eat whole-crab style (popular in Chinese cooking). White claw/body meat only.</span></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="crab-name">Hairy Crab</span>
+            <span class="crab-zh">大闸蟹</span>
+          </td>
+          <td data-en="Industrial freshwater lakes" data-zh="工业区湖泊">Industrial freshwater lakes</td>
+          <td class="hide-mobile" data-en="Class III (Poor)" data-zh="III类（贫控）">Class III (Poor)</td>
+          <td><span class="stars">☆☆☆☆☆</span></td>
+          <td data-en="Cadmium (Cd) / Pesticides / Industrial residues — bottom-feeding + organ-eating tradition puts it at the very top of the bioaccumulation chain."
+              data-zh="镉 (Cd) / 农残 / 工业遗留。底栖+内脏爱好者，处于生物富集的最顶端。">Cadmium (Cd) / Pesticides / Industrial residues — bottom-feeding + organ-eating tradition puts it at the very top of the bioaccumulation chain.</td>
+          <td><span class="risk-vhigh" data-en="Highest risk." data-zh="高风险/富贵坑。">Highest risk.</span> <span data-en="Safety depends entirely on strict government inspection. Eat in strict moderation." data-zh="最极其严格的人工抽检维持安全。限量吃货。">Safety depends entirely on strict government inspection. Eat in strict moderation.</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip-box">
+      <h3 data-en="General Rules" data-zh="通用原则">General Rules</h3>
+      <ul>
+        <li data-en="Avoid eating the tomalley (hepatopancreas / 蟹黄 / roe) in any high-risk variety — this is where contaminants concentrate most."
+            data-zh="高风险品种不要吃蟹黄（肝胰腺）——污染物主要富集于此。">Avoid eating the tomalley (hepatopancreas / 蟹黄 / roe) in any high-risk variety — this is where contaminants concentrate most.</li>
+        <li data-en="Stick to white muscle meat from the claws and body for the safest eating."
+            data-zh="最安全的做法是只吃螯钳和蟹身的白色肌肉。">Stick to white muscle meat from the claws and body for the safest eating.</li>
+        <li data-en="For Dungeness, check the California/Oregon/Washington shellfish safety hotline before buying during Oct–Mar."
+            data-zh="购买珍宝蟹时，10月至3月间请先查阅加州/俄勒冈/华盛顿州贝类安全公告。">For Dungeness, check the California/Oregon/Washington shellfish safety hotline before buying during Oct–Mar.</li>
+        <li data-en="Deep-sea species (Snow Crab) are the cleanest — their remote habitat means less industrial exposure."
+            data-zh="深海品种（雪蟹）最干净——远离工业污染区。">Deep-sea species (Snow Crab) are the cleanest — their remote habitat means less industrial exposure.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

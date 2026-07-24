@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="油条 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Youtiao — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+
+  /* ── Header title row with photo ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 200px; height: 200px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ── Multi-column layout for wide monitors ── */
+  @media (min-width: 1400px) {
+    main { max-width: 1320px; }
+    header .header-title { max-width: 1320px; }
+    header .nav { max-width: 1320px; }
+    .recipes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+  }
+  @media (min-width: 960px) and (max-width: 1399px) {
+    main { max-width: 900px; }
+    .recipes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+  }
+
+  /* ── Recipe notes ── */
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); line-height: 1.8; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-family: 'Helvetica', 'PingFang SC', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 8px; border-bottom: 1px dashed var(--border); padding-bottom: 4px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Youtiao" data-zh="油条">Youtiao</h1>
+        <div class="meta" data-en="Mains &amp; Doughs" data-zh="主食">Mains &amp; Doughs</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/youtiao/Final.png" alt="Homemade youtiao">
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <div class="recipes-grid">
+
+    <div class="recipe-notes">
+      <h3 style="color:var(--ink);font-size:1rem;text-transform:none;letter-spacing:0;border-bottom:2px solid var(--border);padding-bottom:6px;margin-bottom:14px;" data-en="Recipe 1: Shara's" data-zh="配方一：Shara's">配方一：Shara's</h3>
+
+      <h3 data-en="Dry Ingredients (large bowl)" data-zh="大盆（干料）">大盆（干料）</h3>
+      <p data-zh="中筋面粉 2杯 + 低筋面粉 1/4杯（共 350g）盐 1茶勺 / 6g；油 1汤勺 / 12g" data-en="All-purpose flour 2 cups + cake flour 1/4 cup (350g total); Salt 1 tsp / 6g; Oil 1 tbsp / 12g">中筋面粉 2杯 + 低筋面粉 1/4杯（共 350g）<br>
+         盐 1茶勺 / 6g<br>
+         油 1汤勺 / 12g</p>
+      <div class="tip" data-zh="加低筋面粉是为了蓬松，但不要大量替换；用酵母的方子是用高筋面粉，原理不同，酵母油条口感太软，个人不推荐。" data-en="Cake flour is added for airiness, but don't substitute too much; yeast-based recipes use bread flour for different reasons — yeast crullers are too soft, not recommended.">加低筋面粉是为了蓬松，但不要大量替换；用酵母的方子是用高筋面粉，原理不同，酵母油条口感太软，个人不推荐。</div>
+
+      <h3 data-en="Wet Ingredients (cup)" data-zh="杯子（湿料）">杯子（湿料）</h3>
+      <p data-zh="凉牛奶 1杯 / 250g（凉是为了保留泡打粉的功用）；双效泡打粉 1汤勺 / 10g；小苏打 1/2茶勺 / 3g（酥脆上色）" data-en="Cold milk 1 cup / 250g (cold to preserve baking powder activity); Double-acting baking powder 1 tbsp / 10g; Baking soda 1/2 tsp / 3g (for crispiness and color)">凉牛奶 1杯 / 250g（凉是为了保留泡打粉的功用）<br>
+         双效泡打粉 double-effect baking powder 1汤勺 / 10g<br>
+         小苏打 baking soda 1/2茶勺 / 3g（酥脆上色）</p>
+      <div class="tip" data-zh="也可加鸡蛋增香起稳定作用，需适量调整牛奶用量。" data-en="Can also add egg for fragrance and stability — reduce milk amount accordingly.">也可加鸡蛋增香起稳定作用，需适量调整牛奶用量。</div>
+
+      <h3 data-en="Method" data-zh="做法">做法</h3>
+      <p data-zh="大盆和杯子中的分别混合均匀，分次把杯中的加入盆中，用筷子或硅胶刮刀拌成絮状，用手弄成团。面团很软也黏手，用揣面和叠面手法，之后步骤不用多揉，千万少揉，不然就白醒那么久了。" data-en="Mix dry and wet ingredients separately; gradually add wet into dry, stirring to shaggy with chopsticks or spatula, then press into a dough. The dough is very soft and sticky — use fold-and-press technique, minimal kneading. Over-kneading defeats the purpose of the long rest.">大盆和杯子中的分别混合均匀，分次把杯中的加入盆中，用筷子或硅胶刮刀拌成絮状，用手弄成团。面团很软也黏手，用揣面和叠面手法，之后步骤不用多揉，千万少揉，不然就白醒那么久了。</p>
+      <p data-zh="室温放置30分钟，揣叠几次让它更均匀（不用像视频里一样揉光）。盆底和面团都抹油，盖保鲜膜，室温放置3–4小时或冰箱过夜。（醒面不会发起来，不醒面100%会失败。放冰箱的话下一步之前要提前取出回温。）" data-en="Rest 30 min at room temp, fold a few more times (no need to be smooth like in videos). Oil the bowl and dough surface, cover with plastic wrap, rest 3–4 hours at room temp or overnight in fridge. (Dough won't rise during rest — skipping this step guarantees failure. If refrigerated, bring to room temp before next step.)">室温放置30分钟，揣叠几次让它更均匀（不用像视频里一样揉光）。盆底和面团都抹油，盖保鲜膜，室温放置3–4小时或冰箱过夜。（醒面不会发起来，不醒面100%会失败。放冰箱的话下一步之前要提前取出回温。）</p>
+      <p data-zh="案板抹油，面团分三份，拿出一份按平叠成长方形，再用擀面杖压成5cm宽、0.8cm厚的长条，盖保鲜膜静置20–35分钟。" data-en="Oil the work surface, divide dough into thirds, take one portion, press and fold into a rectangle, roll to 5cm wide × 0.8cm thick strip; cover with plastic wrap and rest 20–35 min.">案板抹油，面团分三份，拿出一份按平叠成长方形，再用擀面杖压成5cm宽、0.8cm厚的长条，盖保鲜膜静置20–35分钟。</p>
+      <p data-zh="切成2cm宽的条，每两条叠在一起，用竹签压在中间，两头用竹签尾部加强按一下。（推荐用竹签，筷子太粗效果不好。面条越大越长，油条越大，家用小油锅不必做太长。）" data-en="Cut into 2cm-wide strips; stack pairs together, press a bamboo skewer down the center, press both ends firmly with the blunt end. (Use bamboo skewers — chopsticks are too thick. Longer strips = larger cruller; for home frying, keep them shorter.)">切成2cm宽的条，每两条叠在一起，用竹签压在中间，两头用竹签尾部加强按一下。（推荐用竹签，筷子太粗效果不好。面条越大越长，油条越大，家用小油锅不必做太长。）</p>
+      <div class="tip" data-zh="油炸温度：190–220°C（用红外温度计）。拉长面条，中间先下油锅再放两端，下锅前2秒不动，之后用筷子持续轻轻拨动翻身，让油条均匀受热膨胀。" data-en="Fry temp: 190–220°C (use an IR thermometer). Stretch the strip, lower the center into oil first then release the ends; hold still for 2 sec, then gently and continuously turn with chopsticks to ensure even puffing.">油炸温度：190–220°C（用红外温度计）。拉长面条，中间先下油锅再放两端，下锅前2秒不动，之后用筷子持续轻轻拨动翻身，让油条均匀受热膨胀。</div>
+    </div>
+
+    <!-- 配方二 -->
+    <div class="recipe-notes">
+      <h3 style="color:var(--ink);font-size:1rem;text-transform:none;letter-spacing:0;border-bottom:2px solid var(--border);padding-bottom:6px;margin-bottom:14px;" data-en="Recipe 2: Tù Mā Yóutiáo (Triple Rest &amp; Fold)" data-zh="配方二：兔妈油条（三醒三揣）">配方二：兔妈油条（三醒三揣）</h3>
+
+      <h3 data-en="Ingredients" data-zh="食材">食材</h3>
+      <p>中筋或高筋面粉 500g<br>
+         双效泡打粉 baking powder 1大勺 / 1 tbsp<br>
+         小苏打 baking soda 1/2小勺 / ½ tsp<br>
+         盐 1小勺 / 1 tsp<br>
+         白糖 1大勺 / 1 tbsp<br>
+         鸡蛋 large egg 1个<br>
+         冷水 300g<br>
+         食用油 30g</p>
+
+      <h3 data-en="Method" data-zh="做法">做法</h3>
+      <p data-zh="参考视频：&lt;a href='https://www.youtube.com/watch?v=r_boAmUFGzM' target='_blank'&gt;蓬松暄软大油条 — 种菜的兔妈&lt;/a&gt;（13分58秒）" data-en="Reference video: &lt;a href='https://www.youtube.com/watch?v=r_boAmUFGzM' target='_blank'&gt;Fluffy Chinese Crullers — Seed-Planting Rabbit Mom&lt;/a&gt; (13:58)">参考视频：<a href="https://www.youtube.com/watch?v=r_boAmUFGzM" target="_blank">蓬松暄软大油条 — 种菜的兔妈</a>（13分58秒）</p>
+      <div class="tip" data-zh="油炸温度：180°C" data-en="Fry temperature: 180°C">油炸温度：180°C</div>
+    </div>
+
+    <!-- 配方三 -->
+    <div class="recipe-notes">
+      <h3 style="color:var(--ink);font-size:1rem;text-transform:none;letter-spacing:0;border-bottom:2px solid var(--border);padding-bottom:6px;margin-bottom:14px;" data-en="Recipe 3: Hybrid Version (Pending Test) ⭐" data-zh="配方三：混合版（待试验）⭐">配方三：混合版（待试验）⭐</h3>
+
+      <h3 data-en="Ingredients (400g flour base)" data-zh="食材（400g面粉）">食材（400g面粉）</h3>
+      <p>中筋面粉 320g + 低筋面粉 80g（共 400g）<br>
+         双效泡打粉 11g<br>
+         小苏打 3g<br>
+         盐 6g<br>
+         白糖 8g（约½大勺）<br>
+         鸡蛋 1个<br>
+         <strong>凉牛奶 220g</strong>（不用水，保留配方一的奶香）<br>
+         食用油 20g</p>
+
+      <h3 data-en="Method" data-zh="做法">做法</h3>
+      <p data-zh="按配方二的三醒三揣步骤操作，食材换用以上比例。低筋面粉参考配方一思路加入以增加蓬松感，牛奶替换冷水保留奶香。" data-en="Follow Recipe 2's three-rest three-fold technique using these proportions. Cake flour is added (following Recipe 1's logic) for extra airiness; cold milk replaces water to keep the milky fragrance.">按配方二的三醒三揣步骤操作，食材换用以上比例。低筋面粉参考配方一思路加入以增加蓬松感，牛奶替换冷水保留奶香。</p>
+      <div class="tip" data-zh="此配方待试验，欢迎记录实际效果。油炸温度参考配方一 190–220°C 或配方二 180°C 做对比。" data-en="This recipe is pending testing — please record results. Compare fry temps: Recipe 1's 190–220°C vs Recipe 2's 180°C.">此配方待试验，欢迎记录实际效果。油炸温度参考配方一 190–220°C 或配方二 180°C 做对比。</div>
+    </div>
+
+  </div><!-- end recipes-grid -->
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care — Shara Wang © 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

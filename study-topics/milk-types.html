@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="牛奶种类与营养 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Milk Types &amp; Nutrition &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 760px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 760px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 760px; margin: 8px auto 0; opacity: 0.92; font-size: 0.95rem; font-style: italic; }
+  main { max-width: 760px; margin: 0 auto; padding: 36px 24px 60px; }
+  .tldr { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tldr h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .tldr p { margin: 0; }
+  h2.section { font-size: 1.35rem; margin: 36px 0 12px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  h3.sub { font-size: 1.1rem; margin: 22px 0 8px; color: var(--accent); }
+  p { margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fffaf2; }
+  .callout { background: #fff4e0; padding: 14px 18px; border-radius: 6px; border: 1px dashed var(--border); margin: 18px 0; }
+  .callout strong { color: var(--accent); }
+  ul.clean { padding-left: 22px; }
+  ul.clean li { margin: 6px 0; }
+  .sources { margin-top: 40px; padding: 18px 22px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; }
+  .sources h3 { margin: 0 0 10px; color: var(--accent); }
+  .sources ul { padding-left: 20px; margin: 0; }
+  .sources a { color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="milk.html" data-en="&larr; All milk notes" data-zh="&larr; 所有牛奶笔记">&larr; All milk notes</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <h1 data-en="Milk Types &amp; Nutrition: Whole, Skim, A2, Grass-Fed, Organic"
+        data-zh="牛奶的种类与营养：全脂、脱脂、A2、草饲、有机">Milk Types &amp; Nutrition: Whole, Skim, A2, Grass-Fed, Organic</h1>
+    <div class="meta" data-en="May 21, 2026 &middot; Milk &middot; Nutrition"
+         data-zh="2026年5月21日 &middot; 牛奶 &middot; 营养">May 21, 2026 &middot; Milk &middot; Nutrition</div>
+  </header>
+
+  <main>
+    <div class="tldr">
+      <h2 data-en="TL;DR" data-zh="摘要">TL;DR</h2>
+      <p data-en="Milk varies on two axes that are often confused: <strong>fat content</strong> (whole, 2%, 1%, skim) and <strong>how the cow was raised &amp; what protein it makes</strong> (conventional, organic, grass-fed, A2). The fat axis controls calories and fat-soluble vitamins. The cow axis controls omega-3 ratio, CLA, beta-carotene, and digestibility for some people. They're independent &mdash; you can have grass-fed skim or conventional whole."
+         data-zh="牛奶的差异主要有两条轴线，常常被混淆：<strong>脂肪含量</strong>（全脂、2%、1%、脱脂）和<strong>奶牛的饲养方式与所产蛋白</strong>（普通、有机、草饲、A2）。脂肪轴决定热量和脂溶性维生素。奶牛轴决定欧米伽-3 比例、CLA、β-胡萝卜素，以及对一些人的消化感受。两条轴是独立的——你可以买到草饲脱脂奶，也可以买到普通全脂奶。">Milk varies on two axes that are often confused: <strong>fat content</strong> (whole, 2%, 1%, skim) and <strong>how the cow was raised &amp; what protein it makes</strong> (conventional, organic, grass-fed, A2). The fat axis controls calories and fat-soluble vitamins. The cow axis controls omega-3 ratio, CLA, beta-carotene, and digestibility for some people. They're independent &mdash; you can have grass-fed skim or conventional whole.</p>
+    </div>
+
+    <h2 class="section" data-en="The fat content axis" data-zh="脂肪含量轴">The fat content axis</h2>
+    <table>
+      <thead>
+        <tr><th data-en="Type" data-zh="种类">Type</th><th data-en="Milkfat" data-zh="乳脂">Milkfat</th><th data-en="Calories/cup" data-zh="热量/杯">Calories/cup</th><th data-en="Notes" data-zh="说明">Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td data-en="Whole" data-zh="全脂">Whole</td><td>~3.25%</td><td>~150</td><td data-en="Most flavor, highest fat-soluble vitamins (A, D, E, K)" data-zh="风味最浓，脂溶性维生素（A、D、E、K）最高">Most flavor, highest fat-soluble vitamins (A, D, E, K)</td></tr>
+        <tr><td data-en="Reduced fat (2%)" data-zh="低脂 (2%)">Reduced fat (2%)</td><td>2.0%</td><td>~120</td><td data-en="Common middle ground" data-zh="常见的折中选择">Common middle ground</td></tr>
+        <tr><td data-en="Low-fat (1%)" data-zh="低脂 (1%)">Low-fat (1%)</td><td>1.0%</td><td>~100</td><td data-en="Lower fat-soluble vitamin retention unless fortified" data-zh="脂溶性维生素保留较少（除非额外强化）">Lower fat-soluble vitamin retention unless fortified</td></tr>
+        <tr><td data-en="Skim / fat-free" data-zh="脱脂">Skim / fat-free</td><td>&lt;0.5%</td><td>~80</td><td data-en="Virtually no fat &mdash; vitamins A &amp; D usually added back" data-zh="几乎无脂肪——通常额外添加维生素 A、D">Virtually no fat &mdash; vitamins A &amp; D usually added back</td></tr>
+      </tbody>
+    </table>
+    <p data-en="The old &ldquo;low-fat is healthier&rdquo; advice has loosened. Whole milk's saturated fat isn't as bad as once believed for most people, and the fat helps absorb the fat-soluble vitamins in the milk itself. Skim isn't unhealthy &mdash; it just has fewer calories and less satiety."
+       data-zh="过去&ldquo;低脂更健康&rdquo;的说法已经松动。对大多数人来说，全脂奶里的饱和脂肪并没有过去认为的那么糟糕，而且这些脂肪能帮助吸收牛奶本身的脂溶性维生素。脱脂奶并不算不健康，只是热量更低、饱腹感更弱。">The old "low-fat is healthier" advice has loosened. Whole milk's saturated fat isn't as bad as once believed for most people, and the fat helps absorb the fat-soluble vitamins in the milk itself. Skim isn't unhealthy &mdash; it just has fewer calories and less satiety.</p>
+
+    <h2 class="section" data-en="The cow &amp; farming axis" data-zh="奶牛与饲养方式轴">The cow &amp; farming axis</h2>
+
+    <h3 class="sub" data-en="Conventional milk" data-zh="普通牛奶">Conventional milk</h3>
+    <p data-en="Standard milk. Cows typically eat a grain-based feed (corn, soy) in confinement-style farms. No legal requirement for outdoor access. Antibiotics are not allowed in any milk sold in the US &mdash; that's a regulation, not a marketing claim."
+       data-zh="标准牛奶。奶牛通常在圈养式农场中以谷物饲料（玉米、大豆）为主。法律不要求户外活动。美国所有出售的牛奶都不允许含抗生素——这是法规，不是营销话术。">Standard milk. Cows typically eat a grain-based feed (corn, soy) in confinement-style farms. No legal requirement for outdoor access. Antibiotics are not allowed in any milk sold in the US &mdash; that's a regulation, not a marketing claim.</p>
+
+    <h3 class="sub" data-en="Organic milk" data-zh="有机牛奶">Organic milk</h3>
+    <p data-en="USDA Organic requires: organic feed (no GMOs, no synthetic pesticides), no antibiotics or growth hormones (rBST), and a minimum of 120 days/year on pasture. The pasture requirement is meaningful &mdash; it forces real grass into the diet for part of the year, which shows up in the nutrition profile."
+       data-zh="USDA 有机要求：有机饲料（无转基因、无合成农药）、无抗生素与生长激素（rBST），并且每年至少 120 天在牧场。牧场要求是有意义的——它强制让一年中有一部分时间是真正吃草，进而反映在营养成分上。">USDA Organic requires: organic feed (no GMOs, no synthetic pesticides), no antibiotics or growth hormones (rBST), and a minimum of 120 days/year on pasture. The pasture requirement is meaningful &mdash; it forces real grass into the diet for part of the year, which shows up in the nutrition profile.</p>
+
+    <h3 class="sub" data-en="Grass-fed milk" data-zh="草饲牛奶">Grass-fed milk</h3>
+    <p data-en="Cows eat grass and forage instead of grain. &ldquo;100% grass-fed&rdquo; or &ldquo;Certified Grass-Fed by AGW&rdquo; are the strict versions. Just &ldquo;grass-fed&rdquo; with no certifier can mean partial grass feeding. Notable nutritional differences vs conventional:"
+       data-zh="奶牛吃草和牧草，而非谷物。&ldquo;100% grass-fed&rdquo;或&ldquo;Certified Grass-Fed by AGW&rdquo;是严格版本。只写&ldquo;grass-fed&rdquo;而无认证机构的，可能只是部分喂草。相对普通牛奶的主要营养差异：">Cows eat grass and forage instead of grain. "100% grass-fed" or "Certified Grass-Fed by AGW" are the strict versions. Just "grass-fed" with no certifier can mean partial grass feeding. Notable nutritional differences vs conventional:</p>
+    <ul class="clean">
+      <li data-en="<strong>4&times; more beta-carotene</strong> (gives grass-fed milk a slight yellow tint to the cream)"
+          data-zh="<strong>β-胡萝卜素多 4 倍</strong>（让草饲牛奶的奶油带有淡淡的黄色）"><strong>4&times; more beta-carotene</strong> (gives grass-fed milk a slight yellow tint to the cream)</li>
+      <li data-en="<strong>~50% more vitamin E</strong>" data-zh="<strong>维生素 E 多约 50%</strong>"><strong>~50% more vitamin E</strong></li>
+      <li data-en="<strong>More CLA</strong> (conjugated linoleic acid) &mdash; linked to heart health in some studies"
+          data-zh="<strong>更多 CLA</strong>（共轭亚油酸）——一些研究将其与心脏健康相关联"><strong>More CLA</strong> (conjugated linoleic acid) &mdash; linked to heart health in some studies</li>
+      <li data-en="<strong>Better omega-6:omega-3 ratio</strong> &mdash; about 2.3 in organic/grass-fed vs ~5.8 in conventional"
+          data-zh="<strong>更好的欧米伽-6 与欧米伽-3 比值</strong>——有机/草饲约为 2.3，普通牛奶约为 5.8"><strong>Better omega-6:omega-3 ratio</strong> &mdash; about 2.3 in organic/grass-fed vs ~5.8 in conventional</li>
+    </ul>
+
+    <h3 class="sub" data-en="A2 milk" data-zh="A2 牛奶">A2 milk</h3>
+    <p data-en="Regular cow's milk contains two types of beta-casein protein: A1 and A2. A2-only milk comes from cows that genetically produce only the A2 variant (Jersey and Guernsey cows often do, Holsteins typically don't). Some people who feel bloated or uncomfortable on regular milk but who aren't lactose intolerant report digesting A2 better. The science is still mixed but real for a subset of drinkers. A2 milk is <em>not</em> automatically organic or grass-fed &mdash; check the label."
+       data-zh="普通牛奶含两种 β-酪蛋白：A1 与 A2。A2 牛奶来自基因上只产生 A2 型蛋白的奶牛（泽西牛、根西牛常常如此，荷斯坦奶牛通常不是）。一些喝普通牛奶会胀气、不舒服但又不是乳糖不耐的人，反映 A2 牛奶更好消化。相关科学结论仍有分歧，但对一部分人来说差异确实存在。A2 牛奶<em>不</em>等于有机或草饲——请看清标签。">Regular cow's milk contains two types of beta-casein protein: A1 and A2. A2-only milk comes from cows that genetically produce only the A2 variant (Jersey and Guernsey cows often do, Holsteins typically don't). Some people who feel bloated or uncomfortable on regular milk but who aren't lactose intolerant report digesting A2 better. The science is still mixed but real for a subset of drinkers. A2 milk is <em>not</em> automatically organic or grass-fed &mdash; check the label.</p>
+
+    <h2 class="section" data-en="Comparing the nutrition profiles" data-zh="营养成分对比">Comparing the nutrition profiles</h2>
+    <table>
+      <thead>
+        <tr><th data-en="Nutrient" data-zh="营养素">Nutrient</th><th data-en="Conventional whole" data-zh="普通全脂">Conventional whole</th><th data-en="Organic whole" data-zh="有机全脂">Organic whole</th><th data-en="Grass-fed whole" data-zh="草饲全脂">Grass-fed whole</th></tr>
+      </thead>
+      <tbody>
+        <tr><td data-en="Omega-6:Omega-3 ratio" data-zh="欧米伽-6 与欧米伽-3 比值">Omega-6:Omega-3 ratio</td><td>~5.8</td><td>~2.3</td><td data-en="~1 to 2" data-zh="约 1 至 2">~1 to 2</td></tr>
+        <tr><td>CLA</td><td data-en="Baseline" data-zh="基础值">Baseline</td><td data-en="Higher" data-zh="较高">Higher</td><td data-en="Highest" data-zh="最高">Highest</td></tr>
+        <tr><td data-en="Beta-carotene" data-zh="β-胡萝卜素">Beta-carotene</td><td data-en="Baseline" data-zh="基础值">Baseline</td><td data-en="Higher" data-zh="较高">Higher</td><td data-en="4&times; higher" data-zh="高 4 倍">4&times; higher</td></tr>
+        <tr><td data-en="Vitamin E" data-zh="维生素 E">Vitamin E</td><td data-en="Baseline" data-zh="基础值">Baseline</td><td data-en="Higher" data-zh="较高">Higher</td><td data-en="~50% higher" data-zh="高约 50%">~50% higher</td></tr>
+        <tr><td data-en="Iodine" data-zh="碘">Iodine</td><td data-en="Higher" data-zh="较高">Higher</td><td data-en="Lower" data-zh="较低">Lower</td><td data-en="Lower" data-zh="较低">Lower</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <p data-en="<strong>Trade-off to know:</strong> Organic and grass-fed milk tend to be <em>lower</em> in iodine and selenium because cows eating grass get less of those minerals than cows fed iodized supplements. If milk is a major iodine source in your diet, this matters &mdash; otherwise iodized salt and seafood cover it."
+         data-zh="<strong>需要权衡：</strong>有机奶和草饲奶往往碘和硒含量<em>更低</em>，因为吃草的奶牛比补充加碘添加剂的奶牛摄入的这些矿物质少。如果牛奶是你饮食里碘的主要来源，这件事很重要——否则加碘盐和海产品就能补上。"><strong>Trade-off to know:</strong> Organic and grass-fed milk tend to be <em>lower</em> in iodine and selenium because cows eating grass get less of those minerals than cows fed iodized supplements. If milk is a major iodine source in your diet, this matters &mdash; otherwise iodized salt and seafood cover it.</p>
+    </div>
+
+    <h2 class="section" data-en="Pasteurization &amp; homogenization" data-zh="巴氏杀菌与均质">Pasteurization &amp; homogenization</h2>
+    <p data-en="<strong>Pasteurization</strong> heats milk to kill pathogens. Standard HTST (high-temp short-time) is ~161&deg;F for 15 seconds. UHT (ultra-high temperature, used on shelf-stable milk) is ~280&deg;F and changes the flavor noticeably. Raw (unpasteurized) milk is legal in some US states but carries real bacterial risk &mdash; not worth it for most people."
+       data-zh="<strong>巴氏杀菌</strong>通过加热牛奶杀灭病原体。标准 HTST（高温短时）约 161°F（72°C）加热 15 秒。UHT（超高温，用于常温保存奶）约 280°F（138°C），会明显改变风味。生牛奶（未杀菌）在美国部分州合法，但确实存在细菌风险——对大多数人来说不值得冒险。"><strong>Pasteurization</strong> heats milk to kill pathogens. Standard HTST (high-temp short-time) is ~161&deg;F for 15 seconds. UHT (ultra-high temperature, used on shelf-stable milk) is ~280&deg;F and changes the flavor noticeably. Raw (unpasteurized) milk is legal in some US states but carries real bacterial risk &mdash; not worth it for most people.</p>
+    <p data-en="<strong>Homogenization</strong> mechanically breaks fat globules so cream doesn't separate. Non-homogenized (&ldquo;cream-top&rdquo;) milk is purely a texture/aesthetic difference, not a nutrition one."
+       data-zh="<strong>均质</strong>是通过机械方式打散脂肪球，让奶油不再分层。未均质（&ldquo;顶层奶油&rdquo;）的牛奶纯粹是口感/外观上的差别，不影响营养。"><strong>Homogenization</strong> mechanically breaks fat globules so cream doesn't separate. Non-homogenized ("cream-top") milk is purely a texture/aesthetic difference, not a nutrition one.</p>
+
+    <h2 class="section" data-en="Quick buying takeaways" data-zh="选购要点">Quick buying takeaways</h2>
+    <ul class="clean">
+      <li data-en="<strong>For everyday nutrition:</strong> Organic whole or 2%. Real outdoor time on the cows + meaningful vitamin profile."
+          data-zh="<strong>日常营养：</strong>有机全脂或 2%。奶牛有真正的户外时间，维生素含量也更可观。"><strong>For everyday nutrition:</strong> Organic whole or 2%. Real outdoor time on the cows + meaningful vitamin profile.</li>
+      <li data-en="<strong>For best fat profile:</strong> 100% grass-fed organic whole milk (Maple Hill, Organic Valley Grassmilk)."
+          data-zh="<strong>最佳脂肪构成：</strong>100% 草饲有机全脂奶（Maple Hill、Organic Valley Grassmilk）。"><strong>For best fat profile:</strong> 100% grass-fed organic whole milk (Maple Hill, Organic Valley Grassmilk).</li>
+      <li data-en="<strong>If regular milk bothers your stomach but you're not lactose intolerant:</strong> Try A2 milk for a few weeks."
+          data-zh="<strong>喝普通牛奶不舒服但又不是乳糖不耐：</strong>试一试 A2 牛奶，连喝几周看看。"><strong>If regular milk bothers your stomach but you're not lactose intolerant:</strong> Try A2 milk for a few weeks.</li>
+      <li data-en="<strong>Skip:</strong> Ultra-pasteurized shelf-stable milk if flavor matters &mdash; the high heat noticeably affects taste."
+          data-zh="<strong>避开：</strong>如果在意风味，就避开 UHT 常温保存奶——高温会明显影响口味。"><strong>Skip:</strong> Ultra-pasteurized shelf-stable milk if flavor matters &mdash; the high heat noticeably affects taste.</li>
+    </ul>
+
+    <div class="sources">
+      <h3 data-en="Sources" data-zh="来源">Sources</h3>
+      <ul>
+        <li><a href="https://www.healthline.com/nutrition/whole-vs-skim-milk" target="_blank">Healthline &mdash; Whole vs Skim Milk</a></li>
+        <li><a href="https://www.nourishwithkristin.com/blog/grass-fed-milk" target="_blank">Nourish with Kristin &mdash; Grass-Fed Milk</a></li>
+        <li><a href="https://thrivemarket.com/blog/organic-milk-vs-regular-milk" target="_blank">Thrive Market &mdash; Organic vs Regular Milk</a></li>
+        <li><a href="https://www.a2milk.com/" target="_blank">The A2 Milk Company</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

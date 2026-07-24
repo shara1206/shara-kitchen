@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="有机牛奶品牌对比 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organic Milk Brand Comparison &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; --good:#4a8a4a; --ok:#b8902a; --bad:#b04a3a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 760px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 760px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 760px; margin: 8px auto 0; opacity: 0.92; font-size: 0.95rem; font-style: italic; }
+  main { max-width: 760px; margin: 0 auto; padding: 36px 24px 60px; }
+  .tldr { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tldr h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .tldr p { margin: 0; }
+  h2.section { font-size: 1.35rem; margin: 36px 0 12px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  p { margin: 12px 0; }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 16px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tier.best { border-left: 5px solid var(--good); }
+  .tier.better { border-left: 5px solid var(--ok); }
+  .tier.avoid { border-left: 5px solid var(--bad); }
+  .tier-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .tier-header h3 { margin: 0; font-size: 1.2rem; }
+  .tier.best h3 { color: var(--good); }
+  .tier.better h3 { color: var(--ok); }
+  .tier.avoid h3 { color: var(--bad); }
+  .stars { font-size: 1.1rem; letter-spacing: 2px; }
+  .tier .desc { color: var(--muted); margin: 4px 0 12px; font-size: 0.95rem; }
+  .brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 6px 14px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.92rem; }
+  .brand-grid span { padding: 4px 0; border-bottom: 1px dotted var(--border); }
+  .callout { background: #fff4e0; padding: 14px 18px; border-radius: 6px; border: 1px dashed var(--border); margin: 18px 0; }
+  .callout strong { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  ul.clean { padding-left: 22px; }
+  ul.clean li { margin: 6px 0; }
+  .sources { margin-top: 40px; padding: 18px 22px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; }
+  .sources h3 { margin: 0 0 10px; color: var(--accent); }
+  .sources ul { padding-left: 20px; margin: 0; }
+  .sources a { color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="milk.html" data-en="&larr; All milk notes" data-zh="&larr; 所有牛奶笔记">&larr; All milk notes</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <h1 data-en="Organic Milk Brand Comparison" data-zh="有机牛奶品牌对比">Organic Milk Brand Comparison</h1>
+    <div class="meta" data-en="Source: The Cornucopia Institute Dairy Scorecard &middot; June 8, 2026"
+         data-zh="来源：Cornucopia Institute 乳品评分卡 &middot; 2026年6月8日">Source: The Cornucopia Institute Dairy Scorecard &middot; June 8, 2026</div>
+  </header>
+
+  <main>
+    <div class="tldr">
+      <h2 data-en="TL;DR" data-zh="摘要">TL;DR</h2>
+      <p data-en="Same trusted rater as the egg scorecard: <strong>The Cornucopia Institute</strong> rates 160+ organic dairy brands on a 0&ndash;5 cow scale. Same pattern as eggs: small family farms with real pasture rate highest; the biggest &ldquo;organic&rdquo; brands often rate worst because they're industrial-scale CAFO operations that meet the letter (not the spirit) of organic. Notably, <strong>Horizon Organic</strong> &mdash; one of the biggest names &mdash; gets a 0 (refused to participate)."
+         data-zh="评分机构和鸡蛋评分卡是同一家：<strong>Cornucopia Institute</strong> 用 0–5 颗奶牛的尺度评 160+ 个有机乳品品牌。模式和鸡蛋一样：拥有真正牧场的小型家庭农场评分最高；最大牌的&ldquo;有机&rdquo;品牌往往最差，因为它们其实是工业化集中饲养，只满足有机的&ldquo;字面&rdquo;而非&ldquo;精神&rdquo;。值得注意的是，<strong>Horizon Organic</strong>——业内最大牌之一——得分为 0（拒绝参与）。">Same trusted rater as the egg scorecard: <strong>The Cornucopia Institute</strong> rates 160+ organic dairy brands on a 0&ndash;5 cow scale. Same pattern as eggs: small family farms with real pasture rate highest; the biggest "organic" brands often rate worst because they're industrial-scale CAFO operations that meet the letter (not the spirit) of organic. Notably, <strong>Horizon Organic</strong> &mdash; one of the biggest names &mdash; gets a 0 (refused to participate).</p>
+    </div>
+
+    <h2 class="section" data-en="Cornucopia's dairy rating scale" data-zh="Cornucopia 的乳品评分尺度">Cornucopia's dairy rating scale</h2>
+    <table>
+      <thead><tr><th data-en="Rating" data-zh="评级">Rating</th><th data-en="Meaning" data-zh="含义">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong data-en="5 cows" data-zh="5 颗奶牛">5 cows</strong></td><td data-en="Beyond organic. Small/mid family farms, heavy pasture emphasis." data-zh="超越有机。小型至中型家庭农场，高度强调牧场放牧。">Beyond organic. Small/mid family farms, heavy pasture emphasis.</td></tr>
+        <tr><td><strong data-en="4 cows" data-zh="4 颗奶牛">4 cows</strong></td><td data-en="Excellent &mdash; ample pasture, good welfare." data-zh="优秀——牧场充足，福利良好。">Excellent &mdash; ample pasture, good welfare.</td></tr>
+        <tr><td><strong data-en="3 cows" data-zh="3 颗奶牛">3 cows</strong></td><td data-en="Very good &mdash; meets organic standard meaningfully." data-zh="很好——切实达到有机标准。">Very good &mdash; meets organic standard meaningfully.</td></tr>
+        <tr><td><strong data-en="2 cows" data-zh="2 颗奶牛">2 cows</strong></td><td data-en="Fair &mdash; questionable compliance." data-zh="一般——合规存在疑问。">Fair &mdash; questionable compliance.</td></tr>
+        <tr><td><strong data-en="0&ndash;1 cows" data-zh="0–1 颗奶牛">0&ndash;1 cows</strong></td><td data-en="Industrial organic or non-transparent." data-zh="工业化有机或不透明。">Industrial organic or non-transparent.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="section" data-en="Best brands (5 cows)" data-zh="最佳品牌（5 颗奶牛）">Best brands (5 cows)</h2>
+    <div class="tier best">
+      <div class="tier-header">
+        <h3 data-en="Top tier &mdash; small farms, real pasture" data-zh="顶级——小型农场，真正的牧场">Top tier &mdash; small farms, real pasture</h3>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </div>
+      <p class="desc" data-en="Mostly regional brands sold at co-ops, Whole Foods, or natural grocers. Often single-source or small co-ops."
+         data-zh="大多是区域性品牌，在合作社、Whole Foods 或天然食品店出售。常见单一来源或小型合作社。">Mostly regional brands sold at co-ops, Whole Foods, or natural grocers. Often single-source or small co-ops.</p>
+      <div class="brand-grid">
+        <span><strong>Maple Hill Creamery</strong></span>
+        <span>Hawthorne Valley Farm</span>
+        <span>Saint Benoit Creamery</span>
+        <span>Kalona SuperNatural</span>
+        <span>Strauss Family Creamery</span>
+        <span>Working Cows Dairy</span>
+        <span>Trickling Springs</span>
+      </div>
+    </div>
+
+    <h2 class="section" data-en="Better brands (4 cows)" data-zh="较好品牌（4 颗奶牛）">Better brands (4 cows)</h2>
+    <div class="tier better">
+      <div class="tier-header">
+        <h3 data-en="Excellent &mdash; widely available" data-zh="优秀——广泛可得">Excellent &mdash; widely available</h3>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </div>
+      <p class="desc" data-en="Larger operations that still deliver on real outdoor access. These are the practical sweet spot for most shoppers."
+         data-zh="规模较大但依然提供真实户外活动的运营商。对大多数消费者来说是性价比与品质的甜点区。">Larger operations that still deliver on real outdoor access. These are the practical sweet spot for most shoppers.</p>
+      <div class="brand-grid">
+        <span><strong>Organic Valley</strong></span>
+        <span>Organic Valley Grassmilk</span>
+        <span>Stonyfield Organic</span>
+        <span>Clover Sonoma</span>
+        <span>Wisconsin Organics</span>
+      </div>
+    </div>
+
+
+    <h2 class="section" data-en="Notable brand: Alexandre Family Farm &mdash; buy the grassfed line" data-zh="值得关注的品牌：Alexandre Family Farm &mdash; 购买草饲产品线">Notable brand: Alexandre Family Farm &mdash; buy the grassfed line</h2>
+    <div class="tier avoid">
+      <div class="tier-header">
+        <h3 data-en="Alexandre Family Farm 100% Grassfed" data-zh="Alexandre Family Farm 百分百草饲">Alexandre Family Farm 100% Grassfed</h3>
+        <span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+      </div>
+      <p class="desc" data-en="Cornucopia score: 310 / 1100 &mdash; 2-cow &ldquo;Fair&rdquo; rating. National. Products: fluid milk, yogurt, A2, 100% grassfed."
+         data-zh="Cornucopia 评分：310 / 1100 &mdash; 2 颗奶牛&ldquo;一般&rdquo;评级。全国销售。产品：普通奶、酸奶、A2、100% 草饲奶。">Cornucopia score: 310 / 1100 &mdash; 2-cow &ldquo;Fair&rdquo; rating. National. Products: fluid milk, yogurt, A2, 100% grassfed.</p>
+      <p data-en="<strong>Why so low despite impressive certifications?</strong> Alexandre holds Regenerative Organic Certified, Certified Humane, OPT Certified Grassfed, and Land to Market Verified Regenerative labels &mdash; an impressive stack on paper. However, Cornucopia placed this brand &ldquo;under increased scrutiny&rdquo; after confirmed animal abuse and neglect on supplier farms, plus documented non-compliances with USDA National Organic Program standards. Multiple scorecard categories (animal welfare, pasture, organic commitment) were penalized under Cornucopia&rsquo;s adjustment policy, pulling the score from what would otherwise be a high rating down to 2 cows. The operation did correct the non-compliances per the NOP investigation."
+         data-zh="<strong>为什么尽管认证光鲜，评分却这么低？</strong>Alexandre 持有再生有机认证（Regenerative Organic Certified）、人道认证（Certified Humane）、OPT 草饲认证、Land to Market 再生验证——纸面上相当亮眼。然而，Cornucopia 在确认其供应商农场存在动物虐待和疏忽行为、以及违反美国有机项目（NOP）标准后，将该品牌列入&ldquo;重点审查&rdquo;名单。动物福利、牧场管理、有机承诺等多个评分项目均依据 Cornucopia 的调整政策被扣分，导致原本可能较高的得分降至 2 颗奶牛。相关违规问题已在 NOP 调查过程中得到纠正。"><strong>Why so low despite impressive certifications?</strong> Alexandre holds Regenerative Organic Certified, Certified Humane, OPT Certified Grassfed, and Land to Market Verified Regenerative labels &mdash; an impressive stack on paper. However, Cornucopia placed this brand &ldquo;under increased scrutiny&rdquo; after confirmed animal abuse and neglect on supplier farms, plus documented non-compliances with USDA National Organic Program standards. Multiple scorecard categories (animal welfare, pasture, organic commitment) were penalized under Cornucopia&rsquo;s adjustment policy, pulling the score from what would otherwise be a high rating down to 2 cows. The operation did correct the non-compliances per the NOP investigation.</p>
+      <p data-en="<strong>Key distinction &mdash; the two lines are different:</strong> The compliance issues (animal abuse, NOP non-compliances) were documented on supplier farms for their <em>other</em> product lines. The <strong>100% Grassfed line sources exclusively from Alexandre-owned farms</strong>, not outside suppliers. Cornucopia even scored the grassfed line&rsquo;s pasture management highly (75 pts) before penalties were applied."
+         data-zh="<strong>关键区别——两条产品线不同：</strong>合规问题（动物虐待、NOP 违规）发生在他们<em>其他</em>产品线的外部供应商农场。<strong>百分百草饲产品线只使用 Alexandre 自有农场的牛奶</strong>，不依赖外部供应商。Cornucopia 在扣分之前，对草饲产品线的牧场管理也给出了高分（75分）。"><strong>Key distinction &mdash; the two lines are different:</strong> The compliance issues (animal abuse, NOP non-compliances) were documented on supplier farms for their <em>other</em> product lines. The <strong>100% Grassfed line sources exclusively from Alexandre-owned farms</strong>, not outside suppliers. Cornucopia even scored the grassfed line&rsquo;s pasture management highly (75 pts) before penalties were applied.</p>
+      <p data-en="<strong>Grassfed line quality:</strong> OPT Certified Grassfed, 60%+ DMI from grazing, rotational grazing with year-round vegetative cover, milked 2&times;/day, calves in group housing. Nutritionally this is a high-quality grassfed milk with a strong omega-3 and CLA profile. <strong>This is the line I buy.</strong>"
+         data-zh="<strong>草饲产品线品质：</strong>OPT 草饲认证，60%+ 干物质摄入来自放牧，轮牧制度、全年保持植被覆盖，每日挤奶 2 次，小牛采用群体饲养。营养上这是一款高品质草饲牛奶，omega-3 和 CLA 含量出色。<strong>这是我购买的产品线。</strong>"><strong>Grassfed line quality:</strong> OPT Certified Grassfed, 60%+ DMI from grazing, rotational grazing with year-round vegetative cover, milked 2&times;/day, calves in group housing. Nutritionally this is a high-quality grassfed milk with a strong omega-3 and CLA profile. <strong>This is the line I buy.</strong></p>
+      <p data-en="<strong>On the low Cornucopia score:</strong> The 2-cow rating reflects brand-level penalties applied across all lines due to the compliance history. It does not reflect the grassfed line&rsquo;s actual production quality. Worth re-checking in a year to see if Cornucopia lifts the scrutiny flag."
+         data-zh="<strong>关于 Cornucopia 低分：</strong>2 颗奶牛评级是因为品牌整体受到处罚，适用于所有产品线。它并不反映草饲产品线本身的实际生产质量。值得一年后再来看 Cornucopia 是否撤销了重点审查标记。"><strong>On the low Cornucopia score:</strong> The 2-cow rating reflects brand-level penalties applied across all lines due to the compliance history. It does not reflect the grassfed line&rsquo;s actual production quality. Worth re-checking in a year to see if Cornucopia lifts the scrutiny flag.</p>
+      <p style="font-size:0.88rem;color:var(--muted);" data-en="Source: <a href=&quot;https://www.cornucopia.org/scorecard/dairy/alexandre-family-farm-100-grassfed/&quot; target=&quot;_blank&quot;>Cornucopia scorecard &mdash; Alexandre Family Farm 100% Grassfed</a> (June 2026)"
+         data-zh="来源：<a href=&quot;https://www.cornucopia.org/scorecard/dairy/alexandre-family-farm-100-grassfed/&quot; target=&quot;_blank&quot;>Cornucopia 评分卡 &mdash; Alexandre Family Farm 100% Grassfed</a>（2026年6月）">Source: <a href="https://www.cornucopia.org/scorecard/dairy/alexandre-family-farm-100-grassfed/" target="_blank">Cornucopia scorecard &mdash; Alexandre Family Farm 100% Grassfed</a> (June 2026)</p>
+    </div>
+
+    <h2 class="section" data-en="Avoid (0&ndash;2 cows)" data-zh="尽量避开（0–2 颗奶牛）">Avoid (0&ndash;2 cows)</h2>
+    <div class="tier avoid">
+      <div class="tier-header">
+        <h3 data-en="Industrial organic or non-transparent" data-zh="工业化有机或不透明">Industrial organic or non-transparent</h3>
+        <span class="stars">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+      </div>
+      <p class="desc" data-en="Big industrial operations or brands that refused Cornucopia's investigator access. The &ldquo;organic&rdquo; label is technically valid but minimal pasture and oversight."
+         data-zh="大型工业化运营商，或拒绝 Cornucopia 调查员访问的品牌。&ldquo;有机&rdquo;标签在技术上成立，但牧场极少、监督薄弱。">Big industrial operations or brands that refused Cornucopia's investigator access. The "organic" label is technically valid but minimal pasture and oversight.</p>
+      <div class="brand-grid">
+        <span><strong>Horizon Organic</strong></span>
+        <span>Aurora Organic Dairy</span>
+        <span>Applegate organic dairy</span>
+        <span><strong data-en="Costco Kirkland Signature Organic" data-zh="Costco Kirkland Signature 有机奶">Costco Kirkland Signature Organic</strong> <span style="color:var(--bad);font-size:0.85em;" data-en="(OEM by Aurora)" data-zh="（Aurora 代工）">(OEM by Aurora)</span></span>
+        <span data-en="Many supermarket organic private labels (Aurora-sourced)" data-zh="许多超市自营有机品牌（来自 Aurora）">Many supermarket organic private labels</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p data-en="<strong>The Aurora problem:</strong> Aurora Organic Dairy is a massive industrial-scale &ldquo;organic&rdquo; supplier that produces private-label organic milk for Walmart, Costco, Target, Wegmans, Trader Joe's, and many regional chains. Cornucopia has documented repeated organic violations on Aurora farms. If a store-brand organic milk is suspiciously cheap, it's likely Aurora."
+         data-zh="<strong>Aurora 问题：</strong>Aurora Organic Dairy 是一家超大规模的&ldquo;有机&rdquo;乳品供应商，为 Walmart、Costco、Target、Wegmans、Trader Joe's 等许多连锁超市代工有机牛奶。Cornucopia 多次记录到 Aurora 农场违反有机规定的情况。如果某款超市自营有机牛奶便宜得反常，很可能就是 Aurora 供货。"><strong>The Aurora problem:</strong> Aurora Organic Dairy is a massive industrial-scale "organic" supplier that produces private-label organic milk for Walmart, Costco, Target, Wegmans, Trader Joe's, and many regional chains. Cornucopia has documented repeated organic violations on Aurora farms. If a store-brand organic milk is suspiciously cheap, it's likely Aurora.</p>
+    </div>
+
+    <h2 class="section" data-en="How to use this" data-zh="怎么用这份指南">How to use this</h2>
+    <ul class="clean">
+      <li data-en="<strong>Default choice:</strong> Organic Valley &mdash; widely available, 4-cow rating, decent price."
+          data-zh="<strong>默认选择：</strong>Organic Valley——广泛可得，4 颗奶牛评级，价格合理。"><strong>Default choice:</strong> Organic Valley &mdash; widely available, 4-cow rating, decent price.</li>
+      <li data-en="<strong>Best fat profile:</strong> Maple Hill or Organic Valley Grassmilk &mdash; 100% grass-fed."
+          data-zh="<strong>最佳脂肪构成：</strong>Maple Hill 或 Organic Valley Grassmilk——100% 草饲。"><strong>Best fat profile:</strong> Maple Hill or Organic Valley Grassmilk &mdash; 100% grass-fed.</li>
+      <li data-en="<strong>Skip:</strong> Horizon Organic. Despite the name, it's rated 0 cows."
+          data-zh="<strong>避开：</strong>Horizon Organic。名头响亮，但评分为 0。"><strong>Skip:</strong> Horizon Organic. Despite the name, it's rated 0 cows.</li>
+      <li data-en="<strong>Check store brand suppliers:</strong> If &ldquo;Distributed by...&rdquo; mentions Aurora or Platteville CO, it's the industrial source."
+          data-zh="<strong>查超市自营品牌的供应商：</strong>如果包装上&ldquo;Distributed by...&rdquo;写着 Aurora 或科罗拉多 Platteville，那就是工业化来源。"><strong>Check store brand suppliers:</strong> If "Distributed by..." mentions Aurora or Platteville CO, it's the industrial source.</li>
+      <li data-en="<strong>Full scorecard:</strong> <a href=&quot;https://www.cornucopia.org/scorecard/dairy/&quot; target=&quot;_blank&quot;>cornucopia.org/scorecard/dairy</a>"
+          data-zh="<strong>完整评分卡：</strong><a href=&quot;https://www.cornucopia.org/scorecard/dairy/&quot; target=&quot;_blank&quot;>cornucopia.org/scorecard/dairy</a>"><strong>Full scorecard:</strong> <a href="https://www.cornucopia.org/scorecard/dairy/" target="_blank">cornucopia.org/scorecard/dairy</a></li>
+    </ul>
+
+    <div class="sources">
+      <h3 data-en="Sources" data-zh="来源">Sources</h3>
+      <ul>
+        <li><a href="https://www.cornucopia.org/scorecard/dairy/" target="_blank">The Cornucopia Institute &mdash; Organic Dairy Scorecard</a></li>
+        <li><a href="https://www.cornucopia.org/research/organic-dairy-report-and-scorecard/" target="_blank">Cornucopia &mdash; Organic Dairy Report</a></li>
+        <li><a href="https://www.cornucopia.org/2025-dairy-scorecard-update/" target="_blank">Cornucopia &mdash; 2025 Dairy Scorecard Update</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

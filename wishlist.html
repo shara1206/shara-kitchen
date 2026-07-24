@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>你的心愿菜单 · Shara's Kitchen</title>
+<style>
+:root {
+  --bg: #fdf6ec;
+  --card: #ffffff;
+  --ink: #2b2b2b;
+  --muted: #6b6b6b;
+  --accent: #c97b3a;
+  --accent-soft: #f3d9b1;
+  --border: #ead7b7;
+  --success: #4a9e6b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+}
+
+/* ── Password gate ── */
+#gate {
+  position: fixed; inset: 0;
+  background: linear-gradient(135deg, #c97b3a 0%, #e0a060 100%);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 999;
+}
+.gate-box {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 36px;
+  width: min(90vw, 380px);
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+}
+.gate-box .logo { font-size: 2.4rem; margin-bottom: 8px; }
+.gate-box h2 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+.gate-box p {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.gate-box input[type="password"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 12px;
+}
+.gate-box input[type="password"]:focus { border-color: var(--accent); }
+.gate-box button {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gate-box button:hover { background: #b56a2c; }
+.gate-error {
+  color: #c0392b;
+  font-size: 0.83rem;
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+/* ── Header ── */
+header {
+  background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%);
+  color: white;
+  padding: 28px 24px 22px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  position: relative;
+}
+header h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.5px; }
+header p  { margin: 5px 0 0; opacity: 0.9; font-style: italic; font-size: 0.9rem; }
+.lang-toggle {
+  position: absolute; top: 16px; right: 18px;
+  display: flex; gap: 4px;
+}
+.lang-toggle button {
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.5);
+  color: white;
+  border-radius: 5px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.lang-toggle button.active { background: rgba(255,255,255,0.45); font-weight: 600; }
+
+/* ── Main ── */
+main {
+  max-width: min(95vw, 960px);
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* ── Info fields ── */
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+@media (max-width: 540px) { .info-row { grid-template-columns: 1fr; } }
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 5px;
+  letter-spacing: 0.3px;
+}
+.field input, .field textarea {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--card);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.field input:focus, .field textarea:focus { border-color: var(--accent); }
+
+/* ── Category sections ── */
+.cat-section { margin-bottom: 28px; }
+.cat-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-soft);
+  margin-bottom: 12px;
+}
+.cat-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+.cat-header .en-sub {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.cat-header .sel-count {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 7px;
+}
+@media (max-width: 480px) {
+  .dish-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
+.dish-check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  font-size: 0.88rem;
+  user-select: none;
+}
+.dish-check:hover { border-color: var(--accent); background: #fef8f0; }
+.dish-check input[type="checkbox"] { display: none; }
+.dish-check.checked {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 500;
+}
+.dish-check .tick {
+  width: 16px; height: 16px; flex-shrink: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  font-size: 10px;
+  color: white;
+}
+.dish-check.checked .tick {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Special request ── */
+.special-section { margin-bottom: 28px; }
+.special-section label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.special-section textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.93rem;
+  font-family: inherit;
+  min-height: 90px;
+  resize: vertical;
+  outline: none;
+  background: var(--card);
+  transition: border-color 0.2s;
+}
+.special-section textarea:focus { border-color: var(--accent); }
+
+/* ── Selected summary ── */
+.summary-bar {
+  background: var(--accent-soft);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  color: var(--ink);
+  display: none;
+}
+.summary-bar.visible { display: block; }
+.summary-bar strong { color: var(--accent); }
+
+/* ── Submit ── */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  letter-spacing: 0.5px;
+}
+.submit-btn:hover { background: #b56a2c; }
+.submit-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+/* ── Success screen ── */
+#success-screen {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+#success-screen .icon { font-size: 3rem; margin-bottom: 12px; }
+#success-screen h2 { margin: 0 0 8px; color: var(--success); }
+#success-screen p { color: var(--muted); }
+
+/* ── EN/ZH visibility ── */
+[data-zh], [data-en] {}
+.zh-mode [data-en-only] { display: none; }
+.en-mode [data-zh-only] { display: none; }
+</style>
+</head>
+<body class="zh-mode">
+
+<!-- ══ Password Gate ══ -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="logo">🍜</div>
+    <h2 id="gate-title">Shara's Kitchen</h2>
+    <p id="gate-sub">请输入访问密码</p>
+    <input type="password" id="pw-input" placeholder="密码 / Password" autocomplete="off" />
+    <button onclick="checkPassword()" id="pw-btn">进入 / Enter</button>
+    <div class="gate-error" id="gate-error"></div>
+  </div>
+</div>
+
+<!-- ══ Main App ══ -->
+<div id="app" style="display:none">
+
+<header>
+  <h1 id="page-title">你的心愿菜单</h1>
+  <p id="page-sub">告诉我你想吃什么，我来做！</p>
+  <div class="lang-toggle">
+    <button type="button" data-lang="zh" class="active" onclick="setLang('zh')">中文</button>
+    <button type="button" data-lang="en" onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ Form ══ -->
+  <form id="wishform" onsubmit="submitForm(event)">
+
+    <div class="info-row">
+      <div class="field">
+        <label id="lbl-name">你的名字 <span style="color:#c97b3a">*</span></label>
+        <input type="text" id="f-name" required placeholder="请输入姓名" />
+      </div>
+      <div class="field">
+        <label id="lbl-occasion">聚会 / 场合（选填）</label>
+        <input type="text" id="f-occasion" placeholder="例：周末家庭聚餐" />
+      </div>
+    </div>
+
+    <div id="menu-sections"></div>
+
+    <div class="summary-bar" id="summary-bar">
+      <span id="summary-text"></span>
+    </div>
+
+    <div class="special-section">
+      <label id="lbl-special">特别要求 / 不在菜单里的菜</label>
+      <textarea id="f-special" placeholder="例：能不能做个红烧排骨？我不吃香菜。"></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submit-btn">
+      <span id="submit-label">提交心愿单 ✉</span>
+    </button>
+
+  </form>
+
+  <!-- ══ Success ══ -->
+  <div id="success-screen">
+    <div class="icon">🎉</div>
+    <h2 id="success-title">已收到！</h2>
+    <p id="success-msg">Shara 会尽快安排，期待和你一起吃好吃的！</p>
+  </div>
+
+</main>
+</div><!-- #app -->
+
+<script>
+// ══════════════════════════════════════
+//  CONFIGURATION — edit these two lines
+// ══════════════════════════════════════
+const PASSWORD   = 'shara2026';        // change to your preferred password
+const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE'; // paste your deployed Apps Script URL here
+// ══════════════════════════════════════
+
+// ── Menu Data ──
+const MENU_DATA = [
+  {
+    "id": "sucai",
+    "zh": "素菜",
+    "en": "Vegetables",
+    "dishes": [
+      "蚝油生菜",
+      "手撕包菜",
+      "炝炒白菜",
+      "上汤娃娃菜",
+      "炒油菜花",
+      "炒花菜",
+      "腐乳空心菜",
+      "清炒豆苗",
+      "素炒莴笋",
+      "素炒丝瓜",
+      "干煸四季豆",
+      "炒豆芽",
+      "西芹百合",
+      "芦笋炒肉/虾",
+      "青椒+豆豉",
+      "蒜香烤茄子",
+      "香辣茄子",
+      "炒苦瓜",
+      "酿苦瓜",
+      "醋溜土豆丝",
+      "炒莲藕",
+      "烧南瓜",
+      "咸蛋黄焗南瓜",
+      "烧冬瓜",
+      "西红柿鸡蛋",
+      "韭菜鸡蛋",
+      "香椿炒鸡蛋",
+      "糖拌蒸芋头"
+    ]
+  },
+  {
+    "id": "mianshi",
+    "zh": "面食主食",
+    "en": "Noodles & Staples",
+    "dishes": [
+      "蛋炒饭",
+      "扬州炒饭",
+      "煲仔饭",
+      "卤肉饭",
+      "吉野家肥牛饭",
+      "皮蛋瘦肉粥",
+      "生滚牛肉粥",
+      "牛肉面",
+      "干炒牛河",
+      "炒面",
+      "烤冷面",
+      "酸辣粉",
+      "桂林米粉",
+      "兰州牛肉面",
+      "衡阳米粉",
+      "热干面",
+      "葱面",
+      "拉面",
+      "馒头",
+      "花卷",
+      "豆包",
+      "流沙包",
+      "叉烧包",
+      "肉夹馍",
+      "油条（提前一周）",
+      "饺子",
+      "小笼包",
+      "北海道汤种面包",
+      "小面包",
+      "葱油饼",
+      "鸡蛋饼",
+      "糊塌子",
+      "煎饼果子",
+      "煎年糕",
+      "酸奶饼",
+      "绿豆/咸蛋黄/红枣粽子",
+      "烤土豆",
+      "烤红薯/紫薯"
+    ]
+  },
+  {
+    "id": "jiya",
+    "zh": "鸡鸭",
+    "en": "Chicken & Duck",
+    "dishes": [
+      "白斩鸡",
+      "豉油鸡",
+      "口水鸡（很辣）",
+      "黄焖鸡",
+      "辣子鸡",
+      "大盘鸡",
+      "板栗鸡",
+      "香菇鸡",
+      "鸡公煲",
+      "蒸鸡翼",
+      "叉烧鸡/鸡腿",
+      "叉烧鸡翅/鸡腿",
+      "红烧鸡翅/鸡腿",
+      "蒜香鸡翅",
+      "可乐鸡翅",
+      "奥尔良鸡翅",
+      "空气炸锅炸鸡翅",
+      "盐酥鸡",
+      "盐水鸭",
+      "啤酒鸭",
+      "炖鸭子"
+    ]
+  },
+  {
+    "id": "niuyang",
+    "zh": "牛羊",
+    "en": "Beef & Lamb",
+    "dishes": [
+      "煎/烤 BBQ 牛仔骨",
+      "烤牛排骨（烧烤式）",
+      "烤羊排",
+      "烤羊腿",
+      "羊肉串",
+      "红烧牛肉",
+      "番茄牛腩",
+      "土豆炖牛肉",
+      "番茄牛筋",
+      "麻辣牛筋",
+      "金针菇肥牛",
+      "牛肉脯"
+    ]
+  },
+  {
+    "id": "yuxia",
+    "zh": "鱼虾",
+    "en": "Fish & Shrimp",
+    "dishes": [
+      "清蒸鲈鱼/其它",
+      "白灼虾",
+      "红烧鱼",
+      "酸菜鱼",
+      "番茄带鱼",
+      "黄焖黄鳝",
+      "啤酒鱼",
+      "香煎鲫鱼",
+      "香煎带鱼",
+      "锡纸鲈鱼糖醋",
+      "烤鱼",
+      "烤黄鱼",
+      "空气炸锅鱼豆腐",
+      "剁椒鱼头",
+      "鱼头豆腐锅",
+      "鱼头汤（炖）",
+      "天妇罗",
+      "美乃滋炸虾球",
+      "蒜蓉龙虾",
+      "Hot n Juicy"
+    ]
+  },
+  {
+    "id": "zhu",
+    "zh": "猪",
+    "en": "Pork",
+    "dishes": [
+      "无锡糖醋小排",
+      "糖醋排骨 金黄",
+      "蒜香排骨",
+      "笋尖烧排骨",
+      "椒盐排骨",
+      "红烧肉+腐竹/鸡蛋",
+      "东坡肉",
+      "梅菜扣肉",
+      "芋头扣肉",
+      "粉蒸肉",
+      "蒸肉饼",
+      "卤肉/鸡蛋",
+      "叉烧",
+      "烤猪蹄",
+      "香辣美容蹄",
+      "西芹腊肉",
+      "煎香肠 整/切片",
+      "香煎五花肉",
+      "炸莲藕丸子",
+      "炸藕盒",
+      "炸茄盒",
+      "油豆腐丸子",
+      "锅包肉",
+      "脆皮酥肉",
+      "烤猪排",
+      "京酱肉丝",
+      "日式汉堡排",
+      "培根卷芦笋（烤）",
+      "培根卷金针菇",
+      "酸菜肉末"
+    ]
+  },
+  {
+    "id": "qita",
+    "zh": "豆腐",
+    "en": "Tofu",
+    "dishes": [
+      "麻婆豆腐",
+      "葱香肉末豆腐",
+      "烧日本豆腐",
+      "香煎豆腐",
+      "韩式豆腐煲",
+      "嫩豆腐蒸鸡蛋",
+      "魔芋豆腐"
+    ]
+  },
+  {
+    "id": "tiandian",
+    "zh": "甜点",
+    "en": "Desserts",
+    "dishes": [
+      "绿豆沙",
+      "红豆沙",
+      "冰糖雪梨汤",
+      "白凉粉",
+      "龟苓膏",
+      "双皮奶",
+      "布丁（抹茶/椰香/芒果）",
+      "抹茶奶冻",
+      "Mochi",
+      "芝麻馅汤圆",
+      "糯米糍",
+      "南瓜饼",
+      "麻团",
+      "鸡蛋仔",
+      "芋泥",
+      "芋圆",
+      "香葱麻薯魔芋卷",
+      "雪花酥",
+      "戚风蛋糕",
+      "抹茶戚风蛋糕卷",
+      "提拉米苏",
+      "泡芙",
+      "蛋挞",
+      "黄金糕",
+      "黄油曲奇",
+      "蛋黄酱肉松卷",
+      "Lemon Blueberry Cake",
+      "传统月饼（莲蓉/豆沙）",
+      "冰皮月饼 奶黄",
+      "炸糕",
+      "绿豆糕",
+      "秋梨膏",
+      "炸香蕉"
+    ]
+  },
+  {
+    "id": "liangcai",
+    "zh": "凉菜小吃",
+    "en": "Cold Dishes & Snacks",
+    "dishes": [
+      "盐水花生",
+      "盐水毛豆",
+      "炸花生米",
+      "脆皮黄瓜",
+      "拍黄瓜",
+      "凉拌皮蛋",
+      "皮蛋豆腐",
+      "凉拌菠菜花生",
+      "蓝莓山药",
+      "花生酪",
+      "萝卜干",
+      "五香茶叶蛋",
+      "溏心蛋",
+      "咸鸭蛋",
+      "卤牛腱",
+      "卤猪耳",
+      "卤鸡爪",
+      "糟鸡爪",
+      "泡椒凤爪",
+      "糟鸭舌"
+    ]
+  },
+  {
+    "id": "tang",
+    "zh": "汤",
+    "en": "Soups",
+    "dishes": [
+      "莲藕排骨汤",
+      "萝卜排骨汤",
+      "海带排骨汤",
+      "筒骨汤",
+      "猪蹄黄豆汤",
+      "天麻猪脑汤",
+      "三黄鸡汤",
+      "乌鸡汤",
+      "牛尾山药汤",
+      "羊肉萝卜汤",
+      "山药骨头汤",
+      "番茄骨头汤",
+      "丸子汤",
+      "蛋花紫菜汤"
+    ]
+  },
+  {
+    "id": "yinpin",
+    "zh": "饮品",
+    "en": "Drinks",
+    "dishes": [
+      "酸梅汤",
+      "小吊梨汤",
+      "400次咖啡",
+      "王老吉"
+    ]
+  },
+  {
+    "id": "huoguo",
+    "zh": "火锅锅底",
+    "en": "Hot Pot",
+    "dishes": [
+      "骨汤",
+      "番茄",
+      "香辣",
+      "菌菇",
+      "寿喜锅"
+    ]
+  }
+];
+
+// ── State ──
+let currentLang = 'zh';
+let selected = new Set();
+
+// ── Strings ──
+const STR = {
+  zh: {
+    gateSub:      '请输入访问密码',
+    pwPlaceholder:'密码 / Password',
+    gateEnter:    '进入 / Enter',
+    gateError:    '密码不对，请再试一次',
+    pageTitle:    '你的心愿菜单',
+    pageSub:      '告诉我你想吃什么，我来做！',
+    lblName:      '你的名字',
+    lblOccasion:  '聚会 / 场合（选填）',
+    occPlaceholder:'例：周末家庭聚餐',
+    namePlaceholder:'请输入姓名',
+    lblSpecial:   '特别要求 / 不在菜单里的菜',
+    specPlaceholder:'例：能不能做个红烧排骨？我不吃香菜。',
+    submitLabel:  '提交心愿单 ✉',
+    summaryPre:   '已选 ',
+    summaryPost:  ' 道菜',
+    successTitle: '已收到！',
+    successMsg:   'Shara 会尽快安排，期待和你一起吃好吃的！',
+    submitting:   '提交中…',
+    errorMsg:     '提交失败，请截图告诉 Shara 😅',
+    selCount:     (n) => n > 0 ? `已选 ${n}` : '',
+  },
+  en: {
+    gateSub:      'Enter the password to continue',
+    pwPlaceholder:'Password',
+    gateEnter:    'Enter',
+    gateError:    'Wrong password, please try again',
+    pageTitle:    'Your Wish List',
+    pageSub:      'Tell me what you want to eat — I\'ll cook it!',
+    lblName:      'Your name',
+    lblOccasion:  'Occasion (optional)',
+    occPlaceholder:'e.g. Weekend family dinner',
+    namePlaceholder:'Enter your name',
+    lblSpecial:   'Special requests / dishes not on the menu',
+    specPlaceholder:'e.g. Can you make braised ribs? No cilantro for me.',
+    submitLabel:  'Submit wish list ✉',
+    summaryPre:   '',
+    summaryPost:  ' dish(es) selected',
+    successTitle: 'Got it!',
+    successMsg:   'Shara will plan the menu soon. Can\'t wait to eat together!',
+    submitting:   'Sending…',
+    errorMsg:     'Submission failed — please screenshot and tell Shara 😅',
+    selCount:     (n) => n > 0 ? `${n} selected` : '',
+  }
+};
+
+// ── Password gate ──
+document.getElementById('pw-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+function checkPassword() {
+  const val = document.getElementById('pw-input').value;
+  if (val === PASSWORD) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    buildMenu();
+  } else {
+    document.getElementById('gate-error').textContent = STR[currentLang].gateError;
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+// ── Language ──
+function setLang(lang) {
+  currentLang = lang;
+  document.body.className = lang + '-mode';
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  applyStrings();
+  updateSummary();
+  updateAllSelCounts();
+}
+
+function applyStrings() {
+  const s = STR[currentLang];
+  document.getElementById('gate-sub').textContent      = s.gateSub;
+  document.getElementById('pw-input').placeholder      = s.pwPlaceholder;
+  document.getElementById('pw-btn').textContent        = s.gateEnter;
+  document.getElementById('page-title').textContent    = s.pageTitle;
+  document.getElementById('page-sub').textContent      = s.pageSub;
+  document.getElementById('lbl-name').innerHTML        = s.lblName + ' <span style="color:#c97b3a">*</span>';
+  document.getElementById('lbl-occasion').textContent  = s.lblOccasion;
+  document.getElementById('f-occasion').placeholder    = s.occPlaceholder;
+  document.getElementById('f-name').placeholder        = s.namePlaceholder;
+  document.getElementById('lbl-special').textContent   = s.lblSpecial;
+  document.getElementById('f-special').placeholder     = s.specPlaceholder;
+  document.getElementById('submit-label').textContent  = s.submitLabel;
+  document.getElementById('success-title').textContent = s.successTitle;
+  document.getElementById('success-msg').textContent   = s.successMsg;
+
+  // Category headers
+  document.querySelectorAll('.cat-header .zh-name').forEach(el => {
+    el.style.display = currentLang === 'zh' ? '' : 'none';
+  });
+  document.querySelectorAll('.cat-header .en-sub').forEach(el => {
+    el.style.display = currentLang === 'en' ? '' : 'none';
+  });
+  // In EN mode show both for context
+  if (currentLang === 'en') {
+    document.querySelectorAll('.cat-header .zh-name').forEach(el => el.style.display = '');
+  }
+}
+
+// ── Build menu ──
+function buildMenu() {
+  const container = document.getElementById('menu-sections');
+  MENU_DATA.forEach(cat => {
+    const section = document.createElement('div');
+    section.className = 'cat-section';
+    section.innerHTML = `
+      <div class="cat-header">
+        <h3>
+          <span class="zh-name">${cat.zh}</span>
+          <span class="en-sub" style="display:none"> ${cat.en}</span>
+        </h3>
+        <span class="sel-count" id="sc-${cat.id}"></span>
+      </div>
+      <div class="dish-grid" id="grid-${cat.id}"></div>
+    `;
+    const grid = section.querySelector(`#grid-${cat.id}`);
+    cat.dishes.forEach(dish => {
+      const key = cat.id + '::' + dish;
+      const label = document.createElement('label');
+      label.className = 'dish-check';
+      label.dataset.key = key;
+      label.innerHTML = `
+        <input type="checkbox" value="${key}" />
+        <span class="tick"></span>
+        <span class="dish-name">${dish}</span>
+      `;
+      label.addEventListener('click', () => toggleDish(label, key));
+      grid.appendChild(label);
+    });
+    container.appendChild(section);
+  });
+}
+
+function toggleDish(label, key) {
+  const cb = label.querySelector('input[type=checkbox]');
+  // The click on label will fire before the checkbox updates, so we invert
+  const nowChecked = !cb.checked;
+  // checkbox will be toggled by browser after this handler — we just track state
+  if (nowChecked) {
+    selected.add(key);
+    label.classList.add('checked');
+    label.querySelector('.tick').textContent = '✓';
+  } else {
+    selected.delete(key);
+    label.classList.remove('checked');
+    label.querySelector('.tick').textContent = '';
+  }
+  // Allow the default checkbox toggle
+  updateSummary();
+  updateSelCount(label.closest('.cat-section'));
+}
+
+function updateSelCount(section) {
+  const catId = section.querySelector('.dish-grid').id.replace('grid-', '');
+  const checked = section.querySelectorAll('.dish-check.checked').length;
+  const el = document.getElementById('sc-' + catId);
+  if (el) el.textContent = STR[currentLang].selCount(checked);
+}
+
+function updateAllSelCounts() {
+  document.querySelectorAll('.cat-section').forEach(sec => updateSelCount(sec));
+}
+
+function updateSummary() {
+  const bar = document.getElementById('summary-bar');
+  const txt = document.getElementById('summary-text');
+  const n = selected.size;
+  if (n === 0) {
+    bar.classList.remove('visible');
+  } else {
+    bar.classList.add('visible');
+    const s = STR[currentLang];
+    const names = Array.from(selected).map(k => k.split('::')[1]).join('、');
+    txt.innerHTML = `<strong>${s.summaryPre}${n}${s.summaryPost}</strong>：${names}`;
+  }
+}
+
+// ── Submit ──
+async function submitForm(e) {
+  e.preventDefault();
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { document.getElementById('f-name').focus(); return; }
+
+  const btn = document.getElementById('submit-btn');
+  const label = document.getElementById('submit-label');
+  btn.disabled = true;
+  label.textContent = STR[currentLang].submitting;
+
+  const payload = {
+    name:     name,
+    occasion: document.getElementById('f-occasion').value.trim(),
+    dishes:   Array.from(selected).map(k => k.split('::')[1]),
+    special:  document.getElementById('f-special').value.trim(),
+    lang:     currentLang,
+    submitted_at: new Date().toLocaleString('zh-CN', {timeZone:'America/Los_Angeles'})
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    showSuccess();
+  } catch (err) {
+    btn.disabled = false;
+    label.textContent = STR[currentLang].submitLabel;
+    alert(STR[currentLang].errorMsg);
+  }
+}
+
+function showSuccess() {
+  document.getElementById('wishform').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+  document.getElementById('success-title').textContent = STR[currentLang].successTitle;
+  document.getElementById('success-msg').textContent   = STR[currentLang].successMsg;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>

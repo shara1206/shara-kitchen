@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="油炸面糊 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Frying Batter Guide — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.93rem; }
+  .batter-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
+  .batter-card h3 { color: var(--accent); font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+  .batter-card .formula { background: var(--accent-soft); border-radius: 6px; padding: 8px 12px; font-size: 0.92rem; margin: 8px 0; font-family: 'Helvetica', sans-serif; }
+  .batter-card p { margin: 6px 0; font-size: 0.95rem; }
+  .label { font-weight: 600; color: var(--accent); font-size: 0.85rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .header-icon-slot { width: 180px; height: 180px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 5rem; line-height: 1; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Frying Batter Guide" data-zh="油炸面糊">Frying Batter Guide</h1>
+        <div class="meta" data-en="Cooking Tips" data-zh="烹饪技巧">Cooking Tips</div>
+      </div>
+      <div class="header-icon-slot"><svg width="120" height="120" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="16" fill="#f5f0e8" stroke="#d8c890" stroke-width="0.8"/><circle cx="18" cy="18" r="13.5" fill="none" stroke="#e8d8a0" stroke-width="0.5" opacity="0.5"/><line x1="5" y1="17" x2="9" y2="11" stroke="#f0e4cc" stroke-width="2.2" stroke-linecap="round"/><circle cx="4.5" cy="18" r="2.2" fill="#f0e4cc" stroke="#ddd0b8" stroke-width="0.5"/><ellipse cx="13" cy="9" rx="6" ry="5" fill="#f0b020" stroke="#c88008" stroke-width="0.7"/><circle cx="9.5" cy="7.5" r="1.2" fill="#d09010" opacity="0.55"/><circle cx="13" cy="4.5" r="1" fill="#c88008" opacity="0.5"/><circle cx="17" cy="6" r="1.4" fill="#d09010" opacity="0.55"/><circle cx="18.5" cy="10" r="1" fill="#c88008" opacity="0.5"/><circle cx="15" cy="13" r="1.2" fill="#d09010" opacity="0.5"/><g transform="rotate(10,24,15)"><ellipse cx="24" cy="15" rx="8" ry="5.5" fill="#e8a818" stroke="#b87808" stroke-width="0.7"/><circle cx="24" cy="15" r="1.1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="24" cy="10.5" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="27.5" cy="11.8" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="29" cy="15" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="27.2" cy="18.2" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="23.5" cy="19.5" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="20" cy="18" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="19.2" cy="14.5" r="1" fill="#f5e8c8" stroke="#a87818" stroke-width="0.4"/><circle cx="27" cy="10.2" r="0.6" fill="#f5e8c8" stroke="#a87818" stroke-width="0.35"/><circle cx="20.5" cy="19.8" r="0.6" fill="#f5e8c8" stroke="#a87818" stroke-width="0.35"/></g><circle cx="16" cy="26" r="6.5" fill="#d89818" stroke="#a87008" stroke-width="0.7"/><line x1="16" y1="26" x2="16" y2="19.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="19.6" y2="20.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="22" y2="23.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="22.5" y2="26" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="22" y2="28.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="19.5" y2="31.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="16" y2="32.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="12.5" y2="31.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="10" y2="28.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="9.5" y2="26" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="10" y2="23.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><line x1="16" y1="26" x2="12.4" y2="20.5" stroke="#b07808" stroke-width="0.5" opacity="0.38"/><circle cx="16" cy="26" r="2" fill="#c08010" opacity="0.5"/></svg></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="tip" data-en="🌟 &lt;strong&gt;Key step:&lt;/strong&gt; Mix the flour/water/egg first until smooth, then add the oil. Blend until no oil is visible." data-zh="🌟 &lt;strong&gt;关键步骤：&lt;/strong&gt;把粉水/蛋混合后，搅拌均匀再加入油！一定要混合到看不到油的状态。">🌟 <strong>关键步骤：</strong>把粉水/蛋混合后，搅拌均匀再加入油！一定要混合到看不到油的状态。</div>
+
+    <div class="batter-card">
+      <h3 data-en="❶ Crispy Batter" data-zh="❶ 脆皮糊">❶ 脆皮糊</h3>
+      <p><span class="label" data-en="Characteristics:" data-zh="特点：">特点：</span><span data-en=" Versatile all-purpose batter. Extra crispy and stays crisp for longer." data-zh="炸什么都可以，算是万能面糊，特别酥脆不容易回软。">炸什么都可以，算是万能面糊，特别酥脆不容易回软。</span></p>
+      <div class="formula">📍 60g 中筋面粉 + 60g 土豆淀粉 + 3g 泡打粉 + 120g 清水 + 10g 油</div>
+      <p data-en="Best for dishes eaten immediately: lotus root cakes, stuffed eggplant, fried chicken, etc." data-zh="特别适合炸完直接吃的菜：炸藕盒 / 茄盒 / 炸鸡等。">特别适合炸完直接吃的菜：炸藕盒 / 茄盒 / 炸鸡等。</p>
+    </div>
+
+    <div class="batter-card">
+      <h3 data-en="❷ Hard-Fry Batter" data-zh="❷ 硬炸糊">❷ 硬炸糊</h3>
+      <p><span class="label" data-en="Characteristics:" data-zh="特点：">特点：</span><span data-en=" Dry, hard, and very crispy. Thick coating. For meat only." data-zh="口感干硬脆，较厚，只能用来裹肉类。">口感干硬脆，较厚，只能用来裹肉类。</span></p>
+      <div class="formula">📍 80g 土豆淀粉 + 65g 清水 + 15g 油</div>
+      <p data-en="For dishes that get sauced after frying: guobaorou, sweet &amp; sour pork, stir-fried pork strips, etc." data-zh="口感硬脆，适合炸完还要裹酱汁的菜：锅包肉 / 溜肉段 / 咕咾肉 / 糖醋里脊等。">口感硬脆，适合炸完还要裹酱汁的菜：锅包肉 / 溜肉段 / 咕咾肉 / 糖醋里脊等。</p>
+    </div>
+
+    <div class="batter-card">
+      <h3 data-en="❸ Bubble Batter" data-zh="❸ 气泡糊">❸ 气泡糊</h3>
+      <p><span class="label" data-en="Characteristics:" data-zh="特点：">特点：</span><span data-en=" Very airy and thin-crispy. Big bubbles form while frying. Must eat immediately — goes soft quickly." data-zh="非常蓬松，薄脆，炸的时候会起大泡泡，炸完需要马上吃，容易回软。">非常蓬松，薄脆，炸的时候会起大泡泡，炸完需要马上吃，容易回软。</span></p>
+      <div class="formula">📍 玉米淀粉 30g + 土豆淀粉 60g + 2g 泡打粉 + 中筋面粉 20g + 蛋清 3个 + 水 25g + 油 100g</div>
+      <p data-en="For bubble shrimp — foolproof. Use lots of oil, added in three batches. Fry on high heat; bubbles form immediately on contact." data-zh="制作气泡虾用，不会失败！油量很大，记得分三次加入油！炸的时候需要大火，放下去马上起泡。">制作气泡虾用，不会失败！油量很大，记得分三次加入油！炸的时候需要大火，放下去马上起泡。</p>
+    </div>
+
+    <div class="batter-card">
+      <h3 data-en="❹ Soft-Fry Batter" data-zh="❹ 软炸糊">❹ 软炸糊</h3>
+      <p><span class="label" data-en="Characteristics:" data-zh="特点：">特点：</span><span data-en=" Thicker shell, starts crispy then softens. Rich eggy aroma that transfers to the food." data-zh="外壳较厚，先脆后软，软感更多，蛋香浓郁，会给食材增添一些蛋香。">外壳较厚，先脆后软，软感更多，蛋香浓郁，会给食材增添一些蛋香。</span></p>
+      <div class="formula">📍 75g 全蛋液 + 60g 玉米淀粉 + 10g 油</div>
+      <p data-en="Good for soft-fried tenderloin, fried vegetables, fried mushrooms. Dust with salt &amp; pepper or chili powder after frying." data-zh="可以制作软炸里脊、炸蔬菜、炸蘑菇，炸完撒一些椒盐/辣椒粉。">可以制作软炸里脊、炸蔬菜、炸蘑菇，炸完撒一些椒盐/辣椒粉。</p>
+    </div>
+
+    <div class="tip" data-en="🌟 &lt;strong&gt;Double-fry technique:&lt;/strong&gt; Fry twice for maximum crunch. Heat oil to 180°C (high heat), fry until set, lower heat to cook through, remove and rest. Second fry on high heat ~20 seconds — very crispy." data-zh="🌟 &lt;strong&gt;复炸技巧：&lt;/strong&gt;油炸食物需要炸两次才会脆。先大火烧热油至 180°C，下锅炸定型后转小火炸熟，捞出冷却。再次大火复炸约 20 秒，食物会非常脆。">🌟 <strong>复炸技巧：</strong>油炸食物需要炸两次才会脆。先大火烧热油至 180°C，下锅炸定型后转小火炸熟，捞出冷却。再次大火复炸约 20 秒，食物会非常脆。</div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

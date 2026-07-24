@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="北海道汤种面包 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hokkaido Milk Bread — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+
+  /* ── CSS language switching for complex content ── */
+  html[lang="zh-CN"] .lang-en { display: none; }
+  html[lang="en"]    .lang-zh { display: none; }
+  /* Default before JS runs (html[lang="en"] is default): show English */
+
+  /* ── Header ── */
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 800px; margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 800px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 800px; margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+
+  /* ── Layout ── */
+  main { max-width: 800px; margin: 0 auto; padding: 36px 24px 60px; }
+
+  /* ── Ingredients card ── */
+  .ingredients-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 36px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .ingredients-card h2 { color: var(--accent); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 16px; font-family: 'Helvetica', 'PingFang SC', sans-serif; border-bottom: 1px dashed var(--border); padding-bottom: 8px; }
+  .ingredients-body { display: flex; gap: 24px; align-items: flex-start; }
+  .ingredients-tables { flex: 1; }
+  .ingredient-group { margin-bottom: 16px; }
+  .ingredient-group:last-child { margin-bottom: 0; }
+  .ingredient-group h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 8px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  table { border-collapse: collapse; width: 100%; }
+  td { padding: 4px 12px 4px 0; font-size: 0.95rem; vertical-align: top; }
+  td:first-child { color: var(--muted); width: 130px; white-space: nowrap; }
+
+  /* Wheat gluten photo */
+  .gluten-photo { width: 140px; flex-shrink: 0; }
+  .gluten-photo img { width: 140px; border-radius: 8px; display: block; }
+  .gluten-photo .gluten-label { text-align: center; margin-top: 6px; font-size: 0.75rem; color: var(--muted); line-height: 1.3; }
+  .gluten-photo.hidden { display: none; }
+
+  /* ── Phase headers ── */
+  .phase-header { display: flex; align-items: center; gap: 12px; margin: 36px 0 20px; }
+  .phase-header h2 { font-size: 1.15rem; color: var(--accent); margin: 0; font-family: 'Helvetica', 'PingFang SC', sans-serif; white-space: nowrap; }
+  .phase-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── Step cards ── */
+  .steps-list { display: flex; flex-direction: column; gap: 12px; }
+  .step-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+
+  /* Step photo — only shown when image loads */
+  .step-photo { display: none; width: 100%; }
+  .step-photo.loaded { display: block; border-bottom: 1px solid var(--border); }
+  .step-photo img { width: 100%; max-height: 320px; object-fit: cover; display: block; }
+
+  /* Step body */
+  .step-inner { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; }
+  .step-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: white; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Helvetica', sans-serif; margin-top: 2px; }
+  .step-text { flex: 1; font-size: 0.97rem; line-height: 1.75; }
+  .step-text mark { background: var(--accent-soft); color: var(--ink); padding: 0 3px; border-radius: 3px; }
+
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <h1 data-en="Hokkaido Milk Bread" data-zh="北海道汤种面包">Hokkaido Milk Bread</h1>
+    <div class="meta" data-en="Desserts · 450g loaf tin" data-zh="甜点 · 450g 吐司盒">Desserts · 450g loaf tin</div>
+  </header>
+
+  <main>
+
+    <!-- ══ INGREDIENTS ══ -->
+    <div class="ingredients-card">
+      <h2 data-en="Ingredients (450g loaf tin)" data-zh="配方（450g吐司盒）">Ingredients (450g loaf tin)</h2>
+      <div class="ingredients-body">
+        <div class="ingredients-tables">
+
+          <div class="ingredient-group">
+            <h3 data-en="Tangzhong" data-zh="汤种">Tangzhong</h3>
+            <table>
+              <tr><td data-en="Bread flour" data-zh="高筋面粉">Bread flour</td><td>20g</td></tr>
+              <tr><td data-en="Water" data-zh="水">Water</td><td>100g</td></tr>
+            </table>
+          </div>
+
+          <div class="ingredient-group">
+            <h3 data-en="Main Dough" data-zh="主面团">Main Dough</h3>
+            <table>
+              <tr>
+                <td data-en="Bread flour" data-zh="高筋面粉">Bread flour</td>
+                <td>250g
+                  <br><span class="lang-en"><small style="color:var(--muted)">(if protein &lt;14%: 25g Vital Wheat Gluten + 225g flour)</small></span>
+                  <span class="lang-zh"><small style="color:var(--muted)">（protein &lt;14%时：25g Wheat Gluten + 225g面粉）</small></span>
+                </td>
+              </tr>
+              <tr><td data-en="Sugar" data-zh="糖">Sugar</td><td>30g</td></tr>
+              <tr><td data-en="Salt" data-zh="盐">Salt</td><td>3g</td></tr>
+              <tr><td data-en="Dry yeast" data-zh="干酵母">Dry yeast</td><td>4g</td></tr>
+              <tr><td data-en="Milk (cold)" data-zh="牛奶（冷藏）">Milk (cold)</td><td>79g</td></tr>
+              <tr><td data-en="Condensed milk" data-zh="炼乳">Condensed milk</td><td>20g</td></tr>
+              <tr><td data-en="Heavy cream" data-zh="淡奶油">Heavy cream</td><td>30g</td></tr>
+              <tr>
+                <td data-en="Unsalted butter, softened" data-zh="无盐黄油（软化）">Unsalted butter, softened</td>
+                <td>20g <small style="color:var(--muted)">
+                  <span class="lang-en">(used 23g this time)</span>
+                  <span class="lang-zh">（这次用了23克）</span>
+                </small></td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+
+        <div class="gluten-photo hidden" id="glutenPhoto">
+          <img src="images/beihaidao/wheat-gluten.jpg" alt="Anthony's Vital Wheat Gluten"
+               onload="this.parentElement.classList.remove('hidden')"
+               onerror="">
+          <div class="gluten-label">Anthony's<br>Vital Wheat Gluten</div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ══ TANGZHONG ══ -->
+    <div class="phase-header">
+      <h2 data-en="① Tangzhong" data-zh="① 汤种">① Tangzhong</h2>
+    </div>
+    <div class="steps-list">
+
+      <div class="step-card">
+        <div class="step-photo"><img src="images/beihaidao/tz-1.jpg" alt="" onload="this.parentElement.classList.add('loaded')" onerror=""></div>
+        <div class="step-inner">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <span class="lang-zh">在锅中加入水和面粉。</span>
+            <span class="lang-en">Add water and flour to a small saucepan.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-photo"><img src="images/beihaidao/tz-2.jpg" alt="" onload="this.parentElement.classList.add('loaded')" onerror=""></div>
+        <div class="step-inner">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <span class="lang-zh">开小火加热并不断搅拌。</span>
+            <span class="lang-en">Heat over low flame, stirring constantly.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-photo"><img src="images/beihaidao/tz-3.jpg" alt="" onload="this.parentElement.classList.add('loaded')" onerror=""></div>
+        <div class="step-inner">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <span class="lang-zh">当面糊逐渐变黏稠，出现明显的纹路。</span>
+            <span class="lang-en">Continue until the paste thickens and leaves visible lines when stirred.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <span class="lang-zh">温度达到65°C即可关火。（其实粘稠了就基本到65°C了。）盖保鲜膜，用冰水混合物在外面快速冷却；不着急用的话室温慢慢冷却也可以。</span>
+            <span class="lang-en">Remove from heat at 65°C — it's basically there once it's thick. Cover with plastic wrap and cool in an ice bath, or let cool at room temperature if not in a hurry.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ MAIN DOUGH ══ -->
+    <div class="phase-header">
+      <h2 data-en="② Main Dough" data-zh="② 主面团">② Main Dough</h2>
+    </div>
+    <div class="steps-list">
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <span class="lang-zh">在搅拌盆中加入高筋面粉、细砂糖、盐粗略搅拌，然后加入干酵母搅拌均匀。这样可以防止酵母与盐直接接触影响活性。</span>
+            <span class="lang-en">Combine bread flour, sugar, and salt in the mixing bowl with a brief stir, then add dry yeast and mix. This prevents the yeast and salt from coming into direct contact.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <span class="lang-zh">将牛奶、淡奶油、炼乳混合均匀。</span>
+            <span class="lang-en">Whisk together the cold milk, heavy cream, and condensed milk.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <span class="lang-zh">将汤种与液体一起加入搅拌盆中。</span>
+            <span class="lang-en">Add the tangzhong and the liquid mixture to the flour bowl.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <span class="lang-zh">用刮刀搅拌成面块，这样可以加快揉面的速度。</span>
+            <span class="lang-en">Use a spatula to bring everything together into a rough dough — this speeds up kneading.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <span class="lang-zh">开启 KitchenAid stir 档揉面，2分钟成团，不用光滑，静置15分钟。不成团很黏的话是面粉protein需要时间吸水，或面粉protein含量不够。（家里如果热，盆底放冰水混合物的盆，静置时不要让面团变热。）</span>
+            <span class="lang-en">KitchenAid on Stir — 2 min until it just comes together (doesn't need to be smooth), then rest 15 min. If still very sticky, the flour needs more time to hydrate or has insufficient protein. If kitchen is warm, set the bowl over an ice bath during the rest.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">6</div>
+          <div class="step-text">
+            <span class="lang-zh">KitchenAid 开 Stir 或 2 档，揉面约20分钟。取一小块面团，能拉出较薄的膜，破裂口有少量锯齿，此时面团8成筋度。</span>
+            <span class="lang-en">KitchenAid on Stir or Speed 2, ~20 minutes. Test: stretch a small piece — it should form a thin film that tears with a slightly jagged edge. This is 80% gluten development.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">7</div>
+          <div class="step-text">
+            <span class="lang-zh">加入软化的黄油。</span>
+            <span class="lang-en">Add the softened butter.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">8</div>
+          <div class="step-text">
+            <span class="lang-zh">先用刮刀搅拌几下，方便后面混合均匀。要避免黄油融化，否则不易融入面团。</span>
+            <span class="lang-en">Use a spatula to roughly incorporate the butter before turning the machine on. Avoid letting the butter melt — it becomes harder to absorb into the dough.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">9</div>
+          <div class="step-text">
+            <span class="lang-zh">用厨师机低速将面团与黄油揉至完全混合均匀，大约2分钟。</span>
+            <span class="lang-en">KitchenAid on low speed until butter is fully incorporated, about 2 minutes.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">10</div>
+          <div class="step-text">
+            <span class="lang-zh">转为中速揉面，揉到面团随搅拌钩猛烈拍打盆壁的状态，面团表面会变得非常光滑。</span>
+            <span class="lang-en">Increase to medium speed. Knead until the dough slaps the bowl vigorously and the surface is very smooth.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">11</div>
+          <div class="step-text">
+            <span class="lang-zh">能拉出均匀的薄膜，破裂口很圆滑，此时面团10成筋度。这个过程大约用了3分钟。</span>
+            <span class="lang-en">Windowpane test: stretch a small piece — it should form a translucent, even film that tears with a smooth round hole. This is full gluten development (100%). Took about 3 minutes.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">12</div>
+          <div class="step-text">
+            <span class="lang-zh">此时面团温度为26°C。</span>
+            <span class="lang-en">Dough temperature at this point: 26°C (79°F).</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">13</div>
+          <div class="step-text">
+            <span class="lang-zh">将面团揉圆放入抹油的盆中。</span>
+            <span class="lang-en">Shape the dough into a ball and place in a lightly oiled bowl.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">14</div>
+          <div class="step-text">
+            <span class="lang-zh">盖上保鲜膜进行一次发酵。室温低于25°C则需借助烤箱发酵；烤箱没有proof功能的话，烧点水倒烤盘里放进去。冬天基本需要烤箱发酵。</span>
+            <span class="lang-en">Cover with plastic wrap and proof. If room temperature is below 25°C, proof in the oven (use a pan of hot water if no proof setting). In winter, oven proofing is almost always needed.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">15</div>
+          <div class="step-text">
+            <span class="lang-zh">当面团发酵至体积变为2倍大，用手指插入不回弹不塌陷，即说明发酵到位。塌陷则发酵过度，回弹则发酵不足。约90分钟。可以用矿泉水瓶盖法观察两倍大。</span>
+            <span class="lang-en">First proof is done when the dough doubles in size and a finger poke holds without springing back or collapsing. Collapses = over-proofed; springs back = under-proofed. About 90 minutes. Tip: use a water bottle cap to track the starting volume.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ SHAPING ══ -->
+    <div class="phase-header">
+      <h2 data-en="③ Shaping" data-zh="③ 整形">③ Shaping</h2>
+    </div>
+    <div class="steps-list">
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <span class="lang-zh">将面团取出，用手掌从中间向四周均匀按压排气。</span>
+            <span class="lang-en">Turn the dough out and press from the centre outward with your palm to degas evenly.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <span class="lang-zh">进行一次三折，这一步能让吐司的组织更加细腻，也能促进二次发酵。</span>
+            <span class="lang-en">Fold the dough in thirds (like a letter). This refines the crumb and helps the second proof.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <span class="lang-zh">将面团均匀分割成三等份，每份约180g。分割尽量一步到位，避免产生太多小面团，不利于保持面筋。</span>
+            <span class="lang-en">Divide into 3 equal pieces, ~180g each. Try to cut cleanly in one motion — too many scraps weaken the gluten structure.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <span class="lang-zh">将三个面团分别揉圆。</span>
+            <span class="lang-en">Shape each piece into a smooth ball.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <span class="lang-zh">用保鲜膜盖好防止表面风干，静置15分钟。静置是为了让面团松弛，方便下一步的擀卷。</span>
+            <span class="lang-en">Cover with plastic wrap and bench rest 15 minutes. This relaxes the gluten so the dough rolls out easily.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">6</div>
+          <div class="step-text">
+            <span class="lang-zh">将静置好的面团擀压成面饼形，翻转光滑面朝下。</span>
+            <span class="lang-en">Roll each ball into a flat oval, then flip it smooth-side down.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">7</div>
+          <div class="step-text">
+            <span class="lang-zh">左右各折入三分之一。</span>
+            <span class="lang-en">Fold the left and right thirds into the centre.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">8</div>
+          <div class="step-text">
+            <span class="lang-zh">再次擀压成长条形状，面团底边拉宽压薄。</span>
+            <span class="lang-en">Roll out again into a long strip, pressing the far edge thin and wide.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">9</div>
+          <div class="step-text">
+            <span class="lang-zh">按压掉侧边的气泡。</span>
+            <span class="lang-en">Press out any air bubbles along the sides.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">10</div>
+          <div class="step-text">
+            <span class="lang-zh">用双手将面团卷起，要卷紧一点，大约2–3圈。</span>
+            <span class="lang-en">Roll up the dough tightly with both hands, about 2–3 turns.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">11</div>
+          <div class="step-text">
+            <span class="lang-zh">卷的圈数多则组织会更细腻，但不是越多越好。</span>
+            <span class="lang-en">More rolls = finer crumb, but more is not always better.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">12</div>
+          <div class="step-text">
+            <span class="lang-zh">将卷好的面团按同一旋转方向放入吐司盒内。</span>
+            <span class="lang-en">Place all three rolls in the loaf tin with the seam facing the same direction.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">13</div>
+          <div class="step-text">
+            <span class="lang-zh">放入烤箱进行二次发酵。放点水增加湿度，冬天用开水。</span>
+            <span class="lang-en">Place in oven for second proof with a pan of water for humidity — use boiling water in winter.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ BAKING ══ -->
+    <div class="phase-header">
+      <h2 data-en="④ Baking" data-zh="④ 烘烤">④ Baking</h2>
+    </div>
+    <div class="steps-list">
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">14</div>
+          <div class="step-text">
+            <span class="lang-zh">当面团发酵到接近模具顶部，高度约9成，用手指按压缓慢回弹，则说明发酵到位。夏天约90分钟，冬天用烤箱proof约2小时。</span>
+            <span class="lang-en">Second proof is done when the dough reaches ~90% of the tin height and a finger poke springs back slowly. Summer: ~90 min. Winter: ~2 hours in oven.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">15</div>
+          <div class="step-text">
+            <span class="lang-zh">盖上盖子，送入烤箱底层。</span>
+            <span class="lang-en">Cover with the lid and place on the bottom rack of the oven.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-inner">
+          <div class="step-num">16</div>
+          <div class="step-text">
+            <span class="lang-zh">我是盖着锡箔纸175°C（347°F）烤35分钟，然后用broil上色。也可以刷糖水上色。之后用有盖子的吐司盒就不用管上色了。</span>
+            <span class="lang-en">175°C (347°F) covered with foil for 35 min, then broil to brown the top. Alternatively brush with sugar water. If using a lidded Pullman pan, skip the browning step.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip">要根据烤箱温差灵活调整。 / Adjust temperature based on your oven's actual heat.</div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care — Shara Wang © 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="Shara的厨房">
+<head>
+<meta charset="UTF-8" />
+<base href="../" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#c97b3a" />
+<title>Shara's Kitchen</title>
+<link rel="stylesheet" href="assets/lang.css" />
+<link rel="manifest" href="kitchen-app/manifest.webmanifest" />
+<link rel="apple-touch-icon" href="kitchen-app/icons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" href="kitchen-app/icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Kitchen" />
+<meta name="mobile-web-app-capable" content="yes" />
+<style>
+  :root {
+    --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b;
+    --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+    --gold:#e0a060;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Georgia','Times New Roman','PingFang SC','Hiragino Sans GB','Microsoft YaHei',serif; }
+
+  /* ---------- header ---------- */
+  header { position:relative; background:linear-gradient(135deg,var(--accent) 0%,var(--gold) 100%);
+    color:#fff; padding:20px 18px 16px; box-shadow:0 2px 10px rgba(0,0,0,0.12); }
+  .head-row { display:flex; align-items:center; gap:10px; }
+  .back-btn { display:none; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.45);
+    color:#fff; font-size:1.1rem; width:40px; height:40px; min-width:40px; border-radius:50%;
+    cursor:pointer; align-items:center; justify-content:center; }
+  .back-btn.show { display:inline-flex; }
+  header h1 { margin:0; font-size:1.5rem; letter-spacing:0.3px; flex:1; }
+  .search-wrap { margin-top:14px; position:relative; }
+  .search-wrap input { width:100%; border:none; border-radius:24px; padding:13px 44px 13px 44px;
+    font-size:1.05rem; font-family:inherit; background:#fff; color:var(--ink); box-shadow:0 1px 6px rgba(0,0,0,0.12); }
+  .search-wrap input:focus { outline:2px solid var(--accent-soft); }
+  .search-wrap .mag { position:absolute; left:16px; top:50%; transform:translateY(-50%); opacity:0.5; font-size:1.05rem; }
+  .search-wrap .clr { position:absolute; right:12px; top:50%; transform:translateY(-50%);
+    border:none; background:transparent; font-size:1.2rem; color:var(--muted); cursor:pointer; display:none; }
+
+  main { max-width:1500px; margin:0 auto; padding:18px 16px 90px; }
+
+  .section-label { font-family:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:1px; color:var(--accent);
+    margin:22px 4px 12px; font-weight:700; }
+  .section-label:first-child { margin-top:6px; }
+
+  /* ---------- category grid ---------- */
+  .cat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
+  .cat-card { background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:16px 14px; cursor:pointer; text-align:left; display:flex; align-items:center; gap:12px;
+    transition:transform .15s,box-shadow .15s,border-color .15s; min-height:72px; }
+  .cat-card:active { transform:scale(0.97); }
+  .cat-card:hover { box-shadow:0 6px 18px rgba(201,123,58,0.18); border-color:var(--accent); }
+  .cat-card .ico { font-size:1.9rem; flex-shrink:0; }
+  .cat-card .ct-txt { min-width:0; }
+  .cat-card .ct-name { font-size:1.02rem; font-weight:600; color:var(--ink); line-height:1.25; }
+  .cat-card .ct-count { font-size:0.78rem; color:var(--muted);
+    font-family:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; margin-top:2px; }
+
+  /* ---------- item cards ---------- */
+  .item-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; }
+  .item-card { position:relative; background:var(--card); border:1px solid var(--border); border-radius:14px;
+    overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column;
+    transition:transform .15s,box-shadow .15s; }
+  .item-card:active { transform:scale(0.98); }
+  .item-card:hover { box-shadow:0 6px 18px rgba(201,123,58,0.18); }
+  .thumb { aspect-ratio:4/3; width:100%; background:linear-gradient(135deg,var(--accent-soft),#fff);
+    display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden; }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .item-body { padding:10px 12px 12px; flex:1; }
+  .item-title { font-size:1rem; font-weight:600; line-height:1.3; }
+  .item-sub { font-size:0.8rem; color:var(--muted); margin-top:3px;
+    font-family:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; }
+  .item-cat { font-size:0.72rem; color:var(--accent); margin-top:5px;
+    font-family:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; }
+  .star { position:absolute; top:8px; right:8px; width:34px; height:34px; border-radius:50%;
+    border:none; background:rgba(255,255,255,0.85); cursor:pointer; font-size:1.05rem; line-height:1;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,0.15); }
+  .star.on { color:#e8a317; }
+  .star.off { color:#bbb; }
+
+  .empty { text-align:center; color:var(--muted); padding:50px 20px; font-size:1rem; }
+  .view-title { font-size:1.3rem; margin:6px 4px 16px; display:flex; align-items:center; gap:8px; }
+
+  @media (min-width:700px){
+    header h1{font-size:1.8rem;}
+    .cat-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}
+    .item-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
+  }
+
+  /* ---------- in-app recipe viewer (kitchen mode) ---------- */
+  .viewer { position:fixed; inset:0; z-index:50; background:var(--bg);
+    display:none; flex-direction:column; }
+  .viewer.show { display:flex; }
+  .v-bar { display:flex; align-items:center; gap:6px; padding:8px 10px;
+    background:linear-gradient(135deg,var(--accent) 0%,var(--gold) 100%); color:#fff;
+    box-shadow:0 2px 8px rgba(0,0,0,0.18); padding-top:max(8px,env(safe-area-inset-top)); }
+  .v-bar button { background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.45);
+    color:#fff; border-radius:10px; height:40px; min-width:40px; padding:0 10px; font-size:1rem;
+    font-family:inherit; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; }
+  .v-bar button:active { transform:scale(0.95); }
+  .v-bar .v-title { flex:1; min-width:0; font-size:1.05rem; font-weight:600;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 4px; }
+  .v-bar .awake-btn.on { background:#fff; color:var(--accent); border-color:#fff; }
+  .v-frame { flex:1; width:100%; border:none; background:#fff; }
+  .v-fs { font-family:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; }
+</style>
+</head>
+<body>
+<header>
+  <div class="head-row">
+    <button class="back-btn" id="backBtn" aria-label="Back">&larr;</button>
+    <h1 id="appTitle" data-en="Shara's Kitchen" data-zh="Shara的厨房">Shara's Kitchen</h1>
+    <div class="lang-toggle">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="zh" class="active">中文</button>
+    </div>
+  </div>
+  <div class="search-wrap">
+    <span class="mag">&#128269;</span>
+    <input id="search" type="search" autocomplete="off"
+      data-en-ph="Search recipes, ingredients, notes…" data-zh-ph="搜索菜谱、食材、笔记…"
+      placeholder="搜索菜谱、食材、笔记…" />
+    <button class="clr" id="clrBtn" aria-label="Clear">&times;</button>
+  </div>
+</header>
+<main id="main"></main>
+
+<script src="kitchen-app/data/recipes.js"></script>
+<script src="assets/lang.js"></script>
+<script>
+(function(){
+  const DATA = window.__RECIPES__ || {items:[],categories:[]};
+  const main = document.getElementById('main');
+  const searchEl = document.getElementById('search');
+  const clrBtn = document.getElementById('clrBtn');
+  const backBtn = document.getElementById('backBtn');
+  const LANG_KEY = 'shara-notes-lang';
+  const FAV_KEY  = 'shara-fav';
+
+  function lang(){ try { return localStorage.getItem(LANG_KEY) || 'zh'; } catch(e){ return 'zh'; } }
+  function favs(){ try { return JSON.parse(localStorage.getItem(FAV_KEY)||'[]'); } catch(e){ return []; } }
+  function setFavs(a){ try { localStorage.setItem(FAV_KEY, JSON.stringify(a)); } catch(e){} }
+  function isFav(p){ return favs().indexOf(p) !== -1; }
+  function toggleFav(p){ const a=favs(); const i=a.indexOf(p); if(i===-1)a.push(p); else a.splice(i,1); setFavs(a); }
+
+  function L(en,zh){ return lang()==='zh' ? (zh||en) : (en||zh); }
+  function T(it){ return L(it.title_en, it.title_zh); }
+  function CN(it){ return L(it.category_en, it.category_zh); }
+
+  function iconFor(cat){
+    const c=(cat||'').toLowerCase();
+    if(c.includes('noodle'))return '🍜';
+    if(c.includes('dumpling')||c.includes('bun'))return '🥟';
+    if(c.includes('pancake')||c.includes('flatbread'))return '🥞';
+    if(c.includes('fried dough'))return '🥯';
+    if(c.includes('poultry'))return '🍗';
+    if(c.includes('pork'))return '🥓';
+    if(c.includes('beef')||c.includes('lamb'))return '🥩';
+    if(c.includes('seafood'))return '🦐';
+    if(c.includes('vegetable')||c.includes('tofu'))return '🥬';
+    if(c.includes('rice')||c.includes('one-pot'))return '🍚';
+    if(c.includes('baking')||c.includes('pastry'))return '🧁';
+    if(c.includes('sweet')||c.includes('street'))return '🍡';
+    if(c.includes('pudding')||c.includes('jell'))return '🍮';
+    if(c.includes('drink'))return '🧋';
+    if(c.includes('condiment')||c.includes('preserved'))return '🫙';
+    if(c.includes('cooking tip'))return '💡';
+    if(c.includes('ingredient'))return '📝';
+    if(c.includes('study'))return '📚';
+    if(c.includes('page'))return '📋';
+    return '🍽️';
+  }
+
+  function itemCard(it){
+    const fav = isFav(it.path);
+    const thumb = it.image
+      ? '<div class="thumb"><img src="'+it.image+'" alt="" onerror="this.parentElement.innerHTML=\''+iconFor(it.category_en)+'\'"></div>'
+      : '<div class="thumb">'+iconFor(it.category_en)+'</div>';
+    const sub = (L(it.subtitle_en,it.subtitle_zh)) ? '<div class="item-sub">'+L(it.subtitle_en,it.subtitle_zh)+'</div>' : '';
+    return '<a class="item-card" href="'+it.path+'">'
+      + '<button class="star '+(fav?'on':'off')+'" data-path="'+it.path+'" aria-label="favorite">'+(fav?'★':'☆')+'</button>'
+      + thumb
+      + '<div class="item-body"><div class="item-title">'+T(it)+'</div>'+sub
+      + '<div class="item-cat">'+CN(it)+'</div></div></a>';
+  }
+
+  function renderHome(){
+    backBtn.classList.remove('show');
+    const order = ['recipe','tip','study','page'];
+    const labels = { recipe:['Recipes','菜谱'], tip:['Guides & Tips','技法指南'],
+                     study:['Study Topics','学习专题'], page:['More','更多'] };
+    let html='';
+    // favorites strip
+    const fv = DATA.items.filter(it=>isFav(it.path));
+    if(fv.length){
+      html += '<div class="section-label">'+L('★ Favorites','★ 收藏')+'</div>';
+      html += '<div class="item-grid">'+fv.map(itemCard).join('')+'</div>';
+    }
+    order.forEach(typ=>{
+      const cats = DATA.categories.filter(c=>c.type===typ);
+      if(!cats.length) return;
+      html += '<div class="section-label">'+L(labels[typ][0],labels[typ][1])+'</div>';
+      html += '<div class="cat-grid">'+cats.map(c=>{
+        const name = lang()==='zh' ? c.name_zh : c.name_en;
+        const key = encodeURIComponent(c.name_en+'|'+c.type);
+        return '<button class="cat-card" data-cat="'+key+'">'
+          + '<span class="ico">'+iconFor(c.name_en)+'</span>'
+          + '<span class="ct-txt"><span class="ct-name">'+name+'</span>'
+          + '<span class="ct-count">'+c.count+' '+L('items','项')+'</span></span></button>';
+      }).join('')+'</div>';
+    });
+    main.innerHTML = html;
+    bindStars(); bindCats();
+  }
+
+  function renderCategory(nameEn, typ){
+    backBtn.classList.add('show');
+    const cat = DATA.categories.find(c=>c.name_en===nameEn && c.type===typ);
+    const nameZh = cat ? cat.name_zh : nameEn;
+    const items = DATA.items.filter(it=>it.category_en===nameEn && it.type===typ);
+    let html = '<div class="view-title">'+iconFor(nameEn)+' '+(lang()==='zh'?nameZh:nameEn)+'</div>';
+    html += items.length
+      ? '<div class="item-grid">'+items.map(itemCard).join('')+'</div>'
+      : '<div class="empty">'+L('Nothing here yet','这里还没有内容')+'</div>';
+    main.innerHTML = html;
+    bindStars();
+  }
+
+  function renderSearch(q){
+    backBtn.classList.add('show');
+    const t = q.trim().toLowerCase();
+    const hits = !t ? [] : DATA.items.filter(it=>{
+      return [it.title_en,it.title_zh,it.category_en,it.category_zh,it.subtitle_en,it.subtitle_zh]
+        .some(s=>(s||'').toLowerCase().includes(t));
+    });
+    let html = '<div class="view-title">'+L('Search','搜索')+(t?' · '+hits.length:'')+'</div>';
+    html += hits.length
+      ? '<div class="item-grid">'+hits.map(itemCard).join('')+'</div>'
+      : '<div class="empty">'+(t?L('No matches','没有匹配结果'):L('Type to search…','输入以搜索…'))+'</div>';
+    main.innerHTML = html;
+    bindStars();
+  }
+
+  function bindStars(){
+    main.querySelectorAll('.star').forEach(b=>{
+      b.addEventListener('click',e=>{
+        e.preventDefault(); e.stopPropagation();
+        toggleFav(b.dataset.path);
+        const on = isFav(b.dataset.path);
+        b.classList.toggle('on',on); b.classList.toggle('off',!on);
+        b.textContent = on?'★':'☆';
+      });
+    });
+  }
+  function bindCats(){
+    main.querySelectorAll('.cat-card').forEach(b=>{
+      b.addEventListener('click',()=>{ location.hash = 'cat='+b.dataset.cat; });
+    });
+  }
+
+  function route(){
+    const h = location.hash.slice(1);
+    if(h.startsWith('view=')){ openViewer(decodeURIComponent(h.slice(5))); return; }
+    closeViewer();
+    if(h.startsWith('cat=')){
+      const [en,typ] = decodeURIComponent(h.slice(4)).split('|');
+      renderCategory(en, typ);
+    } else if(h==='search'){
+      renderSearch(searchEl.value);
+    } else {
+      renderHome();
+    }
+  }
+
+  // search behaviour
+  searchEl.addEventListener('input',()=>{
+    clrBtn.style.display = searchEl.value ? 'block':'none';
+    if(searchEl.value){ if(location.hash!=='#search') location.hash='search'; else renderSearch(searchEl.value); }
+    else if(location.hash==='#search'){ renderSearch(''); }
+  });
+  searchEl.addEventListener('focus',()=>{ if(searchEl.value && location.hash!=='#search') location.hash='search'; });
+  clrBtn.addEventListener('click',()=>{ searchEl.value=''; clrBtn.style.display='none'; history.back(); });
+  backBtn.addEventListener('click',()=>history.back());
+
+  // re-render dynamic content + search placeholder when language toggled
+  document.querySelectorAll('.lang-toggle button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const lg = b.dataset.lang;
+      const ph = searchEl.getAttribute('data-'+lg+'-ph'); if(ph) searchEl.placeholder = ph;
+      setTimeout(route,0);
+    });
+  });
+  // apply saved placeholder on load
+  const ph0 = searchEl.getAttribute('data-'+lang()+'-ph'); if(ph0) searchEl.placeholder = ph0;
+
+  // ---------- in-app recipe viewer (kitchen mode) ----------
+  const FS_KEY='shara-fontscale', AWAKE_KEY='shara-awake';
+  function fontScale(){ const v=parseFloat(localStorage.getItem(FS_KEY)); return (v>=0.8&&v<=2)?v:1; }
+  function setFontScale(v){ try{ localStorage.setItem(FS_KEY,String(v)); }catch(e){} }
+  function awakeOn(){ return localStorage.getItem(AWAKE_KEY)==='1'; }
+  function setAwake(b){ try{ localStorage.setItem(AWAKE_KEY,b?'1':'0'); }catch(e){} }
+
+  let viewer,vFrame,vTitle,awakeBtn,wakeLock=null,builtViewer=false;
+  function buildViewerOnce(){
+    if(builtViewer) return; builtViewer=true;
+    viewer=document.createElement('div'); viewer.className='viewer';
+    viewer.innerHTML=
+      '<div class="v-bar">'
+      + '<button class="v-back" aria-label="Back">&larr;</button>'
+      + '<span class="v-title"></span>'
+      + '<button class="v-fs v-smaller" aria-label="Smaller text">A-</button>'
+      + '<button class="v-fs v-bigger" aria-label="Bigger text">A+</button>'
+      + '<button class="awake-btn" aria-label="Keep screen awake" title="Keep screen awake">&#9728;</button>'
+      + '</div><iframe class="v-frame" referrerpolicy="no-referrer"></iframe>';
+    document.body.appendChild(viewer);
+    vFrame=viewer.querySelector('.v-frame');
+    vTitle=viewer.querySelector('.v-title');
+    awakeBtn=viewer.querySelector('.awake-btn');
+    viewer.querySelector('.v-back').addEventListener('click',()=>history.back());
+    viewer.querySelector('.v-smaller').addEventListener('click',()=>bumpFont(-0.1));
+    viewer.querySelector('.v-bigger').addEventListener('click',()=>bumpFont(0.1));
+    awakeBtn.addEventListener('click',()=>{ setAwake(!awakeOn()); syncAwakeBtn(); awakeOn()?reqWake():relWake(); });
+    vFrame.addEventListener('load',applyFont);
+  }
+  function applyFont(){
+    try{ const d=vFrame.contentDocument; if(d&&d.body) d.body.style.zoom=fontScale(); }catch(e){}
+  }
+  function bumpFont(d){
+    let v=Math.round((fontScale()+d)*10)/10; v=Math.min(1.8,Math.max(0.8,v));
+    setFontScale(v); applyFont();
+  }
+  function syncAwakeBtn(){ if(awakeBtn) awakeBtn.classList.toggle('on',awakeOn()); }
+  async function reqWake(){ try{ if('wakeLock' in navigator){ wakeLock=await navigator.wakeLock.request('screen'); } }catch(e){} }
+  function relWake(){ try{ if(wakeLock){ wakeLock.release(); wakeLock=null; } }catch(e){} }
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='visible' && viewer && viewer.classList.contains('show') && awakeOn()) reqWake();
+  });
+
+  function openViewer(path){
+    buildViewerOnce();
+    const it=DATA.items.find(x=>x.path===path);
+    vTitle.textContent = it ? T(it) : '';
+    if(vFrame.getAttribute('src')!==path){ vFrame.setAttribute('src',path); } else { applyFont(); }
+    syncAwakeBtn();
+    viewer.classList.add('show');
+    document.body.style.overflow='hidden';
+    if(awakeOn()) reqWake();
+  }
+  function closeViewer(){
+    if(!builtViewer) return;
+    if(viewer.classList.contains('show')){
+      viewer.classList.remove('show');
+      document.body.style.overflow='';
+      vFrame.removeAttribute('src');
+      relWake();
+    }
+  }
+
+  // open recipes inside the app instead of navigating away
+  main.addEventListener('click',e=>{
+    const a=e.target.closest('a.item-card');
+    if(a && !e.target.closest('.star')){
+      e.preventDefault();
+      location.hash='view='+encodeURIComponent(a.getAttribute('href'));
+    }
+  });
+
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+</script>
+</body>
+</html>

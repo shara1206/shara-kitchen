@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="牛奶 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Milk &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin:0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 820px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 820px; margin: 0 auto; font-size: 2.2rem; }
+  header p { max-width: 820px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 820px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  .notes-list { display: grid; gap: 16px; }
+  .note-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; transition: transform 0.15s ease, box-shadow 0.15s ease; text-decoration: none; color: inherit; display: block; }
+  .note-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(201, 123, 58, 0.18); border-color: var(--accent); }
+  .note-card h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--accent); }
+  .note-card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+  .note-card p { margin: 0; color: var(--ink); font-size: 0.98rem; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-right: 6px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>&#129371; <span data-en="Milk" data-zh="牛奶">Milk</span></h1>
+    <p data-en="Everything I've learned about milk &mdash; types, nutrition, and brand quality."
+       data-zh="我学到的关于牛奶的一切——种类、营养与品牌质量。">Everything I've learned about milk &mdash; types, nutrition, and brand quality.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="The dairy case has more variety than it seems &mdash; fat percentages, A2, grass-fed, organic. These notes cover what the differences mean and which brands actually deliver."
+         data-zh="乳制品柜里的种类远比看上去多——脂肪比例、A2、草饲、有机。这些笔记解释这些差异的真正含义，以及哪些品牌真正名副其实。">The dairy case has more variety than it seems &mdash; fat percentages, A2, grass-fed, organic. These notes cover what the differences mean and which brands actually deliver.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Notes" data-zh="笔记">Notes</h2>
+    <div class="notes-list">
+      <a class="note-card" href="milk-types.html">
+        <h3 data-en="Milk Types &amp; Nutrition: Whole, Skim, A2, Grass-Fed, Organic"
+            data-zh="牛奶的种类与营养：全脂、脱脂、A2、草饲、有机">Milk Types &amp; Nutrition: Whole, Skim, A2, Grass-Fed, Organic</h3>
+        <div class="meta">May 21, 2026 &middot; <span class="tag" data-en="Nutrition" data-zh="营养">Nutrition</span></div>
+        <p data-en="What actually differs between milk types &mdash; fat, omega-3s, CLA, vitamins, and the A1 vs A2 protein question."
+           data-zh="不同牛奶之间真正的差异——脂肪、欧米伽-3、CLA、维生素，以及 A1 与 A2 蛋白的问题。">What actually differs between milk types &mdash; fat, omega-3s, CLA, vitamins, and the A1 vs A2 protein question.</p>
+      </a>
+      <a class="note-card" href="milk-brands.html">
+        <h3 data-en="Organic Milk Brand Comparison (Cornucopia Dairy Scorecard)"
+            data-zh="有机牛奶品牌对比（Cornucopia 乳品评分卡）">Organic Milk Brand Comparison (Cornucopia Dairy Scorecard)</h3>
+        <div class="meta">May 21, 2026 &middot; <span class="tag" data-en="Buying Guide" data-zh="选购指南">Buying Guide</span></div>
+        <p data-en="Which organic milk brands deliver on the label &mdash; from Cornucopia's 5-cow rating system covering 160+ brands."
+           data-zh="哪些有机牛奶品牌真正对得起标签——来自 Cornucopia 5 颗奶牛评分体系，覆盖 160+ 品牌。">Which organic milk brands deliver on the label &mdash; from Cornucopia's 5-cow rating system covering 160+ brands.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>
