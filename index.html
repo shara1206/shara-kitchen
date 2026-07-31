@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Shara's Study Notes</title>
+<link rel="icon" type="image/png" href="assets/index-logo.png" />
 <link rel="stylesheet" href="assets/lang.css" />
 <style>
   :root {
@@ -25,10 +26,25 @@
   }
   header h1 { margin: 0; font-size: 2.6rem; letter-spacing: 0.5px; }
   header p { margin: 10px 0 0; opacity: 0.92; font-style: italic; font-size: 1.1rem; }
+  .header-title { display: flex; align-items: center; justify-content: center; gap: 26px; }
+  .header-text { text-align: left; }
+  .site-logo { width: 128px; height: 128px; border-radius: 50%; flex-shrink: 0; display: block;
+    background: rgba(255,255,255,0.55); box-shadow: 0 3px 14px rgba(0,0,0,0.18);
+    border: 2px solid rgba(255,255,255,0.45); }
   @media (min-width: 1800px) {
     header { padding: 72px 48px 56px; }
     header h1 { font-size: 3.2rem; }
     header p { font-size: 1.25rem; margin-top: 12px; }
+    .site-logo { width: 156px; height: 156px; }
+    .header-title { gap: 32px; }
+  }
+  @media (max-width: 640px) {
+    header { padding: 36px 18px 30px; }
+    .header-title { flex-direction: column; gap: 14px; }
+    .header-text { text-align: center; }
+    .site-logo { width: 92px; height: 92px; }
+    header h1 { font-size: 1.9rem; }
+    header p { font-size: 0.98rem; }
   }
   main { max-width: 1800px; margin: 0 auto; padding: 40px 32px 60px; }
   .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 36px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
@@ -103,8 +119,13 @@
       <button type="button" data-lang="en" class="active">EN</button>
       <button type="button" data-lang="zh">中文</button>
     </div>
-    <h1>Shara's Study Notes</h1>
-    <p data-en="A personal collection of things I'm learning" data-zh="我的个人学习记录">A personal collection of things I'm learning</p>
+    <div class="header-title">
+      <img class="site-logo" src="assets/index-logo.png" alt="Shara's Study Notes" onerror="this.style.display='none'" />
+      <div class="header-text">
+        <h1>Shara's Study Notes</h1>
+        <p data-en="A personal collection of things I'm learning" data-zh="我的个人学习记录">A personal collection of things I'm learning</p>
+      </div>
+    </div>
   </header>
 
   <main>
