@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>你的心愿菜单 · Shara's Kitchen</title>
+<link rel="icon" type="image/png" href="assets/icons/favicon-64.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+<meta name="theme-color" content="#c97b3a" />
 <style>
 :root {
   --bg: #fdf6ec;
@@ -289,7 +292,7 @@ main {
 <!-- ══ Password Gate ══ -->
 <div id="gate">
   <div class="gate-box">
-    <div class="logo">🍜</div>
+    <div class="logo"><img src="assets/wishlist-logo.png" alt="wish well" style="width:90px;height:90px;object-fit:cover;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,0.15);" /></div>
     <h2 id="gate-title">Shara's Kitchen</h2>
     <p id="gate-sub">请输入访问密码</p>
     <input type="password" id="pw-input" placeholder="密码 / Password" autocomplete="off" />
@@ -361,30 +364,214 @@ const PASSWORD   = 'shara2026';        // change to your preferred password
 const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE'; // paste your deployed Apps Script URL here
 // ══════════════════════════════════════
 
-// ── Menu Data: parsed live from menu.html (source of truth) ──
-let MENU_DATA = [];
+// ── Menu Data: static snapshot from menu.html (source of truth)
+// To update: regenerate STATIC_MENU from menu.html via the build script
+const STATIC_MENU = [
+  {id:"sucai",zh:"素菜",en:"Vegetables",dishes:[
+    {zh:"蚝油生菜",en:"Romaine with oyster sauce"},
+    {zh:"手撕包菜",en:"Hand-torn cabbage"},
+    {zh:"炝炒白菜",en:"Stir-fried Napa cabbage"},
+    {zh:"上汤娃娃菜",en:"Baby cabbage in superior broth"},
+    {zh:"炒油菜花",en:"Sautéed rapeseed flowers"},
+    {zh:"炒花菜",en:"Stir-fried cauliflower"},
+    {zh:"腐乳空心菜",en:"Water spinach with fermented tofu"},
+    {zh:"清炒豆苗",en:"Sautéed pea shoots"},
+    {zh:"素炒莴笋",en:"Stir-fried lettuce stems"},
+    {zh:"素炒丝瓜",en:"Sautéed luffa"},
+    {zh:"干煸四季豆",en:"Dry-fried green beans"},
+    {zh:"炒豆芽",en:"Stir-fried bean sprouts"},
+    {zh:"西芹百合",en:"Celery with lily bulbs"},
+    {zh:"芦笋炒肉/虾",en:"Asparagus with pork or shrimp"},
+    {zh:"青椒+豆豉",en:"Green peppers with black bean sauce"},
+    {zh:"蒜香烤茄子",en:"Garlic-roasted eggplant"},
+    {zh:"香辣茄子",en:"Spicy eggplant"},
+    {zh:"炒苦瓜",en:"Stir-fried bitter melon"},
+    {zh:"酿苦瓜",en:"Stuffed bitter melon"},
+    {zh:"炒莲藕",en:"Stir-fried lotus root"},
+    {zh:"烧南瓜",en:"Braised pumpkin"},
+    {zh:"咸蛋黄焗南瓜",en:"Pumpkin with salted egg yolk"},
+    {zh:"烧冬瓜",en:"Braised winter melon"},
+    {zh:"韭菜鸡蛋",en:"Garlic chives with egg"},
+    {zh:"香椿炒鸡蛋",en:"Chinese toon with scrambled egg"},
+    {zh:"糖拌蒸芋头",en:"Steamed taro with sugar"},
+  ]},
+  {id:"mianshi",zh:"面食主食",en:"Noodles & Staples",dishes:[
+    {zh:"蛋炒饭",en:"Egg fried rice"},
+    {zh:"扬州炒饭",en:"Yangzhou fried rice"},
+    {zh:"卤肉饭",en:"Braised pork rice"},
+    {zh:"吉野家肥牛饭",en:"Yoshinoya-style beef rice"},
+    {zh:"皮蛋瘦肉粥",en:"Century egg & pork congee"},
+    {zh:"生滚牛肉粥",en:"Fresh beef congee"},
+    {zh:"牛肉面",en:"Beef noodle soup"},
+    {zh:"干炒牛河",en:"Dry-fried beef ho fun"},
+    {zh:"炒面",en:"Stir-fried noodles"},
+    {zh:"烤冷面",en:"Grilled cold noodles"},
+    {zh:"酸辣粉",en:"Sour and spicy vermicelli"},
+    {zh:"桂林米粉",en:"Guilin rice noodles"},
+    {zh:"兰州牛肉面",en:"Lanzhou beef noodles"},
+    {zh:"衡阳米粉",en:"Hengyang rice noodles"},
+    {zh:"豆包",en:"Red bean buns"},
+    {zh:"流沙包",en:"Molten salted egg custard buns"},
+    {zh:"叉烧包",en:"BBQ pork buns"},
+    {zh:"肉夹馍",en:"Chinese pulled pork sandwich"},
+    {zh:"葱油饼",en:"Scallion pancake"},
+    {zh:"糊塌子",en:"Zucchini egg pancake"},
+    {zh:"煎年糕",en:"Pan-fried rice cakes"},
+    {zh:"烤土豆",en:"Baked potato"},
+    {zh:"烤红薯/紫薯",en:"Baked sweet potato / purple yam"},
+  ]},
+  {id:"jiya",zh:"鸡鸭",en:"Chicken & Duck",dishes:[
+    {zh:"口水鸡（很辣）",en:"Mouthwatering chicken (very spicy)"},
+    {zh:"黄焖鸡",en:"Yellow braised chicken"},
+    {zh:"辣子鸡",en:"Chongqing crispy chili chicken"},
+    {zh:"大盘鸡",en:"Big plate chicken (Xinjiang)"},
+    {zh:"板栗鸡",en:"Chicken with chestnuts"},
+    {zh:"香菇鸡",en:"Chicken with shiitake"},
+    {zh:"鸡公煲",en:"Spicy chicken claypot"},
+    {zh:"蒸鸡翼",en:"Steamed chicken wings"},
+    {zh:"红烧鸡翅/鸡腿",en:"Braised chicken wings / legs"},
+    {zh:"可乐鸡翅",en:"Cola chicken wings"},
+    {zh:"奥尔良鸡翅",en:"New Orleans chicken wings"},
+    {zh:"啤酒鸭",en:"Beer duck"},
+    {zh:"炖鸭子",en:"Braised duck"},
+  ]},
+  {id:"niuyang",zh:"牛羊",en:"Beef & Lamb",dishes:[
+    {zh:"煎/烤 BBQ 牛仔骨",en:"Pan-seared / grilled short ribs"},
+    {zh:"烤牛排骨（烧烤式）",en:"Grilled beef ribs (BBQ style)"},
+    {zh:"烤羊排",en:"Roasted lamb rack"},
+    {zh:"红烧牛肉",en:"Braised beef"},
+    {zh:"番茄牛腩",en:"Tomato beef brisket"},
+    {zh:"土豆炖牛肉",en:"Potato beef stew"},
+    {zh:"番茄牛筋",en:"Tomato beef tendon"},
+    {zh:"麻辣牛筋",en:"Spicy numbing beef tendon"},
+    {zh:"金针菇肥牛",en:"Enoki mushrooms with beef"},
+  ]},
+  {id:"yuxia",zh:"鱼虾",en:"Fish & Seafood",dishes:[
+    {zh:"清蒸鲈鱼/其它",en:"Steamed sea bass / other fish"},
+    {zh:"红烧鱼",en:"Braised fish"},
+    {zh:"酸菜鱼",en:"Sauerkraut fish"},
+    {zh:"番茄带鱼",en:"Tomato hairtail fish"},
+    {zh:"黄焖黄鳝",en:"Braised eel"},
+    {zh:"啤酒鱼",en:"Beer fish"},
+    {zh:"香煎鲫鱼",en:"Pan-fried crucian carp"},
+    {zh:"香煎带鱼",en:"Pan-fried hairtail fish"},
+    {zh:"锡纸鲈鱼糖醋",en:"Foil-baked sweet and sour sea bass"},
+    {zh:"剁椒鱼头",en:"Fish head with chopped chilies"},
+    {zh:"鱼头豆腐锅",en:"Fish head and tofu soup"},
+    {zh:"鱼头汤（炖）",en:"Fish head broth (simmered)"},
+    {zh:"天妇罗",en:"Tempura"},
+    {zh:"美乃滋炸虾球",en:"Mayo shrimp balls"},
+    {zh:"蒜蓉龙虾",en:"Garlic lobster"},
+  ]},
+  {id:"zhu",zh:"猪",en:"Pork",dishes:[
+    {zh:"无锡糖醋小排",en:"Wuxi sweet and sour pork ribs"},
+    {zh:"糖醋排骨 金黄",en:"Golden crispy sweet and sour ribs"},
+    {zh:"蒜香排骨",en:"Garlic pork ribs"},
+    {zh:"笋尖烧排骨",en:"Braised ribs with bamboo shoots"},
+    {zh:"红烧肉+腐竹/鸡蛋",en:"Red-braised pork belly with tofu skin / egg"},
+    {zh:"梅菜扣肉",en:"Steamed pork with preserved mustard greens"},
+    {zh:"芋头扣肉",en:"Steamed pork belly with taro"},
+    {zh:"粉蒸肉",en:"Steamed pork with rice flour"},
+    {zh:"蒸肉饼",en:"Steamed pork patty"},
+    {zh:"卤肉/鸡蛋",en:"Braised pork / eggs"},
+    {zh:"烤猪蹄",en:"Roasted pig's feet"},
+    {zh:"香辣美容蹄",en:"Spicy braised pig's feet"},
+    {zh:"香煎五花肉",en:"Pan-seared pork belly"},
+    {zh:"炸莲藕丸子",en:"Deep-fried lotus root balls"},
+    {zh:"炸藕盒",en:"Deep-fried lotus root sandwiches"},
+    {zh:"炸茄盒",en:"Deep-fried eggplant sandwiches"},
+    {zh:"油豆腐丸子",en:"Tofu puff meatballs"},
+    {zh:"培根卷芦笋（烤）",en:"Bacon-wrapped asparagus (grilled)"},
+    {zh:"培根卷金针菇",en:"Bacon-wrapped enoki mushrooms"},
+    {zh:"酸菜肉末",en:"Pork mince with pickled cabbage"},
+  ]},
+  {id:"qita",zh:"豆腐",en:"Tofu",dishes:[
+    {zh:"麻婆豆腐",en:"Mapo tofu"},
+    {zh:"葱香肉末豆腐",en:"Tofu with minced pork and scallions"},
+    {zh:"烧日本豆腐",en:"Braised Japanese tofu"},
+    {zh:"香煎豆腐",en:"Pan-fried tofu"},
+    {zh:"韩式豆腐煲",en:"Korean spicy tofu stew"},
+  ]},
+  {id:"tiandian",zh:"甜点",en:"Desserts",dishes:[
+    {zh:"绿豆沙",en:"Sweet mung bean soup"},
+    {zh:"红豆沙",en:"Sweet red bean soup"},
+    {zh:"冰糖雪梨汤",en:"Rock sugar snow pear soup"},
+    {zh:"白凉粉",en:"White grass jelly"},
+    {zh:"龟苓膏",en:"Guilin turtle jelly"},
+    {zh:"双皮奶",en:"Double-layered milk pudding"},
+    {zh:"芝麻馅汤圆",en:"Sesame-filled glutinous rice balls"},
+    {zh:"雪花酥",en:"Snowflake candy"},
+    {zh:"冰皮月饼 奶黄",en:"Snow skin mooncakes with custard"},
+    {zh:"炸香蕉",en:"Fried banana"},
+  ]},
+  {id:"liangcai",zh:"凉菜小吃",en:"Cold Dishes & Snacks",dishes:[
+    {zh:"盐水花生",en:"Boiled salted peanuts"},
+    {zh:"盐水毛豆",en:"Boiled salted edamame"},
+    {zh:"炸花生米",en:"Fried peanuts"},
+    {zh:"拍黄瓜",en:"Smashed cucumber"},
+    {zh:"凉拌皮蛋",en:"Century egg salad"},
+    {zh:"皮蛋豆腐",en:"Century egg with tofu"},
+    {zh:"凉拌菠菜花生",en:"Spinach and peanut salad"},
+    {zh:"蓝莓山药",en:"Chinese yam with blueberry"},
+    {zh:"五香茶叶蛋",en:"Five-spice tea eggs"},
+    {zh:"卤牛腱",en:"Braised beef shank"},
+    {zh:"卤猪耳",en:"Braised pig ears"},
+    {zh:"卤鸡爪",en:"Braised chicken feet"},
+    {zh:"糟鸡爪",en:"Wine-marinated chicken feet"},
+    {zh:"泡椒凤爪",en:"Pickled chili chicken feet"},
+    {zh:"糟鸭舌",en:"Wine-marinated duck tongues"},
+  ]},
+  {id:"tang",zh:"汤",en:"Soups",dishes:[
+    {zh:"莲藕排骨汤",en:"Lotus root and pork rib soup"},
+    {zh:"萝卜排骨汤",en:"Radish and pork rib soup"},
+    {zh:"海带排骨汤",en:"Seaweed and pork rib soup"},
+    {zh:"筒骨汤",en:"Pork marrow bone soup"},
+    {zh:"猪蹄黄豆汤",en:"Pig's feet and soybean soup"},
+    {zh:"天麻猪脑汤",en:"Gastrodia and pork brain soup"},
+    {zh:"三黄鸡汤",en:"Yellow chicken soup"},
+    {zh:"乌鸡汤",en:"Black silkie chicken soup"},
+    {zh:"牛尾山药汤",en:"Oxtail and yam soup"},
+    {zh:"羊肉萝卜汤",en:"Lamb and radish soup"},
+    {zh:"山药骨头汤",en:"Chinese yam and bone soup"},
+    {zh:"番茄骨头汤",en:"Tomato and bone soup"},
+    {zh:"丸子汤",en:"Meatball soup"},
+    {zh:"蛋花紫菜汤",en:"Egg drop and seaweed soup"},
+  ]},
+  {id:"yinpin",zh:"饮品",en:"Drinks",dishes:[
+    {zh:"酸梅汤",en:"Sour plum drink"},
+    {zh:"小吊梨汤",en:"Pear and osmanthus tea"},
+    {zh:"王老吉",en:"Wang Lao Ji herbal drink"},
+  ]},
+];
+
+// Convert to the shape the rest of the code expects (dishes as strings)
+// and try live-fetch to stay in sync when served from a web server
+let MENU_DATA = STATIC_MENU.map(s => ({
+  id: s.id, zh: s.zh, en: s.en,
+  dishes: s.dishes.map(d => d.zh)
+}));
 
 async function loadMenuData() {
   try {
     const res = await fetch('menu.html');
+    if (!res.ok) return;
     const text = await res.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
-    const sections = doc.querySelectorAll('.menu-section');
-    MENU_DATA = Array.from(sections).map(sec => {
+    const secs = doc.querySelectorAll('.menu-section');
+    if (secs.length === 0) return; // parse failed, keep static data
+    MENU_DATA = Array.from(secs).map(sec => {
       const id = sec.id;
       const h2 = sec.querySelector('h2');
-      const enSpan = h2 ? h2.querySelector('.en-label') : null;
-      const en = enSpan ? enSpan.textContent.trim() : '';
-      const zh = h2 ? h2.childNodes[0].textContent.trim() : '';
+      const zh = h2 ? (h2.dataset.zh || h2.childNodes[0].textContent.trim()) : '';
+      const en = h2 ? (h2.dataset.en || '') : '';
       const dishes = Array.from(sec.querySelectorAll('.dish-item'))
-        .map(d => d.textContent.trim())
+        .map(d => d.dataset.zh || d.textContent.trim())
         .filter(d => d.length > 0);
       return { id, zh, en, dishes };
     });
   } catch (e) {
-    console.error('Failed to load menu.html:', e);
-    MENU_DATA = [];
+    // fetch blocked (file:// protocol) — static data already loaded above
   }
 }
 
