@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>My Menu · Shara's Kitchen</title>
+<link rel="icon" type="image/png" href="assets/icons/favicon-64.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+<meta name="theme-color" content="#c97b3a" />
 <link rel="stylesheet" href="assets/lang.css" />
 <style>
   :root {
@@ -57,6 +60,12 @@
     transition: background 0.15s;
   }
   .wish-link:hover { background: rgba(255,255,255,0.3); }
+  .wish-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%; object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
 
 
   /* ── Sticky nav ── */
@@ -230,11 +239,9 @@
     .back-link { top: 14px; left: 12px; font-size: 0.82rem; }
     .header-right { top: 12px; right: 12px; gap: 8px; }
     /* collapse wish-list link to its icon so it can't overlap the title */
-    .wish-link {
-      font-size: 0; gap: 0; padding: 6px 10px;
-      background: rgba(255,255,255,0.2);
-    }
-    .wish-link::before { content: '🎁'; font-size: 1rem; }
+    .wish-link { padding: 5px 8px; gap: 4px; }
+    .wish-link span { display: none; }
+    /* logo image handles the icon */
 
     .category-nav { padding: 0 10px; }
     .category-nav li a { padding: 12px 12px; font-size: 0.88rem; }
@@ -270,7 +277,7 @@
 <header>
   <a class="back-link" href="index.html">← Home</a>
   <div class="header-right">
-    <a class="wish-link" href="wishlist.html" data-en="🎁 Your Wish List" data-zh="🎁 你的心愿菜单">🎁 你的心愿菜单</a>
+    <a class="wish-link" href="wishlist.html"><img src="assets/wishlist-logo.png" class="wish-icon" alt="wish well" /><span data-en="Your Wish List" data-zh="你的心愿菜单">你的心愿菜单</span></a>
     <div class="lang-toggle" role="group" aria-label="Language">
       <button type="button" data-lang="zh" class="active">中文</button>
       <button type="button" data-lang="en">EN</button>
