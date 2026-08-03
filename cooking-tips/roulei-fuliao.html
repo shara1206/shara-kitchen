@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="肉类 × 辅料 搭配表 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meat &amp; Aromatic Pairing Table — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 1200px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 1200px); margin: 0 auto; padding: 36px 24px 60px; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 6px 0; line-height: 1.7; }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.93rem; }
+
+  .table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 6px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.pair { border-collapse: collapse; width: 100%; min-width: 880px; font-size: 0.93rem; }
+  table.pair th { background: var(--accent-soft); color: #7a4718; text-align: left; padding: 11px 13px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-family: 'Helvetica', 'PingFang SC', sans-serif; border-bottom: 2px solid var(--accent); white-space: nowrap; }
+  table.pair td { padding: 12px 13px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.pair tr:last-child td { border-bottom: none; }
+  table.pair tbody tr:nth-child(even) { background: #fffaf2; }
+  table.pair tbody tr:hover { background: #fdf0dc; }
+  td.meat { font-weight: 700; color: #7a4718; width: 15%; }
+  td.aid { color: var(--accent); font-weight: 600; width: 16%; }
+  td.dose { color: var(--muted); font-size: 0.88rem; width: 21%; }
+  td.why { width: 38%; }
+  td.rel { width: 10%; white-space: nowrap; }
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 0.74rem; font-weight: 700; font-family: 'Helvetica', 'PingFang SC', sans-serif; letter-spacing: 0.02em; }
+  .rel-a { background: #dcefd8; color: #3e6b32; }
+  .rel-b { background: #fbe8c8; color: #8a5c14; }
+  .rel-c { background: #f0dede; color: #8a3a3a; }
+  .legend { font-size: 0.85rem; color: var(--muted); margin: 0 0 18px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  .legend .badge { margin: 0 4px 0 10px; }
+  .legend .badge:first-child { margin-left: 0; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  .header-title { max-width: min(92vw, 1200px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .header-icon-slot { width: 180px; height: 180px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 5rem; line-height: 1; }
+
+  @media (max-width: 820px) {
+    header { padding: 22px 16px; }
+    .header-title h1 { font-size: 1.4rem; }
+    .header-icon-slot { width: 76px; height: 76px; font-size: 2.2rem; }
+    main { padding: 20px 12px 40px; max-width: 100vw; }
+    .recipe-notes { padding: 16px 16px; }
+    .table-wrap { padding: 0; border: none; background: transparent; overflow-x: visible; }
+    table.pair, table.pair tbody, table.pair tr, table.pair td { display: block; width: auto; }
+    table.pair thead { display: none; }
+    table.pair { min-width: 0; font-size: 0.9rem; }
+    table.pair tr { background: var(--card) !important; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+    table.pair td { border: none; padding: 3px 0; }
+    td.meat { font-size: 1.05rem; margin-bottom: 2px; }
+    td.aid::before { content: "→ "; }
+    td.rel { margin-top: 6px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Meat &amp; Aromatic Pairing Table" data-zh="肉类 × 辅料 搭配表">Meat &amp; Aromatic Pairing Table</h1>
+        <div class="meta" data-en="Cooking Tips" data-zh="烹饪技巧">Cooking Tips</div>
+      </div>
+      <div class="header-icon-slot">🍖</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="recipe-notes">
+      <h3 data-en="How to read this" data-zh="怎么看这张表">How to read this</h3>
+      <p data-zh="每一行是一个「肉 + 辅料」组合：放什么、放多少、什么时候放，以及它&lt;strong&gt;到底在起什么作用&lt;/strong&gt;。最后一列标注这个说法的机制是否站得住脚——很多流传很广的搭配确实好吃，但原因和大家以为的不一样。"
+         data-en="Each row is one meat-plus-aromatic pairing: what to add, how much, when, and &lt;strong&gt;what it actually does&lt;/strong&gt;. The last column flags whether the mechanism holds up — plenty of popular pairings do taste better, just not for the reason people think.">每一行是一个「肉 + 辅料」组合：放什么、放多少、什么时候放，以及它<strong>到底在起什么作用</strong>。最后一列标注这个说法的机制是否站得住脚——很多流传很广的搭配确实好吃，但原因和大家以为的不一样。</p>
+    </div>
+
+    <p class="legend">
+      <span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span><span data-zh="有明确的化学/物理依据" data-en="backed by clear chemistry or physics">有明确的化学/物理依据</span>
+      <span class="badge rel-b" data-zh="部分成立" data-en="Partly true">部分成立</span><span data-zh="有效果，但真正的原因常被说错" data-en="it works, but the usual explanation is wrong">有效果，但真正的原因常被说错</span>
+    </p>
+
+    <div class="table-wrap">
+      <table class="pair">
+        <thead>
+          <tr>
+            <th data-en="Meat" data-zh="食材">Meat</th>
+            <th data-en="What to add" data-zh="辅料">What to add</th>
+            <th data-en="Amount &amp; timing" data-zh="用量与时机">Amount &amp; timing</th>
+            <th data-en="What it actually does" data-zh="真正的作用">What it actually does</th>
+            <th data-en="Verdict" data-zh="机制">Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="meat" data-zh="猪筒骨 / 大骨汤" data-en="Pork marrow bones (stock)">猪筒骨 / 大骨汤</td>
+          <td class="aid" data-zh="白醋 几滴" data-en="A few drops of white vinegar">白醋 几滴</td>
+          <td class="dose" data-zh="焯水后下锅时加，约 5 mL / 3 L 水" data-en="Add after blanching, ~5 mL per 3 L water">焯水后下锅时加，约 5 mL / 3 L 水</td>
+          <td class="why" data-zh="帮助析出少量钙质。&lt;strong&gt;汤色发白靠的是大火滚煮把脂肪乳化&lt;/strong&gt;，不是靠醋。" data-en="Helps leach a little calcium. &lt;strong&gt;The milky color comes from fat emulsifying under a hard boil&lt;/strong&gt;, not from the vinegar.">帮助析出少量钙质。<strong>汤色发白靠的是大火滚煮把脂肪乳化</strong>，不是靠醋。</td>
+          <td class="rel"><span class="badge rel-b" data-zh="部分成立" data-en="Partly true">部分成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="牛腩 / 牛肋条" data-en="Beef brisket / short rib">牛腩 / 牛肋条</td>
+          <td class="aid" data-zh="红茶包 1 个" data-en="1 black tea bag">红茶包 1 个</td>
+          <td class="dose" data-zh="炖煮中途放入，20–30 分钟后取出" data-en="Add mid-braise, remove after 20–30 min">炖煮中途放入，20–30 分钟后取出</td>
+          <td class="why" data-zh="增香、上色、解腻去腥。&lt;strong&gt;软烂靠的是慢炖把胶原化成明胶&lt;/strong&gt;；茶单宁反而会让蛋白略收紧，泡太久会发涩。" data-en="Adds aroma, color, and cuts richness. &lt;strong&gt;Tenderness comes from slow braising converting collagen to gelatin&lt;/strong&gt;; tea tannins actually tighten protein slightly and turn bitter if left in too long.">增香、上色、解腻去腥。<strong>软烂靠的是慢炖把胶原化成明胶</strong>；茶单宁反而会让蛋白略收紧，泡太久会发涩。</td>
+          <td class="rel"><span class="badge rel-b" data-zh="部分成立" data-en="Partly true">部分成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="整鸡 / 老母鸡" data-en="Whole chicken / stewing hen">整鸡 / 老母鸡</td>
+          <td class="aid" data-zh="干山楂 3–5 片" data-en="3–5 dried hawthorn slices">干山楂 3–5 片</td>
+          <td class="dose" data-zh="全程同炖" data-en="In from the start">全程同炖</td>
+          <td class="why" data-zh="果酸降低 pH，&lt;strong&gt;加速胶原水解&lt;/strong&gt;，肉更快软；同时解腻增鲜。山楂没有强蛋白酶，别指望「酶嫩肉」。" data-en="Fruit acids lower the pH and &lt;strong&gt;speed up collagen hydrolysis&lt;/strong&gt;, so the meat softens faster; also cuts grease. Hawthorn has no strong protease — don&#x27;t expect enzymatic tenderizing.">果酸降低 pH，<strong>加速胶原水解</strong>，肉更快软；同时解腻增鲜。山楂没有强蛋白酶，别指望「酶嫩肉」。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="猪排骨" data-en="Pork ribs">猪排骨</td>
+          <td class="aid" data-zh="陈皮 一小块" data-en="A small piece of dried tangerine peel">陈皮 一小块</td>
+          <td class="dose" data-zh="指甲盖大小即可，全程同炖" data-en="Thumbnail-sized, in from the start">指甲盖大小即可，全程同炖</td>
+          <td class="why" data-zh="柑橘萜烯类去腥解腻，尾韵回甘。放多了会发苦。" data-en="Citrus terpenes cut off-odors and grease, leaving a faint sweet finish. Too much turns bitter.">柑橘萜烯类去腥解腻，尾韵回甘。放多了会发苦。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="羊排 / 羊腿" data-en="Lamb ribs / leg">羊排 / 羊腿</td>
+          <td class="aid" data-zh="白萝卜 几块" data-en="A few chunks of daikon">白萝卜 几块</td>
+          <td class="dose" data-zh="炖 30 分钟后放，最后可捞出不吃" data-en="Add after 30 min; can be discarded at the end">炖 30 分钟后放，最后可捞出不吃</td>
+          <td class="why" data-zh="减轻膻味、带出清甜。膻味来自支链脂肪酸，萝卜的作用主要是&lt;strong&gt;稀释与风味互补&lt;/strong&gt;，不是「吸走」。" data-en="Mellows the gaminess and adds a clean sweetness. The gamy notes come from branched-chain fatty acids; daikon works mainly by &lt;strong&gt;dilution and flavor balance&lt;/strong&gt;, not by absorbing them.">减轻膻味、带出清甜。膻味来自支链脂肪酸，萝卜的作用主要是<strong>稀释与风味互补</strong>，不是「吸走」。</td>
+          <td class="rel"><span class="badge rel-b" data-zh="部分成立" data-en="Partly true">部分成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="牛腱 / 卤牛肉" data-en="Beef shank / braised beef">牛腱 / 卤牛肉</td>
+          <td class="aid" data-zh="山楂 + 陈皮" data-en="Hawthorn + tangerine peel">山楂 + 陈皮</td>
+          <td class="dose" data-zh="各 3–5 片，装料包同卤" data-en="3–5 pieces each, in a spice bag">各 3–5 片，装料包同卤</td>
+          <td class="why" data-zh="酸助软化 + 柑橘去腻，是卤牛肉的经典组合。" data-en="Acid helps soften, citrus cuts richness — the classic pairing for braised beef shank.">酸助软化 + 柑橘去腻，是卤牛肉的经典组合。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="老鸭" data-en="Old duck">老鸭</td>
+          <td class="aid" data-zh="酸萝卜 / 老姜" data-en="Pickled daikon / mature ginger">酸萝卜 / 老姜</td>
+          <td class="dose" data-zh="酸萝卜 150–200 g；姜 3–5 片" data-en="150–200 g pickled daikon; 3–5 slices ginger">酸萝卜 150–200 g；姜 3–5 片</td>
+          <td class="why" data-zh="去土腥，汤底更清爽；姜的姜烯酚同时压腥。" data-en="Removes the earthy off-note and lightens the broth; gingerols also suppress off-odors.">去土腥，汤底更清爽；姜的姜烯酚同时压腥。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="猪蹄 / 猪皮" data-en="Pork trotter / skin">猪蹄 / 猪皮</td>
+          <td class="aid" data-zh="姜片 + 料酒 焯水" data-en="Blanch with ginger + Shaoxing wine">姜片 + 料酒 焯水</td>
+          <td class="dose" data-zh="冷水下锅，酒 15–20 mL" data-en="Start in cold water, 15–20 mL wine">冷水下锅，酒 15–20 mL</td>
+          <td class="why" data-zh="冷水下锅才能把血水逼出来；酒精挥发时带走胺类腥味物质。胶质要靠久炖，辅料帮不上。" data-en="Starting in cold water draws the blood out; evaporating alcohol carries volatile amines away. The gelatin still needs long cooking — no shortcut.">冷水下锅才能把血水逼出来；酒精挥发时带走胺类腥味物质。胶质要靠久炖，辅料帮不上。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="鱼（清蒸 / 炖）" data-en="Fish (steamed or stewed)">鱼（清蒸 / 炖）</td>
+          <td class="aid" data-zh="姜 + 葱 + 少量黄酒" data-en="Ginger + scallion + a splash of rice wine">姜 + 葱 + 少量黄酒</td>
+          <td class="dose" data-zh="酒 10–15 mL，出锅前 1 分钟沿锅边淋" data-en="10–15 mL wine, drizzled in the last minute">酒 10–15 mL，出锅前 1 分钟沿锅边淋</td>
+          <td class="why" data-zh="鱼腥主要是&lt;strong&gt;三甲胺&lt;/strong&gt;，能与酒精共沸挥发；姜葱的硫化物与醛类进一步掩盖。" data-en="Fishy smell is mostly &lt;strong&gt;trimethylamine&lt;/strong&gt;, which co-evaporates with alcohol; sulfur compounds in ginger and scallion mask the rest.">鱼腥主要是<strong>三甲胺</strong>，能与酒精共沸挥发；姜葱的硫化物与醛类进一步掩盖。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="五花肉（红烧）" data-en="Pork belly (red-braised)">五花肉（红烧）</td>
+          <td class="aid" data-zh="炒糖色 + 八角桂皮" data-en="Caramel color + star anise &amp; cassia">炒糖色 + 八角桂皮</td>
+          <td class="dose" data-zh="糖水 1:1 炒至枣红；香料各 1 小块" data-en="Sugar:water 1:1 to date-red; 1 piece each spice">糖水 1:1 炒至枣红；香料各 1 小块</td>
+          <td class="why" data-zh="糖色上色增香、平衡咸味；香料压腻。香料宁少勿多，八角超过 2 颗会盖住肉香。" data-en="Caramel adds color and rounds the salt; spices cut the fat. Go light — more than 2 star anise buries the pork flavor.">糖色上色增香、平衡咸味；香料压腻。香料宁少勿多，八角超过 2 颗会盖住肉香。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="鸡胸肉" data-en="Chicken breast">鸡胸肉</td>
+          <td class="aid" data-zh="小苏打 0.3–0.5%" data-en="Baking soda, 0.3–0.5% by weight">小苏打 0.3–0.5%</td>
+          <td class="dose" data-zh="500 g 肉用 1.5–2.5 g，腌 15–20 分钟后&lt;strong&gt;冲洗干净&lt;/strong&gt;" data-en="1.5–2.5 g per 500 g, 15–20 min, then &lt;strong&gt;rinse well&lt;/strong&gt;">500 g 肉用 1.5–2.5 g，腌 15–20 分钟后<strong>冲洗干净</strong></td>
+          <td class="why" data-zh="&lt;strong&gt;真正的嫩化&lt;/strong&gt;：提高 pH 让肌纤维张开保水。超量或超时会发滑、带碱味。" data-en="&lt;strong&gt;This is real tenderizing&lt;/strong&gt;: raising pH makes muscle fibers hold water. Too much or too long gives a slippery texture and soapy taste."><strong>真正的嫩化</strong>：提高 pH 让肌纤维张开保水。超量或超时会发滑、带碱味。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="牛肉丝 / 牛肉片" data-en="Sliced or shredded beef">牛肉丝 / 牛肉片</td>
+          <td class="aid" data-zh="小苏打 + 淀粉 + 蛋清（上浆）" data-en="Baking soda + starch + egg white (velveting)">小苏打 + 淀粉 + 蛋清（上浆）</td>
+          <td class="dose" data-zh="500 g 肉：苏打 2 g、淀粉 15 g、蛋清 1 个、水 30 mL" data-en="Per 500 g: 2 g soda, 15 g starch, 1 egg white, 30 mL water">500 g 肉：苏打 2 g、淀粉 15 g、蛋清 1 个、水 30 mL</td>
+          <td class="why" data-zh="嫩化 + 锁水 + 隔热三重作用，是滑炒牛肉不柴的关键。要&lt;strong&gt;逆纹切&lt;/strong&gt;。" data-en="Tenderizes, locks in water, and shields from heat — the key to stir-fried beef that isn&#x27;t tough. Always slice &lt;strong&gt;against the grain&lt;/strong&gt;.">嫩化 + 锁水 + 隔热三重作用，是滑炒牛肉不柴的关键。要<strong>逆纹切</strong>。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="猪肝 / 腰花" data-en="Pork liver / kidney">猪肝 / 腰花</td>
+          <td class="aid" data-zh="面粉或淀粉搓洗 + 清水泡" data-en="Rub with flour or starch, then soak">面粉或淀粉搓洗 + 清水泡</td>
+          <td class="dose" data-zh="搓 1–2 分钟，换水泡 30 分钟" data-en="Rub 1–2 min, soak 30 min with water changes">搓 1–2 分钟，换水泡 30 分钟</td>
+          <td class="why" data-zh="粉粒物理吸附血水与黏液；腰花要先片开去净腰臊（白色腺体）才不骚。" data-en="The dry powder physically lifts blood and mucus; for kidney, butterfly it and cut out the white gland or the odor stays.">粉粒物理吸附血水与黏液；腰花要先片开去净腰臊（白色腺体）才不骚。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="羊肉汤" data-en="Lamb soup">羊肉汤</td>
+          <td class="aid" data-zh="白胡椒" data-en="White pepper">白胡椒</td>
+          <td class="dose" data-zh="起锅前撒，1–2 g" data-en="1–2 g, stirred in at the end">起锅前撒，1–2 g</td>
+          <td class="why" data-zh="压膻增暖香。&lt;strong&gt;后放&lt;/strong&gt;——胡椒碱久煮会挥发失香。" data-en="Tames the gaminess and adds warmth. &lt;strong&gt;Add late&lt;/strong&gt; — piperine&#x27;s aroma cooks off with long simmering.">压膻增暖香。<strong>后放</strong>——胡椒碱久煮会挥发失香。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="猪肚 / 大肠" data-en="Pork stomach / intestine">猪肚 / 大肠</td>
+          <td class="aid" data-zh="面粉 + 盐 搓洗" data-en="Rub with flour + salt">面粉 + 盐 搓洗</td>
+          <td class="dose" data-zh="反复 2–3 遍，最后加白醋抓洗一次" data-en="2–3 rounds, finish with a vinegar rub">反复 2–3 遍，最后加白醋抓洗一次</td>
+          <td class="why" data-zh="面粉吸附黏液，盐粒摩擦，醋中和碱性异味物质。这一步偷懒，后面再多香料也救不回来。" data-en="Flour absorbs the mucus, salt scrubs, vinegar neutralizes alkaline off-odors. Skimp here and no amount of spice fixes it later.">面粉吸附黏液，盐粒摩擦，醋中和碱性异味物质。这一步偷懒，后面再多香料也救不回来。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="鸡汤 / 排骨汤（增鲜）" data-en="Chicken or pork broth (umami boost)">鸡汤 / 排骨汤（增鲜）</td>
+          <td class="aid" data-zh="干香菇 2–3 朵 / 火腿 1 小片" data-en="2–3 dried shiitake / a slice of ham">干香菇 2–3 朵 / 火腿 1 小片</td>
+          <td class="dose" data-zh="干香菇泡发水一起下，火腿 10–20 g" data-en="Include the soaking liquid; 10–20 g ham">干香菇泡发水一起下，火腿 10–20 g</td>
+          <td class="why" data-zh="香菇的&lt;strong&gt;鸟苷酸&lt;/strong&gt;与肉里的&lt;strong&gt;谷氨酸&lt;/strong&gt;协同，鲜味可放大数倍——比加鸡精自然得多。" data-en="Shiitake &lt;strong&gt;guanylate&lt;/strong&gt; synergizes with the &lt;strong&gt;glutamate&lt;/strong&gt; in meat, multiplying umami several-fold — far more natural than bouillon powder.">香菇的<strong>鸟苷酸</strong>与肉里的<strong>谷氨酸</strong>协同，鲜味可放大数倍——比加鸡精自然得多。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        <tr>
+          <td class="meat" data-zh="腌肉快速嫩化" data-en="Fast marinade tenderizing">腌肉快速嫩化</td>
+          <td class="aid" data-zh="菠萝 / 木瓜 / 猕猴桃泥" data-en="Pineapple, papaya, or kiwi purée">菠萝 / 木瓜 / 猕猴桃泥</td>
+          <td class="dose" data-zh="1–2 大勺，&lt;strong&gt;只腌 15–30 分钟&lt;/strong&gt;" data-en="1–2 tbsp, &lt;strong&gt;15–30 min only&lt;/strong&gt;">1–2 大勺，<strong>只腌 15–30 分钟</strong></td>
+          <td class="why" data-zh="这是唯一真正靠&lt;strong&gt;蛋白酶&lt;/strong&gt;的方法，效果强但容易过头——腌久了肉会散成糊状。加热后酶即失活，所以只对短时腌制有效。" data-en="The only genuinely &lt;strong&gt;enzymatic&lt;/strong&gt; method. Powerful but easy to overdo — leave it too long and the meat turns to mush. The enzymes denature on heating, so it only works as a pre-cook marinade.">这是唯一真正靠<strong>蛋白酶</strong>的方法，效果强但容易过头——腌久了肉会散成糊状。加热后酶即失活，所以只对短时腌制有效。</td>
+          <td class="rel"><span class="badge rel-a" data-zh="机制成立" data-en="Sound">机制成立</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="recipe-notes">
+      <h3 data-en="The three things aromatics can actually do" data-zh="辅料真正能做的只有三件事">The three things aromatics can actually do</h3>
+      <ul>
+        <li data-zh="&lt;strong&gt;去腥&lt;/strong&gt; — 腥味多是胺类（三甲胺）和醛类，偏碱性、易挥发。酸（醋、山楂）把它成盐固定住，酒精把它共沸带走，香料的萜烯和硫化物负责掩盖。三条路可以叠加用。"
+            data-en="&lt;strong&gt;Killing off-odors&lt;/strong&gt; — most come from volatile amines (like trimethylamine) and aldehydes, which are basic and volatile. Acid (vinegar, hawthorn) locks them into salts, alcohol carries them off by co-evaporation, and spice terpenes and sulfur compounds mask the rest. These stack."><strong>去腥</strong> — 腥味多是胺类（三甲胺）和醛类，偏碱性、易挥发。酸（醋、山楂）把它成盐固定住，酒精把它共沸带走，香料的萜烯和硫化物负责掩盖。三条路可以叠加用。</li>
+        <li data-zh="&lt;strong&gt;嫩化&lt;/strong&gt; — 只有三种真办法：碱（小苏打提 pH 让肌纤维保水）、酶（菠萝/木瓜/猕猴桃，只在加热前的短时腌制里有效）、物理（逆纹切 + 上浆）。&lt;strong&gt;长时间炖煮里加的任何东西都不算「嫩化」&lt;/strong&gt;，那是胶原自己水解成明胶。"
+            data-en="&lt;strong&gt;Tenderizing&lt;/strong&gt; — only three methods really work: alkali (baking soda raises pH so fibers hold water), enzymes (pineapple, papaya, kiwi — only in a short pre-cook marinade), and mechanical (slicing against the grain plus velveting). &lt;strong&gt;Nothing you drop into a long braise counts as tenderizing&lt;/strong&gt; — that's collagen hydrolyzing into gelatin on its own."><strong>嫩化</strong> — 只有三种真办法：碱（小苏打提 pH 让肌纤维保水）、酶（菠萝/木瓜/猕猴桃，只在加热前的短时腌制里有效）、物理（逆纹切 + 上浆）。<strong>长时间炖煮里加的任何东西都不算「嫩化」</strong>，那是胶原自己水解成明胶。</li>
+        <li data-zh="&lt;strong&gt;增鲜&lt;/strong&gt; — 谷氨酸（肉、火腿、番茄、海带）配上鸟苷酸/肌苷酸（干香菇、干贝、鱼干），鲜味不是相加而是相乘。这是唯一「1+1 远大于 2」的一类。"
+            data-en="&lt;strong&gt;Boosting umami&lt;/strong&gt; — glutamate (meat, ham, tomato, kombu) plus guanylate or inosinate (dried shiitake, dried scallop, dried fish) multiply rather than add. This is the one category where 1+1 really does exceed 2."><strong>增鲜</strong> — 谷氨酸（肉、火腿、番茄、海带）配上鸟苷酸/肌苷酸（干香菇、干贝、鱼干），鲜味不是相加而是相乘。这是唯一「1+1 远大于 2」的一类。</li>
+      </ul>
+    </div>
+
+    <div class="recipe-notes">
+      <h3 data-en="Common myths worth dropping" data-zh="可以放下的几个说法">Common myths worth dropping</h3>
+      <p data-zh="&lt;strong&gt;「加醋炖骨头汤能补钙」&lt;/strong&gt;——醋确实能溶出一点钙，但一整锅汤溶出的量远不够营养意义上的补钙。喝汤补钙不如直接吃奶制品和豆制品。醋值得加，但理由是提味和帮助去腥。"
+         data-en="&lt;strong&gt;&amp;quot;Vinegar in bone broth adds calcium&amp;quot;&lt;/strong&gt; — vinegar does leach a little, but a whole pot yields nowhere near a nutritionally meaningful amount. Dairy and soy foods are far better calcium sources. Vinegar is still worth adding — just for flavor and off-odor control."><strong>「加醋炖骨头汤能补钙」</strong>——醋确实能溶出一点钙，但一整锅汤溶出的量远不够营养意义上的补钙。喝汤补钙不如直接吃奶制品和豆制品。醋值得加，但理由是提味和帮助去腥。</p>
+      <p data-zh="&lt;strong&gt;「红茶包能让牛腩更烂」&lt;/strong&gt;——恰恰相反，茶多酚会与蛋白结合让口感略紧。红茶包值得放，是为了那股焦香和漂亮的深褐色，而且要&lt;strong&gt;中途取出&lt;/strong&gt;，久泡发涩。"
+         data-en="&lt;strong&gt;&amp;quot;A tea bag makes brisket fall apart&amp;quot;&lt;/strong&gt; — the opposite: tea polyphenols bind protein and firm it slightly. The tea bag earns its place through toasty aroma and deep brown color, and it should be &lt;strong&gt;pulled out partway through&lt;/strong&gt; or the dish turns astringent."><strong>「红茶包能让牛腩更烂」</strong>——恰恰相反，茶多酚会与蛋白结合让口感略紧。红茶包值得放，是为了那股焦香和漂亮的深褐色，而且要<strong>中途取出</strong>，久泡发涩。</p>
+      <p data-zh="&lt;strong&gt;「汤要白就加牛奶 / 加醋」&lt;/strong&gt;——不用。白汤 = 脂肪被打成微小液滴分散在水里。需要三样：&lt;strong&gt;有脂肪&lt;/strong&gt;（煎过的鱼、筒骨、鸡油）、&lt;strong&gt;大火持续滚沸&lt;/strong&gt;（小火永远不白）、&lt;strong&gt;有乳化剂&lt;/strong&gt;（骨头里溶出的明胶）。三者齐了，十几分钟就会白。"
+         data-en="&lt;strong&gt;&amp;quot;Add milk or vinegar to get a white soup&amp;quot;&lt;/strong&gt; — neither is needed. Milky broth is fat broken into microdroplets suspended in water. It takes three things: &lt;strong&gt;fat&lt;/strong&gt; (seared fish, marrow bones, chicken fat), &lt;strong&gt;a hard rolling boil&lt;/strong&gt; (a gentle simmer will never turn it white), and &lt;strong&gt;an emulsifier&lt;/strong&gt; (gelatin leached from the bones). With all three, it whitens in about fifteen minutes."><strong>「汤要白就加牛奶 / 加醋」</strong>——不用。白汤 = 脂肪被打成微小液滴分散在水里。需要三样：<strong>有脂肪</strong>（煎过的鱼、筒骨、鸡油）、<strong>大火持续滚沸</strong>（小火永远不白）、<strong>有乳化剂</strong>（骨头里溶出的明胶）。三者齐了，十几分钟就会白。</p>
+      <div class="tip" data-zh="💡 反过来，&lt;strong&gt;想要汤清&lt;/strong&gt;就全程保持「虾眼水」微沸、勤撇浮沫，绝不要大滚——一滚就浑，浑了回不去。"
+           data-en="💡 Conversely, &lt;strong&gt;for a clear broth&lt;/strong&gt;, hold it at a bare shivering simmer and skim often. Never let it boil hard — once it clouds, there's no going back.">💡 反过来，<strong>想要汤清</strong>就全程保持「虾眼水」微沸、勤撇浮沫，绝不要大滚——一滚就浑，浑了回不去。</div>
+    </div>
+
+    <div class="recipe-notes">
+      <h3 data-en="Universal starting point" data-zh="万能起手式">Universal starting point</h3>
+      <p data-zh="任何红肉炖煮，不知道放什么就先来这三样：&lt;strong&gt;姜片 + 葱段 + 料酒&lt;/strong&gt;，冷水下锅焯水撇净血沫。90% 的腥味在这一步就解决了，后面的辅料是加分项，不是补救措施。"
+         data-en="For any red-meat braise, when in doubt start with three things: &lt;strong&gt;ginger, scallion, and rice wine&lt;/strong&gt;, blanching from cold water and skimming the scum. That step handles 90% of the off-odors — everything after it is a bonus, not a rescue.">任何红肉炖煮，不知道放什么就先来这三样：<strong>姜片 + 葱段 + 料酒</strong>，冷水下锅焯水撇净血沫。90% 的腥味在这一步就解决了，后面的辅料是加分项，不是补救措施。</p>
+      <p data-zh="&lt;strong&gt;香料宁少勿多。&lt;/strong&gt;八角、桂皮、香叶这类「大料」，一锅家常菜各放 1 小块就够。放多了肉香会被香料味彻底盖住，吃起来像卤味店的边角料。"
+         data-en="&lt;strong&gt;Go light on spices.&lt;/strong&gt; For a home-sized pot, one small piece each of star anise, cassia, and bay is plenty. Overdo it and the spice buries the meat entirely — it ends up tasting like generic deli braise."><strong>香料宁少勿多。</strong>八角、桂皮、香叶这类「大料」，一锅家常菜各放 1 小块就够。放多了肉香会被香料味彻底盖住，吃起来像卤味店的边角料。</p>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>
