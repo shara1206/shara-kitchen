@@ -1,6 +1,6 @@
 {
   "generated": true,
-  "total": 109,
+  "total": 111,
   "categories": [
     {
       "name_en": "Noodles (面条)",
@@ -96,7 +96,7 @@
       "name_en": "Cooking Tips",
       "name_zh": "烹饪技巧",
       "type": "tip",
-      "count": 6
+      "count": 7
     },
     {
       "name_en": "Ingredient Notes",
@@ -108,7 +108,7 @@
       "name_en": "Study Topics",
       "name_zh": "学习专题",
       "type": "study",
-      "count": 7
+      "count": 8
     },
     {
       "name_en": "Pages",
@@ -1235,6 +1235,18 @@
       "subtitle_zh": ""
     },
     {
+      "title_en": "Meat & Aromatic Pairing Table",
+      "title_zh": "肉类 × 辅料 搭配表",
+      "path": "cooking-tips/roulei-fuliao.html",
+      "slug": "roulei-fuliao",
+      "type": "tip",
+      "category_en": "Cooking Tips",
+      "category_zh": "烹饪技巧",
+      "image": null,
+      "subtitle_en": "17 pairings",
+      "subtitle_zh": "17 组搭配"
+    },
+    {
       "title_en": "Frying Batter Guide",
       "title_zh": "油炸面糊",
       "path": "cooking-tips/zhajiao-mianhu.html",
@@ -1377,6 +1389,18 @@
       "image": null,
       "subtitle_en": "2 notes",
       "subtitle_zh": "2 篇笔记"
+    },
+    {
+      "title_en": "Chicken",
+      "title_zh": "鸡肉",
+      "path": "study-topics/chicken.html",
+      "slug": "chicken",
+      "type": "study",
+      "category_en": "Study Topics",
+      "category_zh": "学习专题",
+      "image": null,
+      "subtitle_en": "1 note",
+      "subtitle_zh": "1 篇笔记"
     },
     {
       "title_en": "Potato",
