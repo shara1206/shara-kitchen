@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="炖汤指南 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chinese Soup Guide &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 1300px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  main { max-width: min(92vw, 1300px); margin: 0 auto; padding: 36px 24px 60px; }
+
+  .header-title { max-width: min(92vw, 1300px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .header-icon-slot { width: 180px; height: 180px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; }
+
+  h2.sec { font-size: 1.15rem; color: var(--accent); margin: 34px 0 14px; letter-spacing: 0.01em; }
+  h2.sec:first-of-type { margin-top: 0; }
+
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 8px; overflow-x: auto; }
+  table.soup { border-collapse: collapse; width: 100%; min-width: 880px; font-size: 0.92rem; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  table.soup th { background: var(--accent-soft); color: #7a4718; text-align: left; padding: 11px 12px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 2px solid var(--accent); white-space: nowrap; }
+  table.soup td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+  table.soup tr:last-child td { border-bottom: none; }
+  table.soup tr:hover td { background: #fdf8f0; }
+  table.soup td.soup-name { font-weight: 700; color: var(--accent); font-size: 1rem; white-space: nowrap; border-left: 4px solid var(--accent); }
+  table.soup td:nth-child(2) { color: var(--muted); font-style: italic; }
+  table.soup td:nth-child(5) { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .timeline { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 22px 26px; }
+  .timeline ol { list-style: none; margin: 0; padding: 0; position: relative; }
+  .timeline ol::before { content: ""; position: absolute; left: 112px; top: 6px; bottom: 6px; width: 2px; background: var(--accent-soft); }
+  .timeline li { display: flex; gap: 20px; padding: 9px 0; position: relative; }
+  .tl-time { width: 100px; flex-shrink: 0; text-align: right; font-family: 'Helvetica', 'PingFang SC', sans-serif; font-size: 0.82rem; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+  .timeline li::after { content: ""; position: absolute; left: 108px; top: 13px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--card); }
+  .tl-body { flex: 1; padding-left: 14px; }
+  .tl-body h4 { margin: 0 0 2px; font-size: 0.98rem; color: var(--ink); font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  .tl-body p { margin: 0; font-size: 0.92rem; color: var(--muted); line-height: 1.6; }
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .rule { background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0; padding: 16px 20px; display: flex; gap: 14px; }
+  .rule-num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: #7a4718; font-family: 'Helvetica', sans-serif; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+  .rule h4 { margin: 2px 0 5px; font-size: 0.98rem; color: var(--accent); font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  .rule p { margin: 0; font-size: 0.92rem; line-height: 1.65; }
+
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0 0; font-size: 0.93rem; }
+  .scroll-hint { display: none; font-size: 0.82rem; color: var(--muted); margin: 0 0 8px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+
+  @media (max-width: 820px) {
+    header { padding: 24px 18px; }
+    .header-title { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .header-title h1 { font-size: 1.5rem; }
+    .header-icon-slot { width: 110px; height: 110px; }
+    .header-icon-slot svg { width: 72px; height: 72px; }
+    main { padding: 24px 16px 44px; }
+    .scroll-hint { display: block; }
+    .panel { padding: 6px; }
+    table.soup { font-size: 0.86rem; min-width: 760px; }
+    .timeline { padding: 18px 16px; }
+    .timeline ol::before { left: 5px; }
+    .timeline li { flex-direction: column; gap: 2px; padding-left: 24px; }
+    .timeline li::after { left: 1px; top: 8px; }
+    .tl-time { width: auto; text-align: left; padding-top: 0; font-weight: 700; color: var(--accent); }
+    .tl-body { padding-left: 0; }
+    .rule { padding: 14px 16px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Chinese Soup Guide" data-zh="炖汤指南">Chinese Soup Guide</h1>
+        <div class="meta" data-en="Cooking Tips &middot; heat control and the order things go in" data-zh="烹饪技巧 · 火候与下料顺序">Cooking Tips &middot; heat control and the order things go in</div>
+      </div>
+      <div class="header-icon-slot"><svg width="120" height="120" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><path d="M12 7 Q10 4.5 12 2.5" fill="none" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round" opacity="0.75"/><path d="M18 6.5 Q15.6 3.5 18 1" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/><path d="M24 7 Q22 4.5 24 2.5" fill="none" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round" opacity="0.75"/><ellipse cx="18" cy="15.5" rx="14" ry="3" fill="#f5efe2" stroke="#c08a4a" stroke-width="0.8"/><ellipse cx="18" cy="15.5" rx="11.6" ry="2.3" fill="#e8b45c" stroke="#c08a4a" stroke-width="0.5"/><ellipse cx="13" cy="15.2" rx="2.4" ry="0.9" fill="#f2d9a0" opacity="0.85"/><ellipse cx="21.5" cy="15.9" rx="1.8" ry="0.7" fill="#c8703a" opacity="0.7"/><ellipse cx="17.5" cy="14.9" rx="1.4" ry="0.55" fill="#8aa84a" opacity="0.8"/><path d="M4 15.5 Q4.6 26 10 30.2 Q13.6 32.6 18 32.6 Q22.4 32.6 26 30.2 Q31.4 26 32 15.5 Z" fill="#f7f2e8" stroke="#c08a4a" stroke-width="1"/><path d="M6.4 18.5 Q7.2 26 11.4 29.2" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/><path d="M4.4 19.5 L31.6 19.5" stroke="#c08a4a" stroke-width="0.7" opacity="0.55"/><ellipse cx="18" cy="34" rx="7.5" ry="1.5" fill="#e0cbaa" stroke="#c08a4a" stroke-width="0.7"/></svg></div>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="sec" data-zh="一、六种汤型速查表" data-en="1. Six soup types at a glance">一、六种汤型速查表</h2>
+    <p class="scroll-hint" data-zh="← 表格可左右滑动" data-en="&larr; Swipe the table sideways">← 表格可左右滑动</p>
+    <div class="panel">
+      <table class="soup">
+        <thead>
+          <tr>
+      <th data-zh="汤型" data-en="Soup type">汤型</th>
+      <th data-zh="代表菜" data-en="Examples">代表菜</th>
+      <th data-zh="下锅水温" data-en="Water at start">下锅水温</th>
+      <th data-zh="火候" data-en="Heat">火候</th>
+      <th data-zh="时长" data-en="Time">时长</th>
+      <th data-zh="成败关键" data-en="What makes or breaks it">成败关键</th>
+          </tr>
+        </thead>
+        <tbody>
+    <tr class="row-clear">
+      <td class="soup-name" data-zh="清汤 / 高汤" data-en="Clear broth (qīng tāng)">清汤 / 高汤</td>
+      <td data-zh="清鸡汤、上汤、火腿吊汤" data-en="Clear chicken soup, superior stock, ham stock">清鸡汤、上汤、火腿吊汤</td>
+      <td data-zh="冷水下锅" data-en="Cold water">冷水下锅</td>
+      <td data-zh="大火烧开撇净沫 → 转最小火，水面只冒“菊花心”小泡" data-en="Bring to a boil, skim thoroughly, then drop to the lowest simmer — only tiny bubbles">大火烧开撇净沫 → 转最小火，水面只冒“菊花心”小泡</td>
+      <td data-zh="2–4 小时" data-en="2–4 hrs">2–4 小时</td>
+      <td data-zh="全程绝不大滚，一滚就浑；锅盖留一条缝" data-en="Never let it roll-boil — that emulsifies fat and clouds it. Leave the lid ajar.">全程绝不大滚，一滚就浑；锅盖留一条缝</td>
+    </tr>
+    <tr class="row-milky">
+      <td class="soup-name" data-zh="奶白汤" data-en="Milky white soup">奶白汤</td>
+      <td data-zh="鲫鱼豆腐汤、猪骨浓汤、羊肉汤" data-en="Crucian carp &amp; tofu, rich pork bone soup, lamb soup">鲫鱼豆腐汤、猪骨浓汤、羊肉汤</td>
+      <td data-zh="主料先煎/煸出油 → 冲滚水" data-en="Sear or fry the main item first, then pour in boiling water">主料先煎/煸出油 → 冲滚水</td>
+      <td data-zh="全程中大火滚沸" data-en="Medium-high, kept at a rolling boil throughout">全程中大火滚沸</td>
+      <td data-zh="20–40 分钟" data-en="20–40 min">20–40 分钟</td>
+      <td data-zh="白色来自油脂乳化，必须滚；水一次加足，且必须是开水" data-en="The white comes from fat emulsifying — it has to boil. Add all the water at once, and it must be boiling.">白色来自油脂乳化，必须滚；水一次加足，且必须是开水</td>
+    </tr>
+    <tr class="row-laohuo">
+      <td class="soup-name" data-zh="广式老火汤" data-en="Cantonese slow-simmered soup">广式老火汤</td>
+      <td data-zh="霸王花猪骨汤、清补凉、椰子鸡汤" data-en="Cactus-flower pork bone soup, qīng bǔ liáng, coconut chicken">霸王花猪骨汤、清补凉、椰子鸡汤</td>
+      <td data-zh="冷水，一次加足" data-en="Cold water, all of it at once">冷水，一次加足</td>
+      <td data-zh="大火滚开 → 转小火保持轻微冒泡" data-en="Boil, then reduce to a gentle simmer">大火滚开 → 转小火保持轻微冒泡</td>
+      <td data-zh="1.5–3 小时" data-en="1.5–3 hrs">1.5–3 小时</td>
+      <td data-zh="中途绝不加水，加了汤就“泄”；料一次下齐" data-en="Never top up mid-way or the flavor goes flat. Everything goes in at the start.">中途绝不加水，加了汤就“泄”；料一次下齐</td>
+    </tr>
+    <tr class="row-gun">
+      <td class="soup-name" data-zh="滚汤 / 快汤" data-en="Quick soup (gǔn tāng)">滚汤 / 快汤</td>
+      <td data-zh="番茄蛋汤、紫菜蛋花汤、青菜豆腐汤" data-en="Tomato &amp; egg, seaweed egg drop, greens &amp; tofu">番茄蛋汤、紫菜蛋花汤、青菜豆腐汤</td>
+      <td data-zh="水或高汤先烧开再下料" data-en="Bring water or stock to a boil first, then add ingredients">水或高汤先烧开再下料</td>
+      <td data-zh="全程大火" data-en="High heat throughout">全程大火</td>
+      <td data-zh="1–5 分钟" data-en="1–5 min">1–5 分钟</td>
+      <td data-zh="久煮反而不鲜，菜一变色就关火" data-en="Longer is not better — kill the heat the moment the greens turn color.">久煮反而不鲜，菜一变色就关火</td>
+    </tr>
+    <tr class="row-geng">
+      <td class="soup-name" data-zh="羹 / 浓汤" data-en="Thickened soup (gēng)">羹 / 浓汤</td>
+      <td data-zh="酸辣汤、西湖牛肉羹、玉米浓汤" data-en="Hot &amp; sour soup, West Lake beef geng, corn chowder">酸辣汤、西湖牛肉羹、玉米浓汤</td>
+      <td data-zh="高汤烧开" data-en="Bring stock to a boil">高汤烧开</td>
+      <td data-zh="中火，勾芡后转小火防糊底" data-en="Medium; after thickening, lower the heat so it doesn&#x27;t scorch">中火，勾芡后转小火防糊底</td>
+      <td data-zh="10–15 分钟" data-en="10–15 min">10–15 分钟</td>
+      <td data-zh="顺序是：主料 → 勾芡 → 淋蛋液 → 离火再放醋和香油" data-en="Order matters: solids → thicken → egg ribbons → off the heat, then vinegar and sesame oil.">顺序是：主料 → 勾芡 → 淋蛋液 → 离火再放醋和香油</td>
+    </tr>
+    <tr class="row-yaoshan">
+      <td class="soup-name" data-zh="隔水炖 / 药膳" data-en="Double-boiled / tonic soup">隔水炖 / 药膳</td>
+      <td data-zh="虫草花炖鸡、人参乌鸡、天麻炖汤" data-en="Cordyceps-flower chicken, ginseng silkie, gastrodia soup">虫草花炖鸡、人参乌鸡、天麻炖汤</td>
+      <td data-zh="炖盅内加温水，外锅水烧沸" data-en="Warm water inside the jar; the outer pot&#x27;s water boils">炖盅内加温水，外锅水烧沸</td>
+      <td data-zh="汤本身不沸，只靠蒸汽慢慢加热" data-en="The soup itself never boils — steam heats it gently">汤本身不沸，只靠蒸汽慢慢加热</td>
+      <td data-zh="2–4 小时" data-en="2–4 hrs">2–4 小时</td>
+      <td data-zh="最清、香气损失最小；炖盅要封口，中途不揭盖" data-en="Cleanest result, least aroma loss. Seal the jar and don&#x27;t lift the lid.">最清、香气损失最小；炖盅要封口，中途不揭盖</td>
+    </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip" data-zh="💡 一句话记住：&lt;strong&gt;想要清就别滚，想要白就必须滚。&lt;/strong&gt;清汤和奶白汤的差别不在食材，只在火候。" data-en="💡 One line to remember: &lt;strong&gt;if you want it clear, don&#39;t boil it; if you want it white, you must boil it.&lt;/strong&gt; Clear broth and milky broth differ by heat, not by ingredients.">💡 一句话记住：<strong>想要清就别滚，想要白就必须滚。</strong>清汤和奶白汤的差别不在食材，只在火候。</div>
+
+    <h2 class="sec" data-zh="二、下料顺序时间轴（以 2 小时炖肉汤为例）" data-en="2. When things go in — timeline for a 2-hour meat soup">二、下料顺序时间轴（以 2 小时炖肉汤为例）</h2>
+    <div class="timeline">
+      <ol>
+      <li>
+        <span class="tl-time" data-zh="−10 分钟" data-en="−10 min">−10 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="焯水" data-en="Blanch">焯水</h4>
+          <p data-zh="肉类&lt;strong&gt;冷水下锅&lt;/strong&gt;，水开后撇沫，捞出用&lt;strong&gt;温水&lt;/strong&gt;冲净（冷水会让肉紧缩发柴）" data-en="Start the meat in &lt;strong&gt;cold water&lt;/strong&gt;, skim once it boils, then rinse under &lt;strong&gt;warm&lt;/strong&gt; water (cold water tightens the meat and makes it tough)">肉类<strong>冷水下锅</strong>，水开后撇沫，捞出用<strong>温水</strong>冲净（冷水会让肉紧缩发柴）</p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="0 分钟" data-en="0 min">0 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="主料下锅" data-en="Main ingredients in">主料下锅</h4>
+          <p data-zh="主料 + 姜片、葱段、料酒 + 水（清汤用&lt;strong&gt;冷水&lt;/strong&gt;，奶白汤用&lt;strong&gt;滚水&lt;/strong&gt;）" data-en="Main ingredient + ginger, scallion, cooking wine + water (&lt;strong&gt;cold&lt;/strong&gt; for clear broth, &lt;strong&gt;boiling&lt;/strong&gt; for milky)">主料 + 姜片、葱段、料酒 + 水（清汤用<strong>冷水</strong>，奶白汤用<strong>滚水</strong>）</p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="+5 分钟" data-en="+5 min">+5 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="撇沫" data-en="Skim">撇沫</h4>
+          <p data-zh="大火烧开，把浮沫彻底撇净 —— &lt;strong&gt;这一步决定汤清不清&lt;/strong&gt;" data-en="Bring to a boil and skim the scum off completely — &lt;strong&gt;this step decides whether the soup is clear&lt;/strong&gt;">大火烧开，把浮沫彻底撇净 —— <strong>这一步决定汤清不清</strong></p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="+6 分钟" data-en="+6 min">+6 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="干货" data-en="Dried goods">干货</h4>
+          <p data-zh="转到对应火力，加干香菇、干贝、陈皮、党参等需要久炖的干货" data-en="Drop to the target heat, then add dried shiitake, dried scallop, tangerine peel, codonopsis — anything that needs the full simmer">转到对应火力，加干香菇、干贝、陈皮、党参等需要久炖的干货</p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="剩 40 分钟" data-en="40 min left">剩 40 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="耐煮根茎" data-en="Hardy roots">耐煮根茎</h4>
+          <p data-zh="白萝卜、玉米、莲藕、山药、板栗、海带" data-en="Daikon, corn, lotus root, Chinese yam, chestnuts, kelp">白萝卜、玉米、莲藕、山药、板栗、海带</p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="剩 20 分钟" data-en="20 min left">剩 20 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="菌菇豆制品 + 放盐" data-en="Mushrooms, tofu + salt">菌菇豆制品 + 放盐</h4>
+          <p data-zh="鲜菌菇、豆腐、腐竹；&lt;strong&gt;★ 盐在这时候放&lt;/strong&gt;" data-en="Fresh mushrooms, tofu, yuba; &lt;strong&gt;★ this is when the salt goes in&lt;/strong&gt;">鲜菌菇、豆腐、腐竹；<strong>★ 盐在这时候放</strong></p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="剩 10 分钟" data-en="10 min left">剩 10 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="枸杞红枣" data-en="Goji &amp; dates">枸杞红枣</h4>
+          <p data-zh="枸杞久煮会发酸发苦；红枣可以早点放" data-en="Goji berries turn sour and bitter if boiled long; red dates can go in earlier">枸杞久煮会发酸发苦；红枣可以早点放</p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="剩 3 分钟" data-en="3 min left">剩 3 分钟</span>
+        <div class="tl-body">
+          <h4 data-zh="易熟食材" data-en="Quick-cooking items">易熟食材</h4>
+          <p data-zh="叶菜、粉丝、蛋液、虾仁" data-en="Leafy greens, glass noodles, beaten egg, shrimp">叶菜、粉丝、蛋液、虾仁</p>
+        </div>
+      </li>
+      <li>
+        <span class="tl-time" data-zh="出锅" data-en="Off the heat">出锅</span>
+        <div class="tl-body">
+          <h4 data-zh="调味收尾" data-en="Final seasoning">调味收尾</h4>
+          <p data-zh="白胡椒粉、香油、葱花、香菜 —— 全部离火后放，香气才留得住" data-en="White pepper, sesame oil, scallion, cilantro — all added off the heat so the aroma survives">白胡椒粉、香油、葱花、香菜 —— 全部离火后放，香气才留得住</p>
+        </div>
+      </li>
+      </ol>
+    </div>
+
+    <h2 class="sec" data-zh="三、四条铁律" data-en="3. Four rules worth memorizing">三、四条铁律</h2>
+    <div class="rules">
+      <div class="rule">
+        <span class="rule-num">1</span>
+        <div>
+          <h4 data-zh="盐一定要晚放" data-en="Salt goes in late">盐一定要晚放</h4>
+          <p data-zh="肉汤在出锅前 15–20 分钟才放盐。放早了蛋白质提前收缩，肉柴、汤也不鲜。" data-en="For meat soups, salt only in the last 15–20 minutes. Earlier, and the proteins tighten prematurely — tough meat, thinner broth.">肉汤在出锅前 15–20 分钟才放盐。放早了蛋白质提前收缩，肉柴、汤也不鲜。</p>
+        </div>
+      </div>
+      <div class="rule">
+        <span class="rule-num">2</span>
+        <div>
+          <h4 data-zh="冷水还是热水，看你想吃什么" data-en="Cold or hot water depends on what you&#x27;re after">冷水还是热水，看你想吃什么</h4>
+          <p data-zh="想&lt;strong&gt;喝汤&lt;/strong&gt;（鲜味往汤里跑）→ 冷水下锅；想&lt;strong&gt;吃肉&lt;/strong&gt;（鲜味锁在肉里）→ 滚水下锅。奶白汤是唯一例外，必须用滚水冲才乳化。" data-en="Want the &lt;strong&gt;soup&lt;/strong&gt; to taste good (flavor migrates out) → start in cold water. Want the &lt;strong&gt;meat&lt;/strong&gt; to taste good (flavor stays in) → start in boiling water. Milky soups are the one exception: boiling water is required for emulsification.">想<strong>喝汤</strong>（鲜味往汤里跑）→ 冷水下锅；想<strong>吃肉</strong>（鲜味锁在肉里）→ 滚水下锅。奶白汤是唯一例外，必须用滚水冲才乳化。</p>
+        </div>
+      </div>
+      <div class="rule">
+        <span class="rule-num">3</span>
+        <div>
+          <h4 data-zh="中途补水只能加开水" data-en="Only ever top up with boiling water">中途补水只能加开水</h4>
+          <p data-zh="冷水下去蛋白质骤缩，汤发浑、肉发柴。老火汤更是从头就该把水加足。" data-en="Cold water shocks the proteins — cloudy broth, tough meat. For long-simmered soups, add all the water at the start instead.">冷水下去蛋白质骤缩，汤发浑、肉发柴。老火汤更是从头就该把水加足。</p>
+        </div>
+      </div>
+      <div class="rule">
+        <span class="rule-num">4</span>
+        <div>
+          <h4 data-zh="香料越少越好" data-en="Fewer aromatics, not more">香料越少越好</h4>
+          <p data-zh="炖汤不是卤味。姜、葱、料酒（或几粒白胡椒）基本就够了；八角桂皮花椒会盖掉主料本身的鲜味。" data-en="A soup is not a braise. Ginger, scallion, and cooking wine (plus a few white peppercorns) are usually enough — star anise, cassia, and Sichuan pepper will bury the ingredient&#x27;s own flavor.">炖汤不是卤味。姜、葱、料酒（或几粒白胡椒）基本就够了；八角桂皮花椒会盖掉主料本身的鲜味。</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

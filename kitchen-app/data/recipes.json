@@ -1,6 +1,6 @@
 {
   "generated": true,
-  "total": 111,
+  "total": 112,
   "categories": [
     {
       "name_en": "Noodles (面条)",
@@ -96,7 +96,7 @@
       "name_en": "Cooking Tips",
       "name_zh": "烹饪技巧",
       "type": "tip",
-      "count": 7
+      "count": 8
     },
     {
       "name_en": "Ingredient Notes",
@@ -1317,6 +1317,18 @@
       "image": null,
       "subtitle_en": "Powder & sheets",
       "subtitle_zh": "吉利丁粉与片"
+    },
+    {
+      "title_en": "Chinese Soup Guide",
+      "title_zh": "炖汤指南",
+      "path": "cooking-tips/duntang-guide.html",
+      "slug": "duntang-guide",
+      "type": "tip",
+      "category_en": "Cooking Tips",
+      "category_zh": "烹饪技巧",
+      "image": null,
+      "subtitle_en": "6 soup types",
+      "subtitle_zh": "6 种汤型"
     },
     {
       "title_en": "Hot Pot Dipping Sauces",
