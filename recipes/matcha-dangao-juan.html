@@ -17,16 +17,20 @@
   header .meta { max-width: min(92vw, 900px); margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
   main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
   .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; }
+  .recipe-notes + .recipe-notes { margin-top: 28px; }
   .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
   .recipe-notes h3:first-child { margin-top: 0; }
   .recipe-notes p { margin: 8px 0; line-height: 1.7; }
   .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
   .recipe-notes li { margin: 4px 0; line-height: 1.7; }
   .recipe-notes a { color: var(--accent); }
+  .formula-title { font-family: 'Helvetica', 'PingFang SC', sans-serif; color: var(--accent); font-size: 1.15rem; font-weight: 700; margin: 0 0 2px; }
+  .formula-sub { color: var(--muted); font-size: 0.9rem; font-style: italic; margin: 0 0 8px; }
+  .group-label { font-weight: 700; margin: 12px 0 2px; }
   .bake-badge { display: inline-block; background: var(--accent-soft); border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; font-size: 0.9rem; font-family: 'Helvetica', sans-serif; margin-top: 10px; }
   .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
   footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
-  /* ── Header photo slot ── */
+  /* Header photo slot */
   .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
   .header-text { flex: 1; }
   .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
@@ -53,9 +57,15 @@
   </header>
 
   <main>
+    <!-- ══ Formula 1 ══ -->
     <div class="recipe-notes">
+      <div class="scaler" data-base="1" data-unit-zh="份" data-unit-en=" batch"></div>
+
+      <div class="formula-title" data-en="Formula 1 · Moist &amp; bold matcha" data-zh="方子一 · 湿润浓茶版">方子一 · 湿润浓茶版</div>
+      <div class="formula-sub" data-en="11-inch square pan · fuller sheet for rolling" data-zh="11寸方盘 · 较厚，适合卷制">11寸方盘 · 较厚，适合卷制</div>
+
       <h3 data-en="Ingredients" data-zh="材料">材料</h3>
-      <ul>
+      <ul data-scale>
         <li data-en="Eggs — 5" data-zh="鸡蛋 — 5个">鸡蛋 egg — 5个</li>
         <li data-en="Corn oil — 50g" data-zh="玉米油 — 50g">玉米油 corn oil — 50g</li>
         <li data-en="Matcha powder — 10g" data-zh="抹茶粉 — 10g">抹茶粉 matcha powder — 10g</li>
@@ -70,6 +80,71 @@
         <span class="bake-badge" data-en="11-inch square pan · 150°C · 30 min" data-zh="11寸方盘 · 150°C · 30分钟">11寸方盘 · 150°C · 30分钟</span>
       </p>
     </div>
+
+    <!-- ══ Formula 2 ══ -->
+    <div class="recipe-notes">
+      <div class="formula-title" data-en="Formula 2 · Firm &amp; light matcha (v2, to verify)" data-zh="方子二 · 扎实清茶版（v2 待验证）">方子二 · 扎实清茶版（v2 待验证）</div>
+      <div class="formula-sub" data-en="9-inch square pan · ~1.5 cm · thin sheet for a roll base or layering · adapted from the 6-inch round base chiffon" data-zh="9寸方盘 · 约1.5cm · 薄片，做卷底或夹层 · 改自6寸圆模基础戚风方">9寸方盘 · 约1.5cm · 薄片，做卷底或夹层 · 改自6寸圆模基础戚风方</div>
+
+      <h3 data-en="Ingredients" data-zh="材料">材料</h3>
+      <p class="group-label" data-en="Yolk batter" data-zh="蛋黄糊">蛋黄糊</p>
+      <ul data-scale>
+        <li data-en="Milk — 35g · warmed to 105–120°F" data-zh="牛奶 — 35g · 加热至40–50°C（微温）">牛奶 milk — 35g · 加热至40–50°C（微温）</li>
+        <li data-en="Uji matcha powder — 6g · sifted into the warm milk in batches" data-zh="宇治抹茶粉 — 6g · 分次筛入温牛奶化开">宇治抹茶粉 matcha — 6g · 分次筛入温牛奶化开</li>
+        <li data-en="Neutral oil — 30g" data-zh="植物油 — 30g（无味）">植物油 neutral oil — 30g（无味）</li>
+        <li data-en="Egg yolks — 3 (≈45g)" data-zh="蛋黄 — 3个（约45g）">蛋黄 egg yolks — 3个（约45g）</li>
+        <li data-en="Sugar — 5g" data-zh="细砂糖 — 5g">细砂糖 sugar — 5g</li>
+        <li data-en="Cake flour — 52g · sifted" data-zh="低筋面粉 — 52g · 过筛">低筋面粉 cake flour — 52g · 过筛</li>
+      </ul>
+      <p class="group-label" data-en="Meringue" data-zh="蛋白霜">蛋白霜</p>
+      <ul data-scale>
+        <li data-en="Egg whites — 3 (≈105g) · chilled" data-zh="蛋白 — 3个（约105g）· 冷藏后使用">蛋白 egg whites — 3个（约105g）· 冷藏后使用</li>
+        <li data-en="Sugar — 30g · added in three parts" data-zh="细砂糖 — 30g · 分三次加入">细砂糖 sugar — 30g · 分三次加入</li>
+      </ul>
+
+      <h3 data-en="Pan &amp; Bake" data-zh="烤盘与烘烤">烤盘与烘烤</h3>
+      <p>
+        <span class="bake-badge" data-en="9-inch square pan · 350°F, no convection · 18–20 min · middle rack" data-zh="9寸方盘 · 350°F 关热风 · 18–20分钟 · 中层">9寸方盘 · 350°F 关热风 · 18–20分钟 · 中层</span>
+      </p>
+
+      <h3 data-en="Steps" data-zh="步骤">步骤</h3>
+      <ol>
+        <li data-en="Prep — Preheat to 350°F (no convection, regular top+bottom heat). Line a 9-inch square pan with parchment, snipping the corners to fit. Chill the egg whites until needed." data-zh="准备 — 烤箱预热350°F（关热风，用常规上下火）。9寸方形烤盘铺油纸，四角剪开贴合。蛋白先放冷藏备用。">准备 — 烤箱预热350°F（关热风，用常规上下火）。9寸方形烤盘铺油纸，四角剪开贴合。蛋白先放冷藏备用。</li>
+        <li data-en="Bloom the matcha — Warm the milk to 105–120°F (lukewarm, not hot). Sift in the matcha in 2–3 additions, whisking each fully smooth before the next. This step decides whether the cake ends up with lumps or color specks." data-zh="化开抹茶 — 牛奶加热到105–120°F（微温不烫手），分2–3次筛入抹茶粉，每次搅到完全无颗粒再加下一次。这一步决定成品会不会有小疙瘩和色斑。">化开抹茶 — 牛奶加热到105–120°F（微温不烫手），分2–3次筛入抹茶粉，每次搅到完全无颗粒再加下一次。这一步决定成品会不会有小疙瘩和色斑。</li>
+        <li data-en="Emulsify — Add the oil and whisk briskly until fully emulsified: even, slightly thickened, with no separated oil droplets." data-zh="乳化 — 加入植物油，用蛋抽快速搅打到完全乳化、质地均匀微微发稠，看不到分离的油花。">乳化 — 加入植物油，用蛋抽快速搅打到完全乳化、质地均匀微微发稠，看不到分离的油花。</li>
+        <li data-en="Yolk batter — Mix in the yolks and 5g sugar, then sift in the flour. Fold in a Z-motion just until no dry flour remains; don't stir in circles or you'll build gluten." data-zh="拌蛋黄糊 — 加入蛋黄和5g细砂糖拌匀，再筛入低筋面粉，划Z字或翻拌到看不见干粉，不要画圈搅起筋。">拌蛋黄糊 — 加入蛋黄和5g细砂糖拌匀，再筛入低筋面粉，划Z字或翻拌到看不见干粉，不要画圈搅起筋。</li>
+        <li data-en="Meringue — Whip the whites to a coarse foam, then add the 30g sugar in three parts. Beat to stiff peaks: the whisk lifts a firm upright tip and the bowl can be inverted without sliding." data-zh="打蛋白霜 — 蛋白打到粗泡后，分三次加入30g细砂糖，打到硬性发泡——提起打蛋头是挺立的小尖角，盆倒扣不流动。">打蛋白霜 — 蛋白打到粗泡后，分三次加入30g细砂糖，打到硬性发泡——提起打蛋头是挺立的小尖角，盆倒扣不流动。</li>
+        <li data-en="Combine — Fold 1/3 of the meringue into the yolk batter, then pour that back into the remaining meringue and fold from the bottom until the color is even with no white streaks. Work quickly to avoid deflating." data-zh="混合 — 取1/3蛋白霜加入蛋黄糊翻拌均匀；再把混合物倒回剩余蛋白霜中，从底部翻拌到颜色均匀无白色纹路。动作要快，避免消泡。">混合 — 取1/3蛋白霜加入蛋黄糊翻拌均匀；再把混合物倒回剩余蛋白霜中，从底部翻拌到颜色均匀无白色纹路。动作要快，避免消泡。</li>
+        <li data-en="Into the pan — Pour into the pan, smooth the top with a scraper, and tap the pan on the counter twice to release large bubbles." data-zh="入盘 — 倒入烤盘，用刮板抹平表面，端起来在台面上震两下震出大气泡。">入盘 — 倒入烤盘，用刮板抹平表面，端起来在台面上震两下震出大气泡。</li>
+        <li data-en="Bake — No convection, 350°F top+bottom heat, middle rack. Start checking at 18 min and pull it as soon as it passes the cues, 20 min at the latest. Cues: top evenly colored and no longer wet-shiny; a light tap at the center springs back with no dent; edges pulling slightly from the pan. Judge by state, not by a fixed time." data-zh="烘烤 — 关热风，350°F常规上下火，中层。18分钟时开始观察，符合判断标准就出炉，最晚不超过20分钟。判断标准：表面均匀上色不再湿亮、轻拍中心立刻回弹不留指印、边缘微微离模。宁可靠状态判断，不要按固定时间烤满。">烘烤 — 关热风，350°F常规上下火，中层。18分钟时开始观察，符合判断标准就出炉，最晚不超过20分钟。判断标准：表面均匀上色不再湿亮、轻拍中心立刻回弹不留指印、边缘微微离模。宁可靠状态判断，不要按固定时间烤满。</li>
+        <li data-en="Cool &amp; store — Tap once out of the oven, slide it onto a rack with the parchment, and peel the sides open to release steam. Once fully cool, wrap airtight against the surface and refrigerate overnight; the moisture redistributes, the crumb turns noticeably moister, and the matcha's astringency softens." data-zh="出炉与保存 — 出炉立刻震一下，连油纸移到晾网，撕开四边散热。彻底凉透后用保鲜膜贴面包好冷藏一夜，水分重新分布，口感明显更润，抹茶的涩味也会柔和。">出炉与保存 — 出炉立刻震一下，连油纸移到晾网，撕开四边散热。彻底凉透后用保鲜膜贴面包好冷藏一夜，水分重新分布，口感明显更润，抹茶的涩味也会柔和。</li>
+      </ol>
+
+      <div class="tip" data-en="Oven / convection: v1 used 325°F with the fan on, whose heat effect ≈ 350°F conventional — so v1 wasn't a slow bake; the dryness more likely came from the fan speeding surface moisture loss. Preferred fix: turn convection off, bake 350°F conventional, 18–20 min. If the fan can't be turned off, keep 325°F but cut to 18 min and set a tray of hot water on the lower rack for steam. Rotate the pan 180° at 12 min (structure is set by then); don't open the door before 12 min." data-zh="烤箱 / 热风：v1用325°F开热风，热效应≈350°F常规——所以v1并非慢烤，干感更可能来自热风气流加速表面失水。首选：关热风，350°F常规上下火，18–20分钟。若热风无法关闭，维持325°F、缩到18分钟，并在下层放一盘热水制造蒸汽。第12分钟把烤盘转180°（此时结构已定型），12分钟前不要开门。">烤箱 / 热风：v1用325°F开热风，热效应≈350°F常规——所以v1并非慢烤，干感更可能来自热风气流加速表面失水。首选：关热风，350°F常规上下火，18–20分钟。若热风无法关闭，维持325°F、缩到18分钟，并在下层放一盘热水制造蒸汽。第12分钟把烤盘转180°（此时结构已定型），12分钟前不要开门。</div>
+
+      <h3 data-en="Notes" data-zh="笔记">笔记</h3>
+      <ul>
+        <li data-en="Matcha has no gluten and absorbs water — it acts as extra dry powder, so more matcha means a drier cake." data-zh="抹茶不含面筋且吸水，属于额外干粉，加得越多成品越干。">抹茶不含面筋且吸水，属于额外干粉，加得越多成品越干。</li>
+        <li data-en="Still too dry? Bump milk from 35g to 37g to match the water ratio of plain chiffon (0.60). Change only one variable at a time." data-zh="如果仍偏干：牛奶从35g加到37g，含水比就与原味戚风一致。一次只改一个变量。">如果仍偏干：牛奶从35g加到37g，含水比就与原味戚风一致。一次只改一个变量。</li>
+        <li data-en="Total sugar of 35g is low, so the matcha's astringency shows. For more balance, raise the meringue sugar to 35g — it also makes the meringue more stable." data-zh="总糖35g偏低，抹茶涩味会比较明显。想更平衡可把蛋白霜的糖提到35g，蛋白霜也更稳定。">总糖35g偏低，抹茶涩味会比较明显。想更平衡可把蛋白霜的糖提到35g，蛋白霜也更稳定。</li>
+        <li data-en="With flour down to 52g the meringue carries more of the structure — whip it a touch stiff rather than under-whipped." data-zh="面粉降到52g后蛋白霜的支撑占比更大，打发宁可偏干一点，不要打不足。">面粉降到52g后蛋白霜的支撑占比更大，打发宁可偏干一点，不要打不足。</li>
+        <li data-en="Get an oven thermometer. Reliable dial-in depends on trustworthy oven temps — home ovens routinely run 20–30°F off their setting." data-zh="建议配一个烤箱温度计。反复调配方的前提是炉温可信，家用烤箱实际温度和设定值差20–30°F很常见。">建议配一个烤箱温度计。反复调配方的前提是炉温可信，家用烤箱实际温度和设定值差20–30°F很常见。</li>
+        <li data-en="Under strong airflow matcha not only dries faster but darkens more easily — another reason to turn convection off." data-zh="抹茶在强气流下不仅失水快，颜色也更容易发暗，这是关热风的附带好处。">抹茶在强气流下不仅失水快，颜色也更容易发暗，这是关热风的附带好处。</li>
+      </ul>
+
+      <h3 data-en="Variations" data-zh="变体">变体</h3>
+      <ul>
+        <li data-en="Bolder matcha — matcha 7g / cake flour 55g → stronger flavor, drier crumb" data-zh="更浓抹茶版 — 抹茶7g / 低筋面粉55g → 风味更浓，口感偏干">更浓抹茶版 — 抹茶7g / 低筋面粉55g → 风味更浓，口感偏干</li>
+        <li data-en="Moister — milk 37g → water ratio back to plain-chiffon level" data-zh="更润版 — 牛奶37g → 含水比回到原味戚风水平">更润版 — 牛奶37g → 含水比回到原味戚风水平</li>
+        <li data-en="Moister via oil — oil 30g → 33g → improves moist mouthfeel without changing batter hydration; don't adjust alongside the milk" data-zh="口感更润（油）— 植物油30g → 33g → 影响湿润口感，不影响面糊含水量；不要与牛奶同时调整">口感更润（油）— 植物油30g → 33g → 影响湿润口感，不影响面糊含水量；不要与牛奶同时调整</li>
+      </ul>
+
+      <h3 data-en="Version history" data-zh="版本记录">版本记录</h3>
+      <ul>
+        <li data-en="v1 (2026-07) — matcha 7g + cake flour 55g + milk 35g → right thickness in a 9-inch square pan; slightly dry but acceptable" data-zh="v1（2026-07）— 抹茶7g + 低筋面粉55g + 牛奶35g → 9寸方盘厚度正好，口感略偏干但可接受">v1（2026-07）— 抹茶7g + 低筋面粉55g + 牛奶35g → 9寸方盘厚度正好，口感略偏干但可接受</li>
+        <li data-en="v2 (2026-07-23, current) — matcha 6g + cake flour 52g + milk 35g → to be verified; lowered matcha share and total dry powder to bring hydration from 0.56 back to 0.60" data-zh="v2（2026-07-23，当前）— 抹茶6g + 低筋面粉52g + 牛奶35g → 待验证；降低抹茶占比并减少总干粉，把含水比从0.56拉回0.60">v2（2026-07-23，当前）— 抹茶6g + 低筋面粉52g + 牛奶35g → 待验证；降低抹茶占比并减少总干粉，把含水比从0.56拉回0.60</li>
+      </ul>
+    </div>
   </main>
 
   <footer>
@@ -77,5 +152,6 @@
           data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
   </footer>
   <script src="../assets/lang.js"></script>
+  <script src="../assets/scale.js"></script>
 </body>
 </html>

@@ -51,13 +51,20 @@ def cmd_save(label="manual save"):
 
     meta = load_meta()
     meta.append({"snapshot": snap_name, "label": label, "time": ts, "files": count})
+    save_meta(meta)  # 先存：保证 meta 与磁盘一致，即使下面 prune 失败也不会丢记录
 
     while len(meta) > KEEP:
         old = meta.pop(0)
         old_dir = os.path.join(BACKUP_DIR, old["snapshot"])
-        if os.path.isdir(old_dir):
-            shutil.rmtree(old_dir)
-        print(f"  pruned old snapshot: {old['snapshot']}")
+        try:
+            if os.path.isdir(old_dir):
+                shutil.rmtree(old_dir)
+                print(f"  pruned old snapshot: {old['snapshot']}")
+        except OSError as e:
+            # 某些环境（如 Cowork 挂载盘）禁止删除，跳过而不是崩溃
+            print(f"  ⚠ 无法删除旧快照 {old['snapshot']}（权限限制），已跳过: {e}")
+            meta.insert(0, old)  # 删不掉就放回，让 meta 继续与磁盘一致
+            break
 
     save_meta(meta)
     print(f"✅ Snapshot saved: {snap_name}  ({count} files)  — {label}")

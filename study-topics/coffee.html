@@ -45,6 +45,28 @@
     .recipe-notes p, .recipe-notes li { font-size: 1rem; }
   }
 
+  /* ── Brew timer (inside params card) ── */
+  .recipe-notes li.step-active { background: var(--accent-soft); box-shadow: 0 0 0 5px var(--accent-soft); border-radius: 3px; font-weight: 700; }
+  .recipe-notes li.step-done { opacity: 0.42; }
+  .brew-timer { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border); font-family: 'Helvetica','PingFang SC',sans-serif; }
+  .timer-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 18px; }
+  .timer-clock { font-variant-numeric: tabular-nums; font-size: clamp(2.5rem, 11vw, 3.4rem); font-weight: 200; line-height: 1; letter-spacing: 0.01em; color: var(--ink); }
+  .timer-clock.is-done { color: var(--accent); }
+  .timer-now { font-size: 0.9rem; color: var(--muted); line-height: 1.2; }
+  .timer-now .g { font-variant-numeric: tabular-nums; font-size: clamp(1.5rem, 6.5vw, 2rem); font-weight: 700; color: var(--accent); letter-spacing: -0.01em; }
+  .timer-now.is-idle { opacity: 0.45; }
+  .timer-next { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-top: 10px; min-height: 3em; }
+  .timer-next b { color: var(--accent); font-weight: 700; }
+  .timer-next .cd { font-variant-numeric: tabular-nums; }
+  .timer-btns { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .timer-btns button { font: inherit; font-size: 0.84rem; padding: 8px 20px; border-radius: 20px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease; }
+  .timer-btns button:hover:not(:disabled) { background: var(--accent-soft); }
+  .timer-btns button.primary { background: var(--accent); color: #fff; }
+  .timer-btns button.primary:hover:not(:disabled) { background: #b56a2e; }
+  .timer-btns button:disabled { opacity: 0.35; cursor: default; }
+  .timer-hint { font-size: 0.72rem; color: var(--muted); margin-top: 10px; font-style: italic; }
+  @media (min-width: 1400px) { .timer-next { font-size: 0.9rem; } }
+
   /* ── Owned coffees card ── */
   .owned-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; }
   .owned-card h3 { color: var(--accent); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 14px; font-family: 'Helvetica','PingFang SC',sans-serif; padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
@@ -58,6 +80,42 @@
   .owned-liked { background: #dff0d2; color: #3a6010; }
 
   /* ── Roaster table ── */
+  /* ── Taste troubleshooting section ── */
+  .diag { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 26px; margin-top: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .diag > h3 { color: var(--accent); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 6px; font-family: 'Helvetica','PingFang SC',sans-serif; }
+  .diag .lede { font-size: 0.88rem; color: var(--muted); margin: 0 0 18px; padding-bottom: 14px; border-bottom: 1px dashed var(--border); }
+  .diag-tests { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 820px) { .diag-tests { grid-template-columns: 1fr 1fr; } }
+  .test { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: #fffdf9; }
+  .test .no { display: inline-block; font-family: 'Helvetica','PingFang SC',sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--accent); border-radius: 20px; padding: 3px 10px; }
+  .test h4 { margin: 10px 0 4px; font-size: 1.02rem; }
+  .test .how { font-size: 0.87rem; color: var(--ink); margin: 0 0 12px; line-height: 1.55; }
+  .test .how .kit { font-family: 'Helvetica','PingFang SC',sans-serif; font-size: 0.72rem; color: var(--muted); display: block; margin-top: 5px; font-style: italic; }
+  .outcome { display: flex; gap: 10px; align-items: flex-start; font-size: 0.85rem; line-height: 1.5; padding: 7px 0; border-top: 1px dotted var(--border); font-family: 'Helvetica','PingFang SC',sans-serif; }
+  .outcome .arm { flex-shrink: 0; font-size: 1rem; line-height: 1.4; }
+  .outcome b { color: var(--accent); }
+  .diag-fix { margin-top: 20px; }
+  .diag-fix h4, .diag-flow h4, .diag-ruled h4 { font-family: 'Helvetica','PingFang SC',sans-serif; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+  .fix-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; font-family: 'Helvetica','PingFang SC',sans-serif; }
+  .fix-table th { text-align: left; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding: 0 12px 7px 0; border-bottom: 1px solid var(--border); }
+  .fix-table td { padding: 10px 12px 10px 0; border-bottom: 1px dotted var(--border); vertical-align: top; line-height: 1.5; }
+  .fix-table tr:last-child td { border-bottom: none; }
+  .fix-table .verdict { font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .fix-table .lever { color: var(--accent); font-weight: 700; }
+  .diag-flow { margin-top: 22px; padding: 14px 16px; background: var(--accent-soft); border-radius: 8px; }
+  .diag-flow h4 { color: #8a541f; }
+  .diag-flow p { margin: 0; font-size: 0.86rem; line-height: 1.6; }
+  .diag-flow code { font-family: 'Helvetica','PingFang SC',sans-serif; font-weight: 700; background: rgba(255,255,255,0.6); padding: 1px 6px; border-radius: 4px; }
+  .diag-ruled { margin-top: 20px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-family: 'Helvetica','PingFang SC',sans-serif; font-size: 0.78rem; color: var(--muted); border: 1px dashed var(--border); border-radius: 20px; padding: 5px 13px; }
+  .chip b { color: #4a7c4a; font-weight: 700; }
+  @media (min-width: 1400px) {
+    .diag { padding: 30px 34px; }
+    .diag > h3 { font-size: 0.87rem; }
+    .test .how, .outcome, .fix-table { font-size: 0.9rem; }
+  }
+
   .rec-table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 26px; margin-top: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
   .rec-table-wrap h3 { color: var(--accent); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 16px; font-family: 'Helvetica','PingFang SC',sans-serif; padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
   .rec-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -128,12 +186,26 @@
       <!-- Brewing params -->
       <div class="recipe-notes">
         <h3 data-en="Pour Over Params" data-zh="手冲参数">手冲参数 · Pour Over Params</h3>
-        <p data-zh="时间：2:10 &nbsp;·&nbsp; 比例：1:15" data-en="Time: 2:10 &nbsp;·&nbsp; Ratio: 1:15">时间：2:10 &nbsp;·&nbsp; 比例：1:15</p>
-        <ul>
-          <li data-zh="0s：注水 30g（焖蒸）" data-en="0s: pour 30g water (bloom)">0s：注水 30g（焖蒸）</li>
-          <li data-zh="30s：续水至 30g" data-en="30s: pour to 30g">30s：续水至 30g</li>
-          <li data-zh="50s：续水至 120–150g" data-en="50s: pour to 120–150g">50s：续水至 120–150g</li>
+        <p data-zh="粉量：15g &nbsp;·&nbsp; 水量：225g &nbsp;·&nbsp; 比例：1:15 &nbsp;·&nbsp; 总时间：2:10" data-en="Dose: 15g &nbsp;·&nbsp; Water: 225g &nbsp;·&nbsp; Ratio: 1:15 &nbsp;·&nbsp; Total: 2:10">粉量：15g &nbsp;·&nbsp; 水量：225g &nbsp;·&nbsp; 比例：1:15 &nbsp;·&nbsp; 总时间：2:10</p>
+        <ul id="brewSteps">
+          <li data-t="0"   data-water="45g"  data-cue-zh="注水至 45g（焖蒸）" data-cue-en="pour to 45g (bloom)"        data-zh="0s：注水至 45g（焖蒸，粉量 3 倍）" data-en="0s: pour to 45g (bloom, 3× dose)">0s：注水至 45g（焖蒸，粉量 3 倍）</li>
+          <li data-t="30"  data-water="135g" data-cue-zh="续水至 135g"        data-cue-en="pour to 135g"               data-zh="30s：续水至 135g" data-en="30s: pour to 135g">30s：续水至 135g</li>
+          <li data-t="70"  data-water="225g" data-cue-zh="续水至 225g"        data-cue-en="pour to 225g"               data-zh="1:10：续水至 225g" data-en="1:10: pour to 225g">1:10：续水至 225g</li>
+          <li data-t="130" data-cue-zh="滴滤完成，移开滤杯" data-cue-en="drawdown done, remove dripper" data-zh="2:10：滴滤完成，移开滤杯" data-en="2:10: drawdown complete, remove dripper">2:10：滴滤完成，移开滤杯</li>
         </ul>
+
+        <div class="brew-timer">
+          <div class="timer-row">
+            <div class="timer-clock" id="timerClock">0:00</div>
+            <div class="timer-now" id="timerNow" data-zh="注到 <span class=&quot;g&quot;>45g</span>" data-en="pour to <span class=&quot;g&quot;>45g</span>">注到 <span class="g">45g</span></div>
+          </div>
+          <div class="timer-next" id="timerNext" data-zh="按「开始」跟着上面四步走。" data-en="Hit Start and follow the four steps above.">按「开始」跟着上面四步走。</div>
+          <div class="timer-btns">
+            <button type="button" class="primary" id="timerToggle" data-zh="开始" data-en="Start">开始</button>
+            <button type="button" id="timerReset" data-zh="重置" data-en="Reset" disabled>重置</button>
+          </div>
+          <div class="timer-hint" data-zh="空格键 = 开始 / 暂停" data-en="Spacebar = start / pause">空格键 = 开始 / 暂停</div>
+        </div>
       </div>
 
       <!-- Owned coffees -->
@@ -170,6 +242,56 @@
     </div>
 
     <!-- Roaster recommendations table -->
+
+    <!-- Taste troubleshooting -->
+    <div class="diag">
+      <h3 data-zh="咖啡有点苦？两步定位" data-en="Coffee tastes bitter? Two tests">咖啡有点苦？两步定位</h3>
+      <p class="lede" data-zh="先做测试一。它把「太浓」和「过萃」分开——这两件事常被混为一谈，但改法完全相反。" data-en="Start with Test 1. It separates <b>too strong</b> from <b>over-extracted</b> — constantly confused, but the fixes are opposites.">先做测试一。它把「太浓」和「过萃」分开——这两件事常被混为一谈，但改法完全相反。</p>
+
+      <div class="diag-tests">
+        <div class="test">
+          <span class="no" data-zh="测试一 · 10 秒" data-en="Test 1 · 10 seconds">测试一 · 10 秒</span>
+          <h4 data-zh="兑水" data-en="Dilute it">兑水</h4>
+          <p class="how" data-zh="舀一勺冲好的咖啡，加<b>等量热水</b>稀释，再尝一次。<span class=&quot;kit&quot;>需要：一把勺子、一点热水</span>" data-en="Take a spoonful of the brewed coffee, add <b>an equal amount of hot water</b>, taste again.<span class=&quot;kit&quot;>Needs: a spoon and some hot water</span>">舀一勺冲好的咖啡，加<b>等量热水</b>稀释，再尝一次。<span class="kit">需要：一把勺子、一点热水</span></p>
+          <div class="outcome"><span class="arm">→</span><span data-zh="苦味消失、变甜了 → <b>只是太浓</b>，萃取没问题" data-en="Bitterness gone, tastes sweet → <b>just too strong</b>; extraction is fine">苦味消失、变甜了 → <b>只是太浓</b>，萃取没问题</span></div>
+          <div class="outcome"><span class="arm">→</span><span data-zh="还是苦、还是发干 → 往下做测试二" data-en="Still bitter or drying → go to Test 2">还是苦、还是发干 → 往下做测试二</span></div>
+        </div>
+
+        <div class="test">
+          <span class="no" data-zh="测试二 · 一次冲煮" data-en="Test 2 · one brew">测试二 · 一次冲煮</span>
+          <h4 data-zh="分段接液" data-en="Split the brew">分段接液</h4>
+          <p class="how" data-zh="滤杯下面换两个杯子：<b>前一半</b>接一杯、<b>后一半</b>接一杯，分开尝。<span class=&quot;kit&quot;>需要：两个杯子，中途换一次</span>" data-en="Swap cups under the dripper: catch the <b>first half</b> in one, the <b>second half</b> in another, taste each.<span class=&quot;kit&quot;>Needs: two cups, one swap mid-brew</span>">滤杯下面换两个杯子：<b>前一半</b>接一杯、<b>后一半</b>接一杯，分开尝。<span class="kit">需要：两个杯子，中途换一次</span></p>
+          <div class="outcome"><span class="arm">→</span><span data-zh="前段甜、后段苦涩 → <b>过萃</b>，尾段在拖后腿" data-en="First half sweet, second bitter and drying → <b>over-extracted</b>; the tail is the problem">前段甜、后段苦涩 → <b>过萃</b>，尾段在拖后腿</span></div>
+          <div class="outcome"><span class="arm">→</span><span data-zh="两段都苦 → <b>豆子本身</b>的苦，调参数没用" data-en="Both halves bitter → it&rsquo;s <b>the beans</b>; no parameter will fix it">两段都苦 → <b>豆子本身</b>的苦，调参数没用</span></div>
+        </div>
+      </div>
+
+      <div class="diag-fix">
+        <h4 data-zh="结论 → 改一个变量" data-en="Verdict → change one variable">结论 → 改一个变量</h4>
+        <table class="fix-table">
+          <thead><tr><th data-zh="结论" data-en="Verdict">结论</th><th data-zh="怎么改" data-en="Change">怎么改</th><th data-zh="为什么" data-en="Why">为什么</th></tr></thead>
+          <tbody>
+            <tr><td class="verdict" data-zh="太浓" data-en="Too strong">太浓</td><td data-zh="比例 1:15 → <span class=&quot;lever&quot;>1:16</span>（15g / 240g），其余不动" data-en="Ratio 1:15 → <span class=&quot;lever&quot;>1:16</span> (15g / 240g), nothing else">比例 1:15 → <span class="lever">1:16</span>（15g / 240g），其余不动</td><td data-zh="1:15 对手冲偏浓，浓度顶格时一点点萃取过头就会被放大成苦" data-en="1:15 is strong for filter; at that concentration a little over-extraction reads as bitter">1:15 对手冲偏浓，浓度顶格时一点点萃取过头就会被放大成苦</td></tr>
+            <tr><td class="verdict" data-zh="过萃" data-en="Over-extracted">过萃</td><td data-zh="<span class=&quot;lever&quot;>磨粗一档</span>；或到 2:10 直接端走滤杯，别等滴干" data-en="<span class=&quot;lever&quot;>One step coarser</span>; or lift the dripper at 2:10 instead of waiting for full drawdown"><span class="lever">磨粗一档</span>；或到 2:10 直接端走滤杯，别等滴干</td><td data-zh="尾段萃出的多是苦涩物质，缩短接触时间比什么都直接" data-en="The tail yields mostly bitter compounds — cutting contact time is the most direct lever">尾段萃出的多是苦涩物质，缩短接触时间比什么都直接</td></tr>
+            <tr><td class="verdict" data-zh="豆子" data-en="The beans">豆子</td><td data-zh="换豆，或水温降到 <span class=&quot;lever&quot;>88℃</span> 压一压" data-en="Different beans, or drop the water to <span class=&quot;lever&quot;>88℃</span> to mute it">换豆，或水温降到 <span class="lever">88℃</span> 压一压</td><td data-zh="烘焙带来的苦不是萃取问题，参数只能缓解、不能消除" data-en="Roast bitterness isn&rsquo;t an extraction fault — parameters mask it at best">烘焙带来的苦不是萃取问题，参数只能缓解、不能消除</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="diag-flow">
+        <h4 data-zh="顺带：落干速度自查（1.7 倍法则）" data-en="Bonus: drawdown check (the 1.7× rule)">顺带：落干速度自查（1.7 倍法则）</h4>
+        <p data-zh="第二注和第三注水量完全一样，都是 <code>90g</code>，所以落干时间可以直接相比。<code>第三注 ÷ 第二注</code>：<b>1.5–2 倍正常</b>；<b>超过 2.5 倍</b>说明细粉把滤纸堵了。堵塞和过萃常常同时出现——磨粗一档能一次解决两个。" data-en="Pours 2 and 3 are both exactly <code>90g</code>, so their drawdown times are directly comparable. <code>Pour 3 ÷ Pour 2</code>: <b>1.5–2× is normal</b>; <b>over 2.5×</b> means fines have clogged the filter. Clogging and over-extraction usually travel together — one step coarser fixes both.">第二注和第三注水量完全一样，都是 <code>90g</code>，所以落干时间可以直接相比。<code>第三注 ÷ 第二注</code>：<b>1.5–2 倍正常</b>；<b>超过 2.5 倍</b>说明细粉把滤纸堵了。堵塞和过萃常常同时出现——磨粗一档能一次解决两个。</p>
+      </div>
+
+      <div class="diag-ruled">
+        <h4 data-zh="已排除" data-en="Already ruled out">已排除</h4>
+        <div class="chips">
+          <span class="chip" data-zh="<b>✓</b> 水温 90–94℃ — 在正常区间" data-en="<b>✓</b> Water 90–94℃ — in range"><b>✓</b> 水温 90–94℃ — 在正常区间</span>
+          <span class="chip" data-zh="<b>✓</b> 滤纸已润洗 — 无纸味" data-en="<b>✓</b> Filter rinsed — no paper taste"><b>✓</b> 滤纸已润洗 — 无纸味</span>
+        </div>
+      </div>
+    </div>
+
     <div class="rec-table-wrap">
       <h3 data-en="☕ US &amp; International Specialty Roaster Recommendations" data-zh="☕ 精品烘焙商推荐（美国及国际）">☕ US &amp; International Specialty Roaster Recommendations</h3>
       <div class="rec-table-scroll">
@@ -291,6 +413,170 @@
       tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4); tr.appendChild(td5);
       tbody.appendChild(tr);
     });
+  })();
+  </script>
+  <script>
+  /* ── Pour-over brew timer ── */
+  (function () {
+    var listEl = document.getElementById('brewSteps');
+    var clockEl = document.getElementById('timerClock');
+    var nextEl = document.getElementById('timerNext');
+    var nowEl = document.getElementById('timerNow');
+    var toggleEl = document.getElementById('timerToggle');
+    var resetEl = document.getElementById('timerReset');
+    if (!listEl || !clockEl) return;
+
+    /* Steps are read from the <li> markup — the list is the only source of truth,
+       so editing a time or a pour there moves the timer with it. */
+    var lis = Array.prototype.slice.call(listEl.querySelectorAll('li[data-t]'));
+    var STEPS = lis.map(function (li) {
+      return {
+        t: parseInt(li.getAttribute('data-t'), 10),
+        water: li.getAttribute('data-water') || '',
+        zh: li.getAttribute('data-cue-zh') || li.getAttribute('data-zh') || '',
+        en: li.getAttribute('data-cue-en') || li.getAttribute('data-en') || ''
+      };
+    }).filter(function (st) { return !isNaN(st.t); });
+    if (!STEPS.length) return;
+    STEPS.sort(function (a, b) { return a.t - b.t; });
+    var END = STEPS[STEPS.length - 1].t;
+
+    var running = false, startedAt = 0, accrued = 0, tick = null, done = false;
+
+    function lang() { return (document.documentElement.lang || 'zh').indexOf('zh') === 0 ? 'zh' : 'en'; }
+
+    /* Store both translations on the node so lang.js keeps working on toggle.
+       Skips the write when nothing changed, so the ticking doesn't thrash the DOM. */
+    function bi(el, zh, en) {
+      if (el.getAttribute('data-zh') === zh && el.getAttribute('data-en') === en) return;
+      el.setAttribute('data-zh', zh);
+      el.setAttribute('data-en', en);
+      el.innerHTML = lang() === 'zh' ? zh : en;
+    }
+
+    function waterOf(st, zh) { return st.water || (zh ? '完成 ✓' : 'done ✓'); }
+
+    function mmss(sec) {
+      var m = Math.floor(sec / 60), s = sec % 60;
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+
+    function elapsedSec() {
+      return Math.floor((accrued + (running ? Date.now() - startedAt : 0)) / 1000);
+    }
+
+    function render() {
+      var sec = elapsedSec();
+      if (running && sec >= END) { finish(); return; }
+
+      clockEl.textContent = mmss(sec);
+      clockEl.classList.toggle('is-done', done);
+
+      var idx = -1, i;
+      if (running || accrued > 0) {
+        for (i = 0; i < STEPS.length; i++) { if (sec >= STEPS[i].t) idx = i; }
+      }
+
+      for (i = 0; i < lis.length; i++) {
+        lis[i].classList.toggle('step-active', i === idx);
+        lis[i].classList.toggle('step-done', i < idx);
+      }
+
+      /* Big line = the water level you should be pouring to RIGHT NOW.
+         Small line = countdown to the next one. Both on screen at the same time. */
+      var cur = idx === -1 ? STEPS[0] : STEPS[idx];
+      nowEl.classList.toggle('is-idle', idx === -1);
+      if (done) {
+        bi(nowEl, '<span class="g">' + waterOf(STEPS[STEPS.length - 1], true) + '</span>',
+                  '<span class="g">' + waterOf(STEPS[STEPS.length - 1], false) + '</span>');
+      } else if (cur.water) {
+        bi(nowEl, '注到 <span class="g">' + cur.water + '</span>',
+                  'pour to <span class="g">' + cur.water + '</span>');
+      } else {
+        bi(nowEl, '<span class="g">滴滤中</span>', '<span class="g">drawing down</span>');
+      }
+
+      if (done) {
+        bi(nextEl, '<b>冲煮完成 ✓</b> 总时长 ' + mmss(END) + '，可以拿走滤杯了。',
+                   '<b>Brew complete ✓</b> Total ' + mmss(END) + ' — lift the dripper.');
+      } else if (idx === -1) {
+        bi(nextEl, '按「开始」跟着上面四步走。', 'Hit Start and follow the four steps above.');
+      } else if (idx >= STEPS.length - 1) {
+        bi(nextEl, '距结束 <b class="cd">' + (END - sec) + 's</b>，等滤杯滴干。',
+                   '<b class="cd">' + (END - sec) + 's</b> left — let it finish draining.');
+      } else {
+        var nx = STEPS[idx + 1], left = nx.t - sec;
+        bi(nextEl, '距下一步 <b class="cd">' + left + 's</b> → ' + nx.zh,
+                   '<b class="cd">' + left + 's</b> to next step → ' + nx.en);
+      }
+    }
+
+    function setToggle(zh, en, primary) {
+      bi(toggleEl, zh, en);
+      toggleEl.classList.toggle('primary', !!primary);
+    }
+
+    function stopTick() { if (tick) { clearInterval(tick); tick = null; } }
+
+    function start() {
+      if (done) { reset(); }
+      running = true;
+      startedAt = Date.now();
+      stopTick();
+      tick = setInterval(render, 200);
+      setToggle('暂停', 'Pause', false);
+      resetEl.disabled = false;
+      render();
+    }
+
+    function pause() {
+      if (!running) return;
+      accrued += Date.now() - startedAt;
+      running = false;
+      stopTick();
+      setToggle('继续', 'Resume', true);
+      render();
+    }
+
+    /* Auto-stop at the end of the recipe — the clock parks on 2:10 instead of running away. */
+    function finish() {
+      running = false;
+      done = true;
+      accrued = END * 1000;
+      stopTick();
+      setToggle('再冲一杯', 'Brew again', true);
+      resetEl.disabled = false;
+      render();
+    }
+
+    function reset() {
+      running = false;
+      done = false;
+      accrued = 0;
+      stopTick();
+      setToggle('开始', 'Start', true);
+      resetEl.disabled = true;
+      render();
+    }
+
+    function primaryAction() {
+      if (done) { reset(); start(); }
+      else if (running) { pause(); }
+      else { start(); }
+    }
+
+    toggleEl.addEventListener('click', primaryAction);
+    resetEl.addEventListener('click', reset);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== ' ' && e.code !== 'Space') return;
+      var tag = (e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
+      e.preventDefault();   /* also suppresses native activation of a focused button */
+      primaryAction();
+    });
+
+    render();
   })();
   </script>
   <script src="../assets/lang.js"></script>
