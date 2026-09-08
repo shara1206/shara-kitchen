@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="真正要的那只鸡 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Bird I Actually Want &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+          --good:#2f7d4f; --good-soft:#e6f3ea; --warn:#b3541e; --warn-soft:#fdeee2; --page: min(92vw, 1500px); --prose: 780px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: var(--page); margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  .header-title { max-width: var(--page); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  main { max-width: var(--page); margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); max-width: var(--prose); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 40px 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; scroll-margin-top: 16px; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+  .jump a { display: inline-block; font-size: 0.82rem; padding: 5px 12px; border-radius: 14px; border: 1px solid var(--border); background: var(--card); color: #6b3e16; text-decoration: none; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; transition: background 0.15s ease, border-color 0.15s ease; }
+  .jump a:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .totop { display: inline-block; margin-top: 18px; font-size: 0.85rem; color: var(--muted); text-decoration: none; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .totop:hover { color: var(--accent); }
+
+  /* Why the triple doesn't exist */
+  .why { margin: 0; }
+  .why > p { margin: 0 0 14px; max-width: var(--prose); }
+  .why > p:last-child { margin-bottom: 0; }
+  .why > .note { max-width: var(--prose); }
+  .axis { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 18px 0; max-width: 900px; }
+  .axis .end { background: #fffaf2; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .axis .end h4 { margin: 0 0 4px; font-size: 0.95rem; color: var(--accent); }
+  .axis .end p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+  .axis .vs { font-size: 0.8rem; color: var(--muted); font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; letter-spacing: 1px; }
+
+  /* Tables */
+  .table-wrap { margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; table-layout: fixed; }
+  th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  col.c-brand { width: 15%; }
+  col.c-flag { width: 7%; }
+  col.c-breed { width: 15%; }
+  col.c-cert { width: 17%; }
+  col.c-where { width: 21%; }
+  col.c-verdict { width: 18%; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fffaf2; }
+  td.yes { background: var(--good-soft); color: var(--good); font-weight: 700; text-align: center; }
+  td.no { background: var(--warn-soft); color: var(--warn); text-align: center; }
+  td.yes .mark, td.no .mark { font-size: 1.05rem; display: block; }
+  td.no .qual { display: block; font-size: 0.78rem; font-weight: 400; line-height: 1.35; margin-top: 2px; }
+  tbody tr:hover td.yes { background: #dceee2; }
+  tbody tr:hover td.no { background: #fbe3d1; }
+  .brand-name { font-weight: 700; color: var(--accent); font-size: 1.02rem; line-height: 1.35; display: block; }
+  .brand-loc { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+  .score { display: block; margin-top: 6px; font-size: 0.85rem; }
+  .score strong { color: var(--ink); }
+  .price { display: block; margin-top: 6px; font-size: 0.9rem; color: var(--ink); }
+  .badge { display: inline-block; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-bottom: 6px; white-space: nowrap; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-weight: 700; }
+  .badge.top { background: #e6f3ea; color: #23613c; }
+  .badge.mail { background: #e3eef8; color: #2b5680; }
+  .badge.alt { background: var(--accent-soft); color: #8a4d1f; }
+  .badge.fallback { background: #fdf0d5; color: #7a5410; }
+  .badge.no { background: #efeae2; color: #6b6b6b; }
+  .undisclosed { color: var(--muted); font-style: italic; }
+  .cell-label { display: none; }
+  .note { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-top: 10px; max-width: var(--prose); }
+
+  /* GAP table — narrow, centered */
+  .gap-wrap { max-width: 760px; }
+  .gap-wrap table { table-layout: auto; }
+  .gap-wrap td:first-child { width: 34%; font-weight: 700; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .gap-wrap td.yes, .gap-wrap td.no { text-align: left; font-weight: 400; }
+  .gap-wrap td.yes .mark, .gap-wrap td.no .mark { display: inline; font-size: 1rem; }
+  .rule { background: var(--card); border-left: 4px solid var(--good); padding: 14px 18px; border-radius: 6px; margin-top: 14px; max-width: 760px; }
+  .rule p { margin: 0; }
+
+  /* Numeric performance table — stays a table, scrolls horizontally if narrow */
+  .perf-wrap { max-width: 760px; }
+  .perf-wrap .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .perf-wrap table { table-layout: auto; min-width: 440px; }
+  .perf-wrap th, .perf-wrap td { white-space: nowrap; }
+  .perf-wrap tbody tr.now { background: #fffaf2; font-weight: 700; }
+  .strains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 0; max-width: 1000px; }
+  .strain { background: #fffaf2; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .strain h4 { margin: 0 0 6px; font-size: 0.9rem; color: var(--accent); font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .strain p { margin: 0; font-size: 0.9rem; }
+  .why .sub { font-size: 1.05rem; margin: 24px 0 6px; color: var(--accent); font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .perf-wrap.wrap-cells { max-width: 900px; }
+  .perf-wrap.wrap-cells th, .perf-wrap.wrap-cells td { white-space: normal; }
+  .perf-wrap.wrap-cells table { min-width: 520px; }
+  .perf-wrap.wrap-cells td.yes { background: var(--good-soft); color: var(--ink); font-weight: 400; text-align: left; }
+  .perf-wrap.wrap-cells td.no { background: var(--warn-soft); color: var(--ink); text-align: left; }
+  .perf-wrap.wrap-cells td:first-child { width: 26%; font-weight: 700; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .perf-wrap.compact { max-width: 700px; }
+  .perf-wrap.compact table { min-width: 0; }
+
+  .tips { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; max-width: 900px; }
+  .tips ul { margin: 0; padding-left: 20px; }
+  .tips li { margin-bottom: 8px; }
+  .tips li:last-child { margin-bottom: 0; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+  /* Tablet / phone: main table becomes stacked cards */
+  @media (max-width: 1100px) {
+    .axis { grid-template-columns: 1fr; }
+    .axis .vs { text-align: center; }
+    table { display: block; background: transparent; box-shadow: none; border-radius: 0; }
+    table colgroup, table thead { display: none; }
+    table tbody { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    table tr { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    tbody tr:hover { background: var(--card); }
+    table td { display: block; border-bottom: 1px solid var(--border); padding: 12px 16px; }
+    table tr td:last-child { border-bottom: none; flex: 1; }
+    td.yes, td.no { text-align: left; }
+    td.yes .mark, td.no .mark { display: inline; }
+    td.no .qual { display: inline; margin-left: 6px; }
+    .cell-label { display: block; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+    td.yes .cell-label, td.no .cell-label { display: inline; margin-right: 8px; margin-bottom: 0; }
+    td.yes .cell-label { color: var(--good); }
+    td.no .cell-label { color: var(--warn); }
+    .strains { grid-template-columns: 1fr; }
+    .perf-wrap table { display: table; background: var(--card); box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-radius: 8px; }
+    .perf-wrap thead { display: table-header-group; }
+    .perf-wrap tbody { display: table-row-group; }
+    .perf-wrap tr { display: table-row; border: none; border-radius: 0; }
+    .perf-wrap td { display: table-cell; border-bottom: 1px solid var(--border); }
+    .perf-wrap tr:last-child td { border-bottom: none; }
+    .perf-wrap .cell-label { display: none; }
+    /* GAP table stays a real table — it is only 2 columns */
+    .gap-wrap table { display: table; background: var(--card); box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-radius: 8px; }
+    .gap-wrap thead { display: table-header-group; }
+    .gap-wrap tbody { display: table-row-group; }
+    .gap-wrap tr { display: table-row; border: none; border-radius: 0; }
+    .gap-wrap td { display: table-cell; border-bottom: 1px solid var(--border); }
+    .gap-wrap tr:last-child td { border-bottom: none; }
+    .gap-wrap .cell-label { display: none; }
+  }
+  @media (max-width: 700px) {
+    table tbody { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    header { padding: 24px 16px; }
+    .header-title { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .header-title h1 { font-size: 1.6rem; }
+    .final-photo { width: 120px; height: 120px; }
+    main { padding: 24px 16px 48px; }
+    table { font-size: 0.92rem; }
+    table td { padding: 10px 14px; }
+    .why, .tips { padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="chicken.html" data-en="&larr; Chicken" data-zh="&larr; 鸡肉">&larr; Chicken</a></div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="The Bird I Actually Want" data-zh="真正要的那只鸡">The Bird I Actually Want</h1>
+        <div class="meta" data-en="How far a US bird sits from a Cantonese sanhuang &mdash; and what closes the gap" data-zh="美国的鸡离两广土三黄鸡有多远，以及怎么补">How far a US bird sits from a Cantonese sanhuang &mdash; and what closes the gap</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/ji-sanhuang/Final.png" alt="ji-sanhuang" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="The label guide and the brand comparison both work inside the US system. This note is about the target that sits outside it &mdash; a native Cantonese/Guangxi sanhuang &mdash; how far the gap really is, and which of it can be closed by buying differently versus by cooking differently."
+         data-zh="标签解读和品牌对照都是在美国这套体系内打转。这一篇讲的是体系之外的那个目标——两广土三黄鸡：差距到底有多大，其中哪些能靠换渠道补，哪些只能靠做法补。">The label guide and the brand comparison both work inside the US system. This note is about the target that sits outside it &mdash; a native Cantonese/Guangxi sanhuang &mdash; how far the gap really is, and which of it can be closed by buying differently versus by cooking differently.</p>
+    </div>
+
+    <h2 class="section-title" id="gap" data-en="The Size of the Gap" data-zh="差距有多大">The Size of the Gap</h2>
+    <div class="why">
+      <p data-en="What I am actually after is a native Cantonese/Guangxi landrace &mdash; Qingyuan, Xinghua, Huiyang bearded and the rest of the sanhuang family &mdash; and it is a combination of three things: the strain, the age at slaughter, and a small carcass. <strong>Not one US label measures any of them.</strong> The closest, the BCC/GAP slow-growth requirement, only means &ldquo;slower than conventional&rdquo;; it does not mean 120 days."
+         data-zh="我真正想要的是两广地方鸡种——清远麻鸡、杏花鸡、惠阳胡须鸡这一系的三黄鸡，而它是三件事的组合：品种、出栏日龄、小体型。<strong>美国的标签没有一项衡量其中任何一项。</strong>最沾边的 BCC/GAP 慢生长，也只是&ldquo;比常规慢&rdquo;，不等于 120 天。">What I am actually after is a native Cantonese/Guangxi landrace &mdash; Qingyuan, Xinghua, Huiyang bearded and the rest of the sanhuang family &mdash; and it is a combination of three things: the strain, the age at slaughter, and a small carcass. <strong>Not one US label measures any of them.</strong> The closest, the BCC/GAP slow-growth requirement, only means &ldquo;slower than conventional&rdquo;; it does not mean 120 days.</p>
+
+      <div class="perf-wrap wrap-cells compact">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="&nbsp;" data-zh="&nbsp;">&nbsp;</th>
+                <th data-en="US broiler" data-zh="美国常规肉鸡">US broiler</th>
+                <th data-en="Sanhuang chicken" data-zh="三黄鸡">Sanhuang chicken</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-en="Days to market" data-zh="出栏日龄">Days to market</td>
+                <td data-en="47.5 days" data-zh="47.5 天">47.5 days</td>
+                <td class="yes" data-en="about 120 days" data-zh="约 120 天">about 120 days</td>
+              </tr>
+              <tr>
+                <td data-en="Market weight" data-zh="上市体重">Market weight</td>
+                <td>6.63 lb</td>
+                <td class="yes" data-en="typically 2.5&ndash;4 lb" data-zh="通常 2.5&ndash;4 lb">typically 2.5&ndash;4 lb</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p data-en="That <strong>2.5&times; difference in age</strong> is where chicken flavour comes from &mdash; inosinate, free amino acids and collagen all accumulate with time on the bird. And it is exactly the axis US breeding has spent 25 years moving in the opposite direction (same days, more meat). No certification can buy it back."
+         data-zh="这个 <strong>2.5 倍的日龄差</strong>就是鸡味的来源——肌苷酸、游离氨基酸、胶原这些呈味物质都随日龄累积。而这恰好是美国育种 25 年来反向走的那条轴（同样天数、更多肉）。任何认证都买不回来。">That <strong>2.5&times; difference in age</strong> is where chicken flavour comes from &mdash; inosinate, free amino acids and collagen all accumulate with time on the bird. And it is exactly the axis US breeding has spent 25 years moving in the opposite direction (same days, more meat). No certification can buy it back.</p>
+
+      <p data-en="<strong>The dead end first:</strong> actual Chinese-raised birds cannot be bought here, and it is a regulatory wall, not a supply problem. The USDA does not accept China&rsquo;s slaughter system as equivalent, so raw poultry from China may not be imported at all; China may only export cooked poultry products, and even those must be made from birds slaughtered in the US, Canada, Chile or France. <strong>Canada draws the same line</strong> &mdash; CFIA lists China as eligible for cooked poultry only, never raw. So <strong>every raw sanhuang or Longgang bird on sale anywhere in North America was raised in North America</strong>, whatever the brand on the bag says. The only question left is how far it sits from the real thing."
+         data-zh="<strong>先说死路：</strong>真正中国养的鸡在美国买不到，而且是法规的墙，不是供应问题。USDA 不认可中国的屠宰体系等效，所以中国生禽肉根本不允许进口；中国只能出口熟制禽肉制品，而且原料必须来自美国、加拿大、智利或法国屠宰的禽。<strong>加拿大划的是同一条线</strong>——CFIA 的合格国家清单里，中国只允许出口熟制禽肉，生禽一律不准。所以<strong>北美市面上任何一只生的三黄鸡或龙岗鸡，都是在北美养的</strong>，不管袋子上印的是什么牌子。剩下的问题只是：它离真货有多远。"><strong>The dead end first:</strong> actual Chinese-raised birds cannot be bought here, and it is a regulatory wall, not a supply problem. The USDA does not accept China&rsquo;s slaughter system as equivalent, so raw poultry from China may not be imported at all; China may only export cooked poultry products, and even those must be made from birds slaughtered in the US, Canada, Chile or France. <strong>Canada draws the same line</strong> &mdash; CFIA lists China as eligible for cooked poultry only, never raw. So <strong>every raw sanhuang or Longgang bird on sale anywhere in North America was raised in North America</strong>, whatever the brand on the bag says. The only question left is how far it sits from the real thing.</p>
+
+      </div>
+
+    <h2 class="section-title" id="judge" data-en="Judging one in the store" data-zh="现场怎么判">Judging one in the store</h2>
+    <div class="why">
+      <p data-en="No Asian supermarket publishes the strain, so this has to be done by hand on the bird itself."
+         data-zh="没有一家中超会公开品种，所以只能上手看鸡本身。">No Asian supermarket publishes the strain, so this has to be done by hand on the bird itself.</p>
+      <div class="perf-wrap wrap-cells">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="What to check" data-zh="看什么">What to check</th>
+                <th data-en="Old enough &mdash; a real native bird" data-zh="日龄够的土鸡">Old enough &mdash; a real native bird</th>
+                <th data-en="Fast-growing strain" data-zh="快长品种">Fast-growing strain</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-en="Whole-bird weight" data-zh="整鸡重量">Whole-bird weight</td>
+                <td class="yes">2.5&ndash;4 lb</td>
+                <td class="no" data-en="over 5 lb" data-zh="5 lb 以上">over 5 lb</td>
+              </tr>
+              <tr>
+                <td data-en="Tip of the keel bone" data-zh="龙骨（胸骨）末端">Tip of the keel bone</td>
+                <td class="yes" data-en="hard, ossified" data-zh="硬、已骨化">hard, ossified</td>
+                <td class="no" data-en="a broad flap of soft cartilage that gives under a thumb" data-zh="一大片软骨，拇指能按动">a broad flap of soft cartilage that gives under a thumb</td>
+              </tr>
+              <tr>
+                <td data-en="Skin" data-zh="皮">Skin</td>
+                <td class="yes" data-en="yellow, thin, fine pores" data-zh="黄、薄、毛孔细">yellow, thin, fine pores</td>
+                <td class="no" data-en="thick, slack, paler" data-zh="厚、松、偏白">thick, slack, paler</td>
+              </tr>
+              <tr>
+                <td data-en="Feet" data-zh="脚">Feet</td>
+                <td class="yes" data-en="coarse scales, stiff toes" data-zh="鳞片粗、脚趾硬">coarse scales, stiff toes</td>
+                <td class="no" data-en="smooth and soft" data-zh="光滑柔软">smooth and soft</td>
+              </tr>
+              <tr>
+                <td data-en="Subcutaneous fat" data-zh="皮下脂肪">Subcutaneous fat</td>
+                <td class="yes" data-en="sparse, yellow" data-zh="少、偏黄">sparse, yellow</td>
+                <td class="no" data-en="thick, white" data-zh="厚、发白">thick, white</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note" data-en="Weight is the cheapest filter &mdash; <em>but only when the strain is unknown.</em> A landrace is small because its frame is small; a known slow-growth bird such as a Red Ranger is legitimately 5&ndash;6 lb. Once the strain is named, ask the age instead."
+         data-zh="重量这条最省事——<em>但只在品种未知时成立。</em>土鸡小是因为架子小；而像 Red Ranger 这种已知的慢生长品种，5&ndash;6 lb 是正常的。品种一旦确认，就改问日龄。">Weight is the cheapest filter &mdash; <em>but only when the strain is unknown.</em> A landrace is small because its frame is small; a known slow-growth bird such as a Red Ranger is legitimately 5&ndash;6 lb. Once the strain is named, ask the age instead.</p>
+
+      </div>
+
+    <h2 class="section-title" id="closest" data-en="The closest things actually available here" data-zh="美国能拿到的最接近的">The closest things actually available here</h2>
+    <div class="why">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-en="Option" data-zh="选项">Option</th>
+              <th data-en="What it gets right" data-zh="接近在哪">What it gets right</th>
+              <th data-en="What it misses" data-zh="差在哪">What it misses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-en="<strong>Toofull Seattle</strong> group buy<br><span class=&quot;brand-loc&quot;>Red Ranger &mdash; per the seller, Sept 2026</span>" data-zh="<strong>Toofull Seattle</strong> 团购<br><span class=&quot;brand-loc&quot;>Red Ranger &mdash; 卖家告知，2026 年 9 月</span>"><strong>Toofull Seattle</strong> group buy<br><span class="brand-loc">Red Ranger &mdash; per the seller, Sept 2026</span></td>
+              <td data-en="<strong>The strain is right.</strong> Red Ranger is Label Rouge lineage &mdash; the same family as the Hubbard strains on the GAP slow-growth list. Yellow skin and legs, firm meat, more dark meat. Sold locally, and no farmer has to be talked into anything." data-zh="<strong>品种就是对的那个。</strong>Red Ranger 属 Label Rouge 血统——跟 GAP 慢生长名单上 Hubbard 那批同源。黄皮黄脚、肉紧、深色肉多。本地可得，不用去说服任何农场。"><strong>The strain is right.</strong> Red Ranger is Label Rouge lineage &mdash; the same family as the Hubbard strains on the GAP slow-growth list. Yellow skin and legs, firm meat, more dark meat. Sold locally, and no farmer has to be talked into anything.</td>
+              <td data-en="Age still unknown &mdash; ask how many weeks. And the frame is wrong: a Red Ranger is 5&ndash;6 lb at 9&ndash;11 weeks, not a 3 lb landrace." data-zh="日龄仍未知——要问养了几周。而且架子不对：Red Ranger 9&ndash;11 周就 5&ndash;6 lb，不是 3 lb 的小架子土鸡。">Age still unknown &mdash; ask how many weeks. And the frame is wrong: a Red Ranger is 5&ndash;6 lb at 9&ndash;11 weeks, not a 3 lb landrace.</td>
+            </tr>
+            <tr>
+              <td data-en="<strong>H Mart Redmond</strong> fresh-chopped Longgang chicken" data-zh="<strong>H Mart Redmond</strong> 现斩龙岗鸡"><strong>H Mart Redmond</strong> fresh-chopped Longgang chicken</td>
+              <td data-en="Commenters rate it the most chicken-flavoured locally" data-zh="网友评本地鸡味最足">Commenters rate it the most chicken-flavoured locally</td>
+              <td data-en="Same &mdash; nothing published" data-zh="同上，没有任何披露">Same &mdash; nothing published</td>
+            </tr>
+            <tr>
+              <td data-en="<strong>Joyce Farms Poulet Rouge</strong>" data-zh="<strong>Joyce Farms Poulet Rouge</strong>"><strong>Joyce Farms Poulet Rouge</strong></td>
+              <td data-en="French Label Rouge <em>cou nu</em>; GAP Step 4, pasture-raised, air-chilled; slow-grown, firm, real flavour" data-zh="法国 Label Rouge 裸颈种；GAP Step 4、牧场、风冷；慢生长、肉紧、有鸡味">French Label Rouge <em>cou nu</em>; GAP Step 4, pasture-raised, air-chilled; slow-grown, firm, real flavour</td>
+              <td data-en="A French bird &mdash; lean breast, thin pale skin, not the yellow gelatinous skin. $44.99 for a pack of 2" data-zh="法国品系——胸肉瘦、皮薄偏白，不是那种黄而胶质的皮。$44.99 / 2 只">A French bird &mdash; lean breast, thin pale skin, not the yellow gelatinous skin. $44.99 for a pack of 2</td>
+            </tr>
+            <tr>
+              <td data-en="<strong>Mary&rsquo;s Heirloom</strong> (Trader Joe&rsquo;s)" data-zh="<strong>Mary&rsquo;s Heirloom</strong>（Trader Joe&rsquo;s）"><strong>Mary&rsquo;s Heirloom</strong> (Trader Joe&rsquo;s)</td>
+              <td data-en="Cheapest slow-growth breed on a supermarket shelf" data-zh="超市货架上最便宜的慢生长品种">Cheapest slow-growth breed on a supermarket shelf</td>
+              <td data-en="Still a European strain, still nowhere near 120 days" data-zh="仍是欧美品系，日龄远不到">Still a European strain, still nowhere near 120 days</td>
+            </tr>
+            <tr>
+              <td data-en="<strong>Stewing hen</strong> (Asian markets)" data-zh="<strong>老母鸡</strong>（中超）"><strong>Stewing hen</strong> (Asian markets)</td>
+              <td data-en="12&ndash;18 months old &mdash; the strongest chicken flavour and most gelatine of anything here" data-zh="12&ndash;18 月龄——这里鸡味最浓、胶质最足的">12&ndash;18 months old &mdash; the strongest chicken flavour and most gelatine of anything here</td>
+              <td data-en="Soup only; far too tough for poaching" data-zh="只能炖汤，做不了白切">Soup only; far too tough for poaching</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+
+    <h2 class="section-title" id="ask" data-en="What is left to ask" data-zh="剩下要问的问题">What is left to ask</h2>
+    <div class="why">
+      <p data-en="Toofull already sells the strain I would otherwise have gone looking for, so the breed question is settled and the search collapses to one variable: <strong>how many weeks.</strong> Red Ranger and Freedom Ranger are the same Label Rouge stock, hatchery-rated at 9&ndash;11 weeks; every extra week past that buys flavour. Worth asking the seller directly, and worth asking whether a longer-grown batch is possible."
+         data-zh="Toofull 卖的正好就是我本来要去找的那个品种，所以品种问题已经解决，整件事收敛成一个变量：<strong>养了几周。</strong>Red Ranger 和 Freedom Ranger 是同一批 Label Rouge 种，孵化场标称 9&ndash;11 周；超出的每一周都是在买鸡味。值得直接问卖家，也值得问能不能养久一点的批次。">Toofull already sells the strain I would otherwise have gone looking for, so the breed question is settled and the search collapses to one variable: <strong>how many weeks.</strong> Red Ranger and Freedom Ranger are the same Label Rouge stock, hatchery-rated at 9&ndash;11 weeks; every extra week past that buys flavour. Worth asking the seller directly, and worth asking whether a longer-grown batch is possible.</p>
+
+      <div class="rule">
+        <p data-en="<strong>But small and old are not compatible in this bird.</strong> A landrace sanhuang is 2.5&ndash;4 lb at 120 days because the frame itself is small. A Red Ranger is already 5&ndash;6 lb at 9&ndash;11 weeks on a much bigger frame, so growing it longer for flavour makes it heavier, not more sanhuang-like. Pulling it early to get a 3 lb bird throws away the only thing it was doing right. <strong>So take the age and accept the size</strong> &mdash; and lengthen the poach to match a bigger carcass."
+           data-zh="<strong>但在这个品种上，&ldquo;小&rdquo;和&ldquo;老&rdquo;不可兼得。</strong>土三黄鸡 120 天还只有 2.5&ndash;4 lb，是因为架子本身就小。Red Ranger 9&ndash;11 周就已经 5&ndash;6 lb，架子大得多——养久了换来鸡味，同时也换来更大的个头，不会更像三黄鸡。反过来为了凑 3 lb 提前宰，等于把它唯一做对的那件事扔掉。<strong>所以要日龄，接受体型</strong>——浸煮时间按大鸡相应拉长。"><strong>But small and old are not compatible in this bird.</strong> A landrace sanhuang is 2.5&ndash;4 lb at 120 days because the frame itself is small. A Red Ranger is already 5&ndash;6 lb at 9&ndash;11 weeks on a much bigger frame, so growing it longer for flavour makes it heavier, not more sanhuang-like. Pulling it early to get a 3 lb bird throws away the only thing it was doing right. <strong>So take the age and accept the size</strong> &mdash; and lengthen the poach to match a bigger carcass.</p>
+      </div>
+
+      <p data-en="If a small carcass ever matters more than flavour, that is a different bird entirely &mdash; and Skagit River Ranch, already at the Ballard and U-District markets, is the one to ask about a custom batch. Custom pre-orders are normal at that scale."
+         data-zh="如果哪天体型比鸡味更重要，那要的是另一种鸡——可以问已经在 Ballard 和 U-District 摆摊的 Skagit River Ranch 能不能定制一批。这种规模的农场接预订很常见。">If a small carcass ever matters more than flavour, that is a different bird entirely &mdash; and Skagit River Ranch, already at the Ballard and U-District markets, is the one to ask about a custom batch. Custom pre-orders are normal at that scale.</p>
+
+      <p data-en="Until then, technique covers part of the gap for <a href=&quot;../recipes/baizhan-ji.html&quot;>white-cut chicken</a> and <a href=&quot;../recipes/chiyou-ji.html&quot;>soy sauce chicken</a>: pick the smallest slow-growth bird available (under 3.5 lb), steep rather than boil (hold the water at a shrimp-eye simmer, 80&ndash;90&deg;C, never rolling; lift and lower the bird three times), then shock it in ice water. That restores some of the snap in the skin and the firmness in the meat. It does not restore chicken flavour &mdash; that is a function of age, and it cannot be made in a pot."
+         data-zh="在拿到对的鸡之前，用做法补一部分——<a href=&quot;../recipes/baizhan-ji.html&quot;>白斩鸡</a>和<a href=&quot;../recipes/chiyou-ji.html&quot;>豉油鸡</a>都适用：选慢生长品种里最小的那只（3.5 lb 以下），浸而不煮（水保持虾眼状、80&ndash;90&deg;C 不滚，三提三放），出锅立刻冰水激。这能补回皮的脆弹和肉的紧实。补不回鸡味——那是日龄的函数，锅里造不出来。">Until then, technique covers part of the gap for <a href="../recipes/baizhan-ji.html">white-cut chicken</a> and <a href="../recipes/chiyou-ji.html">soy sauce chicken</a>: pick the smallest slow-growth bird available (under 3.5 lb), steep rather than boil (hold the water at a shrimp-eye simmer, 80&ndash;90&deg;C, never rolling; lift and lower the bird three times), then shock it in ice water. That restores some of the snap in the skin and the firmness in the meat. It does not restore chicken flavour &mdash; that is a function of age, and it cannot be made in a pot.</p>
+    </div>
+
+    <p class="note" data-en="Companion pages: <a href=&quot;ji-label-guide.html&quot;>Chicken Labels Decoded</a> for what each claim on a package guarantees, <a href=&quot;ji-sourcing-guide.html&quot;>Which Bird to Buy</a> for the brand-by-brand comparison, <a href=&quot;ji-buying-guide.html&quot;>Local Shops &amp; Word of Mouth</a> for the Seattle channels."
+       data-zh="姊妹篇：<a href=&quot;ji-label-guide.html&quot;>鸡肉标签解读</a>讲包装上每个标签保证了什么，<a href=&quot;ji-sourcing-guide.html&quot;>选哪只鸡</a>是品牌逐个对照，<a href=&quot;ji-buying-guide.html&quot;>本地渠道与口碑</a>是西雅图的店。">Companion pages: <a href="ji-label-guide.html">Chicken Labels Decoded</a> for what each claim on a package guarantees, <a href="ji-sourcing-guide.html">Which Bird to Buy</a> for the brand-by-brand comparison, <a href="ji-buying-guide.html">Local Shops &amp; Word of Mouth</a> for the Seattle channels.</p>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

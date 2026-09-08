@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="鸡肉标签解读 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chicken Labels Decoded &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+          --good:#2f7d4f; --good-soft:#e6f3ea; --warn:#b3541e; --warn-soft:#fdeee2; --page: min(92vw, 1500px); --prose: 780px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: var(--page); margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  .header-title { max-width: var(--page); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  main { max-width: var(--page); margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); max-width: var(--prose); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 32px 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+
+  /* Three question groups */
+  .groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .group { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+  .group h3 { margin: 0 0 4px; font-size: 1.05rem; color: var(--accent); }
+  .group .q { margin: 0 0 10px; font-size: 0.9rem; color: var(--muted); font-style: italic; }
+  .group .labels { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { display: inline-block; border: 1px solid var(--border); background: #fffaf2; color: #6b3e16; font-size: 0.82rem; padding: 2px 10px; border-radius: 12px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+  /* Main table (desktop) */
+  .table-wrap { margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; table-layout: fixed; }
+  th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  col.c-cat { width: 11%; }
+  col.c-label { width: 17%; }
+  col.c-std { width: 26%; }
+  col.c-good { width: 23%; }
+  col.c-warn { width: 23%; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fffaf2; }
+  td.good { background: var(--good-soft); }
+  td.warn { background: var(--warn-soft); }
+  tbody tr:hover td.good { background: #dceee2; }
+  tbody tr:hover td.warn { background: #fbe3d1; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; white-space: nowrap; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .tag.life { background: #e6f3ea; color: #23613c; }
+  .tag.feed { background: #fdf0d5; color: #7a5410; }
+  .tag.proc { background: #e3eef8; color: #2b5680; }
+  .label-name { font-weight: 700; color: var(--accent); font-size: 1.02rem; line-height: 1.35; display: block; }
+  .label-zh { display: block; color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+  .cell-label { display: none; }
+  .lead { font-weight: 700; }
+  .prose { max-width: var(--prose); margin: 0 0 14px; }
+  .note { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-top: 10px; max-width: var(--prose); }
+
+  /* Takeaways */
+  .tips { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; max-width: 900px; }
+  .tips ul { margin: 0; padding-left: 20px; }
+  .tips li { margin-bottom: 8px; }
+  .tips li:last-child { margin-bottom: 0; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+  /* Tablet / phone: the table turns into stacked cards */
+  @media (max-width: 1100px) {
+    table { display: block; background: transparent; box-shadow: none; border-radius: 0; }
+    table colgroup, table thead { display: none; }
+    table tbody { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    table tr { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    tbody tr:hover { background: var(--card); }
+    table td { display: block; border-bottom: 1px solid var(--border); padding: 12px 16px; }
+    td.cat { padding-bottom: 0; border-bottom: none; }
+    td.name { padding-top: 8px; }
+    tr:last-child td { border-bottom: 1px solid var(--border); }
+    table tr td:last-child { border-bottom: none; flex: 1; }
+    .cell-label { display: block; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+    td.good .cell-label { color: var(--good); }
+    td.warn .cell-label { color: var(--warn); }
+  }
+  @media (max-width: 900px) {
+    .groups { grid-template-columns: 1fr; gap: 12px; }
+  }
+  @media (max-width: 700px) {
+    table tbody { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    header { padding: 24px 16px; }
+    .header-title { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .header-title h1 { font-size: 1.6rem; }
+    .final-photo { width: 120px; height: 120px; }
+    main { padding: 24px 16px 48px; }
+    table { font-size: 0.92rem; }
+    table td { padding: 10px 14px; }
+    .tips { padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="chicken.html" data-en="&larr; Chicken" data-zh="&larr; 鸡肉">&larr; Chicken</a></div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Chicken Labels Decoded" data-zh="鸡肉标签解读">Chicken Labels Decoded</h1>
+        <div class="meta" data-en="What each label on the package actually guarantees" data-zh="包装上每个标签到底保证了什么">What each label on the package actually guarantees</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/ji-label-guide/Final.png" alt="ji-label-guide" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="The seven labels you keep seeing on good chicken in US supermarkets &mdash; what each one is legally required to mean, why it is worth paying for, and where it falls short. Read the last column before the second one."
+         data-zh="美国超市里好鸡肉包装上最常见的七个标签——每个标签在法律上到底要求了什么、值不值得为它花钱、以及它的局限在哪。先看最后一栏，再看优势。">The seven labels you keep seeing on good chicken in US supermarkets &mdash; what each one is legally required to mean, why it is worth paying for, and where it falls short. Read the last column before the second one.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Three Different Questions" data-zh="标签回答的是三个不同的问题">Three Different Questions</h2>
+    <div class="groups">
+      <div class="group">
+        <h3 data-en="&#127793; Living conditions" data-zh="&#127793; 养殖环境">&#127793; Living conditions</h3>
+        <p class="q" data-en="How did the bird live?" data-zh="鸡活着的时候过得怎么样？">How did the bird live?</p>
+        <div class="labels">
+          <span class="chip" data-en="Pasture-Raised" data-zh="Pasture-Raised 牧场散养">Pasture-Raised</span>
+          <span class="chip" data-en="Free-Range" data-zh="Free-Range 走地">Free-Range</span>
+          <span class="chip" data-en="Certified Humane / AWA" data-zh="Certified Humane / AWA 动物福利">Certified Humane / AWA</span>
+        </div>
+      </div>
+      <div class="group">
+        <h3 data-en="&#127806; Feed &amp; drugs" data-zh="&#127806; 饲料与用药">&#127806; Feed &amp; drugs</h3>
+        <p class="q" data-en="What did it eat, and what was it given?" data-zh="鸡吃了什么、用过什么药？">What did it eat, and what was it given?</p>
+        <div class="labels">
+          <span class="chip" data-en="Organic" data-zh="Organic 有机">Organic</span>
+          <span class="chip" data-en="No Antibiotics Ever" data-zh="No Antibiotics Ever 无抗">No Antibiotics Ever</span>
+          <span class="chip" data-en="Non-GMO Project Verified" data-zh="Non-GMO 非转基因">Non-GMO Project Verified</span>
+        </div>
+      </div>
+      <div class="group">
+        <h3 data-en="&#10052;&#65039; Processing" data-zh="&#10052;&#65039; 加工工艺">&#10052;&#65039; Processing</h3>
+        <p class="q" data-en="What happened after slaughter?" data-zh="屠宰之后是怎么处理的？">What happened after slaughter?</p>
+        <div class="labels">
+          <span class="chip" data-en="Air-Chilled" data-zh="Air-Chilled 风冷">Air-Chilled</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title" data-en="The Labels" data-zh="标签逐个说清楚">The Labels</h2>
+    <div class="table-wrap">
+      <table>
+        <colgroup>
+          <col class="c-cat"><col class="c-label"><col class="c-std"><col class="c-good"><col class="c-warn">
+        </colgroup>
+        <thead>
+          <tr>
+            <th data-en="Group" data-zh="类别">Group</th>
+            <th data-en="Label" data-zh="英文标签 / 中文含义">Label</th>
+            <th data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</th>
+            <th data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</th>
+            <th data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Organic (USDA Certified)" data-zh="Organic (USDA Certified)">Organic (USDA Certified)</span>
+            <span class="label-zh" data-en="Certified organic" data-zh="有机认证">Certified organic</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Must be fed 100% organic feed (non-GMO, no synthetic pesticides or fertilizers); no antibiotics, ever; must have &ldquo;access to the outdoors.&rdquo;"
+                  data-zh="必须喂食 100% 有机饲料（非转基因、无合成农药/化肥）；绝对不使用抗生素；必须有&ldquo;通往室外的通道&rdquo;。">Must be fed 100% organic feed (non-GMO, no synthetic pesticides or fertilizers); no antibiotics, ever; must have &ldquo;access to the outdoors.&rdquo;</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The gold standard for zero chemical residue.</span> Guarantees the food chain is clean and safe right from the source."
+                  data-zh="<span class=&quot;lead&quot;>化学零残留的黄金标准。</span>确保了食物链源头的绝对纯净和安全。"><span class="lead">The gold standard for zero chemical residue.</span> Guarantees the food chain is clean and safe right from the source.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Not the same as real free-range.</span> The legally required &ldquo;outdoor access&rdquo; can be nothing more than a door onto a small concrete pad; many organic birds actually grow up in crowded barns."
+                  data-zh="<span class=&quot;lead&quot;>不等于真正的散养。</span>法律规定的&ldquo;室外通道&rdquo;可能只是一扇通向狭小水泥地的门，很多有机鸡其实是在拥挤的室内长大的。"><span class="lead">Not the same as real free-range.</span> The legally required &ldquo;outdoor access&rdquo; can be nothing more than a door onto a small concrete pad; many organic birds actually grow up in crowded barns.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag life" data-en="Living conditions" data-zh="养殖环境">Living conditions</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Pasture-Raised" data-zh="Pasture-Raised">Pasture-Raised</span>
+            <span class="label-zh" data-en="Raised on open pasture" data-zh="牧场散养">Raised on open pasture</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Birds spend most of their lives outdoors on real pasture, with grass, seeds and insects as a major part of their diet."
+                  data-zh="鸡只绝大部分时间在户外真正的牧场草地上生活，以天然青草、草籽和昆虫为重要食物来源。">Birds spend most of their lives outdoors on real pasture, with grass, seeds and insects as a major part of their diet.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The highest level of animal welfare and meat quality.</span> Lots of exercise and a varied diet give firm, deeply flavorful meat, usually with more Omega-3."
+                  data-zh="<span class=&quot;lead&quot;>最高级别的动物福利与肉质。</span>运动量大且饮食多样，鸡肉肉质紧实、鲜味浓郁，且通常富含更多 Omega-3。"><span class="lead">The highest level of animal welfare and meat quality.</span> Lots of exercise and a varied diet give firm, deeply flavorful meat, usually with more Omega-3.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>No unified federal legal standard.</span> Stick to brands that also carry a third-party certification (e.g. Certified Humane) so &ldquo;pasture-raised&rdquo; isn&rsquo;t just marketing."
+                  data-zh="<span class=&quot;lead&quot;>缺乏统一联邦法律约束。</span>最好认准附带第三方认证（如 Certified Humane）的品牌，以确保&ldquo;散养&rdquo;没有注水。"><span class="lead">No unified federal legal standard.</span> Stick to brands that also carry a third-party certification (e.g. Certified Humane) so &ldquo;pasture-raised&rdquo; isn&rsquo;t just marketing.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag life" data-en="Living conditions" data-zh="养殖环境">Living conditions</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Free-Range" data-zh="Free-Range">Free-Range</span>
+            <span class="label-zh" data-en="Free-roaming" data-zh="走地 / 散养">Free-roaming</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="The law only requires that birds have &ldquo;access to the outside&rdquo;; how long, and how much space, is not strictly defined."
+                  data-zh="法律仅要求鸡只&ldquo;有机会走到室外&rdquo;（Access to the outside），具体时间和空间没有严格规定。">The law only requires that birds have &ldquo;access to the outside&rdquo;; how long, and how much space, is not strictly defined.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="More room to move and more humane conditions than fully enclosed caged birds."
+                  data-zh="相比于完全密闭的笼养鸡，有更多的活动空间和更人道的生存条件。">More room to move and more humane conditions than fully enclosed caged birds.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>An extremely vague standard.</span> Many large farms just cut a small door in the barn, and most birds never actually step outside in their lives."
+                  data-zh="<span class=&quot;lead&quot;>标准极其模糊。</span>很多大型农场只在仓库开一扇小门，绝大多数鸡终其一生都没有真正走到过室外。"><span class="lead">An extremely vague standard.</span> Many large farms just cut a small door in the barn, and most birds never actually step outside in their lives.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag proc" data-en="Processing" data-zh="加工工艺">Processing</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Air-Chilled" data-zh="Air-Chilled">Air-Chilled</span>
+            <span class="label-zh" data-en="Chilled by cold air, not ice water" data-zh="风冷处理">Chilled by cold air, not ice water</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="A post-slaughter chilling process: carcasses hang in a cold room and are cooled by circulating cold air instead of the traditional ice-water bath (water-chilling)."
+                  data-zh="屠宰后的降温工艺。将鸡悬挂在冷库中通过冷空气循环降温，而非传统的浸泡冰水（水冷）。">A post-slaughter chilling process: carcasses hang in a cold room and are cooled by circulating cold air instead of the traditional ice-water bath (water-chilling).</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>Purer meat, more hygienic processing.</span> No extra water absorbed (water-chilled birds can take on up to 12% water), less cross-contamination, and the skin roasts up crisp very easily."
+                  data-zh="<span class=&quot;lead&quot;>肉质纯度高、加工更卫生。</span>不会吸收多余水分（水冷鸡会吸收多达 12% 的水），避免交叉污染，且极易烤出酥脆的鸡皮。"><span class="lead">Purer meat, more hygienic processing.</span> No extra water absorbed (water-chilled birds can take on up to 12% water), less cross-contamination, and the skin roasts up crisp very easily.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="Purely a processing label &mdash; it says nothing about how the bird lived or what it ate."
+                  data-zh="这仅仅是加工环节的标签，与鸡在活着时的生活环境、吃什么饲料完全无关。">Purely a processing label &mdash; it says nothing about how the bird lived or what it ate.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="No Antibiotics Ever (NAE) / Raised Without Antibiotics" data-zh="No Antibiotics Ever (NAE) / Raised Without Antibiotics">No Antibiotics Ever (NAE) / Raised Without Antibiotics</span>
+            <span class="label-zh" data-en="No antibiotics at any point" data-zh="全程无抗生素">No antibiotics at any point</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="From hatching to slaughter the bird never received antibiotics of any kind; a bird that gets sick and is treated is pulled from this product line."
+                  data-zh="从孵化到屠宰，鸡只未曾接触过任何形式的抗生素。生病用药的鸡会被剔除出该产品线。">From hatching to slaughter the bird never received antibiotics of any kind; a bird that gets sick and is treated is pulled from this product line.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="Completely avoids antibiotic overuse and the &ldquo;superbug&rdquo; risk that comes with it."
+                  data-zh="彻底避免了抗生素滥用和&ldquo;超级细菌&rdquo;的隐患。">Completely avoids antibiotic overuse and the &ldquo;superbug&rdquo; risk that comes with it.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Only a statement about drug use.</span> Doesn&rsquo;t mean it is organic, and doesn&rsquo;t mean the bird had room to roam."
+                  data-zh="<span class=&quot;lead&quot;>仅说明了用药标准。</span>不代表它是有机的，也不代表它活动空间大。"><span class="lead">Only a statement about drug use.</span> Doesn&rsquo;t mean it is organic, and doesn&rsquo;t mean the bird had room to roam.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Non-GMO Project Verified" data-zh="Non-GMO Project Verified">Non-GMO Project Verified</span>
+            <span class="label-zh" data-en="Verified non-GMO feed" data-zh="非转基因验证">Verified non-GMO feed</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Independent third-party certification that the feed (corn, soy, etc.) contains no genetically modified crops."
+                  data-zh="第三方独立权威认证，确保喂养鸡的饲料（玉米、大豆等）绝对不含基因改造作物。">Independent third-party certification that the feed (corn, soy, etc.) contains no genetically modified crops.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="A guarantee about what went into the feed."
+                  data-zh="饲料成分的安全保障。">A guarantee about what went into the feed.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>All &ldquo;Organic&rdquo; chicken is non-GMO by definition.</span> If this is the only label on the package, the feed may still have been grown with synthetic fertilizers or pesticides."
+                  data-zh="<span class=&quot;lead&quot;>所有&ldquo;Organic（有机）&rdquo;鸡肉都天然包含非转基因的要求。</span>如果只标了这个，说明饲料可能使用了化肥或农药。"><span class="lead">All &ldquo;Organic&rdquo; chicken is non-GMO by definition.</span> If this is the only label on the package, the feed may still have been grown with synthetic fertilizers or pesticides.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag life" data-en="Living conditions" data-zh="养殖环境">Living conditions</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Certified Humane / Animal Welfare Approved" data-zh="Certified Humane / Animal Welfare Approved">Certified Humane / Animal Welfare Approved</span>
+            <span class="label-zh" data-en="Animal-welfare certification" data-zh="动物福利认证">Animal-welfare certification</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Strict third-party audits with demanding requirements for space, natural light and air quality &mdash; even the birds&rsquo; sleep time is regulated."
+                  data-zh="严苛的第三方审核，规定了极高的活动空间、自然光照、空气质量要求，甚至规定了鸡的睡眠时间。">Strict third-party audits with demanding requirements for space, natural light and air quality &mdash; even the birds&rsquo; sleep time is regulated.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The &ldquo;litmus test&rdquo; of overall quality.</span> Farms willing to pay for, and able to pass, these audits are usually at the top of the industry in both husbandry and meat quality."
+                  data-zh="<span class=&quot;lead&quot;>综合品质的&ldquo;试金石&rdquo;。</span>愿意花钱且能通过这些认证的农场，其综合养殖水平和肉质通常处于行业顶端。"><span class="lead">The &ldquo;litmus test&rdquo; of overall quality.</span> Farms willing to pay for, and able to pass, these audits are usually at the top of the industry in both husbandry and meat quality.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="Certification is expensive, supply is limited, and this is usually the priciest chicken on the shelf."
+                  data-zh="认证成本高，带有此类标签的鸡肉产量较少，且价格通常最为昂贵。">Certification is expensive, supply is limited, and this is usually the priciest chicken on the shelf.</span>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-en="Organic, Free-Range and No Antibiotics Ever are USDA-regulated claims; Pasture-Raised has no federal definition; Non-GMO Project, Certified Humane and Animal Welfare Approved are third-party certifications."
+       data-zh="Organic、Free-Range、No Antibiotics Ever 是 USDA 监管的标注；Pasture-Raised 没有联邦定义；Non-GMO Project、Certified Humane、Animal Welfare Approved 是第三方认证。">Organic, Free-Range and No Antibiotics Ever are USDA-regulated claims; Pasture-Raised has no federal definition; Non-GMO Project, Certified Humane and Animal Welfare Approved are third-party certifications.</p>
+
+    <h2 class="section-title" data-en="Origin: The Claim Nobody Reads" data-zh="产地：最被忽略的那一栏">Origin: The Claim Nobody Reads</h2>
+    <p class="prose" data-en="Only four countries may export raw poultry to the US at all &mdash; the US itself, <strong>Canada, Chile and France</strong>. So &ldquo;Product of ___&rdquo; has a very short list of possible answers, and on a Seattle shelf it says USA almost every time."
+       data-zh="全世界只有四个来源可以向美国出口生禽肉——美国本土，加上<strong>加拿大、智利、法国</strong>。所以&ldquo;Product of ___&rdquo;的可能答案极少，而西雅图货架上几乎每次都是 USA。">Only four countries may export raw poultry to the US at all &mdash; the US itself, <strong>Canada, Chile and France</strong>. So &ldquo;Product of ___&rdquo; has a very short list of possible answers, and on a Seattle shelf it says USA almost every time.</p>
+    <p class="prose" data-en="When it does not, the bird cleared <strong>two systems instead of one</strong>: the exporting country&rsquo;s own inspection, and then FSIS re-inspection at the port of entry &mdash; which FSIS itself calls &ldquo;a second level of protection for the American public.&rdquo; Domestic product never goes through that step; it gets continuous in-plant inspection instead. Different shape, but an imported bird has been looked at twice."
+       data-zh="而一旦不是 USA，那只鸡就是<strong>过了两套体系而不是一套</strong>：出口国自己的检验，加上美国口岸的 FSIS 复检——FSIS 自己的措辞是&ldquo;a second level of protection for the American public&rdquo;。本土产品没有这一道，它走的是厂内驻场连续检验。形式不同，但进口那只确实被看了两遍。">When it does not, the bird cleared <strong>two systems instead of one</strong>: the exporting country&rsquo;s own inspection, and then FSIS re-inspection at the port of entry &mdash; which FSIS itself calls &ldquo;a second level of protection for the American public.&rdquo; Domestic product never goes through that step; it gets continuous in-plant inspection instead. Different shape, but an imported bird has been looked at twice.</p>
+    <p class="prose" data-en="Canada is also stricter on one axis that actually matters here. Its chicken industry eliminated the <strong>preventive</strong> use of antibiotics by category:"
+       data-zh="加拿大在一条真正相关的轴上也更严。它的鸡肉行业按类别淘汰了<strong>预防性</strong>用药：">Canada is also stricter on one axis that actually matters here. Its chicken industry eliminated the <strong>preventive</strong> use of antibiotics by category:</p>
+    <div class="tips">
+      <ul>
+        <li data-en="<strong>Category I</strong> (most important to human medicine) &mdash; May 2014" data-zh="<strong>Category I</strong>（对人类医学最重要的一类）—— 2014 年 5 月"><strong>Category I</strong> (most important to human medicine) &mdash; May 2014</li>
+        <li data-en="<strong>Category II</strong> &mdash; end of 2018" data-zh="<strong>Category II</strong> —— 2018 年底"><strong>Category II</strong> &mdash; end of 2018</li>
+        <li data-en="<strong>Category III</strong> &mdash; in progress, no hard deadline" data-zh="<strong>Category III</strong> —— 推进中，无硬性截止"><strong>Category III</strong> &mdash; in progress, no hard deadline</li>
+      </ul>
+    </div>
+    <p class="prose" data-en="The US restricted only the <em>growth-promotion</em> use of medically important antibiotics (2017) and put the rest under veterinary oversight. <strong>Preventive use on a prescription is still legal here.</strong>"
+       data-zh="美国 2017 年只限制了医学重要抗生素的<em>促生长</em>用途，其余纳入兽医监管。<strong>预防性用药在处方下至今合法。</strong>">The US restricted only the <em>growth-promotion</em> use of medically important antibiotics (2017) and put the rest under veterinary oversight. <strong>Preventive use on a prescription is still legal here.</strong></p>
+    <p class="prose" data-en="Two honest limits on that. It is an <em>industry</em> programme, not a government ban. And it is not &ldquo;antibiotic-free&rdquo; &mdash; treating a sick flock is still allowed, as are Category IV ionophores and chemical coccidiostats."
+       data-zh="两条诚实的边界。这是<em>行业</em>计划，不是政府禁令。而且它不等于&ldquo;无抗&rdquo;——治疗病鸡仍然允许，Category IV 的离子载体和化学抗球虫药也仍在用。">Two honest limits on that. It is an <em>industry</em> programme, not a government ban. And it is not &ldquo;antibiotic-free&rdquo; &mdash; treating a sick flock is still allowed, as are Category IV ionophores and chemical coccidiostats.</p>
+    <p class="prose" data-en="<strong>And you will rarely get to act on any of it.</strong> The poultry trade runs almost entirely the other way: Canada is the second-largest market for US poultry, and it caps imports with a tariff-rate quota of about <strong>7.5% of its own previous-year production</strong>, of which the US takes 85&ndash;90%. Canadian-origin chicken on a Seattle shelf is uncommon."
+       data-zh="<strong>但这条你基本用不上。</strong>美加之间的禽肉贸易几乎是单向的：加拿大是美国禽肉的第二大市场，而它用关税配额把进口卡在<strong>上一年本国产量的约 7.5%</strong>，其中 85&ndash;90% 被美国拿走。反方向的量很小，西雅图货架上很少见到加拿大产的鸡。"><strong>And you will rarely get to act on any of it.</strong> The poultry trade runs almost entirely the other way: Canada is the second-largest market for US poultry, and it caps imports with a tariff-rate quota of about <strong>7.5% of its own previous-year production</strong>, of which the US takes 85&ndash;90%. Canadian-origin chicken on a Seattle shelf is uncommon.</p>
+    <p class="prose" data-en="So treat origin as a reading aid rather than a shopping rule: if a package does say <strong>Product of Canada</strong>, it cleared two inspection systems and came from a supply chain that dropped preventive Category I and II antibiotics years before the US required anything comparable. Otherwise the origin line just confirms what you already assumed."
+       data-zh="所以产地这一栏是读包装的辅助，不是选购规则：如果真看到 <strong>Product of Canada</strong>，说明它过了两套检验体系，而且来自一条比美国早很多年就砍掉 Category I、II 预防性用药的供应链。否则这一行只是确认了你本来就默认的事。">So treat origin as a reading aid rather than a shopping rule: if a package does say <strong>Product of Canada</strong>, it cleared two inspection systems and came from a supply chain that dropped preventive Category I and II antibiotics years before the US required anything comparable. Otherwise the origin line just confirms what you already assumed.</p>
+
+    <h2 class="section-title" data-en="Quick Takeaways" data-zh="选购要点">Quick Takeaways</h2>
+    <div class="tips">
+      <ul>
+        <li data-en="<strong>Organic is about feed and drugs, not space.</strong> It does not mean the bird ever went outside &mdash; an organic bird can still be raised in a crowded barn."
+            data-zh="<strong>有机管的是饲料和用药，不是活动空间。</strong>有机不等于鸡真的出过门——有机鸡照样可能在拥挤的室内长大。"><strong>Organic is about feed and drugs, not space.</strong> It does not mean the bird ever went outside &mdash; an organic bird can still be raised in a crowded barn.</li>
+        <li data-en="<strong>Free-Range is the weakest of the &ldquo;outdoor&rdquo; words; Pasture-Raised is the real one</strong> &mdash; but since it has no federal standard, look for Certified Humane or Animal Welfare Approved next to it."
+            data-zh="<strong>Free-Range 是&ldquo;户外&rdquo;字眼里最弱的，Pasture-Raised 才是真散养</strong>——但它没有联邦标准，所以要看旁边有没有 Certified Humane 或 Animal Welfare Approved。"><strong>Free-Range is the weakest of the &ldquo;outdoor&rdquo; words; Pasture-Raised is the real one</strong> &mdash; but since it has no federal standard, look for Certified Humane or Animal Welfare Approved next to it.</li>
+        <li data-en="<strong>Certified Humane / AWA is the single strongest signal</strong> of overall quality, and usually the most expensive."
+            data-zh="<strong>Certified Humane / AWA 是最有分量的单个信号</strong>，综合品质最有保障，也通常最贵。"><strong>Certified Humane / AWA is the single strongest signal</strong> of overall quality, and usually the most expensive.</li>
+        <li data-en="<strong>No Antibiotics Ever and Non-GMO are single-issue labels.</strong> Organic already covers both, so on an organic bird they add nothing; on a non-organic bird they are each only one piece of the picture."
+            data-zh="<strong>无抗和非转基因都是单项标签。</strong>有机已经同时包含这两项，所以有机鸡上它们不加分；非有机鸡上它们也只说明了一个方面。"><strong>No Antibiotics Ever and Non-GMO are single-issue labels.</strong> Organic already covers both, so on an organic bird they add nothing; on a non-organic bird they are each only one piece of the picture.</li>
+        <li data-en="<strong>Air-Chilled is about the meat you cook, not the life the bird had.</strong> Less absorbed water and crisper skin &mdash; worth having for roasting and frying, but judge the rest of the package separately."
+            data-zh="<strong>风冷说的是你拿到手的肉，不是鸡的生活。</strong>不吸水、鸡皮更脆——烤和炸都值得选，但包装上的其他方面要另外判断。"><strong>Air-Chilled is about the meat you cook, not the life the bird had.</strong> Less absorbed water and crisper skin &mdash; worth having for roasting and frying, but judge the rest of the package separately.</li>
+        <li data-en="<strong>The best package carries one label from each group:</strong> Pasture-Raised or Certified Humane (living conditions) + Organic or No Antibiotics Ever (feed &amp; drugs) + Air-Chilled (processing)."
+            data-zh="<strong>最理想的包装是三类各占一个：</strong>Pasture-Raised 或 Certified Humane（养殖环境）+ Organic 或 No Antibiotics Ever（饲料与用药）+ Air-Chilled（加工工艺）。"><strong>The best package carries one label from each group:</strong> Pasture-Raised or Certified Humane (living conditions) + Organic or No Antibiotics Ever (feed &amp; drugs) + Air-Chilled (processing).</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 window.__RECIPES__ = {
   "generated": true,
-  "total": 112,
+  "total": 113,
   "categories": [
     {
       "name_en": "Noodles (面条)",
@@ -108,7 +108,7 @@ window.__RECIPES__ = {
       "name_en": "Study Topics",
       "name_zh": "学习专题",
       "type": "study",
-      "count": 8
+      "count": 9
     },
     {
       "name_en": "Pages",
@@ -1411,8 +1411,8 @@ window.__RECIPES__ = {
       "category_en": "Study Topics",
       "category_zh": "学习专题",
       "image": null,
-      "subtitle_en": "1 note",
-      "subtitle_zh": "1 篇笔记"
+      "subtitle_en": "4 notes",
+      "subtitle_zh": "4 篇笔记"
     },
     {
       "title_en": "Potato",
@@ -1437,6 +1437,18 @@ window.__RECIPES__ = {
       "image": null,
       "subtitle_en": "Brewing & beans",
       "subtitle_zh": "冲泡与豆子"
+    },
+    {
+      "title_en": "Drinking Water",
+      "title_zh": "饮用水",
+      "path": "study-topics/water.html",
+      "slug": "water",
+      "type": "study",
+      "category_en": "Study Topics",
+      "category_zh": "学习专题",
+      "image": null,
+      "subtitle_en": "Bellevue vs Newark",
+      "subtitle_zh": "Bellevue 与 Newark 对比"
     },
     {
       "title_en": "My Menu",

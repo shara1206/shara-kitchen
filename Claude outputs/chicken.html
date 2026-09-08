@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="鸡肉 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chicken &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 820px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 820px; margin: 0 auto; font-size: 2.2rem; }
+  header p { max-width: 820px; margin: 8px auto 0; opacity: 0.92; font-style: italic; }
+  main { max-width: 820px; margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 0 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  .notes-list { display: grid; gap: 16px; }
+  .note-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; transition: transform 0.15s ease, box-shadow 0.15s ease; text-decoration: none; color: inherit; display: block; }
+  .note-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(201, 123, 58, 0.18); border-color: var(--accent); }
+  .note-card h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--accent); }
+  .note-card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+  .note-card p { margin: 0; color: var(--ink); font-size: 0.98rem; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-right: 6px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+  @media (max-width: 640px) {
+    header { padding: 24px 16px; }
+    header h1 { font-size: 1.7rem; }
+    main { padding: 24px 16px 48px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a></div>
+    <h1>&#128020; <span data-en="Chicken" data-zh="鸡肉">Chicken</span></h1>
+    <p data-en="Where to buy good chicken, and what makes one bird taste better than another."
+       data-zh="哪里买得到好鸡，以及什么决定一只鸡好不好吃。">Where to buy good chicken, and what makes one bird taste better than another.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="Free-range vs pasture-raised vs supermarket broiler, which local channels actually carry the good stuff, and how to pick &mdash; notes on chicken."
+         data-zh="走地鸡、放养鸡与普通超市鸡的区别，本地哪些渠道真能买到好鸡，以及怎么挑——关于鸡的笔记。">Free-range vs pasture-raised vs supermarket broiler, which local channels actually carry the good stuff, and how to pick &mdash; notes on chicken.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Notes" data-zh="笔记">Notes</h2>
+    <div class="notes-list">
+      <a class="note-card" href="ji-label-guide.html">
+        <h3 data-en="Chicken Labels Decoded" data-zh="鸡肉标签解读">Chicken Labels Decoded</h3>
+        <div class="meta"><span class="tag" data-en="Label Guide" data-zh="标签解读">Label Guide</span><span class="tag" data-en="USDA &amp; third-party" data-zh="USDA 与第三方认证">USDA &amp; third-party</span></div>
+        <p data-en="7 labels &mdash; Organic, Pasture-Raised, Free-Range, Air-Chilled, No Antibiotics Ever, Non-GMO, Certified Humane &mdash; what each one guarantees, why it&rsquo;s worth paying for, and where it falls short."
+           data-zh="7 个标签——有机、牧场散养、走地、风冷、全程无抗、非转基因、动物福利认证——各自保证了什么、值不值得买、以及局限在哪。">7 labels &mdash; Organic, Pasture-Raised, Free-Range, Air-Chilled, No Antibiotics Ever, Non-GMO, Certified Humane &mdash; what each one guarantees, why it&rsquo;s worth paying for, and where it falls short.</p>
+      </a>
+      <a class="note-card" href="ji-buying-guide.html">
+        <h3 data-en="Where to Buy Free-Range Chicken" data-zh="走地鸡选购渠道">Where to Buy Free-Range Chicken</h3>
+        <div class="meta"><span class="tag" data-en="Buying Guide" data-zh="选购指南">Buying Guide</span><span class="tag" data-en="Seattle" data-zh="西雅图">Seattle</span></div>
+        <p data-en="8 local channels &mdash; T&amp;T, PCC, Whole Foods, H Mart Redmond, Xiongda Seafood, Dongjiang BBQ, and two group-buy sellers &mdash; with community feedback on each."
+           data-zh="8 个本地渠道——大统华、PCC、Whole Foods、H Mart Redmond、熊大海鲜、东江烧腊店与两个团购——附网友评价。">8 local channels &mdash; T&amp;T, PCC, Whole Foods, H Mart Redmond, Xiongda Seafood, Dongjiang BBQ, and two group-buy sellers &mdash; with community feedback on each.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

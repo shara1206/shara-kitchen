@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="选哪只鸡 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Which Bird to Buy &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+          --good:#2f7d4f; --good-soft:#e6f3ea; --warn:#b3541e; --warn-soft:#fdeee2; --page: min(92vw, 1500px); --prose: 780px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: var(--page); margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  .header-title { max-width: var(--page); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  main { max-width: var(--page); margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); max-width: var(--prose); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 40px 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; scroll-margin-top: 16px; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+  .jump a { display: inline-block; font-size: 0.82rem; padding: 5px 12px; border-radius: 14px; border: 1px solid var(--border); background: var(--card); color: #6b3e16; text-decoration: none; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; transition: background 0.15s ease, border-color 0.15s ease; }
+  .jump a:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .totop { display: inline-block; margin-top: 18px; font-size: 0.85rem; color: var(--muted); text-decoration: none; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .totop:hover { color: var(--accent); }
+
+  /* Why the triple doesn't exist */
+  .why { margin: 0; }
+  .why > p { margin: 0 0 14px; max-width: var(--prose); }
+  .why > p:last-child { margin-bottom: 0; }
+  .why > .note { max-width: var(--prose); }
+  .axis { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 18px 0; max-width: 900px; }
+  .axis .end { background: #fffaf2; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .axis .end h4 { margin: 0 0 4px; font-size: 0.95rem; color: var(--accent); }
+  .axis .end p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+  .axis .vs { font-size: 0.8rem; color: var(--muted); font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; letter-spacing: 1px; }
+
+  /* Tables */
+  .table-wrap { margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; table-layout: fixed; }
+  th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  col.c-brand { width: 15%; }
+  col.c-flag { width: 7%; }
+  col.c-breed { width: 15%; }
+  col.c-cert { width: 17%; }
+  col.c-where { width: 21%; }
+  col.c-verdict { width: 18%; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fffaf2; }
+  td.yes { background: var(--good-soft); color: var(--good); font-weight: 700; text-align: center; }
+  td.no { background: var(--warn-soft); color: var(--warn); text-align: center; }
+  td.yes .mark, td.no .mark { font-size: 1.05rem; display: block; }
+  td.no .qual { display: block; font-size: 0.78rem; font-weight: 400; line-height: 1.35; margin-top: 2px; }
+  tbody tr:hover td.yes { background: #dceee2; }
+  tbody tr:hover td.no { background: #fbe3d1; }
+  .brand-name { font-weight: 700; color: var(--accent); font-size: 1.02rem; line-height: 1.35; display: block; }
+  .brand-loc { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+  .score { display: block; margin-top: 6px; font-size: 0.85rem; }
+  .score strong { color: var(--ink); }
+  .price { display: block; margin-top: 6px; font-size: 0.9rem; color: var(--ink); }
+  .badge { display: inline-block; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; margin-bottom: 6px; white-space: nowrap; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-weight: 700; }
+  .badge.top { background: #e6f3ea; color: #23613c; }
+  .badge.mail { background: #e3eef8; color: #2b5680; }
+  .badge.alt { background: var(--accent-soft); color: #8a4d1f; }
+  .badge.fallback { background: #fdf0d5; color: #7a5410; }
+  .badge.no { background: #efeae2; color: #6b6b6b; }
+  .undisclosed { color: var(--muted); font-style: italic; }
+  .cell-label { display: none; }
+  .note { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-top: 10px; max-width: var(--prose); }
+
+  /* GAP table — narrow, centered */
+  .gap-wrap { max-width: 760px; }
+  .gap-wrap table { table-layout: auto; }
+  .gap-wrap td:first-child { width: 34%; font-weight: 700; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .gap-wrap td.yes, .gap-wrap td.no { text-align: left; font-weight: 400; }
+  .gap-wrap td.yes .mark, .gap-wrap td.no .mark { display: inline; font-size: 1rem; }
+  .rule { background: var(--card); border-left: 4px solid var(--good); padding: 14px 18px; border-radius: 6px; margin-top: 14px; max-width: 760px; }
+  .rule p { margin: 0; }
+
+  /* Numeric performance table — stays a table, scrolls horizontally if narrow */
+  .perf-wrap { max-width: 760px; }
+  .perf-wrap .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .perf-wrap table { table-layout: auto; min-width: 440px; }
+  .perf-wrap th, .perf-wrap td { white-space: nowrap; }
+  .perf-wrap tbody tr.now { background: #fffaf2; font-weight: 700; }
+  .strains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 0; max-width: 1000px; }
+  .strain { background: #fffaf2; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .strain h4 { margin: 0 0 6px; font-size: 0.9rem; color: var(--accent); font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .strain p { margin: 0; font-size: 0.9rem; }
+  .why .sub { font-size: 1.05rem; margin: 24px 0 6px; color: var(--accent); font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .perf-wrap.wrap-cells { max-width: 900px; }
+  .perf-wrap.wrap-cells th, .perf-wrap.wrap-cells td { white-space: normal; }
+  .perf-wrap.wrap-cells table { min-width: 520px; }
+  .perf-wrap.wrap-cells td.yes { background: var(--good-soft); color: var(--ink); font-weight: 400; text-align: left; }
+  .perf-wrap.wrap-cells td.no { background: var(--warn-soft); color: var(--ink); text-align: left; }
+  .perf-wrap.wrap-cells td:first-child { width: 26%; font-weight: 700; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .perf-wrap.compact { max-width: 700px; }
+  .perf-wrap.compact table { min-width: 0; }
+
+  .tips { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; max-width: 900px; }
+  .tips ul { margin: 0; padding-left: 20px; }
+  .tips li { margin-bottom: 8px; }
+  .tips li:last-child { margin-bottom: 0; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+  /* Tablet / phone: main table becomes stacked cards */
+  @media (max-width: 1100px) {
+    .axis { grid-template-columns: 1fr; }
+    .axis .vs { text-align: center; }
+    table { display: block; background: transparent; box-shadow: none; border-radius: 0; }
+    table colgroup, table thead { display: none; }
+    table tbody { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    table tr { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    tbody tr:hover { background: var(--card); }
+    table td { display: block; border-bottom: 1px solid var(--border); padding: 12px 16px; }
+    table tr td:last-child { border-bottom: none; flex: 1; }
+    td.yes, td.no { text-align: left; }
+    td.yes .mark, td.no .mark { display: inline; }
+    td.no .qual { display: inline; margin-left: 6px; }
+    .cell-label { display: block; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+    td.yes .cell-label, td.no .cell-label { display: inline; margin-right: 8px; margin-bottom: 0; }
+    td.yes .cell-label { color: var(--good); }
+    td.no .cell-label { color: var(--warn); }
+    .strains { grid-template-columns: 1fr; }
+    .perf-wrap table { display: table; background: var(--card); box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-radius: 8px; }
+    .perf-wrap thead { display: table-header-group; }
+    .perf-wrap tbody { display: table-row-group; }
+    .perf-wrap tr { display: table-row; border: none; border-radius: 0; }
+    .perf-wrap td { display: table-cell; border-bottom: 1px solid var(--border); }
+    .perf-wrap tr:last-child td { border-bottom: none; }
+    .perf-wrap .cell-label { display: none; }
+    /* GAP table stays a real table — it is only 2 columns */
+    .gap-wrap table { display: table; background: var(--card); box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-radius: 8px; }
+    .gap-wrap thead { display: table-header-group; }
+    .gap-wrap tbody { display: table-row-group; }
+    .gap-wrap tr { display: table-row; border: none; border-radius: 0; }
+    .gap-wrap td { display: table-cell; border-bottom: 1px solid var(--border); }
+    .gap-wrap tr:last-child td { border-bottom: none; }
+    .gap-wrap .cell-label { display: none; }
+  }
+  @media (max-width: 700px) {
+    table tbody { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    header { padding: 24px 16px; }
+    .header-title { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .header-title h1 { font-size: 1.6rem; }
+    .final-photo { width: 120px; height: 120px; }
+    main { padding: 24px 16px 48px; }
+    table { font-size: 0.92rem; }
+    table td { padding: 10px 14px; }
+    .why, .tips { padding: 16px 18px; }
+  }
+</style>
+</head>
+<body id="top">
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="chicken.html" data-en="&larr; Chicken" data-zh="&larr; 鸡肉">&larr; Chicken</a></div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Which Bird to Buy" data-zh="选哪只鸡">Which Bird to Buy</h1>
+        <div class="meta" data-en="Brands and farms ranked by what they actually certify" data-zh="按实际认证排序的品牌与农场">Brands and farms ranked by what they actually certify</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/ji-sourcing-guide/Final.png" alt="ji-sourcing-guide" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="Applying the label guide to the shelf. The bar here is <strong>Organic + Pasture-Raised</strong>, with the welfare certification as the tiebreaker; air-chilled is deliberately dropped, because it is the one claim you can reproduce at home. For the target that sits outside this system entirely, see <a href=&quot;ji-sanhuang.html&quot;>The Bird I Actually Want</a>."
+         data-zh="把标签解读用到货架上。判据是<strong>有机 + 真散养</strong>，福利认证做决胜项；风冷这一项主动舍弃，因为它是三个里唯一能在家复刻的。至于完全在这套体系之外的那个目标，见<a href=&quot;ji-sanhuang.html&quot;>真正要的那只鸡</a>。">Applying the label guide to the shelf. The bar here is <strong>Organic + Pasture-Raised</strong>, with the welfare certification as the tiebreaker; air-chilled is deliberately dropped, because it is the one claim you can reproduce at home. For the target that sits outside this system entirely, see <a href="ji-sanhuang.html">The Bird I Actually Want</a>.</p>
+    </div>
+
+    <nav class="jump" aria-label="Sections">
+      <a href="#why" data-en="Why not all three" data-zh="三标为何凑不齐">Why not all three</a>
+      <a href="#brands" data-en="Brands &amp; farms" data-zh="品牌与农场">Brands &amp; farms</a>
+      <a href="#breed" data-en="Breed" data-zh="品种">Breed</a>
+      <a href="#gap" data-en="GAP steps" data-zh="GAP 分级">GAP steps</a>
+      <a href="#notes" data-en="Notes" data-zh="备忘">Notes</a>
+    </nav>
+
+    <h2 class="section-title" id="why" data-en="Why You Can&rsquo;t Get All Three" data-zh="为什么三个标签凑不齐">Why You Can&rsquo;t Get All Three</h2>
+    <div class="why">
+      <p data-en="Organic + Pasture-Raised + Air-Chilled on one package essentially does not exist at retail, and it is structural rather than bad luck. Air-chilling needs a large processing line that only mid- to large-scale plants can justify; genuinely pasture-raised birds come from small farms that use small or mobile slaughter facilities, which water-chill or freeze. Organic certification follows the large processors."
+         data-zh="同一个包装上同时出现 Organic + Pasture-Raised + Air-Chilled，在零售端基本不存在——这不是运气问题，是结构性的。风冷需要一条只有中大型工厂才划算的加工线；而真正的牧场散养鸡来自小农场，用的是小型或移动屠宰点，只能水冷或冷冻。有机认证跟着大厂走。">Organic + Pasture-Raised + Air-Chilled on one package essentially does not exist at retail, and it is structural rather than bad luck. Air-chilling needs a large processing line that only mid- to large-scale plants can justify; genuinely pasture-raised birds come from small farms that use small or mobile slaughter facilities, which water-chill or freeze. Organic certification follows the large processors.</p>
+      <div class="axis">
+        <div class="end">
+          <h4 data-en="Small scale" data-zh="小规模">Small scale</h4>
+          <p data-en="Real pasture, high welfare scores, water-chilled or frozen, sold at farmers markets or shipped direct." data-zh="真牧场、福利评分高、水冷或冷冻、农夫市场或农场直邮。">Real pasture, high welfare scores, water-chilled or frozen, sold at farmers markets or shipped direct.</p>
+        </div>
+        <div class="vs" data-en="&mdash; mutually exclusive &mdash;" data-zh="&mdash; 互斥 &mdash;">&mdash; mutually exclusive &mdash;</div>
+        <div class="end">
+          <h4 data-en="Large scale" data-zh="大规模">Large scale</h4>
+          <p data-en="Air-chilled, organic certified, but &ldquo;free-range&rdquo; at best, in every supermarket." data-zh="风冷、有机认证，但散养程度最多到 free-range，超市随处可见。">Air-chilled, organic certified, but &ldquo;free-range&rdquo; at best, in every supermarket.</p>
+        </div>
+      </div>
+      <p data-en="The scorecard confirms it: of the nine 5-star brands on Cornucopia&rsquo;s organic poultry scorecard, <strong>not one has national distribution</strong>, and the only West Coast entry is Rockside Ranch (Northern California only). The 5-star tier is structurally a tier of local small farms."
+         data-zh="评分表本身就印证了这一点：Cornucopia 有机禽类评分表上的 9 个 5 星品牌，<strong>没有一个是全美铺货的</strong>，西海岸唯一一个是 Rockside Ranch（只在北加州）。5 星这一档在结构上就是本地小农场。">The scorecard confirms it: of the nine 5-star brands on Cornucopia&rsquo;s organic poultry scorecard, <strong>not one has national distribution</strong>, and the only West Coast entry is Rockside Ranch (Northern California only). The 5-star tier is structurally a tier of local small farms.</p>
+    </div>
+
+    <h2 class="section-title" id="brands" data-en="Brands &amp; Farms" data-zh="品牌与农场对照">Brands &amp; Farms</h2>
+    <div class="table-wrap">
+      <table>
+        <colgroup>
+          <col class="c-brand"><col class="c-flag"><col class="c-flag"><col class="c-breed"><col class="c-cert"><col class="c-where"><col class="c-verdict">
+        </colgroup>
+        <thead>
+          <tr>
+            <th data-en="Brand / farm" data-zh="品牌 / 农场">Brand / farm</th>
+            <th data-en="Organic" data-zh="有机">Organic</th>
+            <th data-en="Pasture" data-zh="散养">Pasture</th>
+            <th data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</th>
+            <th data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</th>
+            <th data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</th>
+            <th data-en="Verdict" data-zh="判定">Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Skagit River Ranch" data-zh="Skagit River Ranch">Skagit River Ranch</span>
+            <span class="brand-loc" data-en="Sedro-Woolley, WA" data-zh="华州 Sedro-Woolley">Sedro-Woolley, WA</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="<span class=&quot;undisclosed&quot;>Not disclosed</span>"
+                  data-zh="<span class=&quot;undisclosed&quot;>未披露</span>"><span class="undisclosed">Not disclosed</span></span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span data-en="Certified Humane &middot; ASPCA Shop With Your Heart" data-zh="Certified Humane &middot; ASPCA Shop With Your Heart">Certified Humane &middot; ASPCA Shop With Your Heart</span>
+            <span class="score" data-en="Not rated by Cornucopia" data-zh="未参与 Cornucopia 评分">Not rated by Cornucopia</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="U-District market Sat 9:00&ndash;14:00 &middot; Ballard market Sun 9:00&ndash;14:00, year-round &middot; online order + farm pickup Sat 10:00&ndash;16:00"
+                  data-zh="U-District 市场 周六 9:00&ndash;14:00 &middot; Ballard 市场 周日 9:00&ndash;14:00，全年 &middot; 网上预订 + 农场自取 周六 10:00&ndash;16:00">U-District market Sat 9:00&ndash;14:00 &middot; Ballard market Sun 9:00&ndash;14:00, year-round &middot; online order + farm pickup Sat 10:00&ndash;16:00</span>
+            <span class="price" data-en="Birds 3&ndash;4 lb; price not posted publicly" data-zh="整鸡 3&ndash;4 lb；未公开标价">Birds 3&ndash;4 lb; price not posted publicly</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge top" data-en="First choice" data-zh="首选">First choice</span>
+            <span data-en="All three boxes ticked and it is local, so the cold chain is shortest. Costs a trip across the lake, and it sells out &mdash; order online first."
+                  data-zh="三项全中，而且是本地，冷链最短。代价是要过湖，且容易售罄——建议先线上下单。">All three boxes ticked and it is local, so the cold chain is shortest. Costs a trip across the lake, and it sells out &mdash; order online first.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Greener Pastures" data-zh="Greener Pastures">Greener Pastures</span>
+            <span class="brand-loc" data-en="Austin, TX" data-zh="德州 Austin">Austin, TX</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="Cornucopia records &ldquo;healthy, faster-growing strains&rdquo; slaughtered at <strong>9&ndash;10 weeks</strong>; says it is developing its own strain"
+                  data-zh="Cornucopia 记录为&ldquo;健康的快速生长品系&rdquo;，<strong>9&ndash;10 周</strong>出栏；自称在开发自有品系">Cornucopia records &ldquo;healthy, faster-growing strains&rdquo; slaughtered at <strong>9&ndash;10 weeks</strong>; says it is developing its own strain</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span data-en="Certified Humane &middot; Regenerative Organic Certified &middot; Real Organic Project" data-zh="Certified Humane &middot; Regenerative Organic Certified &middot; Real Organic Project">Certified Humane &middot; Regenerative Organic Certified &middot; Real Organic Project</span>
+            <span class="score" data-en="Cornucopia <strong>1620 / 1800 &mdash; 5&#9733;</strong>; outdoor access at least half their lives, &le; 3.5 lb/sq ft" data-zh="Cornucopia <strong>1620 / 1800 &mdash; 5&#9733;</strong>；一生至少一半时间有良好户外通道，密度 &le; 3.5 lb/平方英尺">Cornucopia <strong>1620 / 1800 &mdash; 5&#9733;</strong>; outdoor access at least half their lives, &le; 3.5 lb/sq ft</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="Ships direct from their site, frozen; Texas retail only otherwise" data-zh="官网直邮，冷冻寄；零售只在德州">Ships direct from their site, frozen; Texas retail only otherwise</span>
+            <span class="price" data-en="Whole bird <strong>$29.99</strong> + shipping" data-zh="整鸡 <strong>$29.99</strong> + 运费">Whole bird <strong>$29.99</strong> + shipping</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge mail" data-en="Best mail-order" data-zh="邮购首选">Best mail-order</span>
+            <span data-en="The fullest certification stack of anything here. Discount the score somewhat: Cornucopia&rsquo;s own board chair is this brand&rsquo;s CEO. The third-party certifications are unaffected by that."
+                  data-zh="这里认证最全的一个。评分要打点折：Cornucopia 自己的董事会主席就是该品牌 CEO。第三方认证本身不受影响。">The fullest certification stack of anything here. Discount the score somewhat: Cornucopia&rsquo;s own board chair is this brand&rsquo;s CEO. The third-party certifications are unaffected by that.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Stemple Creek / Big Bluff Ranch" data-zh="Stemple Creek / Big Bluff Ranch">Stemple Creek / Big Bluff Ranch</span>
+            <span class="brand-loc" data-en="California" data-zh="加州">California</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="<span class=&quot;undisclosed&quot;>Not disclosed</span>"
+                  data-zh="<span class=&quot;undisclosed&quot;>未披露</span>"><span class="undisclosed">Not disclosed</span></span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span data-en="None found" data-zh="未查到">None found</span>
+            <span class="score" data-en="Not rated by Cornucopia" data-zh="未参与 Cornucopia 评分">Not rated by Cornucopia</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="Ships direct from their site" data-zh="官网直邮">Ships direct from their site</span>
+            <span class="price" data-en="Whole bird from <strong>$39.99</strong>" data-zh="整鸡 <strong>$39.99</strong> 起">Whole bird from <strong>$39.99</strong></span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge alt" data-en="Backup" data-zh="备选">Backup</span>
+            <span data-en="About 33% more than Greener Pastures with fewer certifications. Only worth it if the other two are out of stock."
+                  data-zh="比 Greener Pastures 贵约 33%，认证还更少。只有前两个断货时才值得考虑。">About 33% more than Greener Pastures with fewer certifications. Only worth it if the other two are out of stock.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Rockside Ranch" data-zh="Rockside Ranch">Rockside Ranch</span>
+            <span class="brand-loc" data-en="Etna, CA" data-zh="加州 Etna">Etna, CA</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="<span class=&quot;undisclosed&quot;>Not disclosed</span>"
+                  data-zh="<span class=&quot;undisclosed&quot;>未披露</span>"><span class="undisclosed">Not disclosed</span></span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span class="score" data-en="Cornucopia <strong>1695 / 1800 &mdash; 5&#9733;</strong>" data-zh="Cornucopia <strong>1695 / 1800 &mdash; 5&#9733;</strong>">Cornucopia <strong>1695 / 1800 &mdash; 5&#9733;</strong></span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="Northern California only" data-zh="仅北加州">Northern California only</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge no" data-en="Can&rsquo;t buy it" data-zh="买不到">Can&rsquo;t buy it</span>
+            <span data-en="The only West Coast 5-star brand, and it does not leave Northern California. Listed here so the gap is on the record."
+                  data-zh="西海岸唯一的 5 星品牌，但不出北加州。列在这里是为了把这个空缺记下来。">The only West Coast 5-star brand, and it does not leave Northern California. Listed here so the gap is on the record.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Mary&rsquo;s Organic" data-zh="Mary&rsquo;s Organic">Mary&rsquo;s Organic</span>
+            <span class="brand-loc" data-en="Pitman Family Farms, Sanger, CA" data-zh="Pitman Family Farms，加州 Sanger">Pitman Family Farms, Sanger, CA</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td class="no">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10008;</span>
+            <span class="qual" data-en="labelled Free Range" data-zh="包装标 Free Range">labelled Free Range</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="No slow-growth claim &mdash; unlike the Heirloom line from the same company"
+                  data-zh="未标注慢生长——与同公司的 Heirloom 线形成对照">No slow-growth claim &mdash; unlike the Heirloom line from the same company</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span class="score" data-en="Cornucopia <strong>1080 / 1800 &mdash; 4&#9733;</strong>" data-zh="Cornucopia <strong>1080 / 1800 &mdash; 4&#9733;</strong>">Cornucopia <strong>1080 / 1800 &mdash; 4&#9733;</strong></span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="PCC, Metropolitan Market, Town &amp; Country &mdash; nationwide distribution. Air-chilled." data-zh="PCC、Metropolitan Market、Town &amp; Country &mdash; 全美铺货。风冷。">PCC, Metropolitan Market, Town &amp; Country &mdash; nationwide distribution. Air-chilled.</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge fallback" data-en="Weekday fallback" data-zh="兜底">Weekday fallback</span>
+            <span data-en="Organic clears the bar, pasture does not. Watch the wording: the site says birds &ldquo;roam freely on organic pastures&rdquo; but the package claim is Free Range. Best roasting bird here because it is air-chilled."
+                  data-zh="有机达标，散养不达标。注意措辞：官网写&ldquo;roam freely on organic pastures&rdquo;，但包装上的正式标是 Free Range。这里最适合烤的一只，因为它风冷。">Organic clears the bar, pasture does not. Watch the wording: the site says birds &ldquo;roam freely on organic pastures&rdquo; but the package claim is Free Range. Best roasting bird here because it is air-chilled.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Bell &amp; Evans Organic" data-zh="Bell &amp; Evans Organic">Bell &amp; Evans Organic</span>
+            <span class="brand-loc" data-en="Pennsylvania" data-zh="宾州">Pennsylvania</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td class="no">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10008;</span>
+            <span class="qual" data-en="labelled Free Range" data-zh="包装标 Free Range">labelled Free Range</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="<strong>Das Klassenbester</strong>, its own slower-growing line; 100% of production converted by end of 2018"
+                  data-zh="<strong>Das Klassenbester</strong>，自有慢生长品系；2018 年底 100% 转换完成"><strong>Das Klassenbester</strong>, its own slower-growing line; 100% of production converted by end of 2018</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span class="score" data-en="Not rated by Cornucopia" data-zh="未参与 Cornucopia 评分">Not rated by Cornucopia</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="Some supermarkets and online. Air-chilled." data-zh="部分超市与线上。风冷。">Some supermarkets and online. Air-chilled.</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge fallback" data-en="Same tier" data-zh="同类">Same tier</span>
+            <span data-en="Interchangeable with Mary&rsquo;s Organic on the criteria, just harder to find around here."
+                  data-zh="按判据跟 Mary&rsquo;s Organic 同级，只是本地不如 Mary&rsquo;s 好找。">Interchangeable with Mary&rsquo;s Organic on the criteria, just harder to find around here.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Mary&rsquo;s Heirloom" data-zh="Mary&rsquo;s Heirloom">Mary&rsquo;s Heirloom</span>
+            <span class="brand-loc" data-en="sold as Trader Joe&rsquo;s &ldquo;Pasture Raised Heirloom&rdquo;" data-zh="即 Trader Joe&rsquo;s 的&ldquo;Pasture Raised Heirloom&rdquo;">sold as Trader Joe&rsquo;s &ldquo;Pasture Raised Heirloom&rdquo;</span>
+          </td>
+          <td class="no">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10008;</span>
+            <span class="qual" data-en="Non-GMO only" data-zh="仅 Non-GMO">Non-GMO only</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="<strong>Slow-growth breed approved by the Better Chicken Commitment</strong>; the specific strain is not published"
+                  data-zh="<strong>Better Chicken Commitment 认可的慢生长品种</strong>；具体品系未公开"><strong>Slow-growth breed approved by the Better Chicken Commitment</strong>; the specific strain is not published</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span data-en="Certified Humane &middot; Global Animal Partnership &middot; Non-GMO Project Verified &middot; No Antibiotics Ever" data-zh="Certified Humane &middot; Global Animal Partnership &middot; Non-GMO Project Verified &middot; 全程无抗">Certified Humane &middot; Global Animal Partnership &middot; Non-GMO Project Verified &middot; No Antibiotics Ever</span>
+            <span class="score" data-en="Not rated by Cornucopia" data-zh="未参与 Cornucopia 评分">Not rated by Cornucopia</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="Trader Joe&rsquo;s. Air-chilled." data-zh="Trader Joe&rsquo;s。风冷。">Trader Joe&rsquo;s. Air-chilled.</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge alt" data-en="Compromise" data-zh="折中">Compromise</span>
+            <span data-en="The mirror image of Mary&rsquo;s Organic: pasture clears the bar, organic does not &mdash; but it is the only supermarket bird here that is both a slow-growth breed and welfare-certified. Cheapest way to taste what breed does."
+                  data-zh="跟 Mary&rsquo;s Organic 正好相反：散养达标、有机不达标——但它是这里唯一一只同时做到慢生长品种 + 福利认证的超市鸡。想尝品种带来的差别，这是最便宜的入口。">The mirror image of Mary&rsquo;s Organic: pasture clears the bar, organic does not &mdash; but it is the only supermarket bird here that is both a slow-growth breed and welfare-certified. Cheapest way to taste what breed does.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Mary&rsquo;s Free Range" data-zh="Mary&rsquo;s Free Range">Mary&rsquo;s Free Range</span>
+            <span class="brand-loc" data-en="Pitman Family Farms &mdash; sold at T&amp;T Bellevue as &ldquo;natural chicken&rdquo;" data-zh="Pitman Family Farms &mdash; 大统华 Bellevue 标&ldquo;natural chicken&rdquo;的就是它">Pitman Family Farms &mdash; sold at T&amp;T Bellevue as &ldquo;natural chicken&rdquo;</span>
+          </td>
+          <td class="no">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10008;</span>
+            <span class="qual" data-en="the No Antibiotics Ever line" data-zh="这是 No Antibiotics Ever 线">the No Antibiotics Ever line</span>
+          </td>
+          <td class="no">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10008;</span>
+            <span class="qual" data-en="labelled Free Range" data-zh="包装标 Free Range">labelled Free Range</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="No slow-growth claim" data-zh="未标注慢生长">No slow-growth claim</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span data-en="Global Animal Partnership &mdash; but <strong>about 90% of Mary&rsquo;s output is Step 3</strong>, only 10% at Step 4/5" data-zh="Global Animal Partnership &mdash; 但 <strong>Mary&rsquo;s 约 90% 的产量是 Step 3</strong>，只有 10% 在 Step 4/5">Global Animal Partnership &mdash; but <strong>about 90% of Mary&rsquo;s output is Step 3</strong>, only 10% at Step 4/5</span>
+            <span class="score" data-en="Not rated by Cornucopia" data-zh="未参与 Cornucopia 评分">Not rated by Cornucopia</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="T&amp;T Bellevue, pre-cut. Product of USA." data-zh="大统华 Bellevue，有斩好的。Product of USA。">T&amp;T Bellevue, pre-cut. Product of USA.</span>
+            <span class="score" data-en="Package claims: air-chilled &middot; No Antibiotics Ever &middot; no preservatives &middot; no added hormones &middot; fed vegetarian diet" data-zh="包装标注：风冷 &middot; No Antibiotics Ever &middot; 无防腐剂 &middot; 无添加激素 &middot; 素食饲养">Package claims: air-chilled &middot; No Antibiotics Ever &middot; no preservatives &middot; no added hormones &middot; fed vegetarian diet</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge no" data-en="Weakest here" data-zh="这里最弱">Weakest here</span>
+            <span data-en="One box out of four &mdash; air-chilled only. Read the package claims carefully: <em>No Antibiotics Ever</em> is real but single-issue; <em>no added hormones</em> carries zero information, since hormones are banned in US poultry anyway; and <strong><em>fed vegetarian diet</em> is evidence against pasture</strong> &mdash; a chicken is an omnivore, and one genuinely foraging outdoors eats insects and worms. That claim and the Step 3 rating agree with each other. The praise for how it tastes plain-boiled most likely comes from not being water-injected, not from how it was raised."
+                  data-zh="四条判据只中一条——风冷。包装上的声明要分开看：<em>No Antibiotics Ever</em> 是真信息但只管用药；<em>无添加激素</em>零信息量，美国禽肉本来就全面禁用；而<strong><em>素食饲养</em>其实是反证</strong>——鸡是杂食动物，真在户外觅食的鸡会吃虫。这条声明和 Step 3 的评级互相印证。网友说白水煮就有鸡味，大概率来自不注水，而不是养殖方式。">One box out of four &mdash; air-chilled only. Read the package claims carefully: <em>No Antibiotics Ever</em> is real but single-issue; <em>no added hormones</em> carries zero information, since hormones are banned in US poultry anyway; and <strong><em>fed vegetarian diet</em> is evidence against pasture</strong> &mdash; a chicken is an omnivore, and one genuinely foraging outdoors eats insects and worms. That claim and the Step 3 rating agree with each other. The praise for how it tastes plain-boiled most likely comes from not being water-injected, not from how it was raised.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <span class="brand-name" data-en="Pasturebird" data-zh="Pasturebird">Pasturebird</span>
+            <span class="brand-loc" data-en="owned by Perdue" data-zh="Perdue 旗下">owned by Perdue</span>
+          </td>
+          <td class="no">
+            <span class="cell-label" data-en="Organic" data-zh="有机">Organic</span>
+            <span class="mark">&#10008;</span>
+            <span class="qual" data-en="Non-GMO only" data-zh="仅 Non-GMO">Non-GMO only</span>
+          </td>
+          <td class="yes">
+            <span class="cell-label" data-en="Pasture" data-zh="散养">Pasture</span>
+            <span class="mark">&#10004;</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Breed / strain" data-zh="品种 / 品系">Breed / strain</span>
+            <span data-en="<span class=&quot;undisclosed&quot;>Not disclosed</span>"
+                  data-zh="<span class=&quot;undisclosed&quot;>未披露</span>"><span class="undisclosed">Not disclosed</span></span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Welfare certification &amp; score" data-zh="福利认证与评分">Welfare certification &amp; score</span>
+            <span data-en="&ldquo;Outside 24/7, moved daily&rdquo;; no organic or welfare certification claimed" data-zh="宣称&ldquo;全天候户外、每天转场&rdquo;；未声明有机或福利认证">&ldquo;Outside 24/7, moved daily&rdquo;; no organic or welfare certification claimed</span>
+            <span class="score" data-en="Not rated by Cornucopia" data-zh="未参与 Cornucopia 评分">Not rated by Cornucopia</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Where &amp; price" data-zh="渠道与价格">Where &amp; price</span>
+            <span data-en="Ships direct, frozen; free shipping over $149" data-zh="官网直邮，冷冻；满 $149 免运费">Ships direct, frozen; free shipping over $149</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Verdict" data-zh="判定">Verdict</span>
+            <span class="badge no" data-en="Skip" data-zh="不必">Skip</span>
+            <span data-en="Same non-organic pasture-raised category as the Trader Joe&rsquo;s bird, but frozen and shipped. No reason to pay for that over TJ&rsquo;s."
+                  data-zh="跟 Trader Joe&rsquo;s 那只同属&ldquo;非有机散养&rdquo;这一类，却要冷冻寄。没理由为此多花钱。">Same non-organic pasture-raised category as the Trader Joe&rsquo;s bird, but frozen and shipped. No reason to pay for that over TJ&rsquo;s.</span>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-en="Prices, market days and distribution checked September 2026 &mdash; all of these change. Call ahead for farmers-market stalls and pre-order channels."
+       data-zh="价格、市场时间与铺货情况为 2026 年 9 月查证，都会变。农夫市场摊位与预订渠道建议先问。">Prices, market days and distribution checked September 2026 &mdash; all of these change. Call ahead for farmers-market stalls and pre-order channels.</p>
+
+    <div class="rule">
+      <p data-en="<strong>Three of these rows are the same company.</strong> Pitman Family Farms sells Mary&rsquo;s Free Range at T&amp;T Bellevue (GAP Step 3), Mary&rsquo;s Organic at PCC and Metropolitan Market, and Mary&rsquo;s Heirloom through Trader Joe&rsquo;s (slow-growth breed + Certified Humane + GAP). So comparing these shops by word of mouth is really comparing three SKUs from one producer &mdash; <strong>the difference is the product line, not the store.</strong>"
+         data-zh="<strong>这张表里有三行是同一家公司。</strong>Pitman Family Farms 的 Mary&rsquo;s Free Range 在大统华 Bellevue（GAP Step 3）、Mary&rsquo;s Organic 在 PCC 和 Metropolitan Market、Mary&rsquo;s Heirloom 走 Trader Joe&rsquo;s（慢生长品种 + Certified Humane + GAP）。所以按店比口碑，其实是在比同一个厂的三个 SKU——<strong>差别在产品线，不在店。</strong>"><strong>Three of these rows are the same company.</strong> Pitman Family Farms sells Mary&rsquo;s Free Range at T&amp;T Bellevue (GAP Step 3), Mary&rsquo;s Organic at PCC and Metropolitan Market, and Mary&rsquo;s Heirloom through Trader Joe&rsquo;s (slow-growth breed + Certified Humane + GAP). So comparing these shops by word of mouth is really comparing three SKUs from one producer &mdash; <strong>the difference is the product line, not the store.</strong></p>
+    </div>
+
+    <h2 class="section-title" id="breed" data-en="Breed: The Column No Label Covers" data-zh="品种：标签体系不管的一栏">Breed: The Column No Label Covers</h2>
+    <div class="why">
+      <p data-en="Organic certification says nothing about breed. Neither does pasture-raised, free-range, air-chilled, or No Antibiotics Ever. A bird can carry every certification on the shelf and still be the same fast-growing hybrid as the cheapest chicken in the case."
+         data-zh="有机认证对品种零要求。散养、走地、风冷、全程无抗，同样都不管品种。一只鸡可以把货架上所有认证都拿到手，遗传上仍然是跟最便宜那只一样的快速生长杂交种。">Organic certification says nothing about breed. Neither does pasture-raised, free-range, air-chilled, or No Antibiotics Ever. A bird can carry every certification on the shelf and still be the same fast-growing hybrid as the cheapest chicken in the case.</p>
+      <p data-en="&ldquo;Breed&rdquo; is also the wrong word. Commercial broilers are proprietary multi-line hybrids, and the genetics behind essentially every chicken sold in the US come from just two companies: <strong>Aviagen</strong> (owned by Germany&rsquo;s EW Group; sells the Ross, Arbor Acres and Hubbard lines) and <strong>Cobb-Vantress</strong> (owned by Tyson; sells the Cobb lines). Brand and certification vary enormously; the underlying genetics barely do."
+         data-zh="其实&ldquo;品种&rdquo;这个词都不太准确。商用肉鸡是专有的多系杂交，而美国市面上几乎每一只鸡的遗传都来自两家公司：<strong>Aviagen</strong>（德国 EW Group 旗下，Ross、Arbor Acres、Hubbard 品系）和 <strong>Cobb-Vantress</strong>（Tyson 旗下，Cobb 品系）。品牌和认证差异巨大，底层遗传却几乎没有差别。">&ldquo;Breed&rdquo; is also the wrong word. Commercial broilers are proprietary multi-line hybrids, and the genetics behind essentially every chicken sold in the US come from just two companies: <strong>Aviagen</strong> (owned by Germany&rsquo;s EW Group; sells the Ross, Arbor Acres and Hubbard lines) and <strong>Cobb-Vantress</strong> (owned by Tyson; sells the Cobb lines). Brand and certification vary enormously; the underlying genetics barely do.</p>
+
+      <div class="perf-wrap">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="Year" data-zh="年份">Year</th>
+                <th data-en="Days to market" data-zh="出栏日龄">Days to market</th>
+                <th data-en="Market weight" data-zh="上市体重">Market weight</th>
+                <th data-en="Feed : meat" data-zh="料肉比">Feed : meat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1925</td><td data-en="112 days" data-zh="112 天">112 days</td><td>2.5 lb</td><td>4.7</td></tr>
+              <tr><td>1950</td><td data-en="70 days" data-zh="70 天">70 days</td><td>3.08 lb</td><td>3.0</td></tr>
+              <tr><td>2000</td><td data-en="47 days" data-zh="47 天">47 days</td><td>5.03 lb</td><td>1.95</td></tr>
+              <tr class="now"><td>2025</td><td data-en="47.5 days" data-zh="47.5 天">47.5 days</td><td>6.63 lb</td><td>1.70</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note" data-en="US broiler performance, National Chicken Council." data-zh="美国肉鸡生产性能，数据来自 National Chicken Council。">US broiler performance, National Chicken Council.</p>
+
+      <p data-en="Read the last two rows together. Between 2000 and 2025 the age at slaughter barely moved &mdash; 47 to 47.5 days &mdash; while market weight rose <strong>32%</strong> (5.03 &rarr; 6.63 lb) and feed conversion fell from 1.95 to 1.70. A quarter century of breeding went entirely into putting more meat on the bird in the same number of days. That is the bird behind almost every label in the table above."
+         data-zh="最后两行要合起来看。2000 到 2025 年，出栏日龄几乎没动——47 天到 47.5 天——但上市体重涨了 <strong>32%</strong>（5.03 &rarr; 6.63 lb），料肉比从 1.95 降到 1.70。整整四分之一个世纪的育种成果，全部用在了&ldquo;同样的天数里长出更多肉&rdquo;上。上面那张表里几乎每一个标签背后，都是这只鸡。">Read the last two rows together. Between 2000 and 2025 the age at slaughter barely moved &mdash; 47 to 47.5 days &mdash; while market weight rose <strong>32%</strong> (5.03 &rarr; 6.63 lb) and feed conversion fell from 1.95 to 1.70. A quarter century of breeding went entirely into putting more meat on the bird in the same number of days. That is the bird behind almost every label in the table above.</p>
+
+      <p data-en="The one certification that <em>does</em> regulate breed is the slow-growth requirement shared by the Better Chicken Commitment and Global Animal Partnership. After a University of Guelph study of more than 7,500 birds across 16 genetic strains, GAP published the strains eligible for welfare certification:"
+         data-zh="真正<em>管</em>品种的认证只有一个：Better Chicken Commitment 与 Global Animal Partnership 共用的慢生长要求。基于圭尔夫大学一项覆盖 16 个遗传品系、7,500 多只鸡的研究，GAP 公布了可用于福利认证的品系名单：">The one certification that <em>does</em> regulate breed is the slow-growth requirement shared by the Better Chicken Commitment and Global Animal Partnership. After a University of Guelph study of more than 7,500 birds across 16 genetic strains, GAP published the strains eligible for welfare certification:</p>
+      <div class="strains">
+        <div class="strain">
+          <h4 data-en="Aviagen" data-zh="Aviagen">Aviagen</h4>
+          <p data-en="Ranger Classic &middot; Ranger Gold &middot; Ranger Premium" data-zh="Ranger Classic &middot; Ranger Gold &middot; Ranger Premium">Ranger Classic &middot; Ranger Gold &middot; Ranger Premium</p>
+        </div>
+        <div class="strain">
+          <h4 data-en="Hubbard" data-zh="Hubbard">Hubbard</h4>
+          <p data-en="JA757 &middot; JA787 &middot; JACY87 &middot; REDBRO &middot; Redbro M" data-zh="JA757 &middot; JA787 &middot; JACY87 &middot; REDBRO &middot; Redbro M">JA757 &middot; JA787 &middot; JACY87 &middot; REDBRO &middot; Redbro M</p>
+        </div>
+        <div class="strain">
+          <h4 data-en="Cobb-Vantress" data-zh="Cobb-Vantress">Cobb-Vantress</h4>
+          <p data-en="Cobb-Sasso 200" data-zh="Cobb-Sasso 200">Cobb-Sasso 200</p>
+        </div>
+      </div>
+      <p class="note" data-en="Selected for slower growth, higher bone density, better mobility, and low rates of muscle myopathy &mdash; the defects that come with pushing weight gain." data-zh="筛选标准是生长更慢、骨密度更高、行动能力更好、肌肉病变率低——也就是一味追求增重带来的那些毛病。">Selected for slower growth, higher bone density, better mobility, and low rates of muscle myopathy &mdash; the defects that come with pushing weight gain.</p>
+
+      <p data-en="So if breed is what you are after, the thing to look for is not the organic seal. It is either a <strong>Better Chicken Commitment / GAP slow-growth</strong> claim, or a producer running its own slower line &mdash; Bell &amp; Evans converted 100% of its production to its <strong>Das Klassenbester</strong> line by the end of 2018."
+         data-zh="所以如果你要的是品种，该找的不是有机标。要么是 <strong>Better Chicken Commitment / GAP 慢生长</strong>标注，要么是自己养慢生长品系的厂商——Bell &amp; Evans 在 2018 年底把 100% 产量转成了自有的 <strong>Das Klassenbester</strong> 品系。">So if breed is what you are after, the thing to look for is not the organic seal. It is either a <strong>Better Chicken Commitment / GAP slow-growth</strong> claim, or a producer running its own slower line &mdash; Bell &amp; Evans converted 100% of its production to its <strong>Das Klassenbester</strong> line by the end of 2018.</p>
+    </div>
+
+    <h2 class="section-title" id="gap" data-en="Reading the Shelf at Whole Foods" data-zh="在 Whole Foods 现场怎么判">Reading the Shelf at Whole Foods</h2>
+    <div class="gap-wrap">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-en="GAP step" data-zh="GAP 等级">GAP step</th>
+              <th data-en="Counts as pasture-raised?" data-zh="算不算散养？">Counts as pasture-raised?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-en="Step 1&ndash;3" data-zh="Step 1&ndash;3">Step 1&ndash;3</td>
+              <td class="no"><span class="mark" data-en="&#10008; No &mdash; indoor systems with varying enrichment" data-zh="&#10008; 不算 &mdash; 仍是室内体系，只是丰容程度不同">&#10008; No &mdash; indoor systems with varying enrichment</span></td>
+            </tr>
+            <tr>
+              <td data-en="Step 4" data-zh="Step 4">Step 4</td>
+              <td class="yes"><span class="mark" data-en="&#10004; Yes &mdash; pasture-based systems start here; outdoor and pasture access both required, third-party audited" data-zh="&#10004; 算 &mdash; pasture-based 体系从这一级开始；户外与牧场通道都是硬性要求，且经第三方审核">&#10004; Yes &mdash; pasture-based systems start here; outdoor and pasture access both required, third-party audited</span></td>
+            </tr>
+            <tr>
+              <td data-en="Step 5 / 5+" data-zh="Step 5 / 5+">Step 5 / 5+</td>
+              <td class="yes"><span class="mark" data-en="&#10004; Yes &mdash; stricter again" data-zh="&#10004; 算 &mdash; 更严">&#10004; Yes &mdash; stricter again</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rule">
+        <p data-en="<strong>The rule: USDA Organic + GAP Step 4 or above.</strong> This beats reading the words &ldquo;Pasture-Raised&rdquo; off the package, because that phrase has no federal definition and no audit behind it &mdash; the GAP step does."
+           data-zh="<strong>规则：USDA Organic + GAP Step 4 及以上。</strong>这比看包装上&ldquo;Pasture-Raised&rdquo;几个字硬——那个词没有联邦定义、也没有审核，而 GAP 分级有。"><strong>The rule: USDA Organic + GAP Step 4 or above.</strong> This beats reading the words &ldquo;Pasture-Raised&rdquo; off the package, because that phrase has no federal definition and no audit behind it &mdash; the GAP step does.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="notes" data-en="Notes to Self" data-zh="备忘">Notes to Self</h2>
+    <div class="tips">
+      <ul>
+        <li data-en="<strong>Ruled out: Bellevue Farmers Market.</strong> Thursdays 15:00&ndash;19:00, May 21 &ndash; Oct 1, 2026, at 1717 Bellevue Way NE. The 2026 vendor list has no poultry stall at all &mdash; the only animal protein is Loki Fish. The Eastside farmers-market route is a dead end; local pastured chicken means Seattle or mail order."
+            data-zh="<strong>已排除：Bellevue Farmers Market。</strong>周四 15:00&ndash;19:00，2026 年 5/21&ndash;10/1，地址 1717 Bellevue Way NE。2026 年 vendor 名单里没有任何禽肉摊，唯一的动物蛋白是 Loki Fish。Eastside 农夫市场这条路是断的，本地散养鸡只能去西雅图或邮购。"><strong>Ruled out: Bellevue Farmers Market.</strong> Thursdays 15:00&ndash;19:00, May 21 &ndash; Oct 1, 2026, at 1717 Bellevue Way NE. The 2026 vendor list has no poultry stall at all &mdash; the only animal protein is Loki Fish. The Eastside farmers-market route is a dead end; local pastured chicken means Seattle or mail order.</li>
+        <li data-en="<strong>Air-chilled is the one you can fake at home.</strong> Pat the bird dry, set it on a rack uncovered in the fridge for 12&ndash;24 hours. That will not undo water already absorbed during water-chilling, but the surface dries out just as well and the skin crisps the same. So spend the money on the other two claims."
+            data-zh="<strong>风冷是三个里唯一能在家复刻的。</strong>买回来擦干，架在网架上不盖、冷藏 12&ndash;24 小时。这去不掉水冷时已经吸进去的水，但表面脱水效果一样，皮照样烤得脆。所以钱应该花在另外两项上。"><strong>Air-chilled is the one you can fake at home.</strong> Pat the bird dry, set it on a rack uncovered in the fridge for 12&ndash;24 hours. That will not undo water already absorbed during water-chilling, but the surface dries out just as well and the skin crisps the same. So spend the money on the other two claims.</li>
+        <li data-en="<strong>Two different companies, easy to mix up.</strong> Pitman Family Farms is Mary&rsquo;s (Sanger, CA). Greener Pastures is an independent Austin, TX brand, CEO Cameron Molberg, co-founded with Von Miller. No ownership link found between them."
+            data-zh="<strong>两家不同公司，容易混。</strong>Pitman Family Farms 是 Mary&rsquo;s（加州 Sanger）。Greener Pastures 是德州 Austin 的独立品牌，CEO 是 Cameron Molberg，与 Von Miller 联合创办。没查到两者有股权关系。"><strong>Two different companies, easy to mix up.</strong> Pitman Family Farms is Mary&rsquo;s (Sanger, CA). Greener Pastures is an independent Austin, TX brand, CEO Cameron Molberg, co-founded with Von Miller. No ownership link found between them.</li>
+        <li data-en="<strong>Companion pages:</strong> <a href=&quot;ji-label-guide.html&quot;>Chicken Labels Decoded</a> for what each claim guarantees, <a href=&quot;ji-sanhuang.html&quot;>The Bird I Actually Want</a> for the sanhuang gap, <a href=&quot;ji-buying-guide.html&quot;>Local Shops &amp; Word of Mouth</a> for the Seattle channels."
+            data-zh="<strong>姊妹篇：</strong><a href=&quot;ji-label-guide.html&quot;>鸡肉标签解读</a>讲每个标签保证了什么，<a href=&quot;ji-sanhuang.html&quot;>真正要的那只鸡</a>讲跟土三黄鸡的差距，<a href=&quot;ji-buying-guide.html&quot;>本地渠道与口碑</a>讲西雅图的店。"><strong>Companion pages:</strong> <a href="ji-label-guide.html">Chicken Labels Decoded</a> for what each claim guarantees, <a href="ji-sanhuang.html">The Bird I Actually Want</a> for the sanhuang gap, <a href="ji-buying-guide.html">Local Shops &amp; Word of Mouth</a> for the Seattle channels.</li>
+      </ul>
+    </div>
+    <a class="totop" href="#top" data-en="&uarr; Back to top" data-zh="&uarr; 回到顶部">&uarr; Back to top</a>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="饮用水 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Drinking Water — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+          --ok-bg:#dff0d2; --ok-ink:#3a6010; --warn-bg:#f3d9b1; --warn-ink:#7a4a12; --info-bg:#dceefb; --info-ink:#154e8a; --bad-bg:#f8dcd6; --bad-ink:#8a2a1a;
+          --sans:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; --mono:'SFMono-Regular',Menlo,Consolas,'Courier New',monospace; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+
+  /* ── Header ── */
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 1600px; margin: 0 auto 12px; font-family: var(--sans); }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 1600px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 1600px; margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: var(--sans); }
+
+  /* ── Main layout ── */
+  main { max-width: 900px; margin: 0 auto; padding: 36px 24px 60px; }
+  @media (min-width: 1100px) { main { max-width: 1100px; padding: 40px 36px 72px; } }
+  @media (min-width: 1400px) { main { max-width: 1400px; padding: 48px 48px 80px; } }
+  @media (min-width: 1800px) { main { max-width: 1700px; padding: 56px 56px 88px; } }
+
+  h2.section-title { font-family: var(--sans); font-size: 1.08rem; font-weight: 700; margin: 36px 0 12px; display: flex; align-items: baseline; gap: 10px; }
+  h2.section-title:first-child { margin-top: 0; }
+  h2.section-title .num { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.1em; font-weight: 700; }
+  .lede { font-size: 0.93rem; color: var(--muted); margin: -4px 0 14px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 900px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+  .grid2.data { grid-template-columns: 1fr; }
+  @media (min-width: 1400px) { .grid2.data { grid-template-columns: 1fr 1fr; } }
+  .grid2 > * { min-width: 0; }
+  .card { min-width: 0; }
+  .stack > * + * { margin-top: 20px; }
+
+  /* ── Cards ── */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .card h3 { color: var(--accent); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px; font-family: var(--sans); padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
+  .card h4 { font-family: var(--sans); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
+  .card p { margin: 6px 0; font-size: 0.93rem; line-height: 1.6; }
+  .card ul, .card ol { margin: 6px 0 6px 20px; padding: 0; }
+  .card li { margin: 4px 0; font-size: 0.93rem; line-height: 1.6; }
+  .card .note { font-size: 0.84rem; color: var(--muted); }
+  .card .note b { color: var(--warn-ink); }
+
+  /* ── Question card ── */
+  .homes { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 12px 0 4px; }
+  @media (min-width: 700px) { .homes { grid-template-columns: 1fr 1fr; } }
+  .home { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: #fffdf9; font-family: var(--sans); }
+  .home .name { font-weight: 700; font-size: 0.95rem; }
+  .home .desc { font-size: 0.84rem; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+
+  /* ── Verdict cards ── */
+  .verdict { border-top: 5px solid var(--ok-ink); }
+  .verdict.newark { border-top-color: var(--accent); }
+  .verdict .place { font-family: var(--sans); font-size: 1.3rem; font-weight: 700; margin: 0; line-height: 1.3; }
+  .verdict .sub { color: var(--muted); font-size: 0.84rem; font-family: var(--sans); margin: 2px 0 12px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { display: inline-block; font-family: var(--sans); font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; line-height: 1.5; }
+  .pill-ok { background: var(--ok-bg); color: var(--ok-ink); }
+  .pill-warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .pill-info { background: var(--info-bg); color: var(--info-ink); }
+  .pill-bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .pill-muted { background: #ede9e3; color: #555; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0 6px; }
+  .stat { background: #fffdf9; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: var(--sans); }
+  .stat .v { font-size: 1.15rem; font-weight: 700; color: var(--ink); line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; margin-top: 3px; line-height: 1.3; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 4px 0; }
+  .chip { font-family: var(--sans); font-size: 0.78rem; color: var(--ink); border: 1px dashed var(--border); border-radius: 20px; padding: 4px 12px; background: #fffdf9; }
+  .chip.tap { border-style: solid; border-color: #cfe3c0; background: #f2f9ec; }
+  .chip.bottle { border-style: solid; border-color: #e6c99a; background: #fdf3e3; }
+  .verdict .why li { font-size: 0.9rem; }
+
+  /* ── Tip / callout ── */
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 20px; font-size: 0.93rem; }
+  .tip h4 { font-family: var(--sans); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #8a541f; margin: 0 0 8px; }
+  .tip ul { margin: 0 0 0 18px; padding: 0; }
+  .tip li { margin: 5px 0; line-height: 1.6; }
+
+  /* ── Tables ── */
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.t { width: 100%; border-collapse: collapse; font-size: 0.86rem; font-family: var(--sans); }
+  .t th { text-align: left; font-size: 0.70rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; white-space: nowrap; }
+  .t td { padding: 9px 10px; border-bottom: 1px solid #f3e8d6; vertical-align: top; line-height: 1.5; }
+  .t tr:last-child td { border-bottom: none; }
+  .t tr:hover td { background: #fdf0e0; }
+  .t td.n, .t th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .t td.b { font-weight: 700; }
+  .t .sm { color: var(--muted); font-size: 0.78rem; display: block; }
+  .t.wide { min-width: 720px; }
+  .t.mid { min-width: 560px; }
+
+  .calc { font-family: var(--mono); font-size: 0.84rem; background: #fffdf9; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 12px 0 6px; white-space: pre-wrap; line-height: 1.6; }
+  .calc b { color: var(--accent); }
+  .units { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 16px; font-family: var(--sans); }
+  .units .lbl { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+  .units .u { font-size: 0.8rem; font-variant-numeric: tabular-nums; background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; color: var(--ink); white-space: nowrap; }
+  .units .u b { color: var(--accent); }
+  .bands { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
+  .band { font-family: var(--sans); font-size: 0.74rem; padding: 3px 10px; border-radius: 6px; background: #f6efe3; color: var(--ink); }
+  .band b { color: var(--accent); }
+
+  /* ── Judgement rows ── */
+  .judge { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+  @media (min-width: 900px) { .judge { grid-template-columns: 1fr 1fr; } }
+  .judge .row { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: #fffdf9; font-family: var(--sans); }
+  .judge .row .lbl { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .judge .line { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 0.86rem; padding: 4px 0; }
+  .judge .line + .line { border-top: 1px dotted var(--border); }
+  .judge .line .who { font-weight: 700; }
+
+  /* ── Action plan ── */
+  .plan .view { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: #fffdf9; margin-top: 10px; }
+  .plan .view h4 { margin: 0 0 6px; }
+  .plan .view ul { margin: 0 0 0 18px; }
+  .plan .view li { font-size: 0.9rem; }
+
+  /* ── Spec table + sources ── */
+  .spec td:first-child { font-weight: 700; white-space: nowrap; width: 30%; }
+  @media (max-width: 640px) { .spec td:first-child { white-space: normal; width: auto; } }
+  .sources ol { margin: 4px 0 0 20px; padding: 0; }
+  @media (min-width: 1100px) { .sources ol { columns: 2; column-gap: 36px; } }
+  .sources li { break-inside: avoid; font-size: 0.88rem; font-family: var(--sans); margin: 5px 0; line-height: 1.5; }
+  .sources a { color: var(--accent); text-decoration: none; word-break: break-word; }
+  .sources a:hover { text-decoration: underline; }
+
+  /* ── Wide screens ── */
+  @media (min-width: 1400px) {
+    .card { padding: 28px 32px; }
+    .card p, .card li, .verdict .why li, .plan .view li { font-size: 0.97rem; }
+    table.t { font-size: 0.9rem; }
+    .t th { font-size: 0.72rem; padding: 7px 12px; }
+    .t td { padding: 11px 12px; }
+    .stat .v { font-size: 1.3rem; }
+    .stat .k { font-size: 0.7rem; }
+  }
+  @media (min-width: 1800px) {
+    .card h3 { font-size: 0.87rem; }
+    .card p, .card li, .verdict .why li, .plan .view li { font-size: 1rem; }
+    table.t { font-size: 0.94rem; }
+    .t td { padding: 13px 14px; }
+  }
+
+  /* ── Phones ── */
+  @media (max-width: 640px) {
+    header { padding: 32px 16px 26px; }
+    header h1 { font-size: 1.55rem; }
+    header .meta { font-size: 0.84rem; }
+    main { padding: 22px 14px 48px; }
+    .card { padding: 18px 16px; }
+    .verdict .place { font-size: 1.15rem; }
+    .stat-row { gap: 6px; }
+    .stat { padding: 8px 8px; }
+    .stat .v { font-size: 1rem; }
+    .stat .k { font-size: 0.62rem; }
+    h2.section-title { font-size: 1rem; margin-top: 28px; }
+  }
+  @media (max-width: 380px) {
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .stat:last-child { grid-column: 1 / -1; }
+  }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: var(--sans); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <h1 data-en="Drinking Water" data-zh="饮用水">Drinking Water</h1>
+    <div class="meta" data-en="Bellevue vs Newark &mdash; tap water for drinking, boiling &amp; soup &middot; assessed 2026-09-03" data-zh="Bellevue 与 Newark —— 日常饮水、烧水与煮汤用水 · 评估日期 2026-09-03">Bellevue vs Newark &mdash; tap water for drinking, boiling &amp; soup &middot; assessed 2026-09-03</div>
+  </header>
+
+  <main>
+
+    <!-- ── 1. The question ── -->
+    <h2 class="section-title"><span class="num">01</span><span data-en="The question" data-zh="问题定义">The question</span></h2>
+    <div class="card">
+      <p data-en="For two homes &mdash; ignoring cost, and using no filter pitcher, under-sink filter or reverse-osmosis unit &mdash; is it necessary to buy bottled mineral water for daily drinking, boiling water and making soup?" data-zh="比较以下两处住宅在不考虑价格、且不使用滤芯、净水器或反渗透设备时，是否有必要购买瓶装矿泉水用于日常饮用、烧水和煮汤：">For two homes &mdash; ignoring cost, and using no filter pitcher, under-sink filter or reverse-osmosis unit &mdash; is it necessary to buy bottled mineral water for daily drinking, boiling water and making soup?</p>
+      <div class="homes">
+        <div class="home">
+          <div class="name" data-en="Bellevue, Washington" data-zh="Washington 州 Bellevue">Bellevue, Washington</div>
+          <div class="desc" data-en="Apartment built in 2025 &middot; municipal water (Cedar &amp; Tolt supply)" data-zh="2025 年建成的公寓 · 市政供水（Cedar 与 Tolt 水源）">Apartment built in 2025 &middot; municipal water (Cedar &amp; Tolt supply)</div>
+        </div>
+        <div class="home">
+          <div class="name" data-en="Newark, Delaware" data-zh="Delaware 州 Newark">Newark, Delaware</div>
+          <div class="desc" data-en="Single-family house built in 1970 &middot; known copper plumbing &middot; assumed on City of Newark municipal water, not a private well" data-zh="1970 年建成的独栋住宅 · 已知为铜管 · 假定接入 Newark 市政供水，而非私人井">Single-family house built in 1970 &middot; known copper plumbing &middot; assumed on City of Newark municipal water, not a private well</div>
+        </div>
+      </div>
+      <p class="note" data-en="&ldquo;Nordic standard&rdquo; is not a single regulation. This note references the EU Drinking Water Directive 2020/2184 and Sweden&rsquo;s stricter precautionary PFAS4 guideline separately, alongside US compliance limits." data-zh="“北欧标准”不是统一法规。本文分别参考欧盟饮用水指令 2020/2184 和瑞典更严格的 PFAS4 预防性标准，并与美国现行合规限值对照。">&ldquo;Nordic standard&rdquo; is not a single regulation. This note references the EU Drinking Water Directive 2020/2184 and Sweden&rsquo;s stricter precautionary PFAS4 guideline separately, alongside US compliance limits.</p>
+    </div>
+
+    <!-- ── 2. Verdict ── -->
+    <h2 class="section-title"><span class="num">02</span><span data-en="Verdict" data-zh="核心结论">Verdict</span></h2>
+    <div class="grid2">
+
+      <div class="card verdict bellevue">
+        <p class="place">Bellevue</p>
+        <div class="sub" data-en="2025 apartment &middot; municipal water" data-zh="2025 年公寓 · 市政供水">2025 apartment &middot; municipal water</div>
+        <div class="pills">
+          <span class="pill pill-ok" data-en="Drink &amp; cook with tap water" data-zh="直接用自来水饮用和烹饪">Drink &amp; cook with tap water</span>
+          <span class="pill pill-muted" data-en="Bottled water: not necessary" data-zh="瓶装矿泉水：不需要">Bottled water: not necessary</span>
+          <span class="pill pill-info" data-en="Confidence: high" data-zh="置信度：高">Confidence: high</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="v">&asymp;0.20 ppt</div><div class="k" data-en="PFAS4 detected portion (PFOA+PFOS)" data-zh="PFAS4 已检出部分（PFOA+PFOS）">PFAS4 detected portion (PFOA+PFOS)</div></div>
+          <div class="stat"><div class="v">&asymp;27 mg/L</div><div class="k" data-en="Hardness as CaCO₃ &middot; very soft" data-zh="硬度（以 CaCO₃ 计）· 很软">Hardness as CaCO₃ &middot; very soft</div></div>
+          <div class="stat"><div class="v">3.7 ppb</div><div class="k" data-en="Lead 90th percentile (2023)" data-zh="铅第 90 百分位（2023）">Lead 90th percentile (2023)</div></div>
+        </div>
+        <h4 data-en="Use tap water for" data-zh="自来水用于">Use tap water for</h4>
+        <div class="chips">
+          <span class="chip tap" data-en="Direct drinking" data-zh="直接饮用">Direct drinking</span>
+          <span class="chip tap" data-en="Boiling" data-zh="烧水">Boiling</span>
+          <span class="chip tap" data-en="Soup" data-zh="煮汤">Soup</span>
+          <span class="chip tap" data-en="Rice &amp; congee" data-zh="米饭与粥">Rice &amp; congee</span>
+        </div>
+        <h4 data-en="Why" data-zh="理由">Why</h4>
+        <ul class="why">
+          <li data-en="Protected Cedar and Tolt watersheds." data-zh="受保护的 Cedar 与 Tolt 水源地。">Protected Cedar and Tolt watersheds.</li>
+          <li data-en="A 2025 building minimizes legacy-plumbing risk." data-zh="2025 年新建，老旧管道风险极低。">A 2025 building minimizes legacy-plumbing risk.</li>
+          <li data-en="PFAS very low or not detected." data-zh="PFAS 极低或未检出。">PFAS very low or not detected.</li>
+          <li data-en="Soft water &mdash; well suited to boiling and soup." data-zh="软水，适合烧水和煮汤。">Soft water &mdash; well suited to boiling and soup.</li>
+        </ul>
+      </div>
+
+      <div class="card verdict newark">
+        <p class="place">Newark</p>
+        <div class="sub" data-en="1970 house &middot; copper plumbing &middot; assumed municipal water" data-zh="1970 年独栋 · 铜管 · 假定市政供水">1970 house &middot; copper plumbing &middot; assumed municipal water</div>
+        <div class="pills">
+          <span class="pill pill-ok" data-en="US compliance view: tap water OK" data-zh="美国合规视角：自来水可用">US compliance view: tap water OK</span>
+          <span class="pill pill-warn" data-en="Strict Swedish PFAS4 view: verified bottled water" data-zh="瑞典严格 PFAS4 视角：经验证的瓶装水">Strict Swedish PFAS4 view: verified bottled water</span>
+          <span class="pill pill-info" data-en="Confidence: medium" data-zh="置信度：中">Confidence: medium</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="v">24.98 ppt</div><div class="k" data-en="PFAS4 partial sum (PFOA+PFOS+PFHxS)" data-zh="PFAS4 部分合计（PFOA+PFOS+PFHxS）">PFAS4 partial sum (PFOA+PFOS+PFHxS)</div></div>
+          <div class="stat"><div class="v">&asymp;58 mg/L</div><div class="k" data-en="Hardness as CaCO₃ &middot; soft" data-zh="硬度（以 CaCO₃ 计）· 偏软">Hardness as CaCO₃ &middot; soft</div></div>
+          <div class="stat"><div class="v">1.0 ppb</div><div class="k" data-en="Lead 90th percentile (2021, system)" data-zh="铅第 90 百分位（2021，系统级）">Lead 90th percentile (2021, system)</div></div>
+        </div>
+        <h4 data-en="Bottled water for (strict view)" data-zh="瓶装水用于（严格视角）">Bottled water for (strict view)</h4>
+        <div class="chips">
+          <span class="chip bottle" data-en="Direct drinking" data-zh="直接饮用">Direct drinking</span>
+          <span class="chip bottle" data-en="Tea &amp; coffee" data-zh="茶与咖啡">Tea &amp; coffee</span>
+          <span class="chip bottle" data-en="Soup" data-zh="汤">Soup</span>
+          <span class="chip bottle" data-en="Rice &amp; congee" data-zh="米饭与粥">Rice &amp; congee</span>
+          <span class="chip bottle" data-en="Foods that absorb or retain cooking water" data-zh="会吸收或保留烹饪水的食物">Foods that absorb or retain cooking water</span>
+        </div>
+        <h4 data-en="Tap water still fine for" data-zh="自来水仍可用于">Tap water still fine for</h4>
+        <div class="chips">
+          <span class="chip tap" data-en="Washing" data-zh="洗菜洗碗">Washing</span>
+          <span class="chip tap" data-en="Cleaning" data-zh="清洁">Cleaning</span>
+          <span class="chip tap" data-en="Bathing" data-zh="洗澡">Bathing</span>
+          <span class="chip tap" data-en="Cooking where the water is fully discarded" data-zh="烹饪水完全倒掉的用途">Cooking where the water is fully discarded</span>
+        </div>
+        <h4 data-en="Why" data-zh="理由">Why</h4>
+        <ul class="why">
+          <li data-en="The municipal lead result is low." data-zh="市政铅检测结果低。">The municipal lead result is low.</li>
+          <li data-en="1970 copper plumbing may still have legacy lead solder or brass fixtures." data-zh="1970 年的铜管可能仍有含铅焊料或旧黄铜龙头。">1970 copper plumbing may still have legacy lead solder or brass fixtures.</li>
+          <li data-en="Reported PFAS concentrations exceed Sweden&rsquo;s strict PFAS4 target." data-zh="报告的 PFAS 浓度超过瑞典严格 PFAS4 目标值。">Reported PFAS concentrations exceed Sweden&rsquo;s strict PFAS4 target.</li>
+          <li data-en="Boiling does not remove lead or PFAS." data-zh="煮沸不能去除铅或 PFAS。">Boiling does not remove lead or PFAS.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <h4 data-en="In short" data-zh="简化结论">In short</h4>
+      <ul>
+        <li data-en="Bellevue: use cold tap water directly for boiling and soup &mdash; no need to buy mineral water." data-zh="Bellevue：直接使用冷自来水烧水、煮汤，不需要购买矿泉水。">Bellevue: use cold tap water directly for boiling and soup &mdash; no need to buy mineral water.</li>
+        <li data-en="Newark: by current US compliance results alone, the tap water is usable; if you hold to the Swedish-style strict PFAS4 standard and refuse filtration, prefer bottled water with a complete test report for drinking and water-absorbing cooking." data-zh="Newark：仅按美国现行合规结果，自来水可以使用；若坚持瑞典式严格 PFAS4 标准且拒绝过滤，则饮用和吸水型烹饪优先使用具有完整检测报告的瓶装水。">Newark: by current US compliance results alone, the tap water is usable; if you hold to the Swedish-style strict PFAS4 standard and refuse filtration, prefer bottled water with a complete test report for drinking and water-absorbing cooking.</li>
+        <li data-en="Newark&rsquo;s issue is not hard water &mdash; it is PFAS plus the uncertainty of end-of-line fittings in an old house." data-zh="Newark 的问题不是水太硬，而是 PFAS 及老房末端管件的不确定性。">Newark&rsquo;s issue is not hard water &mdash; it is PFAS plus the uncertainty of end-of-line fittings in an old house.</li>
+        <li data-en="&ldquo;Mineral water&rdquo; does not automatically mean safer. Bottled water needs PFAS, lead and other test data for the finished product." data-zh="“矿泉水”不自动等于更安全。瓶装水必须有成品水的 PFAS、铅等检测数据。">&ldquo;Mineral water&rdquo; does not automatically mean safer. Bottled water needs PFAS, lead and other test data for the finished product.</li>
+      </ul>
+    </div>
+
+    <!-- ── 3. Water quality data ── -->
+    <h2 class="section-title"><span class="num">03</span><span data-en="Water quality data" data-zh="水质数据对比">Water quality data</span></h2>
+    <p class="lede" data-en="Public water-system data from each utility&rsquo;s annual report &mdash; not a lab test of a specific tap." data-zh="来自各供水部门年度报告的系统级公开数据——不等于对具体龙头水的化验。">Public water-system data from each utility&rsquo;s annual report &mdash; not a lab test of a specific tap.</p>
+    <div class="units">
+      <span class="lbl" data-en="Units (dilute solutions)" data-zh="单位换算（稀水溶液近似）">Units (dilute solutions)</span>
+      <span class="u"><b>1 ppm</b> = 1 mg/L</span>
+      <span class="u"><b>1 ppb</b> = 1 µg/L</span>
+      <span class="u"><b>1 ppt</b> = 1 ng/L</span>
+      <span class="u">1 ppm = 1,000 ppb = 1,000,000 ppt</span>
+      <span class="u">1 ppb = 1,000 ppt</span>
+      <span class="u">1 ppt = 0.001 ppb = 0.000001 ppm</span>
+    </div>
+    <div class="stack">
+      <div class="grid2 data">
+
+        <div class="card">
+          <h3 data-en="Hardness" data-zh="软硬度">Hardness</h3>
+          <p class="note" data-en="Expressed as CaCO₃." data-zh="硬度以 CaCO₃ 计。">Expressed as CaCO₃.</p>
+          <div class="table-scroll">
+            <table class="t mid">
+              <thead><tr><th data-en="Location" data-zh="地点">Location</th><th class="n" data-en="Hardness" data-zh="硬度">Hardness</th><th data-en="Class" data-zh="常用分类">Class</th><th data-en="Assessment" data-zh="判断">Assessment</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="b">Bellevue</td>
+                  <td class="n" data-en="&asymp;27 mg/L&lt;span class=&quot;sm&quot;&gt;&asymp;27 ppm&lt;/span&gt;" data-zh="约 27 mg/L&lt;span class=&quot;sm&quot;&gt;约 27 ppm&lt;/span&gt;">&asymp;27 mg/L<span class="sm">&asymp;27 ppm</span></td>
+                  <td data-en="Very soft" data-zh="很软">Very soft</td>
+                  <td data-en="Very little scale; good for boiling water and clear soups. Coffee may taste slightly thin or acidic." data-zh="水垢很少，适合烧水和清汤；咖啡可能略薄或偏酸。">Very little scale; good for boiling water and clear soups. Coffee may taste slightly thin or acidic.</td>
+                </tr>
+                <tr>
+                  <td class="b">Newark</td>
+                  <td class="n" data-en="avg &asymp;58.21 mg/L&lt;span class=&quot;sm&quot;&gt;range &asymp;42.86&ndash;73.55&lt;/span&gt;" data-zh="平均约 58.21 mg/L&lt;span class=&quot;sm&quot;&gt;范围约 42.86–73.55&lt;/span&gt;">avg &asymp;58.21 mg/L<span class="sm">range &asymp;42.86&ndash;73.55</span></td>
+                  <td data-en="Soft to moderately soft" data-zh="软至中等偏软">Soft to moderately soft</td>
+                  <td data-en="Fine for drinking, tea, coffee and soup; no softening needed." data-zh="适合饮用、茶、咖啡和煮汤；无需软化。">Fine for drinking, tea, coffee and soup; no softening needed.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h4 data-en="Common classes (taste &amp; scaling reference only)" data-zh="常用硬度分类（仅作口感与结垢参考）">Common classes (taste &amp; scaling reference only)</h4>
+          <div class="bands">
+            <span class="band" data-en="&lt;b&gt;Soft&lt;/b&gt; 0&ndash;60" data-zh="&lt;b&gt;软水&lt;/b&gt; 0–60"><b>Soft</b> 0&ndash;60</span>
+            <span class="band" data-en="&lt;b&gt;Moderately hard&lt;/b&gt; 61&ndash;120" data-zh="&lt;b&gt;中等硬度&lt;/b&gt; 61–120"><b>Moderately hard</b> 61&ndash;120</span>
+            <span class="band" data-en="&lt;b&gt;Hard&lt;/b&gt; 121&ndash;180" data-zh="&lt;b&gt;硬水&lt;/b&gt; 121–180"><b>Hard</b> 121&ndash;180</span>
+            <span class="band" data-en="&lt;b&gt;Very hard&lt;/b&gt; &gt;180 mg/L" data-zh="&lt;b&gt;极硬&lt;/b&gt; &gt;180 mg/L"><b>Very hard</b> &gt;180 mg/L</span>
+          </div>
+          <p class="note" data-en="Soft water is not a health deficiency &mdash; dietary calcium and magnesium come mainly from food. Highly mineralized water is not necessarily healthier either; it scales more and changes the taste of soup, tea and coffee." data-zh="软水不是健康不合格。人体钙、镁主要来自食物。高矿化水也不必然更健康，而且可能增加水垢并改变汤、茶和咖啡的味道。">Soft water is not a health deficiency &mdash; dietary calcium and magnesium come mainly from food. Highly mineralized water is not necessarily healthier either; it scales more and changes the taste of soup, tea and coffee.</p>
+        </div>
+
+        <div class="card">
+          <h3 data-en="Lead &amp; copper" data-zh="铅与铜">Lead &amp; copper</h3>
+          <div class="table-scroll">
+            <table class="t mid">
+              <thead><tr><th data-en="Location" data-zh="地点">Location</th><th class="n" data-en="Lead P90" data-zh="铅第 90 百分位">Lead P90</th><th class="n" data-en="Copper P90" data-zh="铜第 90 百分位">Copper P90</th><th data-en="Interpretation" data-zh="解释">Interpretation</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="b">Bellevue</td>
+                  <td class="n" data-en="3.7 ppb&lt;span class=&quot;sm&quot;&gt;2023&lt;/span&gt;" data-zh="3.7 ppb&lt;span class=&quot;sm&quot;&gt;2023 年&lt;/span&gt;">3.7 ppb<span class="sm">2023</span></td>
+                  <td class="n">0.11 ppm</td>
+                  <td data-en="None of 52 homes exceeded the US action level; low end-of-line risk in a new apartment." data-zh="52 户均未超过美国行动水平；新公寓末端风险低。">None of 52 homes exceeded the US action level; low end-of-line risk in a new apartment.</td>
+                </tr>
+                <tr>
+                  <td class="b">Newark</td>
+                  <td class="n" data-en="1.0 ppb&lt;span class=&quot;sm&quot;&gt;2021, cited in 2025 report&lt;/span&gt;" data-zh="1.0 ppb&lt;span class=&quot;sm&quot;&gt;2021 年，2025 报告引用&lt;/span&gt;">1.0 ppb<span class="sm">2021, cited in 2025 report</span></td>
+                  <td class="n">0.236 ppm</td>
+                  <td data-en="System-level result is low, but it cannot substitute for a tap test in a 1970 house." data-zh="系统级结果低，但不能替代 1970 年住宅的龙头检测。">System-level result is low, but it cannot substitute for a tap test in a 1970 house.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note" data-en="Newark&rsquo;s plumbing is known to be copper, so lead-pipe risk is reduced. But 1970s copper joints may use lead-containing solder, and old brass faucets can also leach lead. &lt;b&gt;System statistics cannot guarantee the first-draw result of a single house.&lt;/b&gt;" data-zh="Newark 已知为铜管，因此铅管风险降低。但 1970 年代铜管连接处可能使用含铅焊料，旧黄铜龙头也可能释出铅。&lt;b&gt;系统统计不能保证单栋住宅的第一杯水结果。&lt;/b&gt;">Newark&rsquo;s plumbing is known to be copper, so lead-pipe risk is reduced. But 1970s copper joints may use lead-containing solder, and old brass faucets can also leach lead. <b>System statistics cannot guarantee the first-draw result of a single house.</b></p>
+        </div>
+      </div>
+
+      <div class="grid2 data">
+
+        <div class="card">
+          <h3 data-en="Bellevue PFAS (UCMR 5, 2024)" data-zh="Bellevue PFAS 数据（UCMR 5，2024）">Bellevue PFAS (UCMR 5, 2024)</h3>
+          <p data-en="Bellevue draws from the Cedar and Tolt sources. In 2024, 29 PFAS compounds were tested under UCMR 5. January showed four extremely low estimated values; April, July and October were all non-detect. Bellevue considers the Q1 results may relate to sampling environment and conditions." data-zh="Bellevue 使用 Cedar 和 Tolt 水源。2024 年依据 UCMR 5 检测 29 种 PFAS。1 月出现四项极低估计值；4 月、7 月和 10 月全部未检出。Bellevue 认为第一季度结果可能与采样环境和条件有关。">Bellevue draws from the Cedar and Tolt sources. In 2024, 29 PFAS compounds were tested under UCMR 5. January showed four extremely low estimated values; April, July and October were all non-detect. Bellevue considers the Q1 results may relate to sampling environment and conditions.</p>
+          <p class="note" data-en="Units: ppt (ng/L). &lt;b&gt;J&lt;/b&gt; = above the method detection limit but below the reliable reporting limit &mdash; an estimated value." data-zh="单位：ppt（ng/L）。&lt;b&gt;J&lt;/b&gt; 表示高于方法检出限但低于可靠定量报告限，为估计值。">Units: ppt (ng/L). <b>J</b> = above the method detection limit but below the reliable reporting limit &mdash; an estimated value.</p>
+          <div class="table-scroll">
+            <table class="t">
+              <thead><tr><th data-en="Compound" data-zh="化合物">Compound</th><th class="n">Tolt 2024-01</th><th class="n">Cedar 2024-01</th><th class="n" data-en="MRL" data-zh="报告限 MRL">MRL</th><th data-en="Note" data-zh="备注">Note</th></tr></thead>
+              <tbody>
+                <tr><td class="b">PFBA</td><td class="n">0.2830</td><td class="n">0.3170</td><td class="n">5</td><td data-en="Estimated detect (J)" data-zh="估计检出（J）">Estimated detect (J)</td></tr>
+                <tr><td class="b">PFHpA</td><td class="n">0.0833</td><td class="n">0.0800</td><td class="n">3</td><td data-en="Estimated detect (J)" data-zh="估计检出（J）">Estimated detect (J)</td></tr>
+                <tr><td class="b">PFOS</td><td class="n">0.1170</td><td class="n">0.1200</td><td class="n">4</td><td data-en="Estimated detect (J)" data-zh="估计检出（J）">Estimated detect (J)</td></tr>
+                <tr><td class="b">PFOA</td><td class="n">0.0833</td><td class="n">0.0833</td><td class="n">4</td><td data-en="Estimated detect (J)" data-zh="估计检出（J）">Estimated detect (J)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h4 data-en="Detected PFAS4 portion (PFOA + PFOS only)" data-zh="已检出的 PFAS4 部分（仅 PFOA + PFOS）">Detected PFAS4 portion (PFOA + PFOS only)</h4>
+          <div class="calc" data-en="Tolt   0.1170 + 0.0833 = &lt;b&gt;0.2003 ppt&lt;/b&gt;
+Cedar  0.1200 + 0.0833 = &lt;b&gt;0.2033 ppt&lt;/b&gt;
+PFNA, PFHxS: not detected
+&asymp; 5% of Sweden&rsquo;s 4 ppt PFAS4 value" data-zh="Tolt   0.1170 + 0.0833 = &lt;b&gt;0.2003 ppt&lt;/b&gt;
+Cedar  0.1200 + 0.0833 = &lt;b&gt;0.2033 ppt&lt;/b&gt;
+PFNA、PFHxS：未检出
+约为瑞典 PFAS4 标准 4 ppt 的 5%">Tolt   0.1170 + 0.0833 = <b>0.2003 ppt</b>
+Cedar  0.1200 + 0.0833 = <b>0.2033 ppt</b>
+PFNA, PFHxS: not detected
+&asymp; 5% of Sweden&rsquo;s 4 ppt PFAS4 value</div>
+          <p class="note" data-en="Non-detect is not absolute zero, and this sum is not a &ldquo;total POPs concentration&rdquo;." data-zh="注意：未检出不等于绝对为零；以上合计也不是“总 POPs 浓度”。">Non-detect is not absolute zero, and this sum is not a &ldquo;total POPs concentration&rdquo;.</p>
+        </div>
+
+        <div class="card">
+          <h3 data-en="Newark PFAS (2023&ndash;2024)" data-zh="Newark PFAS 数据（2023–2024）">Newark PFAS (2023&ndash;2024)</h3>
+          <p data-en="2023&ndash;2024 data listed in the City of Newark 2025 Water Quality Report. Units: ppt (ng/L)." data-zh="Newark 2025 水质报告列出的 2023–2024 数据。单位：ppt（ng/L）。">2023&ndash;2024 data listed in the City of Newark 2025 Water Quality Report. Units: ppt (ng/L).</p>
+          <div class="table-scroll">
+            <table class="t">
+              <thead><tr><th data-en="Compound" data-zh="化合物">Compound</th><th class="n" data-en="Average (ppt)" data-zh="平均浓度（ppt）">Average (ppt)</th><th class="n" data-en="Range (ppt)" data-zh="范围（ppt）">Range (ppt)</th></tr></thead>
+              <tbody>
+                <tr><td class="b">PFOA</td><td class="n b">12.92</td><td class="n">ND&ndash;25.3</td></tr>
+                <tr><td class="b">PFOS</td><td class="n b">7.13</td><td class="n">ND&ndash;7.3</td></tr>
+                <tr><td class="b">PFHxS</td><td class="n b">4.93</td><td class="n">ND&ndash;5.5</td></tr>
+                <tr><td class="b">PFBA</td><td class="n">10.23</td><td class="n">ND&ndash;11.2</td></tr>
+                <tr><td class="b">PFBS</td><td class="n">6.07</td><td class="n">ND&ndash;6.6</td></tr>
+                <tr><td class="b">PFHpA</td><td class="n">7.30</td><td class="n">ND&ndash;7.9</td></tr>
+                <tr><td class="b">PFHxA</td><td class="n">6.61</td><td class="n">ND&ndash;13.2</td></tr>
+                <tr><td class="b">PFPeA</td><td class="n">6.80</td><td class="n">ND&ndash;12.6</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h4 data-en="Known PFAS4 components (3 of 4)" data-zh="已知三项 PFAS4 合计">Known PFAS4 components (3 of 4)</h4>
+          <div class="calc">PFOA + PFOS + PFHxS
+= 12.92 + 7.13 + 4.93
+= <b>24.98 ppt</b></div>
+          <p class="note" data-en="PFAS4 also includes PFNA. Since PFNA is not included here, 24.98 ppt is a partial sum of the three known components and should not be described as the complete PFAS4 total." data-zh="PFAS4 还包括 PFNA。由于这里没有加入 PFNA，24.98 ppt 是基于已知三项的部分合计，不应描述为完整 PFAS4 总浓度。">PFAS4 also includes PFNA. Since PFNA is not included here, 24.98 ppt is a partial sum of the three known components and should not be described as the complete PFAS4 total.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4. Standards ── -->
+    <h2 class="section-title"><span class="num">04</span><span data-en="Standards comparison" data-zh="标准对照">Standards comparison</span></h2>
+    <div class="card">
+      <div class="table-scroll">
+        <table class="t wide">
+          <thead><tr>
+            <th data-en="Parameter" data-zh="参数">Parameter</th>
+            <th data-en="US benchmark" data-zh="美国相关基准">US benchmark</th>
+            <th data-en="EU / Nordic benchmark" data-zh="欧盟 / 北欧相关基准">EU / Nordic benchmark</th>
+            <th>Bellevue</th>
+            <th>Newark</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="b" data-en="Lead" data-zh="铅">Lead</td>
+              <td data-en="Action level 15 ppb" data-zh="行动水平 15 ppb">Action level 15 ppb</td>
+              <td data-en="EU transitional value 10 ppb; target 5 ppb before 2036" data-zh="欧盟当前过渡值 10 ppb；2036 年前目标 5 ppb">EU transitional value 10 ppb; target 5 ppb before 2036</td>
+              <td data-en="System P90 3.7 ppb" data-zh="系统 90 百分位 3.7 ppb">System P90 3.7 ppb</td>
+              <td data-en="System P90 1.0 ppb; house tap unknown" data-zh="系统 90 百分位 1.0 ppb；住宅端未知">System P90 1.0 ppb; house tap unknown</td>
+            </tr>
+            <tr>
+              <td class="b">PFOA</td>
+              <td>MCL 4 ppt</td>
+              <td data-en="Sweden: PFAS4 uses a summed standard" data-zh="瑞典 PFAS4 采用合计标准">Sweden: PFAS4 uses a summed standard</td>
+              <td data-en="&asymp;0.083 ppt estimated, later non-detect" data-zh="约 0.083 ppt 估计值，后续未检出">&asymp;0.083 ppt estimated, later non-detect</td>
+              <td data-en="avg 12.92 ppt" data-zh="平均 12.92 ppt">avg 12.92 ppt</td>
+            </tr>
+            <tr>
+              <td class="b">PFOS</td>
+              <td>MCL 4 ppt</td>
+              <td data-en="Sweden: PFAS4 uses a summed standard" data-zh="瑞典 PFAS4 采用合计标准">Sweden: PFAS4 uses a summed standard</td>
+              <td data-en="&asymp;0.12 ppt estimated, later non-detect" data-zh="约 0.12 ppt 估计值，后续未检出">&asymp;0.12 ppt estimated, later non-detect</td>
+              <td data-en="avg 7.13 ppt" data-zh="平均 7.13 ppt">avg 7.13 ppt</td>
+            </tr>
+            <tr>
+              <td class="b" data-en="PFAS4 sum" data-zh="PFAS4 合计">PFAS4 sum</td>
+              <td data-en="No equivalent summed form" data-zh="不采用相同总和形式">No equivalent summed form</td>
+              <td data-en="Sweden strict value 4 ppt" data-zh="瑞典严格值 4 ppt">Sweden strict value 4 ppt</td>
+              <td data-en="Detected portion &asymp;0.20 ppt" data-zh="已检出部分约 0.20 ppt">Detected portion &asymp;0.20 ppt</td>
+              <td data-en="Three known components already 24.98 ppt" data-zh="已知三项已达 24.98 ppt">Three known components already 24.98 ppt</td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Sum of 20 PFAS" data-zh="20 种 PFAS 之和">Sum of 20 PFAS</td>
+              <td>&mdash;</td>
+              <td data-en="EU 100 ppt" data-zh="欧盟 100 ppt">EU 100 ppt</td>
+              <td data-en="Clearly below" data-zh="明显低于">Clearly below</td>
+              <td data-en="Probably below per the listed data, but needs complete like-for-like data to confirm" data-zh="根据列出的数据可能低于，但需完整同口径数据确认">Probably below per the listed data, but needs complete like-for-like data to confirm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="judge">
+        <div class="row">
+          <div class="lbl" data-en="Strict Swedish-style PFAS4 assessment" data-zh="瑞典式严格 PFAS4 判定">Strict Swedish-style PFAS4 assessment</div>
+          <div class="line"><span class="who">Bellevue</span><span class="pill pill-ok" data-en="Passes on available data" data-zh="基于现有数据通过">Passes on available data</span></div>
+          <div class="line"><span class="who">Newark</span><span class="pill pill-bad" data-en="Exceeds on the partial sum alone" data-zh="仅凭部分合计已超标">Exceeds on the partial sum alone</span></div>
+        </div>
+        <div class="row">
+          <div class="lbl" data-en="EU sum-of-20-PFAS assessment" data-zh="欧盟 20 种 PFAS 总和判定">EU sum-of-20-PFAS assessment</div>
+          <div class="line"><span class="who">Bellevue</span><span class="pill pill-ok" data-en="Likely passes" data-zh="很可能通过">Likely passes</span></div>
+          <div class="line"><span class="who">Newark</span><span class="pill pill-warn" data-en="Cannot be proven from the partial table, but may pass" data-zh="无法从部分数据证明，但可能通过">Cannot be proven from the partial table, but may pass</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 5. Action plan ── -->
+    <h2 class="section-title"><span class="num">05</span><span data-en="What to do without a filter" data-zh="不使用过滤设备时的行动方案">What to do without a filter</span></h2>
+    <div class="grid2">
+
+      <div class="card plan">
+        <h3 data-en="Bellevue" data-zh="Bellevue">Bellevue</h3>
+        <div class="pills"><span class="pill pill-ok" data-en="Water: cold municipal tap water" data-zh="用水：冷自来水">Water: cold municipal tap water</span></div>
+        <div class="view">
+          <h4 data-en="Procedure" data-zh="步骤">Procedure</h4>
+          <ul>
+            <li data-en="After long stagnation, run the tap until the water is noticeably cold." data-zh="长时间静置后，先放水至明显变凉。">After long stagnation, run the tap until the water is noticeably cold.</li>
+            <li data-en="Start from cold tap water, then heat it." data-zh="取冷水再加热。">Start from cold tap water, then heat it.</li>
+            <li data-en="Use it for drinking and all cooking." data-zh="用于饮用和所有烹饪。">Use it for drinking and all cooking.</li>
+          </ul>
+        </div>
+        <p class="note" data-en="Bottled water&rsquo;s role: optional, for personal taste only." data-zh="瓶装水的角色：可选，仅出于个人口味。">Bottled water&rsquo;s role: optional, for personal taste only.</p>
+      </div>
+
+      <div class="card plan">
+        <h3 data-en="Newark" data-zh="Newark">Newark</h3>
+        <div class="view">
+          <h4 data-en="Under the US compliance view" data-zh="美国合规视角">Under the US compliance view</h4>
+          <ul>
+            <li data-en="Cold tap water can be used for drinking and cooking." data-zh="冷自来水可以用于饮用和烹饪。">Cold tap water can be used for drinking and cooking.</li>
+            <li data-en="After sitting overnight, flush until the water is noticeably cold." data-zh="隔夜后先放至明显变凉。">After sitting overnight, flush until the water is noticeably cold.</li>
+            <li data-en="Recommended: one first-draw lead test at the house tap." data-zh="建议做一次住宅龙头第一杯水铅检测。">Recommended: one first-draw lead test at the house tap.</li>
+          </ul>
+        </div>
+        <div class="view">
+          <h4 data-en="Under the strict Swedish PFAS4 precautionary view" data-zh="瑞典严格 PFAS4 预防视角">Under the strict Swedish PFAS4 precautionary view</h4>
+          <ul>
+            <li data-en="Use verified bottled water for direct drinking, tea, coffee, soup, congee, rice and any food that retains its cooking water." data-zh="直接饮用、茶、咖啡、汤、粥、米饭及会保留烹饪水的食物使用经验证的瓶装水。">Use verified bottled water for direct drinking, tea, coffee, soup, congee, rice and any food that retains its cooking water.</li>
+            <li data-en="Keep using tap water for washing produce and dishes, cleaning, bathing, and any cooking where the water is fully discarded." data-zh="洗菜、洗碗、清洁、洗澡及完全倒掉烹饪水的用途继续使用自来水。">Keep using tap water for washing produce and dishes, cleaning, bathing, and any cooking where the water is fully discarded.</li>
+            <li data-en="Boiling does not remove PFAS or lead, and evaporation may slightly concentrate non-volatile substances." data-zh="煮沸不能去除 PFAS 或铅，且蒸发可能使不挥发物质略微浓缩。">Boiling does not remove PFAS or lead, and evaporation may slightly concentrate non-volatile substances.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 6. Bottled water ── -->
+    <h2 class="section-title"><span class="num">06</span><span data-en="Choosing bottled water" data-zh="瓶装水选择条件">Choosing bottled water</span></h2>
+    <div class="card">
+      <p data-en="&ldquo;Natural&rdquo;, &ldquo;imported&rdquo;, &ldquo;Nordic source&rdquo; or &ldquo;mineral water&rdquo; is not proof of safety. Check the most recent report for the &lt;b&gt;finished bottled product&lt;/b&gt; first:" data-zh="“天然”“进口”“北欧水源”或“矿泉水”不构成安全证明。应优先检查&lt;b&gt;最终瓶装成品&lt;/b&gt;的近期报告：">&ldquo;Natural&rdquo;, &ldquo;imported&rdquo;, &ldquo;Nordic source&rdquo; or &ldquo;mineral water&rdquo; is not proof of safety. Check the most recent report for the <b>finished bottled product</b> first:</p>
+      <div class="table-scroll">
+        <table class="t spec">
+          <thead><tr><th data-en="Item" data-zh="项目">Item</th><th data-en="Preferred specification" data-zh="优先规格">Preferred specification</th></tr></thead>
+          <tbody>
+            <tr><td data-en="PFAS4 sum" data-zh="PFAS4 合计">PFAS4 sum</td><td data-en="&lt;4 ppt, preferably non-detect" data-zh="&lt;4 ppt，最好未检出">&lt;4 ppt, preferably non-detect</td></tr>
+            <tr><td data-en="Lead" data-zh="铅">Lead</td><td data-en="&lt;5 ppb, preferably non-detect" data-zh="&lt;5 ppb，最好未检出">&lt;5 ppb, preferably non-detect</td></tr>
+            <tr><td data-en="Hardness (as CaCO₃)" data-zh="硬度（以 CaCO₃ 计）">Hardness (as CaCO₃)</td><td>30&ndash;100 mg/L</td></tr>
+            <tr><td data-en="Sodium" data-zh="钠">Sodium</td><td data-en="Low" data-zh="低">Low</td></tr>
+            <tr><td data-en="Nitrate" data-zh="硝酸盐">Nitrate</td><td data-en="Documented and low" data-zh="有记录且低">Documented and low</td></tr>
+            <tr><td data-en="Report scope" data-zh="报告范围">Report scope</td><td data-en="The finished bottled product, not just the source" data-zh="最终瓶装成品，而非仅水源">The finished bottled product, not just the source</td></tr>
+            <tr><td data-en="Packaging (cost ignored)" data-zh="包装（不考虑价格）">Packaging (cost ignored)</td><td data-en="Glass" data-zh="玻璃">Glass</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" data-en="For long-term boiling and soup, don&rsquo;t blindly pick highly mineralized water above 150&ndash;200 mg/L hardness &mdash; it scales more readily and can carry a noticeable mineral taste." data-zh="用于长期烧水和煮汤时，不建议盲目选择硬度超过 150–200 mg/L 的高矿化水，因为更容易结垢，并可能产生明显矿物味。">For long-term boiling and soup, don&rsquo;t blindly pick highly mineralized water above 150&ndash;200 mg/L hardness &mdash; it scales more readily and can carry a noticeable mineral taste.</p>
+    </div>
+
+    <!-- ── 7. Caveats ── -->
+    <h2 class="section-title"><span class="num">07</span><span data-en="Caveats" data-zh="解释边界与限制">Caveats</span></h2>
+    <div class="grid2">
+
+      <div class="card">
+        <h3 data-en="Where &ldquo;POPs&rdquo; stops applying" data-zh="POPs 的解释边界">Where &ldquo;POPs&rdquo; stops applying</h3>
+        <p data-en="POPs (persistent organic pollutants) is a broad category that includes, among others:" data-zh="POPs 是持久性有机污染物的总类别，包括但不限于：">POPs (persistent organic pollutants) is a broad category that includes, among others:</p>
+        <ul>
+          <li data-en="Some PFAS, e.g. PFOA, PFOS, PFHxS" data-zh="部分 PFAS，例如 PFOA、PFOS、PFHxS">Some PFAS, e.g. PFOA, PFOS, PFHxS</li>
+          <li data-en="PCBs" data-zh="PCB（多氯联苯）">PCBs</li>
+          <li data-en="Dioxins and furans" data-zh="二噁英和呋喃">Dioxins and furans</li>
+          <li data-en="DDT and its metabolites" data-zh="DDT 及其代谢物">DDT and its metabolites</li>
+          <li data-en="Organochlorine pesticides such as aldrin, dieldrin, chlordane" data-zh="aldrin、dieldrin、chlordane 等有机氯农药">Organochlorine pesticides such as aldrin, dieldrin, chlordane</li>
+        </ul>
+        <p data-en="Bellevue has not published any figure that could be called a &ldquo;total POPs concentration&rdquo;. The public data only supports:" data-zh="Bellevue 没有发布一个可称为“总 POPs 浓度”的数值。现有公开数据只能说明：">Bellevue has not published any figure that could be called a &ldquo;total POPs concentration&rdquo;. The public data only supports:</p>
+        <ol>
+          <li data-en="The 29 PFAS tested were extremely low or not detected." data-zh="被检测的 29 种 PFAS 极低或未检出。">The 29 PFAS tested were extremely low or not detected.</li>
+          <li data-en="The utility states only a few of ~200 tested compounds were detected." data-zh="供水部门表示约 200 种受检化合物中只有少数检出。">The utility states only a few of ~200 tested compounds were detected.</li>
+          <li data-en="This does not allow the claim that all Stockholm Convention POPs are at absolute zero." data-zh="不能据此断言所有《斯德哥尔摩公约》POPs 均为绝对零。">This does not allow the claim that all Stockholm Convention POPs are at absolute zero.</li>
+          <li data-en="Different compounds have different toxicities and standards &mdash; don&rsquo;t simply add all the numbers together for a health judgment." data-zh="不同化合物毒性和标准不同，不应把所有数值简单相加后进行健康判断。">Different compounds have different toxicities and standards &mdash; don&rsquo;t simply add all the numbers together for a health judgment.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3 data-en="Key limitations" data-zh="关键限制">Key limitations</h3>
+        <ol>
+          <li data-en="This note uses public water-system data; it is not a lab test of a specific tap." data-zh="本文使用供水系统公开数据，不等于对具体龙头水的化验。">This note uses public water-system data; it is not a lab test of a specific tap.</li>
+          <li data-en="The Newark conclusion assumes the house is served by the City of Newark municipal water system; if the supplier differs or it is a private well, the analysis must be redone." data-zh="Newark 结论假定住宅由 City of Newark municipal water system 供水；若实际供水商不同或为私人井，结论必须重做。">The Newark conclusion assumes the house is served by the City of Newark municipal water system; if the supplier differs or it is a private well, the analysis must be redone.</li>
+          <li data-en="&ldquo;Non-detect&rdquo; means below a given method&rsquo;s detection or reporting capability &mdash; not absolute zero." data-zh="“未检出”表示低于特定检测方法的检出或报告能力，不等于绝对零。">&ldquo;Non-detect&rdquo; means below a given method&rsquo;s detection or reporting capability &mdash; not absolute zero.</li>
+          <li data-en="PFAS reports may use different sampling dates, detection limits and statistics; they cannot be blended into a precise long-term average exposure." data-zh="PFAS 不同报告可能使用不同采样时间、检测限和统计口径，不能直接混合为精确长期平均暴露值。">PFAS reports may use different sampling dates, detection limits and statistics; they cannot be blended into a precise long-term average exposure.</li>
+          <li data-en="Household lead risk depends on stagnation time, faucet, solder, valves and the private-side service line." data-zh="住宅铅风险与静置时间、龙头、焊料、阀门和私人侧服务管有关。">Household lead risk depends on stagnation time, faucet, solder, valves and the private-side service line.</li>
+          <li data-en="Water notices and standards change; check the latest annual water quality report and any temporary drinking-water advisories before relying on this." data-zh="水质通知及标准可能更新；使用时应检查最新年度水质报告和临时饮水通知。">Water notices and standards change; check the latest annual water quality report and any temporary drinking-water advisories before relying on this.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ── 8. Sources ── -->
+    <h2 class="section-title"><span class="num">08</span><span data-en="Official sources" data-zh="官方来源">Official sources</span></h2>
+    <div class="card sources">
+      <ol>
+        <li><a href="https://bellevuewa.gov/city-government/departments/utilities/manage-your-utility-services/water/drinking-water-quality" target="_blank" rel="noopener" data-en="City of Bellevue &mdash; Drinking Water Quality" data-zh="City of Bellevue —— 饮用水水质">City of Bellevue &mdash; Drinking Water Quality</a></li>
+        <li><a href="https://bellevuewa.gov/sites/default/files/media/pdf_document/2025/2025-bellevue-water-quality-report-english.pdf" target="_blank" rel="noopener" data-en="City of Bellevue &mdash; 2025 Water Quality Report (PDF)" data-zh="City of Bellevue —— 2025 年水质报告（PDF）">City of Bellevue &mdash; 2025 Water Quality Report (PDF)</a></li>
+        <li><a href="https://bellevuewa.gov/city-government/departments/utilities/manage-your-utility-services/water/drinking-water-quality/pfas-drinking-water" target="_blank" rel="noopener" data-en="City of Bellevue &mdash; PFAS and Drinking Water" data-zh="City of Bellevue —— PFAS 与饮用水">City of Bellevue &mdash; PFAS and Drinking Water</a></li>
+        <li><a href="https://bellevuewa.gov/city-government/departments/utilities/manage-your-utility-services/water/drinking-water-quality/service-line-inventory" target="_blank" rel="noopener" data-en="City of Bellevue &mdash; Service Line Inventory" data-zh="City of Bellevue —— 服务管线清单">City of Bellevue &mdash; Service Line Inventory</a></li>
+        <li><a href="https://seattle.gov/utilities/your-services/water/water-quality/quality-concerns/pfas" target="_blank" rel="noopener" data-en="Seattle Public Utilities &mdash; PFAS" data-zh="Seattle Public Utilities —— PFAS">Seattle Public Utilities &mdash; PFAS</a></li>
+        <li><a href="https://newarkde.gov/DocumentCenter/View/18493/2025-Newark-Water-Quality-Report" target="_blank" rel="noopener" data-en="City of Newark &mdash; 2025 Water Quality Report" data-zh="City of Newark —— 2025 年水质报告">City of Newark &mdash; 2025 Water Quality Report</a></li>
+        <li><a href="https://newarkde.gov/1263/20218/Lead-and-Copper-Rule" target="_blank" rel="noopener" data-en="City of Newark &mdash; Lead and Copper Rule" data-zh="City of Newark —— 铅铜规则">City of Newark &mdash; Lead and Copper Rule</a></li>
+        <li><a href="https://dnrec.delaware.gov/waste-hazardous/remediation/pfas/and-drinking-water/" target="_blank" rel="noopener" data-en="Delaware DNREC &mdash; PFAS and Drinking Water" data-zh="Delaware DNREC —— PFAS 与饮用水">Delaware DNREC &mdash; PFAS and Drinking Water</a></li>
+        <li><a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32020L2184" target="_blank" rel="noopener" data-en="EU Drinking Water Directive 2020/2184" data-zh="欧盟饮用水指令 2020/2184">EU Drinking Water Directive 2020/2184</a></li>
+        <li><a href="https://www.livsmedelsverket.se/om-oss/press/pressmeddelanden/nya-riktvarden-for-pfas-och-giftiga-metaller-i-dricksvatten-fran-egna-brunnar/" target="_blank" rel="noopener" data-en="Swedish Food Agency &mdash; PFAS4 and toxic-metal guideline values" data-zh="瑞典食品局 —— PFAS4 与有毒金属指导值">Swedish Food Agency &mdash; PFAS4 and toxic-metal guideline values</a></li>
+        <li><a href="https://www.epa.gov/lead/does-boiling-water-remove-lead" target="_blank" rel="noopener" data-en="US EPA &mdash; Does boiling water remove lead?" data-zh="US EPA —— 煮沸能去除铅吗？">US EPA &mdash; Does boiling water remove lead?</a></li>
+      </ol>
+    </div>
+
+  </main>
+
+  <footer data-en="Shara's Study Notes" data-zh="Shara的学习笔记">Shara's Study Notes</footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>
