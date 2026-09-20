@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="牛奶标签解读 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Milk Labels Decoded &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+          --good:#2f7d4f; --good-soft:#e6f3ea; --warn:#b3541e; --warn-soft:#fdeee2; --page: min(92vw, 1500px); --prose: 780px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: var(--page); margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  .header-title { max-width: var(--page); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  main { max-width: var(--page); margin: 0 auto; padding: 36px 24px 60px; }
+  .intro { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); max-width: var(--prose); }
+  .intro p { margin: 0; color: var(--muted); }
+  .section-title { font-size: 1.3rem; margin: 32px 0 16px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+
+  /* Four question groups */
+  .groups { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .group { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+  .group h3 { margin: 0 0 4px; font-size: 1.05rem; color: var(--accent); }
+  .group .q { margin: 0 0 10px; font-size: 0.9rem; color: var(--muted); font-style: italic; }
+  .group .labels { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { display: inline-block; border: 1px solid var(--border); background: #fffaf2; color: #6b3e16; font-size: 0.82rem; padding: 2px 10px; border-radius: 12px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+  /* Main table (desktop) */
+  .table-wrap { margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; table-layout: fixed; }
+  th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  col.c-cat { width: 11%; }
+  col.c-label { width: 17%; }
+  col.c-std { width: 26%; }
+  col.c-good { width: 23%; }
+  col.c-warn { width: 23%; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fffaf2; }
+  td.good { background: var(--good-soft); }
+  td.warn { background: var(--warn-soft); }
+  tbody tr:hover td.good { background: #dceee2; }
+  tbody tr:hover td.warn { background: #fbe3d1; }
+  .tag { display: inline-block; background: var(--accent-soft); color: #8a4d1f; font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; white-space: nowrap; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .tag.life { background: #e6f3ea; color: #23613c; }
+  .tag.feed { background: #fdf0d5; color: #7a5410; }
+  .tag.proc { background: #e3eef8; color: #2b5680; }
+  .tag.breed { background: #efe4f5; color: #5c3a77; }
+  .label-name { font-weight: 700; color: var(--accent); font-size: 1.02rem; line-height: 1.35; display: block; }
+  .label-zh { display: block; color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+  .cell-label { display: none; }
+  .lead { font-weight: 700; }
+  .prose { max-width: var(--prose); margin: 0 0 14px; }
+  .note { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-top: 10px; max-width: var(--prose); }
+
+  /* Small reference table (pasteurization) opts out of the card treatment */
+  .heat-wrap { max-width: 900px; margin: 18px 0; }
+  .heat-wrap table { table-layout: auto; }
+  .heat-wrap th, .heat-wrap td { padding: 10px 14px; }
+
+  /* Takeaways */
+  .tips { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; max-width: 900px; }
+  .tips ul { margin: 0; padding-left: 20px; }
+  .tips li { margin-bottom: 8px; }
+  .tips li:last-child { margin-bottom: 0; }
+  .sources { margin-top: 40px; padding: 18px 22px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; max-width: 900px; }
+  .sources h3 { margin: 0 0 10px; color: var(--accent); }
+  .sources ul { padding-left: 20px; margin: 0; }
+  .sources a { color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+  /* Tablet / phone: the main table turns into stacked cards */
+  @media (max-width: 1100px) {
+    table { display: block; background: transparent; box-shadow: none; border-radius: 0; }
+    table colgroup, table thead { display: none; }
+    table tbody { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    table tr { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    tbody tr:hover { background: var(--card); }
+    table td { display: block; border-bottom: 1px solid var(--border); padding: 12px 16px; }
+    td.cat { padding-bottom: 0; border-bottom: none; }
+    td.name { padding-top: 8px; }
+    tr:last-child td { border-bottom: 1px solid var(--border); }
+    table tr td:last-child { border-bottom: none; flex: 1; }
+    .cell-label { display: block; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+    td.good .cell-label { color: var(--good); }
+    td.warn .cell-label { color: var(--warn); }
+    /* the small heat table stays a real table */
+    .heat-wrap table { display: table; background: var(--card); box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-radius: 8px; }
+    .heat-wrap thead { display: table-header-group; }
+    .heat-wrap tbody { display: table-row-group; }
+    .heat-wrap tr { display: table-row; border: none; border-radius: 0; }
+    .heat-wrap td { display: table-cell; border-bottom: 1px solid var(--border); }
+  }
+  @media (max-width: 1000px) {
+    .groups { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+  @media (max-width: 700px) {
+    table tbody { grid-template-columns: 1fr; }
+    .groups { grid-template-columns: 1fr; }
+    .heat-wrap { overflow-x: auto; }
+  }
+  @media (max-width: 640px) {
+    header { padding: 24px 16px; }
+    .header-title { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .header-title h1 { font-size: 1.6rem; }
+    .final-photo { width: 120px; height: 120px; }
+    main { padding: 24px 16px 48px; }
+    table { font-size: 0.92rem; }
+    table td { padding: 10px 14px; }
+    .tips { padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <div class="nav"><a href="milk.html" data-en="&larr; Milk" data-zh="&larr; 牛奶">&larr; Milk</a></div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Milk Labels Decoded" data-zh="牛奶标签解读">Milk Labels Decoded</h1>
+        <div class="meta" data-en="What organic, grassfed, pasture raised and the rest actually guarantee" data-zh="有机、草饲、牧场放牧……每个标签到底保证了什么">What organic, grassfed, pasture raised and the rest actually guarantee</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/milk-label-guide/Final.png" alt="milk-label-guide" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p data-en="A milk carton answers four separate questions, and the labels for one of them tell you nothing about the other three. Organic is about feed and drugs. Grassfed is about diet composition. Pasture raised is about time outdoors &mdash; and has no federal definition at all. Pasteurized / homogenized / A2 are about what happened after the milk left the cow."
+         data-zh="一盒牛奶上的标签其实在回答四个互不相干的问题，而其中一个问题的答案完全不能推出另外三个。Organic 管的是饲料和用药；Grassfed 管的是吃什么；Pasture raised 管的是在户外待多久——而且它根本没有联邦定义；Pasteurized / Homogenized / A2 说的是牛奶离开奶牛之后的事。">A milk carton answers four separate questions, and the labels for one of them tell you nothing about the other three. Organic is about feed and drugs. Grassfed is about diet composition. Pasture raised is about time outdoors &mdash; and has no federal definition at all. Pasteurized / homogenized / A2 are about what happened after the milk left the cow.</p>
+    </div>
+
+    <h2 class="section-title" data-en="Four Different Questions" data-zh="标签回答的是四个不同的问题">Four Different Questions</h2>
+    <div class="groups">
+      <div class="group">
+        <h3 data-en="&#127806; Feed &amp; drugs" data-zh="&#127806; 饲料与用药">&#127806; Feed &amp; drugs</h3>
+        <p class="q" data-en="What went into the cow?" data-zh="奶牛吃进去了什么？">What went into the cow?</p>
+        <div class="labels">
+          <span class="chip" data-en="USDA Organic" data-zh="USDA Organic 有机">USDA Organic</span>
+          <span class="chip" data-en="100% Grassfed" data-zh="100% Grassfed 全草饲">100% Grassfed</span>
+          <span class="chip" data-en="rBST-free" data-zh="rBST-free 无生长激素">rBST-free</span>
+          <span class="chip" data-en="Non-GMO Project" data-zh="Non-GMO Project 非转基因">Non-GMO Project</span>
+        </div>
+      </div>
+      <div class="group">
+        <h3 data-en="&#127793; Living conditions" data-zh="&#127793; 养殖环境">&#127793; Living conditions</h3>
+        <p class="q" data-en="How much of the cow&rsquo;s life was outdoors?" data-zh="奶牛有多少时间在户外？">How much of the cow&rsquo;s life was outdoors?</p>
+        <div class="labels">
+          <span class="chip" data-en="Pasture Raised" data-zh="Pasture Raised 牧场放牧">Pasture Raised</span>
+          <span class="chip" data-en="Certified Humane" data-zh="Certified Humane 人道认证">Certified Humane</span>
+          <span class="chip" data-en="AWA" data-zh="AWA 动物福利批准">AWA</span>
+          <span class="chip" data-en="Regenerative Organic" data-zh="Regenerative Organic 再生有机">Regenerative Organic</span>
+        </div>
+      </div>
+      <div class="group">
+        <h3 data-en="&#127982; Processing" data-zh="&#127982; 加工工艺">&#127982; Processing</h3>
+        <p class="q" data-en="What was done to the milk?" data-zh="牛奶被怎么处理了？">What was done to the milk?</p>
+        <div class="labels">
+          <span class="chip" data-en="Pasteurized / HTST" data-zh="Pasteurized 巴氏杀菌">Pasteurized / HTST</span>
+          <span class="chip" data-en="Ultra-Pasteurized" data-zh="Ultra-Pasteurized 超巴氏">Ultra-Pasteurized</span>
+          <span class="chip" data-en="Cream-Top" data-zh="Cream-Top 未均质">Cream-Top</span>
+          <span class="chip" data-en="Raw" data-zh="Raw 生奶">Raw</span>
+        </div>
+      </div>
+      <div class="group">
+        <h3 data-en="&#129418; Breed &amp; protein" data-zh="&#129418; 品种与蛋白">&#129418; Breed &amp; protein</h3>
+        <p class="q" data-en="Which cow, and which casein?" data-zh="哪种牛，哪种酪蛋白？">Which cow, and which casein?</p>
+        <div class="labels">
+          <span class="chip" data-en="A2 / A2A2" data-zh="A2 / A2A2 蛋白">A2 / A2A2</span>
+          <span class="chip" data-en="Jersey / Guernsey" data-zh="Jersey / Guernsey 娟姗牛">Jersey / Guernsey</span>
+          <span class="chip" data-en="Lactose-free" data-zh="Lactose-free 无乳糖">Lactose-free</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title" data-en="The Label Table" data-zh="标签对照表">The Label Table</h2>
+    <div class="table-wrap">
+      <table>
+        <colgroup>
+          <col class="c-cat"><col class="c-label"><col class="c-std"><col class="c-good"><col class="c-warn">
+        </colgroup>
+        <thead>
+          <tr>
+            <th data-en="Group" data-zh="类别">Group</th>
+            <th data-en="Label" data-zh="英文标签 / 中文含义">Label</th>
+            <th data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</th>
+            <th data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</th>
+            <th data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="USDA Organic" data-zh="USDA Organic">USDA Organic</span>
+            <span class="label-zh" data-en="Certified organic" data-zh="美国农业部有机认证">Certified organic</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="100% organic feed (no GMOs, no synthetic pesticides); no antibiotics and no rBST, ever; and &mdash; unlike organic chicken &mdash; a real grazing requirement: a grazing season of <strong>at least 120 days</strong> a year, during which pasture must supply <strong>at least 30% of dry matter intake</strong> (7 CFR 205.237&ndash;205.240)."
+                  data-zh="100% 有机饲料（非转基因、无合成农药）；绝对不用抗生素、不用 rBST 生长激素；而且——不同于有机鸡——有真正的放牧硬指标：每年<strong>至少 120 天</strong>放牧季，期间牧草必须提供<strong>至少 30% 的干物质采食量</strong>（7 CFR 205.237&ndash;205.240）。">100% organic feed (no GMOs, no synthetic pesticides); no antibiotics and no rBST, ever; and &mdash; unlike organic chicken &mdash; a real grazing requirement: a grazing season of <strong>at least 120 days</strong> a year, during which pasture must supply <strong>at least 30% of dry matter intake</strong> (7 CFR 205.237&ndash;205.240).</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The only label that covers feed, drugs and pasture at once.</span> It is federally enforced, annually audited, and it is the one seal that already contains rBST-free and non-GMO, so those add nothing on top of it."
+                  data-zh="<span class=&quot;lead&quot;>唯一一个同时管住饲料、用药和放牧的标签。</span>联邦强制、每年审核，而且它本身就已包含 rBST-free 和非转基因，所以那两个标签叠在有机上不加分。"><span class="lead">The only label that covers feed, drugs and pasture at once.</span> It is federally enforced, annually audited, and it is the one seal that already contains rBST-free and non-GMO, so those add nothing on top of it.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>30% is an average, and the other 70% can be organic grain.</span> Organic is not grassfed. On a large western dry-lot dairy the herd can hit 120 days and 30% and still spend most of the year in a barn or corral &mdash; which is exactly what the Cornucopia scorecard was built to separate."
+                  data-zh="<span class=&quot;lead&quot;>30% 是平均值，剩下 70% 可以是有机谷物。</span>有机 &ne; 草饲。西部大型 dry-lot 牧场完全可以刚好凑够 120 天和 30%，其余时间照样待在牛舍或围栏里——Cornucopia 评分卡就是为了把这类品牌区分出来。"><span class="lead">30% is an average, and the other 70% can be organic grain.</span> Organic is not grassfed. On a large western dry-lot dairy the herd can hit 120 days and 30% and still spend most of the year in a barn or corral &mdash; which is exactly what the Cornucopia scorecard was built to separate.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="100% Grassfed (certified)" data-zh="100% Grassfed（有认证）">100% Grassfed (certified)</span>
+            <span class="label-zh" data-en="AGA / Certified Grassfed by AGW / PCO" data-zh="全草饲：AGA、AGW、PCO 认证">AGA / Certified Grassfed by AGW / PCO</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Grass and forage for life after weaning &mdash; <strong>all grain is banned</strong>, in every form (whole, ground, silage, distillers). AGA dairy also requires grazed pasture to supply <strong>&ge;60% of dry matter intake</strong>, a grazing season of <strong>&ge;150 days</strong>, no CAFO confinement, and US-born-and-raised animals."
+                  data-zh="断奶后终生只吃草和牧草——<strong>任何形式的谷物一律禁止</strong>（整粒、粉碎、青贮、酒糟都不行）。AGA 乳品标准还要求放牧草场提供<strong>&ge;60% 的干物质采食量</strong>、放牧季<strong>&ge;150 天</strong>、禁止 CAFO 集中圈养，且动物必须美国出生和饲养。">Grass and forage for life after weaning &mdash; <strong>all grain is banned</strong>, in every form (whole, ground, silage, distillers). AGA dairy also requires grazed pasture to supply <strong>&ge;60% of dry matter intake</strong>, a grazing season of <strong>&ge;150 days</strong>, no CAFO confinement, and US-born-and-raised animals.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The strongest guarantee that the cow was actually on grass.</span> It is also the only label that reliably buys you the nutrition difference &mdash; higher omega-3 and CLA come from forage, not from the organic seal."
+                  data-zh="<span class=&quot;lead&quot;>&ldquo;这头牛真的在吃草&rdquo;最硬的保证。</span>也是唯一能可靠换来营养差异的标签——更高的 omega-3 和 CLA 来自牧草，而不是来自有机认证。"><span class="lead">The strongest guarantee that the cow was actually on grass.</span> It is also the only label that reliably buys you the nutrition difference &mdash; higher omega-3 and CLA come from forage, not from the organic seal.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Grassfed does not imply organic.</span> The pasture can be sprayed and fertilized unless the carton also carries the USDA Organic seal. Certified Grassfed by AGW is the exception that bundles welfare in &mdash; it requires AWA certification first."
+                  data-zh="<span class=&quot;lead&quot;>草饲不等于有机。</span>除非包装上同时有 USDA Organic 印章，否则草场可以打农药施化肥。AGW 的 Certified Grassfed 是例外，它要求先拿到 AWA 动物福利认证。"><span class="lead">Grassfed does not imply organic.</span> The pasture can be sprayed and fertilized unless the carton also carries the USDA Organic seal. Certified Grassfed by AGW is the exception that bundles welfare in &mdash; it requires AWA certification first.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="&ldquo;Grass-Fed&rdquo; (no seal, no 100%)" data-zh="&ldquo;Grass-Fed&rdquo;（无认证、无 100%）">&ldquo;Grass-Fed&rdquo; (no seal, no 100%)</span>
+            <span class="label-zh" data-en="Bare marketing claim" data-zh="裸标营销用语">Bare marketing claim</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Essentially nothing. USDA <strong>withdrew its grass fed marketing claim standard in January 2016</strong>; since then the words on a carton are backed only by whatever affidavit the company filed. Every ruminant eats some grass, so the claim is nearly always technically true."
+                  data-zh="基本上什么都不保证。USDA 已于 <strong>2016 年 1 月撤销了 grass fed 营销标注标准</strong>；此后包装上这几个字只靠企业自己提交的说明支撑。所有反刍动物都吃点草，所以这句话几乎永远&ldquo;技术上属实&rdquo;。">Essentially nothing. USDA <strong>withdrew its grass fed marketing claim standard in January 2016</strong>; since then the words on a carton are backed only by whatever affidavit the company filed. Every ruminant eats some grass, so the claim is nearly always technically true.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="Occasionally it is shorthand for a genuinely pasture-based small dairy that has not paid for certification &mdash; worth checking the brand&rsquo;s own website, but not worth a premium on its own."
+                  data-zh="偶尔它确实代表一家真正放牧、只是没花钱做认证的小牧场——值得去品牌官网确认，但单凭这几个字不值得付溢价。">Occasionally it is shorthand for a genuinely pasture-based small dairy that has not paid for certification &mdash; worth checking the brand&rsquo;s own website, but not worth a premium on its own.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>The single most misleading word in the dairy case.</span> &ldquo;Grass-fed&rdquo; without <strong>100%</strong> and without a certifier&rsquo;s seal usually means grass plus grain. Look for the word 100% and a logo, or ignore it."
+                  data-zh="<span class=&quot;lead&quot;>乳品柜里最容易误导人的一个词。</span>没有 <strong>100%</strong>、也没有认证机构 logo 的 &ldquo;grass-fed&rdquo;，通常意味着草加谷物。要么看到 100% 加 logo，要么就当它不存在。"><span class="lead">The single most misleading word in the dairy case.</span> &ldquo;Grass-fed&rdquo; without <strong>100%</strong> and without a certifier&rsquo;s seal usually means grass plus grain. Look for the word 100% and a logo, or ignore it.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag life" data-en="Living conditions" data-zh="养殖环境">Living conditions</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Pasture Raised / Pasture Grazed" data-zh="Pasture Raised / Pasture Grazed">Pasture Raised / Pasture Grazed</span>
+            <span class="label-zh" data-en="Raised on pasture" data-zh="牧场放牧饲养">Raised on pasture</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Intended to mean the herd lives outdoors on real pasture for most of the year, eating growing grass. <strong>There is no federal definition for dairy</strong> and no required audit &mdash; the phrase means exactly what the brand decides it means."
+                  data-zh="本意是奶牛一年中大部分时间生活在真正的草场上、吃生长中的青草。<strong>但美国对乳品的 pasture raised 没有联邦定义</strong>，也不要求审核——这句话由品牌自己定义。">Intended to mean the herd lives outdoors on real pasture for most of the year, eating growing grass. <strong>There is no federal definition for dairy</strong> and no required audit &mdash; the phrase means exactly what the brand decides it means.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>When it is backed by a seal, it is the best welfare signal on the shelf.</span> Time on grass is what drives both cow welfare and the flavor and color difference you can actually taste in the cream."
+                  data-zh="<span class=&quot;lead&quot;>只要背后有认证印章，它就是货架上最好的福利信号。</span>在草地上的时间既决定奶牛福利，也决定你真能尝出来的风味和奶油颜色差异。"><span class="lead">When it is backed by a seal, it is the best welfare signal on the shelf.</span> Time on grass is what drives both cow welfare and the flavor and color difference you can actually taste in the cream.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Alone, it is marketing.</span> Treat it as a claim, not a certification: it only counts next to <strong>Animal Welfare Approved, Certified Humane, Regenerative Organic</strong> or the USDA Organic seal, which at least carries the 120-day / 30% floor."
+                  data-zh="<span class=&quot;lead&quot;>单独出现时就是营销话术。</span>把它当成一句宣称而不是认证：只有旁边有 <strong>Animal Welfare Approved、Certified Humane、Regenerative Organic</strong> 或 USDA Organic 时才算数——后者至少还有 120 天 / 30% 的底线。"><span class="lead">Alone, it is marketing.</span> Treat it as a claim, not a certification: it only counts next to <strong>Animal Welfare Approved, Certified Humane, Regenerative Organic</strong> or the USDA Organic seal, which at least carries the 120-day / 30% floor.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag life" data-en="Living conditions" data-zh="养殖环境">Living conditions</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Animal Welfare Approved (AWA)" data-zh="Animal Welfare Approved (AWA)">Animal Welfare Approved (AWA)</span>
+            <span class="label-zh" data-en="A Greener World" data-zh="A Greener World 动物福利批准">A Greener World</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Independently audited, and the only major US welfare seal that <strong>requires continuous pasture or range access</strong> for the whole herd. Applies per farm, not per plant, so it cannot be bought by a large aggregator pooling anonymous milk."
+                  data-zh="独立第三方审核，也是美国主流福利认证中唯一<strong>强制要求全群持续拥有草场/牧地</strong>的一个。按农场认证而非按加工厂认证，所以大型收奶商无法靠拼奶买到它。">Independently audited, and the only major US welfare seal that <strong>requires continuous pasture or range access</strong> for the whole herd. Applies per farm, not per plant, so it cannot be bought by a large aggregator pooling anonymous milk.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The highest-bar welfare seal in the dairy case.</span> If a carton has AWA, the &ldquo;pasture raised&rdquo; wording next to it is verified rather than claimed."
+                  data-zh="<span class=&quot;lead&quot;>乳品柜里门槛最高的福利认证。</span>包装上有 AWA，旁边那句 &ldquo;pasture raised&rdquo; 才是被核查过的，而不是自说自话。"><span class="lead">The highest-bar welfare seal in the dairy case.</span> If a carton has AWA, the &ldquo;pasture raised&rdquo; wording next to it is verified rather than claimed.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="Small supply and mostly regional &mdash; rare on a Seattle shelf outside co-ops and farmers markets. It also says nothing about feed being organic unless the organic seal is there too."
+                  data-zh="产量小、多为区域性品牌——除了合作社超市和农夫市场，西雅图货架上很少见。它也不保证饲料是有机的，除非同时有有机印章。">Small supply and mostly regional &mdash; rare on a Seattle shelf outside co-ops and farmers markets. It also says nothing about feed being organic unless the organic seal is there too.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag life" data-en="Living conditions" data-zh="养殖环境">Living conditions</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Certified Humane" data-zh="Certified Humane">Certified Humane</span>
+            <span class="label-zh" data-en="HFAC third-party audit" data-zh="HFAC 人道认证">HFAC third-party audit</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Third-party audited standards for space, bedding, handling and stockmanship, with routine antibiotic growth promoters banned. For dairy it sets barn and management requirements &mdash; it does <strong>not</strong> require cows to be raised on pasture."
+                  data-zh="第三方审核的空间、垫料、操作与人员管理标准，禁止常规促生长抗生素。但在乳品上它规定的是牛舍与管理条件——<strong>并不要求</strong>奶牛必须在草场上饲养。">Third-party audited standards for space, bedding, handling and stockmanship, with routine antibiotic growth promoters banned. For dairy it sets barn and management requirements &mdash; it does <strong>not</strong> require cows to be raised on pasture.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="A real audit with real records, and far above the conventional industry baseline. On a large national brand it is often the only independent verification you will get."
+                  data-zh="有真实审核和记录，明显高于常规行业底线。对大型全国品牌来说，它往往是你唯一能拿到的独立核查。">A real audit with real records, and far above the conventional industry baseline. On a large national brand it is often the only independent verification you will get.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Certified Humane is not a pasture guarantee.</span> A fully indoor, well-managed dairy can carry the seal, and some painful procedures are still permitted. Read it as &ldquo;audited&rdquo;, not as &ldquo;outdoors&rdquo;."
+                  data-zh="<span class=&quot;lead&quot;>Certified Humane 不等于放牧。</span>一个完全室内、但管理良好的牧场同样可以拿到这个印章，部分疼痛处理措施也仍被允许。把它读作&ldquo;被审核过&rdquo;，而不是&ldquo;在户外&rdquo;。"><span class="lead">Certified Humane is not a pasture guarantee.</span> A fully indoor, well-managed dairy can carry the seal, and some painful procedures are still permitted. Read it as &ldquo;audited&rdquo;, not as &ldquo;outdoors&rdquo;.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag life" data-en="Living conditions" data-zh="养殖环境">Living conditions</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Regenerative Organic Certified" data-zh="Regenerative Organic Certified">Regenerative Organic Certified</span>
+            <span class="label-zh" data-en="ROC &mdash; Bronze / Silver / Gold" data-zh="再生有机认证 ROC：铜/银/金级">ROC &mdash; Bronze / Silver / Gold</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="USDA Organic as the floor, then soil health, animal welfare and farmworker fairness on top. All tiers require <strong>continuous open access to pasture</strong>; the grassfed share rises by tier &mdash; Bronze &gt;50%, Silver &gt;75%, <strong>Gold 100% grassfed</strong>. Tail docking is prohibited."
+                  data-zh="以 USDA 有机为底线，再叠加土壤健康、动物福利和农工公平三大支柱。所有等级都要求<strong>持续、开放的草场通道</strong>；草饲比例随等级上升——铜级 &gt;50%、银级 &gt;75%、<strong>金级 100% 草饲</strong>。禁止断尾。">USDA Organic as the floor, then soil health, animal welfare and farmworker fairness on top. All tiers require <strong>continuous open access to pasture</strong>; the grassfed share rises by tier &mdash; Bronze &gt;50%, Silver &gt;75%, <strong>Gold 100% grassfed</strong>. Tail docking is prohibited.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The one seal that bundles all four questions at once</span> &mdash; feed, drugs, pasture and welfare &mdash; and the only one with a public tier system, so Gold is a single-word shorthand for the best carton on the shelf."
+                  data-zh="<span class=&quot;lead&quot;>唯一一个把四个问题一次性打包的认证</span>——饲料、用药、放牧、福利全包，而且是唯一有公开分级的：看到 Gold 基本就等于货架上最好的那盒。"><span class="lead">The one seal that bundles all four questions at once</span> &mdash; feed, drugs, pasture and welfare &mdash; and the only one with a public tier system, so Gold is a single-word shorthand for the best carton on the shelf.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Check the tier, not just the logo.</span> Bronze only promises &gt;50% grassfed, which is well below a 100% Grassfed seal. Very few dairy brands carry ROC at all, and it is the most expensive milk in the case."
+                  data-zh="<span class=&quot;lead&quot;>要看等级，不能只看 logo。</span>铜级只承诺 &gt;50% 草饲，远低于 100% Grassfed。目前带 ROC 的乳品牌极少，而且是柜里最贵的。"><span class="lead">Check the tier, not just the logo.</span> Bronze only promises &gt;50% grassfed, which is well below a 100% Grassfed seal. Very few dairy brands carry ROC at all, and it is the most expensive milk in the case.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="rBST-free / No artificial growth hormones" data-zh="rBST-free / 无人工生长激素">rBST-free / No artificial growth hormones</span>
+            <span class="label-zh" data-en="rBST / rBGH not used" data-zh="未使用 rBST 生长激素">rBST / rBGH not used</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="An affidavit from the farms that no recombinant bovine growth hormone was injected. FDA requires the claim to be paired with a context statement &mdash; the familiar small print that <em>no significant difference has been shown between milk from rBST-treated and untreated cows</em>."
+                  data-zh="来自农场的声明：没有注射重组牛生长激素。FDA 要求这句话必须附带说明性小字——即<em>未发现使用与未使用 rBST 的牛奶之间存在显著差异</em>。">An affidavit from the farms that no recombinant bovine growth hormone was injected. FDA requires the claim to be paired with a context statement &mdash; the familiar small print that <em>no significant difference has been shown between milk from rBST-treated and untreated cows</em>.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="Free, essentially. Most US processors dropped rBST years ago under retailer pressure, so the claim now costs nothing extra &mdash; take it when it is there."
+                  data-zh="基本上是白送的。在零售商压力下，美国大部分乳企多年前就停用 rBST，所以这个标注现在几乎不产生溢价——有就拿着。">Free, essentially. Most US processors dropped rBST years ago under retailer pressure, so the claim now costs nothing extra &mdash; take it when it is there.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Never pay a premium for it.</span> It is a single-issue, self-declared claim, it says nothing about antibiotics, feed or pasture, and USDA Organic already prohibits rBST outright."
+                  data-zh="<span class=&quot;lead&quot;>绝不要为它付溢价。</span>它是单项、自我声明的标注，对抗生素、饲料、放牧一概不涉及，而 USDA 有机本来就完全禁止 rBST。"><span class="lead">Never pay a premium for it.</span> It is a single-issue, self-declared claim, it says nothing about antibiotics, feed or pasture, and USDA Organic already prohibits rBST outright.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag feed" data-en="Feed &amp; drugs" data-zh="饲料与用药">Feed &amp; drugs</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Non-GMO Project Verified" data-zh="Non-GMO Project Verified">Non-GMO Project Verified</span>
+            <span class="label-zh" data-en="Butterfly seal &mdash; feed only" data-zh="蝴蝶标：只管饲料">Butterfly seal &mdash; feed only</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Third-party verification that the herd&rsquo;s feed &mdash; mainly corn, soy and alfalfa &mdash; is not genetically engineered, with segregation and testing through the supply chain. Milk itself contains no transgenic DNA either way."
+                  data-zh="第三方核查牛群饲料（主要是玉米、大豆、苜蓿）非转基因，并对供应链做隔离与检测。牛奶本身无论如何都不含转基因 DNA。">Third-party verification that the herd&rsquo;s feed &mdash; mainly corn, soy and alfalfa &mdash; is not genetically engineered, with segregation and testing through the supply chain. Milk itself contains no transgenic DNA either way.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="Useful on a <em>non-organic</em> carton, where it is the only thing verifying anything about the feed at all."
+                  data-zh="在<em>非有机</em>的包装上有用——那时它是唯一对饲料做过任何核查的东西。">Useful on a <em>non-organic</em> carton, where it is the only thing verifying anything about the feed at all.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Redundant on organic milk.</span> Organic already bans GMO feed, so the butterfly adds nothing there &mdash; and non-GMO feed can still be sprayed, so it is the weaker of the two."
+                  data-zh="<span class=&quot;lead&quot;>在有机奶上是冗余的。</span>有机本来就禁止转基因饲料，蝴蝶标不加分——而且非转基因饲料照样可以打农药，所以它是两者中较弱的一个。"><span class="lead">Redundant on organic milk.</span> Organic already bans GMO feed, so the butterfly adds nothing there &mdash; and non-GMO feed can still be sprayed, so it is the weaker of the two.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag proc" data-en="Processing" data-zh="加工工艺">Processing</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Pasteurized (HTST) / Vat Pasteurized" data-zh="Pasteurized（HTST）/ Vat 低温杀菌">Pasteurized (HTST) / Vat Pasteurized</span>
+            <span class="label-zh" data-en="Standard &amp; low-temp pasteurization" data-zh="标准巴氏杀菌与低温槽式杀菌">Standard &amp; low-temp pasteurization</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="HTST is <strong>161&deg;F for 15 seconds</strong> &mdash; the US default. Vat (batch, &ldquo;low-temp&rdquo;) is <strong>145&deg;F for 30 minutes</strong>, gentler on flavor and on the proteins that matter for cheesemaking and yogurt."
+                  data-zh="HTST 是 <strong>161&deg;F / 15 秒</strong>，美国的默认工艺。Vat（槽式、&ldquo;低温&rdquo;）是 <strong>145&deg;F / 30 分钟</strong>，对风味以及做奶酪、酸奶所依赖的蛋白更温和。">HTST is <strong>161&deg;F for 15 seconds</strong> &mdash; the US default. Vat (batch, &ldquo;low-temp&rdquo;) is <strong>145&deg;F for 30 minutes</strong>, gentler on flavor and on the proteins that matter for cheesemaking and yogurt.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>This is the milk that still tastes like milk.</span> Vat-pasteurized is the one to buy for yogurt, paneer or ricotta &mdash; and the difference in a plain glass is obvious."
+                  data-zh="<span class=&quot;lead&quot;>这是还喝得出奶味的那一档。</span>做酸奶、印度奶酪、ricotta 就买 vat 低温杀菌的——直接喝也能明显尝出差别。"><span class="lead">This is the milk that still tastes like milk.</span> Vat-pasteurized is the one to buy for yogurt, paneer or ricotta &mdash; and the difference in a plain glass is obvious.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="Short shelf life &mdash; roughly two to three weeks, and the date is real. Vat-pasteurized milk is mostly small-dairy and regional, so it costs more per gallon."
+                  data-zh="保质期短——大约两到三周，而且那个日期是当真的。低温槽式杀菌多为小牧场、区域品牌，每加仑更贵。">Short shelf life &mdash; roughly two to three weeks, and the date is real. Vat-pasteurized milk is mostly small-dairy and regional, so it costs more per gallon.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag proc" data-en="Processing" data-zh="加工工艺">Processing</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Ultra-Pasteurized (UP) / UHT" data-zh="Ultra-Pasteurized（UP）/ UHT">Ultra-Pasteurized (UP) / UHT</span>
+            <span class="label-zh" data-en="Super-heated; UHT is shelf-stable" data-zh="超高温：UHT 为常温奶">Super-heated; UHT is shelf-stable</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="UP is <strong>280&deg;F for 2 seconds</strong> &mdash; still refrigerated, but 45&ndash;90 days of shelf life. UHT is the same heat into aseptic packaging, so it sits on a warm shelf until opened. Nearly all national organic milk is UP."
+                  data-zh="UP 是 <strong>280&deg;F / 2 秒</strong>——仍需冷藏，但保质期 45&ndash;90 天。UHT 是同样的高温加无菌包装，开封前可常温存放。美国全国性有机奶几乎全部是 UP。">UP is <strong>280&deg;F for 2 seconds</strong> &mdash; still refrigerated, but 45&ndash;90 days of shelf life. UHT is the same heat into aseptic packaging, so it sits on a warm shelf until opened. Nearly all national organic milk is UP.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="It is what makes organic milk shippable nationwide, and it is genuinely convenient &mdash; a carton that survives a month in the fridge and a box that survives the pantry."
+                  data-zh="正是它让有机奶得以全国配送，而且确实方便——冰箱里放一个月不坏，常温装则可以直接囤在储藏柜。">It is what makes organic milk shippable nationwide, and it is genuinely convenient &mdash; a carton that survives a month in the fridge and a box that survives the pantry.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>The cooked flavor and the failed yogurt both come from here.</span> UP milk tastes faintly caramelized and sets poorly into yogurt or fresh cheese because the whey proteins are already denatured."
+                  data-zh="<span class=&quot;lead&quot;>那股&ldquo;煮过&rdquo;的味道，以及酸奶做不成，都出在这一步。</span>UP 奶带轻微焦糖味，做酸奶和新鲜奶酪都不容易成型，因为乳清蛋白已经变性。"><span class="lead">The cooked flavor and the failed yogurt both come from here.</span> UP milk tastes faintly caramelized and sets poorly into yogurt or fresh cheese because the whey proteins are already denatured.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag proc" data-en="Processing" data-zh="加工工艺">Processing</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Cream-Top / Non-Homogenized" data-zh="Cream-Top / Non-Homogenized">Cream-Top / Non-Homogenized</span>
+            <span class="label-zh" data-en="Cream separates to the top" data-zh="未均质，奶油会浮到顶部">Cream separates to the top</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Homogenization forces milk through a fine valve to break fat globules small enough to stay suspended. Skip it and the cream floats &mdash; that is the entire difference. It is unrelated to pasteurization, organic or grassfed."
+                  data-zh="均质是把牛奶高压挤过细阀，把脂肪球打碎到能一直悬浮。不做均质，奶油就会浮上来——差别仅此而已。它与杀菌方式、有机、草饲都无关。">Homogenization forces milk through a fine valve to break fat globules small enough to stay suspended. Skip it and the cream floats &mdash; that is the entire difference. It is unrelated to pasteurization, organic or grassfed.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>You can skim the cream off the top.</span> Free heavy cream for coffee or a scone batch, richer mouthfeel, and a visible cream line is a fair proxy for a small dairy that did not over-process the milk."
+                  data-zh="<span class=&quot;lead&quot;>顶部那层奶油可以直接舀出来用。</span>白得一小罐厚奶油打咖啡或做司康，口感更醇，而且明显的奶油线通常意味着这是一家没有过度加工的小牧场。"><span class="lead">You can skim the cream off the top.</span> Free heavy cream for coffee or a scone batch, richer mouthfeel, and a visible cream line is a fair proxy for a small dairy that did not over-process the milk.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="You have to shake the bottle every time, and the claim that homogenized fat is harmful has no good evidence behind it &mdash; buy cream-top for the cream and the texture, not for a health reason."
+                  data-zh="每次都得摇匀；而&ldquo;均质脂肪有害&rdquo;的说法并没有可靠证据支撑——为奶油和口感买它，不要为健康理由买它。">You have to shake the bottle every time, and the claim that homogenized fat is harmful has no good evidence behind it &mdash; buy cream-top for the cream and the texture, not for a health reason.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag proc" data-en="Processing" data-zh="加工工艺">Processing</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Raw / Unpasteurized" data-zh="Raw / Unpasteurized 生奶">Raw / Unpasteurized</span>
+            <span class="label-zh" data-en="Retail-legal in Washington" data-zh="华盛顿州可合法零售">Retail-legal in Washington</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="No heat treatment at all. <strong>Interstate sale for human consumption is banned by FDA</strong> (21 CFR 1240.61), so it is a state-by-state matter &mdash; Washington licenses retail raw milk, with WSDA inspection, testing and a warning label required."
+                  data-zh="完全不加热。<strong>FDA 禁止跨州销售供人饮用的生奶</strong>（21 CFR 1240.61），因此完全由各州自行规定——华盛顿州允许持证零售生奶，需接受 WSDA 检查、检测并强制标注警示语。">No heat treatment at all. <strong>Interstate sale for human consumption is banned by FDA</strong> (21 CFR 1240.61), so it is a state-by-state matter &mdash; Washington licenses retail raw milk, with WSDA inspection, testing and a warning label required.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="The fullest flavor of any milk you can buy, and a licensed WA dairy is a fully traceable, individually tested supply chain rather than a pooled one."
+                  data-zh="所有能买到的牛奶里风味最完整的一档；而华盛顿州持证牧场是可完全追溯、逐批检测的供应链，而不是拼奶。">The fullest flavor of any milk you can buy, and a licensed WA dairy is a fully traceable, individually tested supply chain rather than a pooled one.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>Real pathogen risk &mdash; testing reduces it, it does not remove it.</span> Not for children, pregnancy or anyone immunocompromised, and the shelf life is days. Nutritionally the claimed advantages over pasteurized milk are small."
+                  data-zh="<span class=&quot;lead&quot;>致病菌风险是真实的——检测只能降低，不能消除。</span>儿童、孕期和免疫力低下者不建议饮用，保质期只有几天。营养上相对巴氏奶的所谓优势其实很小。"><span class="lead">Real pathogen risk &mdash; testing reduces it, it does not remove it.</span> Not for children, pregnancy or anyone immunocompromised, and the shelf life is days. Nutritionally the claimed advantages over pasteurized milk are small.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag breed" data-en="Breed &amp; protein" data-zh="品种与蛋白">Breed &amp; protein</span></td>
+          <td class="name">
+            <span class="label-name" data-en="A2 / A2A2" data-zh="A2 / A2A2">A2 / A2A2</span>
+            <span class="label-zh" data-en="Beta-casein variant" data-zh="&beta;-酪蛋白基因型">Beta-casein variant</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="Milk from cows genotyped as carrying only the A2 form of beta-casein, so it lacks the A1 variant that digestion turns into BCM-7. Verified by the brand&rsquo;s own herd DNA testing &mdash; there is <strong>no federal standard or seal</strong> behind the letters."
+                  data-zh="来自经基因检测、只携带 A2 型 &beta;-酪蛋白奶牛的牛奶，因此不含消化后会生成 BCM-7 的 A1 变体。由品牌自己做牛群 DNA 检测来保证——这两个字母背后<strong>没有联邦标准，也没有认证印章</strong>。">Milk from cows genotyped as carrying only the A2 form of beta-casein, so it lacks the A1 variant that digestion turns into BCM-7. Verified by the brand&rsquo;s own herd DNA testing &mdash; there is <strong>no federal standard or seal</strong> behind the letters.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="Worth one trial carton if regular milk leaves you bloated but a lactose-free carton did not fix it &mdash; that pattern points at the protein rather than the sugar."
+                  data-zh="如果喝普通奶会胀气、但换无乳糖奶并没有解决，那值得买一盒试试——这种情况指向蛋白而不是乳糖。">Worth one trial carton if regular milk leaves you bloated but a lactose-free carton did not fix it &mdash; that pattern points at the protein rather than the sugar.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="<span class=&quot;lead&quot;>A2 is not lactose-free</span> &mdash; the sugar is identical, so it does nothing for lactose intolerance. The comfort evidence is thin and mostly industry-funded, and A2 milk says nothing about feed, pasture or processing."
+                  data-zh="<span class=&quot;lead&quot;>A2 不是无乳糖奶</span>——乳糖含量完全一样，对乳糖不耐受毫无帮助。所谓&ldquo;更好消化&rdquo;的证据薄弱且多由产业资助，而且 A2 与饲料、放牧、加工工艺都无关。"><span class="lead">A2 is not lactose-free</span> &mdash; the sugar is identical, so it does nothing for lactose intolerance. The comfort evidence is thin and mostly industry-funded, and A2 milk says nothing about feed, pasture or processing.</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="cat"><span class="tag breed" data-en="Breed &amp; protein" data-zh="品种与蛋白">Breed &amp; protein</span></td>
+          <td class="name">
+            <span class="label-name" data-en="Jersey / Guernsey" data-zh="Jersey / Guernsey 娟姗牛">Jersey / Guernsey</span>
+            <span class="label-zh" data-en="Single-breed herd" data-zh="单一品种奶源">Single-breed herd</span>
+          </td>
+          <td>
+            <span class="cell-label" data-en="Core standard &amp; definition" data-zh="核心标准与定义">Core standard &amp; definition</span>
+            <span data-en="A breed claim, not a certification. Jersey and Guernsey milk runs roughly <strong>4.5&ndash;5% fat</strong> against about 3.7% for Holstein, with more protein and more beta-carotene &mdash; which is why the cream looks yellow."
+                  data-zh="这是品种宣称，不是认证。娟姗牛与更赛牛的奶脂肪约 <strong>4.5&ndash;5%</strong>，而荷斯坦约 3.7%，蛋白更高、&beta;-胡萝卜素更多——所以奶油偏黄。">A breed claim, not a certification. Jersey and Guernsey milk runs roughly <strong>4.5&ndash;5% fat</strong> against about 3.7% for Holstein, with more protein and more beta-carotene &mdash; which is why the cream looks yellow.</span>
+          </td>
+          <td class="good">
+            <span class="cell-label" data-en="Why it&rsquo;s worth paying for" data-zh="优势与购买价值">Why it&rsquo;s worth paying for</span>
+            <span data-en="<span class=&quot;lead&quot;>The best milk for cooking with.</span> Higher fat and casein mean richer custard and panna cotta, better cheese yield, and thicker yogurt without adding cream."
+                  data-zh="<span class=&quot;lead&quot;>做菜做甜点最好用的奶。</span>脂肪和酪蛋白更高，卡仕达和意式奶冻更浓，奶酪出品率更高，不加淡奶油也能做出更稠的酸奶。"><span class="lead">The best milk for cooking with.</span> Higher fat and casein mean richer custard and panna cotta, better cheese yield, and thicker yogurt without adding cream.</span>
+          </td>
+          <td class="warn">
+            <span class="cell-label" data-en="Watch out / limitations" data-zh="避坑指南 / 局限性">Watch out / limitations</span>
+            <span data-en="Breed is not welfare and not feed &mdash; a Jersey herd can be as confined as any other. Jerseys skew A2, but only a genotyped herd can print A2, so do not read one label into the other."
+                  data-zh="品种既不代表福利也不代表饲料——娟姗牛群一样可能是圈养。娟姗牛确实 A2 比例偏高，但只有做过基因检测的牛群才能标 A2，两者不能互相推导。">Breed is not welfare and not feed &mdash; a Jersey herd can be as confined as any other. Jerseys skew A2, but only a genotyped herd can print A2, so do not read one label into the other.</span>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-en="USDA Organic is federally regulated and audited. AGA / AGW / PCO 100% Grassfed, Certified Humane, Animal Welfare Approved, Regenerative Organic and Non-GMO Project are third-party certifications. Pasture Raised, bare &ldquo;grass-fed&rdquo;, rBST-free and A2 are company claims with no independent seal behind them."
+       data-zh="USDA Organic 由联邦监管并审核。AGA / AGW / PCO 的 100% Grassfed、Certified Humane、Animal Welfare Approved、Regenerative Organic、Non-GMO Project 属于第三方认证。Pasture Raised、裸写的 grass-fed、rBST-free 和 A2 则是企业自我宣称，背后没有独立认证。">USDA Organic is federally regulated and audited. AGA / AGW / PCO 100% Grassfed, Certified Humane, Animal Welfare Approved, Regenerative Organic and Non-GMO Project are third-party certifications. Pasture Raised, bare &ldquo;grass-fed&rdquo;, rBST-free and A2 are company claims with no independent seal behind them.</p>
+
+    <h2 class="section-title" data-en="Organic &ne; Grassfed &ne; Pasture Raised" data-zh="有机 &ne; 草饲 &ne; 放牧">Organic &ne; Grassfed &ne; Pasture Raised</h2>
+    <p class="prose" data-en="These three get used as if they were increasing grades of the same thing. They are not &mdash; they are three separate axes, and a carton can be strong on one and empty on the other two."
+       data-zh="这三个词常被当成同一件事的三个档次来用。它们不是——它们是三条互相独立的轴，一盒奶完全可能在一条上很硬、在另外两条上是空的。">These three get used as if they were increasing grades of the same thing. They are not &mdash; they are three separate axes, and a carton can be strong on one and empty on the other two.</p>
+    <div class="tips">
+      <ul>
+        <li data-en="<strong>Organic</strong> guarantees clean feed and no drugs, plus a grazing floor of 120 days and 30% of intake from pasture. It does <em>not</em> guarantee a grain-free diet or a life outdoors."
+            data-zh="<strong>有机</strong>保证饲料干净、不用药，外加 120 天放牧季和 30% 采食量来自草场的底线。它<em>不</em>保证不吃谷物，也不保证以户外生活为主。"><strong>Organic</strong> guarantees clean feed and no drugs, plus a grazing floor of 120 days and 30% of intake from pasture. It does <em>not</em> guarantee a grain-free diet or a life outdoors.</li>
+        <li data-en="<strong>100% Grassfed</strong> guarantees the diet &mdash; no grain, ever &mdash; and with AGA, 60% of intake from grazed pasture over a 150-day season. It does <em>not</em> guarantee the pasture is organic."
+            data-zh="<strong>100% 草饲</strong>保证的是食谱——终生不吃谷物——AGA 标准下还要求 150 天放牧季内 60% 采食量来自放牧草场。它<em>不</em>保证草场是有机的。"><strong>100% Grassfed</strong> guarantees the diet &mdash; no grain, ever &mdash; and with AGA, 60% of intake from grazed pasture over a 150-day season. It does <em>not</em> guarantee the pasture is organic.</li>
+        <li data-en="<strong>Pasture Raised</strong> guarantees nothing by itself. It becomes real only when AWA, Certified Humane or ROC is printed beside it."
+            data-zh="<strong>Pasture Raised</strong> 自己什么都不保证。只有旁边印着 AWA、Certified Humane 或 ROC 时，它才落地。"><strong>Pasture Raised</strong> guarantees nothing by itself. It becomes real only when AWA, Certified Humane or ROC is printed beside it.</li>
+        <li data-en="<strong>The nutrition difference you read about &mdash; omega-3, CLA, beta-carotene &mdash; tracks forage, not the organic seal.</strong> If that is what you are buying, the label that delivers it is 100% Grassfed, not Organic."
+            data-zh="<strong>你看到的那些营养差异——omega-3、CLA、&beta;-胡萝卜素——跟着牧草走，不跟着有机印章走。</strong>如果你要的是这个，能兑现的是 100% Grassfed，而不是 Organic。"><strong>The nutrition difference you read about &mdash; omega-3, CLA, beta-carotene &mdash; tracks forage, not the organic seal.</strong> If that is what you are buying, the label that delivers it is 100% Grassfed, not Organic.</li>
+        <li data-en="<strong>Organic + 100% Grassfed on the same carton is the combination that covers both axes</strong> &mdash; and Regenerative Organic Gold is that pair plus audited welfare, in one seal."
+            data-zh="<strong>同一盒上同时有 Organic 和 100% Grassfed，才算两条轴都覆盖</strong>——而 Regenerative Organic 金级等于这对组合再加上经审核的动物福利，一个印章解决。"><strong>Organic + 100% Grassfed on the same carton is the combination that covers both axes</strong> &mdash; and Regenerative Organic Gold is that pair plus audited welfare, in one seal.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title" data-en="Heat Treatment at a Glance" data-zh="杀菌工艺速查">Heat Treatment at a Glance</h2>
+    <div class="heat-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Method" data-zh="工艺">Method</th>
+            <th data-en="Time &amp; temperature" data-zh="温度与时间">Time &amp; temperature</th>
+            <th data-en="Shelf life" data-zh="保质期">Shelf life</th>
+            <th data-en="Best for" data-zh="适合">Best for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-en="Raw" data-zh="生奶 Raw">Raw</td>
+            <td data-en="No heat" data-zh="不加热">No heat</td>
+            <td data-en="Days" data-zh="几天">Days</td>
+            <td data-en="Flavor; accept the risk" data-zh="追求风味，需自担风险">Flavor; accept the risk</td>
+          </tr>
+          <tr>
+            <td data-en="Vat / batch (&ldquo;low-temp&rdquo;)" data-zh="槽式低温 Vat">Vat / batch (&ldquo;low-temp&rdquo;)</td>
+            <td data-en="145&deg;F / 30 min" data-zh="145&deg;F / 30 分钟">145&deg;F / 30 min</td>
+            <td data-en="~2 weeks" data-zh="约 2 周">~2 weeks</td>
+            <td data-en="Yogurt, paneer, ricotta, drinking" data-zh="酸奶、印度奶酪、ricotta、直饮">Yogurt, paneer, ricotta, drinking</td>
+          </tr>
+          <tr>
+            <td data-en="HTST (standard)" data-zh="HTST 标准巴氏">HTST (standard)</td>
+            <td data-en="161&deg;F / 15 sec" data-zh="161&deg;F / 15 秒">161&deg;F / 15 sec</td>
+            <td data-en="2&ndash;3 weeks" data-zh="2&ndash;3 周">2&ndash;3 weeks</td>
+            <td data-en="Everyday milk; yogurt still works" data-zh="日常饮用；做酸奶仍可行">Everyday milk; yogurt still works</td>
+          </tr>
+          <tr>
+            <td data-en="Ultra-pasteurized (UP)" data-zh="超巴氏 UP">Ultra-pasteurized (UP)</td>
+            <td data-en="280&deg;F / 2 sec, refrigerated" data-zh="280&deg;F / 2 秒，需冷藏">280&deg;F / 2 sec, refrigerated</td>
+            <td data-en="45&ndash;90 days" data-zh="45&ndash;90 天">45&ndash;90 days</td>
+            <td data-en="Coffee, cereal, baking; poor for yogurt" data-zh="咖啡、麦片、烘焙；不适合做酸奶">Coffee, cereal, baking; poor for yogurt</td>
+          </tr>
+          <tr>
+            <td data-en="UHT / aseptic" data-zh="UHT 常温无菌">UHT / aseptic</td>
+            <td data-en="Same heat, sterile packaging" data-zh="同样高温 + 无菌包装">Same heat, sterile packaging</td>
+            <td data-en="Months, unrefrigerated" data-zh="数月，无需冷藏">Months, unrefrigerated</td>
+            <td data-en="Pantry backup, travel" data-zh="储备、旅行">Pantry backup, travel</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-en="Pasteurization is a food-safety step, not a quality grade &mdash; but the higher the heat, the more cooked the flavor and the worse the milk sets. Almost all nationally distributed organic milk is ultra-pasteurized, which is why organic milk from a big brand often tastes flatter than conventional milk from a local dairy."
+       data-zh="杀菌是食品安全环节，不是品质等级——但温度越高，&ldquo;煮过&rdquo;的味道越明显，也越难凝固成型。全国性配送的有机奶几乎全是超巴氏杀菌，这就是为什么大品牌有机奶常常喝起来比本地牧场的普通奶更寡淡。">Pasteurization is a food-safety step, not a quality grade &mdash; but the higher the heat, the more cooked the flavor and the worse the milk sets. Almost all nationally distributed organic milk is ultra-pasteurized, which is why organic milk from a big brand often tastes flatter than conventional milk from a local dairy.</p>
+
+    <h2 class="section-title" data-en="Quick Takeaways" data-zh="选购要点">Quick Takeaways</h2>
+    <div class="tips">
+      <ul>
+        <li data-en="<strong>Read the carton in this order:</strong> certification seals first (Organic, 100% Grassfed, AWA / Certified Humane / ROC), then the heat treatment, then everything else. The unsealed words are the last thing to look at, not the first."
+            data-zh="<strong>按这个顺序读包装：</strong>先看认证印章（Organic、100% Grassfed、AWA / Certified Humane / ROC），再看杀菌方式，最后才是其他。没有认证背书的形容词应该最后看，而不是最先看。"><strong>Read the carton in this order:</strong> certification seals first (Organic, 100% Grassfed, AWA / Certified Humane / ROC), then the heat treatment, then everything else. The unsealed words are the last thing to look at, not the first.</li>
+        <li data-en="<strong>&ldquo;Grass-fed&rdquo; without 100% and without a certifier logo is the one claim to ignore outright.</strong> The federal standard behind it was withdrawn in 2016."
+            data-zh="<strong>没有 100%、也没有认证 logo 的 &ldquo;grass-fed&rdquo; 是唯一可以直接无视的宣称。</strong>它背后的联邦标准早在 2016 年就被撤销了。"><strong>&ldquo;Grass-fed&rdquo; without 100% and without a certifier logo is the one claim to ignore outright.</strong> The federal standard behind it was withdrawn in 2016.</li>
+        <li data-en="<strong>rBST-free and Non-GMO add nothing to an organic carton.</strong> Organic already prohibits both, so a stack of small seals is not a stack of guarantees."
+            data-zh="<strong>rBST-free 和 Non-GMO 加在有机奶上是白加。</strong>有机本来就同时禁止这两项——印章堆得多不等于保证多。"><strong>rBST-free and Non-GMO add nothing to an organic carton.</strong> Organic already prohibits both, so a stack of small seals is not a stack of guarantees.</li>
+        <li data-en="<strong>If you make yogurt or fresh cheese, the heat treatment matters more than any of the seals.</strong> Vat-pasteurized or plain HTST sets; ultra-pasteurized fights you."
+            data-zh="<strong>如果你要做酸奶或新鲜奶酪，杀菌方式比任何认证都重要。</strong>低温槽式或普通 HTST 能凝固，超巴氏则处处跟你作对。"><strong>If you make yogurt or fresh cheese, the heat treatment matters more than any of the seals.</strong> Vat-pasteurized or plain HTST sets; ultra-pasteurized fights you.</li>
+        <li data-en="<strong>The best realistic carton in a Seattle store:</strong> USDA Organic + 100% Grassfed, cream-top if you can find it, and vat-pasteurized or HTST rather than UP &mdash; then check the brand against the Cornucopia scorecard."
+            data-zh="<strong>西雅图超市里最现实的最优解：</strong>USDA Organic + 100% Grassfed，能找到 cream-top 更好，杀菌选低温槽式或 HTST 而不是 UP——然后再用 Cornucopia 评分卡查一下这个品牌。"><strong>The best realistic carton in a Seattle store:</strong> USDA Organic + 100% Grassfed, cream-top if you can find it, and vat-pasteurized or HTST rather than UP &mdash; then check the brand against the Cornucopia scorecard.</li>
+        <li data-en="<strong>A2 and breed labels are about digestion and cooking, not farming.</strong> Judge the farming from the other three groups regardless of what the front of the bottle says."
+            data-zh="<strong>A2 和品种标签讲的是消化和下厨，不是养殖。</strong>不管瓶身正面写了什么，养殖水平都要从另外三组标签去判断。"><strong>A2 and breed labels are about digestion and cooking, not farming.</strong> Judge the farming from the other three groups regardless of what the front of the bottle says.</li>
+      </ul>
+    </div>
+
+    <div class="sources">
+      <h3 data-en="Sources" data-zh="来源">Sources</h3>
+      <ul>
+        <li><a href="https://www.ams.usda.gov/rules-regulations/organic/handbook/5017-1" target="_blank">USDA AMS 5017-1 &mdash; Calculating Dry Matter Intake from Pasture (120 days / 30% DMI)</a></li>
+        <li><a href="https://www.federalregister.gov/documents/2016/01/12/2016-00440/withdrawal-of-united-states-standards-for-livestock-and-meat-marketing-claims" target="_blank">Federal Register &mdash; Withdrawal of US Standards for Livestock and Meat Marketing Claims (2016)</a></li>
+        <li><a href="https://www.americangrassfed.org/wp-content/uploads/2022/05/AGA-Grassfed-Dairy-Standards-2022.pdf" target="_blank">American Grassfed Association &mdash; Grassfed Dairy Standards</a></li>
+        <li><a href="https://agreenerworld.org/certifications/certified-grass-fed/standards/" target="_blank">A Greener World &mdash; Certified Grassfed by AGW standards</a></li>
+        <li><a href="https://regenorganic.org/wp-content/uploads/2020/10/ROC_Framework_Dairy.pdf" target="_blank">Regenerative Organic Certified &mdash; Dairy Animal Welfare Framework</a></li>
+        <li><a href="https://www.farmforward.com/label-guide/" target="_blank">Farm Forward &mdash; Label Guide (Certified Humane, AWA, GAP)</a></li>
+        <li><a href="https://www.idfa.org/pasteurization" target="_blank">IDFA &mdash; Pasteurization time and temperature table</a></li>
+        <li><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-L/part-1240/subpart-D/section-1240.61" target="_blank">21 CFR 1240.61 &mdash; Mandatory pasteurization for milk in interstate commerce</a></li>
+        <li><a href="https://cms.agr.wa.gov/getmedia/28ad2751-287c-45be-a335-779d8e5a59f6/311-RetailRawMilkGuide.pdf" target="_blank">WSDA &mdash; Retail Raw Milk guide (Washington)</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

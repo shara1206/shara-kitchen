@@ -1363,8 +1363,8 @@ window.__RECIPES__ = {
       "category_en": "Study Topics",
       "category_zh": "学习专题",
       "image": null,
-      "subtitle_en": "2 notes",
-      "subtitle_zh": "2 篇笔记"
+      "subtitle_en": "3 notes",
+      "subtitle_zh": "3 篇笔记"
     },
     {
       "title_en": "Flour",
