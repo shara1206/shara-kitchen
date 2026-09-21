@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="鸡蛋日期解码器 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Egg Date Decoder &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+          --good:#2f7d4f; --good-soft:#e6f3ea; --warn:#b3541e; --warn-soft:#fdeee2; --stamp:#3a3a3a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 760px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 760px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 760px; margin: 8px auto 0; opacity: 0.92; font-size: 0.95rem; font-style: italic; }
+  main { max-width: min(92vw, 760px); margin: 0 auto; padding: 36px 24px 60px; }
+
+  .today { background: var(--stamp); color: #fff; border-radius: 10px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
+  .today .label { font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; }
+  .today .jnum { font-family: 'Courier New', 'Menlo', monospace; font-size: 3.4rem; font-weight: 700; line-height: 1; letter-spacing: 3px; font-variant-numeric: tabular-nums; }
+  .today .date { font-size: 0.95rem; opacity: 0.85; margin-top: 4px; }
+
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin: 22px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .panel h2 { margin: 0 0 4px; font-size: 1.15rem; color: var(--accent); }
+  .panel .hint { color: var(--muted); font-size: 0.9rem; margin: 0 0 14px; }
+
+  .entry { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .entry input[type="number"] { font-family: 'Courier New', 'Menlo', monospace; font-size: 2rem; font-weight: 700; width: 5.2ch; padding: 8px 10px; text-align: center; border: 2px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--ink); font-variant-numeric: tabular-nums; }
+  .entry input[type="number"]:focus { outline: 3px solid var(--accent-soft); border-color: var(--accent); }
+  .entry input[type="number"]::-webkit-outer-spin-button, .entry input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .entry input[type="number"] { -moz-appearance: textfield; }
+  .entry .entry-label { color: var(--muted); font-size: 0.9rem; flex: 1; min-width: 160px; }
+
+  .verdict { margin-top: 16px; border-radius: 8px; padding: 14px 18px; border: 1px solid var(--border); background: var(--bg); }
+  .verdict.fresh { background: var(--good-soft); border-color: var(--good); }
+  .verdict.aging { background: var(--warn-soft); border-color: var(--warn); }
+  .verdict .age { font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .verdict.fresh .age { color: var(--good); }
+  .verdict.aging .age { color: var(--warn); }
+  .verdict .said { margin-top: 2px; }
+  .verdict .packed { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+
+  .dates { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; }
+  .dates li { display: flex; justify-content: space-between; gap: 14px; padding: 8px 0; border-bottom: 1px dotted var(--border); font-size: 0.95rem; }
+  .dates li:last-child { border-bottom: none; }
+  .dates .d { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .dates li.past .d { color: var(--muted); text-decoration: line-through; }
+
+  .btn { font: inherit; font-size: 0.95rem; padding: 9px 18px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; }
+  .btn:hover { background: #b46a2e; }
+  .btn.ghost { background: transparent; color: var(--accent); }
+  .btn.ghost:hover { background: var(--accent-soft); }
+  .btn:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .stat { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .stat .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .stat .lbl { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+  .log { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .log li { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dotted var(--border); }
+  .log li:last-child { border-bottom: none; }
+  .log .code { font-family: 'Courier New','Menlo',monospace; font-weight: 700; font-variant-numeric: tabular-nums; background: var(--stamp); color: #fff; padding: 3px 9px; border-radius: 5px; font-size: 0.9rem; }
+  .log .when { font-size: 0.88rem; color: var(--muted); }
+  .log .bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .log .bar { height: 10px; border-radius: 5px; background: var(--good); min-width: 4px; }
+  .log .bar.aging { background: var(--warn); }
+  .log .days { font-size: 0.88rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .log .del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 4px 6px; border-radius: 4px; }
+  .log .del:hover { color: var(--warn); background: var(--warn-soft); }
+  .empty { color: var(--muted); font-size: 0.93rem; margin: 0; }
+
+  .ref { margin-top: 26px; }
+  .ref table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+  .ref th, .ref td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .ref th { background: var(--accent-soft); color: #6b3e16; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ref tbody tr:last-child td { border-bottom: none; }
+  .ref .table-wrap { overflow-x: auto; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+  @media (max-width: 640px) {
+    header { padding: 26px 18px; }
+    header h1 { font-size: 1.5rem; }
+    main { padding: 24px 18px 48px; }
+    .today .jnum { font-size: 2.8rem; }
+    .panel { padding: 16px; }
+    .log .bar-wrap { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="eggs.html" data-en="&larr; All egg notes" data-zh="&larr; 所有鸡蛋笔记">&larr; All egg notes</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <h1 data-en="Egg Date Decoder" data-zh="鸡蛋日期解码器">Egg Date Decoder</h1>
+    <div class="meta" data-en="Read the 3-digit stamp on the carton before you buy"
+         data-zh="买之前先看懂纸盒上那三位数">Read the 3-digit stamp on the carton before you buy</div>
+  </header>
+
+  <main>
+    <div class="today">
+      <div>
+        <div class="label" data-en="Today is Julian day" data-zh="今天是儒略日">Today is Julian day</div>
+        <div class="jnum" id="today-j">&mdash;</div>
+        <div class="date" id="today-date">&mdash;</div>
+      </div>
+      <div style="font-size:0.88rem; opacity:0.8; max-width:230px;"
+           data-en="A carton stamped with this number was packed today. Lower number = older egg."
+           data-zh="盒上印着这个数字，就是今天装盒的。数字越小，蛋越老。">A carton stamped with this number was packed today. Lower number = older egg.</div>
+    </div>
+
+    <div class="panel">
+      <h2 data-en="Decode a carton" data-zh="解码一盒蛋">Decode a carton</h2>
+      <p class="hint" data-en="Type the 3-digit number stamped near the plant code (P-1234) on the short end of the carton."
+         data-zh="输入纸盒短边上、工厂代码（P-1234）旁边的那三位数。">Type the 3-digit number stamped near the plant code (P-1234) on the short end of the carton.</p>
+      <div class="entry">
+        <input type="number" id="jin" min="1" max="366" inputmode="numeric" placeholder="000" aria-label="Julian pack date" />
+        <span class="entry-label" id="entry-label"
+              data-en="Julian pack date, 1&ndash;365" data-zh="装盒儒略日，1–365">Julian pack date, 1&ndash;365</span>
+      </div>
+      <div id="verdict" hidden></div>
+      <ul class="dates" id="dates" hidden></ul>
+      <div class="btn-row" id="save-row" hidden>
+        <button type="button" class="btn" id="save-btn" data-en="Log this purchase" data-zh="记录这次购买">Log this purchase</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 data-en="Purchase log" data-zh="购买记录">Purchase log</h2>
+      <p class="hint" data-en="How old PCC's eggs actually are when you buy them. Saved in this browser only."
+         data-zh="PCC 的蛋到你手上时究竟有多新。只保存在这台浏览器里。">How old PCC's eggs actually are when you buy them. Saved in this browser only.</p>
+      <div class="stats" id="stats" hidden></div>
+      <ul class="log" id="log"></ul>
+      <p class="empty" id="log-empty"
+         data-en="No entries yet. Decode a carton above, then tap &ldquo;Log this purchase.&rdquo;"
+         data-zh="还没有记录。先在上面解码一盒蛋，再点&ldquo;记录这次购买&rdquo;。">No entries yet. Decode a carton above, then tap "Log this purchase."</p>
+    </div>
+
+    <div class="panel ref">
+      <h2 data-en="What the age means" data-zh="不同天数意味着什么">What the age means</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-en="Age" data-zh="天数">Age</th>
+              <th data-en="State" data-zh="状态">State</th>
+              <th data-en="Best for" data-zh="适合做什么">Best for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-en="0&ndash;7 days" data-zh="0–7 天">0&ndash;7 days</td>
+              <td data-en="Peak" data-zh="巅峰">Peak</td>
+              <td data-en="Poaching, sunny-side-up, tamagoyaki &mdash; the white still holds together. Too fresh to peel well hard-boiled." data-zh="水波蛋、太阳蛋、玉子烧——蛋白还很紧实。此时水煮很难剥壳。">Poaching, sunny-side-up, tamagoyaki &mdash; the white still holds together. Too fresh to peel well hard-boiled.</td>
+            </tr>
+            <tr>
+              <td data-en="8&ndash;21 days" data-zh="8–21 天">8&ndash;21 days</td>
+              <td data-en="Prime" data-zh="好用">Prime</td>
+              <td data-en="Anything. Hard-boiled eggs finally peel cleanly from about day 10." data-zh="什么都行。大约第 10 天起，水煮蛋才好剥壳。">Anything. Hard-boiled eggs finally peel cleanly from about day 10.</td>
+            </tr>
+            <tr>
+              <td data-en="22&ndash;35 days" data-zh="22–35 天">22&ndash;35 days</td>
+              <td data-en="Fine, cooked" data-zh="熟食尚可">Fine, cooked</td>
+              <td data-en="Baking, scrambling, custards. The white spreads thin in a pan." data-zh="烘焙、炒蛋、蛋羹。下锅时蛋白会摊得很开。">Baking, scrambling, custards. The white spreads thin in a pan.</td>
+            </tr>
+            <tr>
+              <td data-en="Over 35 days" data-zh="超过 35 天">Over 35 days</td>
+              <td data-en="Check it" data-zh="先验一下">Check it</td>
+              <td data-en="Float test: a fresh egg lies flat in water, an old one stands up or floats. A floater goes in the bin." data-zh="浮水测试：新鲜蛋在水里平躺，老蛋会立起来或浮起来。浮起来的就扔掉。">Float test: a fresh egg lies flat in water, an old one stands up or floats. A floater goes in the bin.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint" style="margin-top:14px;"
+         data-en="Ignore the printed &ldquo;sell-by&rdquo; date &mdash; it can be set up to 30 days after packing, so two cartons sharing a sell-by can differ by two weeks in real age."
+         data-zh="别看印着的&ldquo;sell-by&rdquo;日期——它可以定在装盒后 30 天内任意一天，所以 sell-by 相同的两盒蛋，实际年龄可能差两周。">Ignore the printed "sell-by" date &mdash; it can be set up to 30 days after packing, so two cartons sharing a sell-by can differ by two weeks in real age.</p>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+
+  <script src="../assets/lang.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var DAY = 86400000;
+    var LOG_KEY = 'shara-egg-log';
+
+    function lang() { return (document.documentElement.lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
+    function midnight(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+    function julianOf(d) {
+      return Math.round((midnight(d) - new Date(d.getFullYear(), 0, 1)) / DAY) + 1;
+    }
+    function dateFromJulian(j, today) {
+      var d = new Date(today.getFullYear(), 0, 1);
+      d.setDate(j);
+      if (midnight(d) > midnight(today)) { d = new Date(today.getFullYear() - 1, 0, 1); d.setDate(j); }
+      return midnight(d);
+    }
+    function addDays(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return midnight(x); }
+    function daysBetween(a, b) { return Math.round((midnight(b) - midnight(a)) / DAY); }
+    function fmt(d, l) {
+      return l === 'zh'
+        ? (d.getMonth() + 1) + '月' + d.getDate() + '日'
+        : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+    function iso(d) {
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function fromIso(s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+    function bi(el, en, zh) { el.setAttribute('data-en', en); el.setAttribute('data-zh', zh); el.innerHTML = lang() === 'zh' ? zh : en; }
+
+    var today = midnight(new Date());
+    var todayJ = julianOf(today);
+
+    var elTodayJ = document.getElementById('today-j');
+    var elTodayDate = document.getElementById('today-date');
+    var jin = document.getElementById('jin');
+    var elVerdict = document.getElementById('verdict');
+    var elDates = document.getElementById('dates');
+    var elSaveRow = document.getElementById('save-row');
+    var elLog = document.getElementById('log');
+    var elLogEmpty = document.getElementById('log-empty');
+    var elStats = document.getElementById('stats');
+
+    function loadLog() {
+      try { var raw = localStorage.getItem(LOG_KEY); return raw ? JSON.parse(raw) : []; }
+      catch (e) { return []; }
+    }
+    function saveLog(list) {
+      try { localStorage.setItem(LOG_KEY, JSON.stringify(list)); } catch (e) {}
+    }
+
+    function band(age) {
+      if (age <= 7) return { cls: 'fresh', en: 'Peak — poach it, fry it, don’t save it for baking.', zh: '巅峰——拿去做水波蛋、煎蛋，别留着烘焙。' };
+      if (age <= 21) return { cls: 'fresh', en: 'Prime — good for anything, including hard-boiling.', zh: '好用——什么都能做，水煮也没问题。' };
+      if (age <= 35) return { cls: '', en: 'Fine cooked — baking, scrambling, custards.', zh: '熟食尚可——烘焙、炒蛋、蛋羹。' };
+      return { cls: 'aging', en: 'Old — float-test before using.', zh: '偏老——用之前先做浮水测试。' };
+    }
+
+    function ageWord(n, l) {
+      if (l === 'zh') return n === 0 ? '今天装盒' : n + ' 天';
+      return n === 0 ? 'Packed today' : n + (n === 1 ? ' day old' : ' days old');
+    }
+
+    var current = null;
+
+    function renderDecode() {
+      var v = parseInt(jin.value, 10);
+      if (!v || v < 1 || v > 366) {
+        current = null;
+        elVerdict.hidden = true; elDates.hidden = true; elSaveRow.hidden = true;
+        return;
+      }
+      var pack = dateFromJulian(v, today);
+      var age = daysBetween(pack, today);
+      var b = band(age);
+      current = { j: v, pack: pack, age: age };
+
+      elVerdict.className = 'verdict ' + b.cls;
+      elVerdict.hidden = false;
+      elVerdict.innerHTML = '';
+      var ageEl = document.createElement('div'); ageEl.className = 'age';
+      bi(ageEl, ageWord(age, 'en'), ageWord(age, 'zh'));
+      var saidEl = document.createElement('div'); saidEl.className = 'said';
+      bi(saidEl, b.en, b.zh);
+      var packEl = document.createElement('div'); packEl.className = 'packed';
+      bi(packEl, 'Packed ' + fmt(pack, 'en') + ', ' + pack.getFullYear(), '装盒于 ' + pack.getFullYear() + '年' + fmt(pack, 'zh'));
+      elVerdict.appendChild(ageEl); elVerdict.appendChild(saidEl); elVerdict.appendChild(packEl);
+
+      var rows = [
+        { en: 'Peels well hard-boiled from', zh: '水煮好剥壳（起）', d: addDays(pack, 10) },
+        { en: 'Peak quality through', zh: '最佳品质到', d: addDays(pack, 21) },
+        { en: 'Still fine through', zh: '仍可食用到', d: addDays(pack, 35) }
+      ];
+      elDates.innerHTML = '';
+      elDates.hidden = false;
+      rows.forEach(function (r) {
+        var li = document.createElement('li');
+        if (r.d < today) li.className = 'past';
+        var k = document.createElement('span');
+        bi(k, r.en, r.zh);
+        var d = document.createElement('span'); d.className = 'd';
+        bi(d, fmt(r.d, 'en'), fmt(r.d, 'zh'));
+        li.appendChild(k); li.appendChild(d);
+        elDates.appendChild(li);
+      });
+
+      elSaveRow.hidden = false;
+    }
+
+    function renderLog() {
+      var list = loadLog();
+      elLog.innerHTML = '';
+      if (!list.length) {
+        elLogEmpty.hidden = false;
+        elStats.hidden = true;
+        return;
+      }
+      elLogEmpty.hidden = true;
+
+      var ages = list.map(function (e) { return e.age; });
+      var avg = ages.reduce(function (a, b2) { return a + b2; }, 0) / ages.length;
+      var maxAge = Math.max.apply(null, ages);
+      elStats.hidden = false;
+      elStats.innerHTML = '';
+      [
+        { n: String(list.length), en: 'cartons logged', zh: '盒已记录' },
+        { n: avg.toFixed(1), en: 'days old on average', zh: '天 · 平均到手天数' },
+        { n: String(Math.min.apply(null, ages)) + '–' + String(maxAge), en: 'range, days', zh: '天 · 区间' }
+      ].forEach(function (s) {
+        var box = document.createElement('div'); box.className = 'stat';
+        var n = document.createElement('div'); n.className = 'num'; n.textContent = s.n;
+        var l = document.createElement('div'); l.className = 'lbl';
+        bi(l, s.en, s.zh);
+        box.appendChild(n); box.appendChild(l);
+        elStats.appendChild(box);
+      });
+
+      var scale = Math.max(maxAge, 14);
+      list.slice().sort(function (a, b2) { return b2.bought.localeCompare(a.bought); }).forEach(function (e) {
+        var li = document.createElement('li');
+        var code = document.createElement('span'); code.className = 'code';
+        code.textContent = String(e.j).padStart(3, '0');
+        var wrap = document.createElement('span'); wrap.className = 'bar-wrap';
+        var bar = document.createElement('span'); bar.className = 'bar' + (e.age > 21 ? ' aging' : '');
+        bar.style.width = Math.max(4, Math.round((e.age / scale) * 110)) + 'px';
+        var days = document.createElement('span'); days.className = 'days';
+        bi(days, e.age + (e.age === 1 ? ' day' : ' days'), e.age + ' 天');
+        var when = document.createElement('span'); when.className = 'when';
+        var bd = fromIso(e.bought);
+        bi(when, 'bought ' + fmt(bd, 'en'), fmt(bd, 'zh') + ' 买');
+        wrap.appendChild(bar); wrap.appendChild(days); wrap.appendChild(when);
+        var del = document.createElement('button');
+        del.type = 'button'; del.className = 'del'; del.textContent = '×';
+        del.setAttribute('aria-label', 'Remove entry');
+        del.addEventListener('click', function () {
+          var l2 = loadLog().filter(function (x) { return !(x.j === e.j && x.bought === e.bought); });
+          saveLog(l2); renderLog();
+        });
+        li.appendChild(code); li.appendChild(wrap); li.appendChild(del);
+        elLog.appendChild(li);
+      });
+    }
+
+    document.getElementById('save-btn').addEventListener('click', function () {
+      if (!current) return;
+      var list = loadLog();
+      list.push({ j: current.j, pack: iso(current.pack), bought: iso(today), age: current.age });
+      saveLog(list);
+      renderLog();
+    });
+
+    jin.addEventListener('input', renderDecode);
+
+    document.querySelectorAll('.lang-toggle button').forEach(function (b) {
+      b.addEventListener('click', function () { renderDecode(); renderLog(); });
+    });
+
+    elTodayJ.textContent = String(todayJ).padStart(3, '0');
+    bi(elTodayDate, today.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' }),
+       today.getFullYear() + '年' + (today.getMonth() + 1) + '月' + today.getDate() + '日');
+    renderDecode();
+    renderLog();
+  })();
+  </script>
+</body>
+</html>

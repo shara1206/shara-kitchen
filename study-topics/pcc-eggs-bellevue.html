@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="贝尔维尤最好的鸡蛋？ — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Best Eggs Around Bellevue &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; --good:#4a8a4a; --ok:#b8902a; --bad:#b04a3a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 760px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 760px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 760px; margin: 8px auto 0; opacity: 0.92; font-size: 0.95rem; font-style: italic; }
+  main { max-width: min(92vw, 760px); margin: 0 auto; padding: 36px 24px 60px; }
+  .tldr { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tldr h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .tldr p { margin: 0; }
+  h2.section { font-size: 1.35rem; margin: 36px 0 12px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  p { margin: 12px 0; }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 16px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tier.best { border-left: 5px solid var(--good); }
+  .tier.caution { border-left: 5px solid var(--ok); }
+  .tier-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .tier-header h3 { margin: 0; font-size: 1.2rem; }
+  .tier.best h3 { color: var(--good); }
+  .tier.caution h3 { color: var(--ok); }
+  .stars { font-size: 1.1rem; letter-spacing: 2px; }
+  .tier .desc { color: var(--muted); margin: 4px 0 12px; font-size: 0.95rem; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 18px 0; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .stat .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); line-height: 1.2; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .stat .label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  .callout { background: #fff4e0; padding: 14px 18px; border-radius: 6px; border: 1px dashed var(--border); margin: 18px 0; }
+  .callout strong { color: var(--accent); }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 18px 0; }
+  table { width: 100%; min-width: 420px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  ul.clean { padding-left: 22px; }
+  ul.clean li { margin: 8px 0; }
+  .sources { margin-top: 40px; padding: 18px 22px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; }
+  .sources h3 { margin: 0 0 10px; color: var(--accent); }
+  .sources ul { padding-left: 20px; margin: 0; }
+  .sources a { color: var(--accent); word-break: break-word; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+  @media (max-width: 640px) {
+    header { padding: 26px 18px; }
+    header h1 { font-size: 1.55rem; }
+    main { padding: 26px 18px 48px; }
+    .tier, .tldr, .sources { padding: 16px 16px; }
+    .stat-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+    .stat .num { font-size: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="eggs.html" data-en="&larr; All egg notes" data-zh="&larr; 所有鸡蛋笔记">&larr; All egg notes</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <h1 data-en="Best Eggs Around Bellevue: Is PCC Mobile Pastured It?" data-zh="贝尔维尤最好的鸡蛋：PCC Mobile Pastured 是最优解吗？">Best Eggs Around Bellevue: Is PCC Mobile Pastured It?</h1>
+    <div class="meta" data-en="Local buying decision &middot; Sept 20, 2026"
+         data-zh="本地选购结论 &middot; 2026年9月20日">Local buying decision &middot; Sept 20, 2026</div>
+  </header>
+
+  <main>
+    <div class="tldr">
+      <h2 data-en="TL;DR" data-zh="摘要">TL;DR</h2>
+      <p data-en="PCC Mobile Pastured is the best <em>supermarket</em> egg around Bellevue by a wide margin &mdash; but it is not the best egg available to me. Buy it as the default staple; buy farmers-market eggs when the egg <em>is</em> the dish."
+         data-zh="在贝尔维尤一带，PCC Mobile Pastured 是<em>超市里</em>最好的鸡蛋，而且领先明显——但它不是我能买到的最好的鸡蛋。日常常备买它；当鸡蛋本身就是主角的时候，买农贸市场的蛋。">PCC Mobile Pastured is the best <em>supermarket</em> egg around Bellevue by a wide margin &mdash; but it is not the best egg available to me. Buy it as the default staple; buy farmers-market eggs when the egg <em>is</em> the dish.</p>
+    </div>
+
+    <h2 class="section" data-en="Where it actually ranks" data-zh="它究竟排在什么位置">Where it actually ranks</h2>
+    <p data-en="PCC's own private-label Mobile Pastured line is one of only about 31 egg lines nationwide with the Cornucopia Institute's top 5-egg rating. The numbers behind that rating are genuinely strong, not marketing:"
+       data-zh="PCC 自有品牌 Mobile Pastured 是全美仅约 31 个获得 Cornucopia Institute 最高 5 颗鸡蛋评级的鸡蛋产品线之一。支撑这个评级的数字是真的，不是包装话术：">PCC's own private-label Mobile Pastured line is one of only about 31 egg lines nationwide with the Cornucopia Institute's top 5-egg rating. The numbers behind that rating are genuinely strong, not marketing:</p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="num">1,385<span style="font-size:0.9rem;color:var(--muted);">/1,700</span></div>
+        <div class="label" data-en="Cornucopia score (5-egg tier)" data-zh="Cornucopia 得分（5 颗鸡蛋档）">Cornucopia score (5-egg tier)</div>
+      </div>
+      <div class="stat">
+        <div class="num">2,400</div>
+        <div class="label" data-en="Birds per mobile coop &mdash; vs. tens of thousands in a typical &ldquo;pasture-raised&rdquo; barn" data-zh="每个移动鸡舍的鸡数——普通&ldquo;放牧&rdquo;鸡舍动辄数万只">Birds per mobile coop &mdash; vs. tens of thousands in a typical "pasture-raised" barn</div>
+      </div>
+      <div class="stat">
+        <div class="num">200+ ft&sup2;</div>
+        <div class="label" data-en="Outdoor space per bird &mdash; the certification floor is 108 ft&sup2;" data-zh="每只鸡的户外面积——认证下限只有 108 平方英尺">Outdoor space per bird &mdash; the certification floor is 108 ft&sup2;</div>
+      </div>
+      <div class="stat">
+        <div class="num">10 <span style="font-size:0.9rem;color:var(--muted);" data-en="wks" data-zh="周">wks</span></div>
+        <div class="label" data-en="Age when chicks first go outdoors (weather permitting)" data-zh="小鸡首次放到户外的周龄（视天气而定）">Age when chicks first go outdoors (weather permitting)</div>
+      </div>
+    </div>
+
+    <div class="tier best">
+      <div class="tier-header">
+        <h3 data-en="What the 5-egg rating is actually rewarding" data-zh="5 颗鸡蛋评级到底在奖励什么">What the 5-egg rating is actually rewarding</h3>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </div>
+      <ul class="clean">
+        <li data-en="<strong>The coops move.</strong> Birds get fresh forage on rotation instead of a bare, permanently trampled dirt yard &mdash; this is the single biggest difference from brands that merely hold the &ldquo;pasture-raised&rdquo; certification."
+            data-zh="<strong>鸡舍会移动。</strong>鸡群轮换到新鲜牧草上，而不是长期踩秃的光土场地——这是它和那些只是拿到&ldquo;放牧&rdquo;认证的品牌最大的区别。"><strong>The coops move.</strong> Birds get fresh forage on rotation instead of a bare, permanently trampled dirt yard &mdash; this is the single biggest difference from brands that merely hold the "pasture-raised" certification.</li>
+        <li data-en="<strong>No beak trimming.</strong> Allowed under most organic certifications; not done here."
+            data-zh="<strong>不断喙。</strong>大多数有机认证是允许断喙的；这里没有做。"><strong>No beak trimming.</strong> Allowed under most organic certifications; not done here.</li>
+        <li data-en="<strong>Stacked certifications:</strong> Certified Humane + Non-GMO Project + Salmon Safe, plus on-farm manure composting and regenerative practices."
+            data-zh="<strong>多重认证：</strong>Certified Humane + Non-GMO Project + Salmon Safe，另有农场堆肥和再生农业做法。"><strong>Stacked certifications:</strong> Certified Humane + Non-GMO Project + Salmon Safe, plus on-farm manure composting and regenerative practices.</li>
+        <li data-en="<strong>Transparency.</strong> Cornucopia noted the supplier was openly cooperative during its investigation &mdash; most 1&ndash;2 egg brands were not."
+            data-zh="<strong>透明度。</strong>Cornucopia 特别指出该供应商在调查中主动配合——大部分 1–2 颗鸡蛋的品牌并不配合。"><strong>Transparency.</strong> Cornucopia noted the supplier was openly cooperative during its investigation &mdash; most 1&ndash;2 egg brands were not.</li>
+      </ul>
+    </div>
+
+    <h2 class="section" data-en="The honest caveats" data-zh="需要诚实面对的两点">The honest caveats</h2>
+    <div class="tier caution">
+      <div class="tier-header">
+        <h3 data-en="Two things the rating doesn't capture" data-zh="评级没有覆盖的两件事">Two things the rating doesn't capture</h3>
+      </div>
+      <ul class="clean">
+        <li data-en="<strong>1. It's a contract operation, not a small farm.</strong> The supplier (Wilcox-affiliated) runs <em>mostly conventional</em> production on the same property &mdash; organic/pastured is the minority line. Cornucopia flagged this explicitly. Not disqualifying, but it is not the mental image of a small family farm the carton suggests."
+            data-zh="<strong>1. 这是合同代工，不是小农场。</strong>供应商（Wilcox 体系）在同一块地上以<em>常规（非有机）</em>生产为主，有机/放牧只是其中的少数产线。Cornucopia 明确标注了这一点。这不构成否决，但和包装暗示的&ldquo;小家庭农场&rdquo;画面不是一回事。"><strong>1. It's a contract operation, not a small farm.</strong> The supplier (Wilcox-affiliated) runs <em>mostly conventional</em> production on the same property &mdash; organic/pastured is the minority line. Cornucopia flagged this explicitly. Not disqualifying, but it is not the mental image of a small family farm the carton suggests.</li>
+        <li data-en="<strong>2. Freshness is the real gap.</strong> Retail eggs are typically 1&ndash;3 weeks old at shelf; direct-from-farm eggs are days old. That difference is far more visible in a poached egg, a custard, or a plain tamagoyaki than any welfare score is."
+            data-zh="<strong>2. 真正的差距在新鲜度。</strong>超市鸡蛋上架时通常已有 1–3 周；农场直供的只有几天。做水波蛋、布丁、玉子烧这类&ldquo;蛋是主角&rdquo;的菜时，这个差别比任何福利评分都明显。"><strong>2. Freshness is the real gap.</strong> Retail eggs are typically 1&ndash;3 weeks old at shelf; direct-from-farm eggs are days old. That difference is far more visible in a poached egg, a custard, or a plain tamagoyaki than any welfare score is.</li>
+      </ul>
+    </div>
+
+    <h2 class="section" data-en="Where to buy &mdash; from Bellevue" data-zh="从贝尔维尤出发去哪买">Where to buy &mdash; from Bellevue</h2>
+    <p data-en="Ranked by effort. Distances are approximate driving distance from downtown Bellevue."
+       data-zh="按折腾程度排序。距离为从贝尔维尤市中心出发的大致驾车距离。">Ranked by effort. Distances are approximate driving distance from downtown Bellevue.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Where" data-zh="地点">Where</th>
+            <th data-en="Address" data-zh="地址">Address</th>
+            <th data-en="Distance" data-zh="距离">Distance</th>
+            <th data-en="When" data-zh="营业时间">When</th>
+            <th data-en="What to get" data-zh="买什么">What to get</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PCC Bellevue</strong></td>
+            <td>11615 NE 4th St, Bellevue 98004</td>
+            <td data-en="~1 mi / 5 min" data-zh="约 1 英里 / 5 分钟">~1 mi / 5 min</td>
+            <td data-en="Daily 6a&ndash;11p" data-zh="每天 6:00–23:00">Daily 6a&ndash;11p</td>
+            <td data-en="Mobile Pastured (staple); Misty Meadows or Windy N for the upgrade" data-zh="Mobile Pastured（常备）；想升级就拿 Misty Meadows 或 Windy N">Mobile Pastured (staple); Misty Meadows or Windy N for the upgrade</td>
+          </tr>
+          <tr>
+            <td><strong>Bellevue Farmers Market</strong></td>
+            <td data-en="1717 Bellevue Way NE (Bellevue Presbyterian lot), Bellevue 98004" data-zh="1717 Bellevue Way NE（Bellevue Presbyterian 教堂停车场），Bellevue 98004">1717 Bellevue Way NE (Bellevue Presbyterian lot), Bellevue 98004</td>
+            <td data-en="~1.5 mi / 6 min" data-zh="约 1.5 英里 / 6 分钟">~1.5 mi / 6 min</td>
+            <td data-en="Thu 3&ndash;7p, through Oct 1" data-zh="周四 15:00–19:00，开到 10 月 1 日">Thu 3&ndash;7p, through Oct 1</td>
+            <td data-en="Foothills Farm (Sedro-Woolley) &mdash; days-old eggs; vendor mix varies weekly" data-zh="Foothills Farm（Sedro-Woolley）——刚下几天的蛋；每周摊位会变">Foothills Farm (Sedro-Woolley) &mdash; days-old eggs; vendor mix varies weekly</td>
+          </tr>
+          <tr>
+            <td><strong>Crossroads Farmers Market</strong></td>
+            <td>15600 NE 8th St, Bellevue 98008</td>
+            <td data-en="~4 mi / 10 min" data-zh="约 4 英里 / 10 分钟">~4 mi / 10 min</td>
+            <td data-en="Tue 10a&ndash;6p &mdash; last day Sept 23" data-zh="周二 10:00–18:00——9 月 23 日收摊">Tue 10a&ndash;6p &mdash; last day Sept 23</td>
+            <td data-en="Closing for the season this week &mdash; go now or wait until June" data-zh="本周就是本季最后一场——要去就趁现在，否则等明年 6 月">Closing for the season this week &mdash; go now or wait until June</td>
+          </tr>
+          <tr>
+            <td>PCC Kirkland</td>
+            <td>430 Kirkland Way, Kirkland 98033</td>
+            <td data-en="~7 mi / 13 min" data-zh="约 7 英里 / 13 分钟">~7 mi / 13 min</td>
+            <td data-en="Daily 6a&ndash;11p" data-zh="每天 6:00–23:00">Daily 6a&ndash;11p</td>
+            <td data-en="Same egg set &mdash; useful if Bellevue is out of the small-farm brands" data-zh="鸡蛋种类相同——贝尔维尤店小农场品牌断货时可以来这">Same egg set &mdash; useful if Bellevue is out of the small-farm brands</td>
+          </tr>
+          <tr>
+            <td>PCC Redmond</td>
+            <td>11435 Avondale Rd NE, Redmond 98052</td>
+            <td data-en="~9 mi / 15 min" data-zh="约 9 英里 / 15 分钟">~9 mi / 15 min</td>
+            <td data-en="Daily 6a&ndash;11p" data-zh="每天 6:00–23:00">Daily 6a&ndash;11p</td>
+            <td data-en="Same as above" data-zh="同上">Same as above</td>
+          </tr>
+          <tr>
+            <td>U-District Farmers Market</td>
+            <td>5031 University Way NE, Seattle 98105</td>
+            <td data-en="~12 mi / 20&ndash;30 min" data-zh="约 12 英里 / 20–30 分钟">~12 mi / 20&ndash;30 min</td>
+            <td data-en="Sat, year-round" data-zh="周六，全年">Sat, year-round</td>
+            <td data-en="Year-round farm-direct eggs once the Eastside markets close" data-zh="东区市场收摊后，全年都能买到农场直供蛋">Year-round farm-direct eggs once the Eastside markets close</td>
+          </tr>
+          <tr>
+            <td>Ballard Farmers Market</td>
+            <td data-en="Ballard Ave NW (between 20th &amp; 22nd), Seattle 98107" data-zh="Ballard Ave NW（20th 与 22nd 之间），Seattle 98107">Ballard Ave NW (between 20th &amp; 22nd), Seattle 98107</td>
+            <td data-en="~14 mi / 25&ndash;35 min" data-zh="约 14 英里 / 25–35 分钟">~14 mi / 25&ndash;35 min</td>
+            <td data-en="Sun, year-round" data-zh="周日，全年">Sun, year-round</td>
+            <td data-en="Largest farm-direct selection in the region" data-zh="本地区农场直供选择最多的市场">Largest farm-direct selection in the region</td>
+          </tr>
+          <tr>
+            <td data-en="Skagit River Ranch (farm)" data-zh="Skagit River Ranch（农场）">Skagit River Ranch (farm)</td>
+            <td>28778 Utopia Rd, Sedro-Woolley 98284</td>
+            <td data-en="~75 mi / 1h20" data-zh="约 75 英里 / 1 小时 20 分">~75 mi / 1h20</td>
+            <td data-en="Farm pickup by arrangement" data-zh="需预约到农场自提">Farm pickup by arrangement</td>
+            <td data-en="Only worth it combined with a beef order or a Skagit day trip" data-zh="只有顺便买牛肉或去 Skagit 一日游时才值得">Only worth it combined with a beef order or a Skagit day trip</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p data-en="Expect roughly 30&ndash;50% more per dozen at a farmers market than PCC's own label, in exchange for fresher eggs and a shorter supply chain. Confirm market vendor lineups before driving &mdash; the mix changes week to week."
+       data-zh="农贸市场每打价格大约比 PCC 自有品牌贵 30–50%，换来的是更新鲜的蛋和更短的供应链。出发前先确认当周摊位——每周的组合都不一样。">Expect roughly 30&ndash;50% more per dozen at a farmers market than PCC's own label, in exchange for fresher eggs and a shorter supply chain. Confirm market vendor lineups before driving &mdash; the mix changes week to week.</p>
+
+    <h2 class="section" data-en="The other 5-egg Washington farms" data-zh="其他 5 颗鸡蛋评级的华州农场">The other 5-egg Washington farms</h2>
+    <p data-en="All Cornucopia 5-egg rated and smaller than PCC's supplier. The first three are stocked at PCC, so they need no extra trip:"
+       data-zh="都是 Cornucopia 5 颗鸡蛋评级，规模都比 PCC 的供应商小。前三家 PCC 就有售，不用另跑一趟：">All Cornucopia 5-egg rated and smaller than PCC's supplier. The first three are stocked at PCC, so they need no extra trip:</p>
+    <ul class="clean">
+      <li data-en="<strong>Misty Meadows Farm</strong> &mdash; Everson, WA (~100 mi north). Sold at PCC."
+          data-zh="<strong>Misty Meadows Farm</strong>——Everson, WA（往北约 100 英里）。PCC 有售。"><strong>Misty Meadows Farm</strong> &mdash; Everson, WA (~100 mi north). Sold at PCC.</li>
+      <li data-en="<strong>Windy N Ranch</strong> &mdash; Ellensburg, WA (~100 mi east). Sold at PCC; also ships direct."
+          data-zh="<strong>Windy N Ranch</strong>——Ellensburg, WA（往东约 100 英里）。PCC 有售，也可直接订购。"><strong>Windy N Ranch</strong> &mdash; Ellensburg, WA (~100 mi east). Sold at PCC; also ships direct.</li>
+      <li data-en="<strong>Skokomish Valley Farms</strong> &mdash; Shelton, WA (~65 mi southwest). Smallest of the group."
+          data-zh="<strong>Skokomish Valley Farms</strong>——Shelton, WA（西南约 65 英里）。这组里规模最小。"><strong>Skokomish Valley Farms</strong> &mdash; Shelton, WA (~65 mi southwest). Smallest of the group.</li>
+      <li data-en="<strong>Skagit River Ranch</strong> &mdash; Sedro-Woolley, WA. Farmers-market regular in Seattle; best known for grass-fed beef."
+          data-zh="<strong>Skagit River Ranch</strong>——Sedro-Woolley, WA。西雅图农贸市场常客，以草饲牛肉最出名。"><strong>Skagit River Ranch</strong> &mdash; Sedro-Woolley, WA. Farmers-market regular in Seattle; best known for grass-fed beef.</li>
+    </ul>
+
+    <h2 class="section" data-en="The practical call" data-zh="实际结论">The practical call</h2>
+    <ul class="clean">
+      <li data-en="<strong>Default staple:</strong> PCC Mobile Pastured. Best welfare-per-dollar on any shelf I can reach on a normal errand."
+          data-zh="<strong>日常常备：</strong>PCC Mobile Pastured。在我顺路能到的货架上，它的福利性价比最高。"><strong>Default staple:</strong> PCC Mobile Pastured. Best welfare-per-dollar on any shelf I can reach on a normal errand.</li>
+      <li data-en="<strong>When the egg is the dish</strong> (poached, custard, tamagoyaki, egg-drop soup): farmers-market or farm-direct eggs, for age not ethics."
+          data-zh="<strong>当鸡蛋是主角时</strong>（水波蛋、布丁、玉子烧、蛋花汤）：买农贸市场或农场直供的——为的是新鲜度，不是伦理分数。"><strong>When the egg is the dish</strong> (poached, custard, tamagoyaki, egg-drop soup): farmers-market or farm-direct eggs, for age not ethics.</li>
+      <li data-en="<strong>Easy middle path:</strong> Misty Meadows or Windy N, both sold at PCC alongside the private label &mdash; same 5-egg tier, smaller operation, no extra trip."
+          data-zh="<strong>省事的折中：</strong>Misty Meadows 或 Windy N，PCC 就和自有品牌摆在一起——同为 5 颗鸡蛋评级，农场规模更小，不用多跑一趟。"><strong>Easy middle path:</strong> Misty Meadows or Windy N, both sold at PCC alongside the private label &mdash; same 5-egg tier, smaller operation, no extra trip.</li>
+      <li data-en="<strong>Still skip:</strong> generic store-brand &ldquo;organic&rdquo; eggs (Kirkland, 365, Simple Truth, Trader Joe's) &mdash; see the brand comparison note; they rate 1&ndash;2 eggs."
+          data-zh="<strong>依然避开：</strong>普通超市自营&ldquo;有机&rdquo;鸡蛋（Kirkland、365、Simple Truth、Trader Joe's）——见品牌对比笔记，它们只有 1–2 颗鸡蛋评级。"><strong>Still skip:</strong> generic store-brand "organic" eggs (Kirkland, 365, Simple Truth, Trader Joe's) &mdash; see the brand comparison note; they rate 1&ndash;2 eggs.</li>
+    </ul>
+
+    <div class="callout">
+      <p data-en="<strong>Correction to an earlier assumption:</strong> Vital Farms is <em>not</em> a lower-tier brand &mdash; it also holds a Cornucopia 5-egg rating and is listed in the top tier of the <a href=&quot;organic-eggs-brands.html&quot;>brand comparison note</a>. The national brand worth being skeptical of is the generic store-label &ldquo;organic&rdquo; carton, not Vital Farms."
+         data-zh="<strong>修正一个先前的判断：</strong>Vital Farms <em>并不是</em>低档品牌——它同样是 Cornucopia 5 颗鸡蛋评级，在<a href=&quot;organic-eggs-brands.html&quot;>品牌对比笔记</a>里也列在顶级档。真正该警惕的是超市自营的&ldquo;有机&rdquo;鸡蛋，而不是 Vital Farms。"><strong>Correction to an earlier assumption:</strong> Vital Farms is <em>not</em> a lower-tier brand &mdash; it also holds a Cornucopia 5-egg rating and is listed in the top tier of the <a href="organic-eggs-brands.html">brand comparison note</a>. The national brand worth being skeptical of is the generic store-label "organic" carton, not Vital Farms.</p>
+    </div>
+
+    <div class="sources">
+      <h3 data-en="Sources" data-zh="来源">Sources</h3>
+      <ul>
+        <li><a href="https://www.cornucopia.org/scorecard/eggs/pcc-organic-eggs/" target="_blank">Cornucopia Institute &mdash; PCC Organic Eggs scorecard</a></li>
+        <li><a href="https://www.pccmarkets.com/sound-consumer/2023-06/see-how-your-eggs-scored-in-watchdog-ratings/" target="_blank">PCC Sound Consumer &mdash; See how your eggs scored in watchdog ratings</a></li>
+        <li><a href="https://www.pccmarkets.com/sound-consumer/2020-03/pcc-sets-a-new-standard-for-sustainable-eggs/" target="_blank">PCC Sound Consumer &mdash; PCC sets a new standard for sustainable eggs</a></li>
+        <li><a href="https://mistymeadowsfarm.com/eggs/" target="_blank">Misty Meadows Farm &mdash; Eggs</a></li>
+        <li><a href="https://www.pccmarkets.com/stores/" target="_blank">PCC Community Markets &mdash; Store locations</a></li>
+        <li><a href="https://bellevuefarmersmarket.org/" target="_blank">Bellevue Farmers Market &mdash; 2026 season &amp; vendors</a></li>
+        <li><a href="https://crossroadsbellevue.com/farmers-market/" target="_blank">Crossroads Bellevue Farmers Market</a></li>
+        <li><a href="https://seattlefarmersmarkets.org/" target="_blank">Neighborhood Farmers Markets &mdash; U-District &amp; Ballard</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>
