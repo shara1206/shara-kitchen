@@ -1,6 +1,6 @@
 {
   "generated": true,
-  "total": 113,
+  "total": 114,
   "categories": [
     {
       "name_en": "Noodles (面条)",
@@ -108,7 +108,7 @@
       "name_en": "Study Topics",
       "name_zh": "学习专题",
       "type": "study",
-      "count": 9
+      "count": 10
     },
     {
       "name_en": "Pages",
@@ -1351,8 +1351,8 @@
       "category_en": "Study Topics",
       "category_zh": "学习专题",
       "image": null,
-      "subtitle_en": "2 notes",
-      "subtitle_zh": "2 篇笔记"
+      "subtitle_en": "4 notes",
+      "subtitle_zh": "4 篇笔记"
     },
     {
       "title_en": "Milk",
@@ -1377,6 +1377,18 @@
       "image": null,
       "subtitle_en": "3 notes + converter",
       "subtitle_zh": "3 篇笔记 + 转换器"
+    },
+    {
+      "title_en": "Starches",
+      "title_zh": "淀粉",
+      "path": "study-topics/dianfen.html",
+      "slug": "dianfen",
+      "type": "study",
+      "category_en": "Study Topics",
+      "category_zh": "学习专题",
+      "image": null,
+      "subtitle_en": "9 starches",
+      "subtitle_zh": "9 种淀粉"
     },
     {
       "title_en": "Seafood",
