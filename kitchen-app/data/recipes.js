@@ -1,7 +1,7 @@
 window.__RECIPES__ = {
   "generated": true,
   "total": 133,
-  "todo": 21,
+  "todo": 16,
   "sub_notes": 19,
   "categories": [
     {
@@ -247,7 +247,7 @@ window.__RECIPES__ = {
       "desc_en": "",
       "desc_zh": "",
       "sub": false,
-      "status": "todo",
+      "status": "",
       "role": "base"
     },
     {
@@ -264,7 +264,7 @@ window.__RECIPES__ = {
       "desc_en": "",
       "desc_zh": "",
       "sub": false,
-      "status": "todo",
+      "status": "",
       "role": "base"
     },
     {
@@ -366,7 +366,7 @@ window.__RECIPES__ = {
       "desc_en": "",
       "desc_zh": "",
       "sub": false,
-      "status": "todo",
+      "status": "",
       "role": "dish"
     },
     {
@@ -1539,7 +1539,7 @@ window.__RECIPES__ = {
       "desc_en": "",
       "desc_zh": "",
       "sub": false,
-      "status": "todo",
+      "status": "",
       "role": "base"
     },
     {
@@ -1556,7 +1556,7 @@ window.__RECIPES__ = {
       "desc_en": "",
       "desc_zh": "",
       "sub": false,
-      "status": "todo",
+      "status": "",
       "role": "base"
     },
     {
