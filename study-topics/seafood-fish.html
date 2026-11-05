@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="鱼 分类 用途 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fish Guide — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: min(92vw, 900px); margin: 0 auto 12px; font-family: 'Helvetica', 'PingFang SC', sans-serif; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: min(92vw, 900px); margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: min(92vw, 900px); margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
+  .empty-state { background: var(--card); border: 2px dashed var(--border); border-radius: 10px; padding: 40px 32px; text-align: center; color: var(--muted); margin-bottom: 32px; }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state h2 { margin: 0 0 10px; color: var(--accent); font-size: 1.2rem; }
+  .empty-state p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+  .sections { display: grid; gap: 20px; }
+  .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 26px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .section-card h3 { margin: 0 0 12px; color: var(--accent); font-size: 1.05rem; border-bottom: 1px dashed var(--border); padding-bottom: 8px; font-family: 'Helvetica', 'PingFang SC', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; }
+  .section-card .content { min-height: 48px; color: var(--muted); font-style: italic; font-size: 0.95rem; }
+  .section-card .content.filled { color: var(--ink); font-style: normal; }
+  .recipe-notes { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-top: 0; }
+  .recipe-notes h3 { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+  .recipe-notes h3:first-child { margin-top: 0; }
+  .recipe-notes p { margin: 8px 0; line-height: 1.7; }
+  .recipe-notes ul, .recipe-notes ol { margin: 8px 0 8px 20px; }
+  .recipe-notes li { margin: 4px 0; line-height: 1.7; }
+  .recipe-notes a { color: var(--accent); }
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  /* ── Header photo slot ── */
+  .header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; }
+  .header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .header-icon-slot { width: 180px; height: 180px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 5rem; line-height: 1; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Fish Guide" data-zh="鱼 分类 用途">Fish Guide</h1>
+        <div class="meta" data-en="Study Notes" data-zh="学习笔记">Study Notes</div>
+      </div>
+      <div class="header-icon-slot">🐠</div>
+    </div>
+  </header>
+
+    <main>
+    <div class="recipe-notes">
+
+      <h3 data-en="Common Fish — Types &amp; Uses" data-zh="常见鱼类 · 分类与用途">常见鱼类 · 分类与用途</h3>
+      <ul>
+        <li data-en="&lt;strong&gt;Bass&lt;/strong&gt; (海鲈鱼) — Tender flesh; great steamed or braised." data-zh="&lt;strong&gt;Bass&lt;/strong&gt; 海鲈鱼 — 肉质鲜嫩，清蒸或烧均可"><strong>Bass</strong> 海鲈鱼 — 肉质鲜嫩，清蒸或烧均可</li>
+        <li data-en="&lt;strong&gt;Ribbonfish / Hairtail&lt;/strong&gt; (带鱼) — Marinate with pepper and salt, then pan-fry until golden and crispy." data-zh="&lt;strong&gt;Ribbonfish&lt;/strong&gt; 带鱼 — 用胡椒粉、盐腌好，然后煎得金黄香脆"><strong>Ribbonfish</strong> 带鱼 — 用胡椒粉、盐腌好，然后煎得金黄香脆</li>
+        <li data-en="&lt;strong&gt;Buffalo fish&lt;/strong&gt; (水牛鱼)" data-zh="&lt;strong&gt;Buffalo fish&lt;/strong&gt; 水牛鱼"><strong>Buffalo fish</strong> 水牛鱼</li>
+        <li data-en="&lt;strong&gt;Carp&lt;/strong&gt; (鲤鱼) — Scallion-roasted carp, red-braised carp." data-zh="&lt;strong&gt;Carp&lt;/strong&gt; 鲤鱼 — 葱烤鲤鱼、红烧鲤鱼"><strong>Carp</strong> 鲤鱼 — 葱烤鲤鱼、红烧鲤鱼</li>
+        <li data-en="&lt;strong&gt;Catfish&lt;/strong&gt; (鲶鱼) — Fresh catfish makes excellent suan cai fish (fish with pickled mustard greens)." data-zh="&lt;strong&gt;Catfish&lt;/strong&gt; 鲶鱼 — 新鲜鲶鱼做酸菜鱼很好吃"><strong>Catfish</strong> 鲶鱼 — 新鲜鲶鱼做酸菜鱼很好吃</li>
+        <li data-en="&lt;strong&gt;Cod&lt;/strong&gt; (鳕鱼) — Average texture; works for fish fillets or diced fish dishes. Sold as cod fillets." data-zh="&lt;strong&gt;Cod&lt;/strong&gt; 鳕鱼 — 肉质一般，可做鱼片或鱼米；Cod Fillets 鳕鱼块"><strong>Cod</strong> 鳕鱼 — 肉质一般，可做鱼片或鱼米；Cod Fillets 鳕鱼块</li>
+        <li data-en="&lt;strong&gt;Conger eel&lt;/strong&gt; (鳗鱼)" data-zh="&lt;strong&gt;Conger (Eel)&lt;/strong&gt; 鳗鱼"><strong>Conger (Eel)</strong> 鳗鱼</li>
+        <li data-en="&lt;strong&gt;Croaker / Yellow Croaker&lt;/strong&gt; (黄花鱼) — Very tender flesh; best steamed." data-zh="&lt;strong&gt;Croaker&lt;/strong&gt; 黄花鱼 — 肉质很嫩，清蒸"><strong>Croaker</strong> 黄花鱼 — 肉质很嫩，清蒸</li>
+        <li data-en="&lt;strong&gt;Dace&lt;/strong&gt; (鲮鱼)" data-zh="&lt;strong&gt;Dace&lt;/strong&gt; 鲮鱼"><strong>Dace</strong> 鲮鱼</li>
+        <li data-en="&lt;strong&gt;Drum fish&lt;/strong&gt; (鼓鱼) — Fresh: steam it. Refrigerated: pan-fry, then braise with ginger, garlic-black bean sauce and a splash of water; finish with scallions." data-zh="&lt;strong&gt;Drum fish&lt;/strong&gt; 鼓鱼 — 新鲜的清蒸；冷藏的煎一下，然后加姜汁、蒜蓉豆豉汁、水焖一下，最后下葱花 OK"><strong>Drum fish</strong> 鼓鱼 — 新鲜的清蒸；冷藏的煎一下，然后加姜汁、蒜蓉豆豉汁、水焖一下，最后下葱花 OK</li>
+        <li data-en="&lt;strong&gt;Flounder&lt;/strong&gt; (比目鱼 / 龙利) — Extremely tender; best steamed." data-zh="&lt;strong&gt;Flounder&lt;/strong&gt; 比目鱼（又叫龙利）— 肉质极嫩，清蒸"><strong>Flounder</strong> 比目鱼（又叫龙利）— 肉质极嫩，清蒸</li>
+        <li data-en="&lt;strong&gt;Grouper&lt;/strong&gt; (石斑鱼) — Very tender; good steamed or braised in chunks." data-zh="&lt;strong&gt;Grouper&lt;/strong&gt; 石斑鱼 — 肉质很嫩，清蒸或烧鱼块均可"><strong>Grouper</strong> 石斑鱼 — 肉质很嫩，清蒸或烧鱼块均可</li>
+        <li data-en="&lt;strong&gt;Haddock&lt;/strong&gt; (北大西洋鳕鱼) — North Atlantic cod family." data-zh="&lt;strong&gt;Haddock&lt;/strong&gt; 北大西洋鳕鱼"><strong>Haddock</strong> 北大西洋鳕鱼</li>
+        <li data-en="&lt;strong&gt;Halibut&lt;/strong&gt; (大比目鱼) | &lt;strong&gt;Herring&lt;/strong&gt; (青鱼/鲱); herring roe (鲱鱼子)" data-zh="&lt;strong&gt;Halibut&lt;/strong&gt; 大比目鱼 | &lt;strong&gt;Herring&lt;/strong&gt; 青鱼 / 鲱，Herring roes 鲱鱼子"><strong>Halibut</strong> 大比目鱼 | <strong>Herring</strong> 青鱼 / 鲱，Herring roes 鲱鱼子</li>
+        <li data-en="&lt;strong&gt;Mackerel&lt;/strong&gt; (鲭)" data-zh="&lt;strong&gt;Mackerel&lt;/strong&gt; 鲭"><strong>Mackerel</strong> 鲭</li>
+        <li data-en="&lt;strong&gt;Milkfish&lt;/strong&gt; (虱目鱼) — Pan-fry until golden, then simmer with carrot and taro into a delicious soup." data-zh="&lt;strong&gt;Milkfish&lt;/strong&gt; 虱目鱼 — 煎得金黄后加胡萝卜、芋芩（去皮）煮汤，鲜美无比"><strong>Milkfish</strong> 虱目鱼 — 煎得金黄后加胡萝卜、芋芩（去皮）煮汤，鲜美无比</li>
+        <li data-en="&lt;strong&gt;Mullet&lt;/strong&gt; (鲻鱼) — Fine, tender, and flavorful flesh." data-zh="&lt;strong&gt;Mullet&lt;/strong&gt; 鲻鱼 — 肉质细嫩鲜香"><strong>Mullet</strong> 鲻鱼 — 肉质细嫩鲜香</li>
+        <li data-en="&lt;strong&gt;Octopus&lt;/strong&gt; (章鱼)" data-zh="&lt;strong&gt;Octopus&lt;/strong&gt; 章鱼"><strong>Octopus</strong> 章鱼</li>
+        <li data-en="&lt;strong&gt;Orange roughy&lt;/strong&gt; (多宝鱼) — Tender; good steamed or stir-fried." data-zh="&lt;strong&gt;Orange roughy&lt;/strong&gt; 多宝鱼 — 肉质嫩，清蒸清炒均可"><strong>Orange roughy</strong> 多宝鱼 — 肉质嫩，清蒸清炒均可</li>
+        <li data-en="&lt;strong&gt;Perch&lt;/strong&gt; (河鲈鱼, freshwater) — Tender; good steamed or baked." data-zh="&lt;strong&gt;Perch&lt;/strong&gt; 河鲈鱼（淡水鱼）— 肉质嫩，清蒸或烤均可"><strong>Perch</strong> 河鲈鱼（淡水鱼）— 肉质嫩，清蒸或烤均可</li>
+        <li data-en="&lt;strong&gt;Plaice&lt;/strong&gt; (欧蝶鱼)" data-zh="&lt;strong&gt;Plaice&lt;/strong&gt; 欧蝶鱼"><strong>Plaice</strong> 欧蝶鱼</li>
+        <li data-en="&lt;strong&gt;Red Mullet&lt;/strong&gt; (红鲷)" data-zh="&lt;strong&gt;Red Mullet&lt;/strong&gt; 红鲷"><strong>Red Mullet</strong> 红鲷</li>
+        <li data-en="&lt;strong&gt;Red snapper&lt;/strong&gt; (红鲷鱼) — Firmer texture; fish head makes excellent soup, especially with tofu." data-zh="&lt;strong&gt;Red snapper&lt;/strong&gt; 红鲷鱼 — 肉质较老，可鱼头做汤或加豆腐做鱼汤，较为鲜美"><strong>Red snapper</strong> 红鲷鱼 — 肉质较老，可鱼头做汤或加豆腐做鱼汤，较为鲜美</li>
+        <li data-en="&lt;strong&gt;Salmon&lt;/strong&gt; (三文鱼) — Best as sashimi; also good baked or lightly seared. Can feel oily in soup or heavy frying." data-zh="&lt;strong&gt;Salmon&lt;/strong&gt; 三文鱼 — 做生鱼片最好吃；烤或微煎也不错；但煎或做汤则有些油腻"><strong>Salmon</strong> 三文鱼 — 做生鱼片最好吃；烤或微煎也不错；但煎或做汤则有些油腻</li>
+        <li data-en="&lt;strong&gt;Sea Bream&lt;/strong&gt; (海鲷)" data-zh="&lt;strong&gt;Sea Bream&lt;/strong&gt; 海鲷"><strong>Sea Bream</strong> 海鲷</li>
+        <li data-en="&lt;strong&gt;Shark&lt;/strong&gt; (鲨鱼) — FDA warns of high heavy metal content; limit consumption." data-zh="&lt;strong&gt;Shark&lt;/strong&gt; 鲨鱼 — FDA 说含重金属较高，应少吃"><strong>Shark</strong> 鲨鱼 — FDA 说含重金属较高，应少吃</li>
+        <li data-en="&lt;strong&gt;Swordfish&lt;/strong&gt; (剑鱼) — FDA warns of high heavy metal content; limit consumption." data-zh="&lt;strong&gt;Swordfish&lt;/strong&gt; 剑鱼 — FDA 说含重金属高，应少吃"><strong>Swordfish</strong> 剑鱼 — FDA 说含重金属高，应少吃</li>
+        <li data-en="&lt;strong&gt;Tilapia&lt;/strong&gt; (罗非鱼) — Very tender; good steamed or braised. Also: pan-fry both sides golden, then simmer with water, papaya &amp; peanuts or fuzzy melon &amp; tofu into soup. Lemon slice optional." data-zh="&lt;strong&gt;Tilapia&lt;/strong&gt; 罗非鱼（吴郭鱼 / 非洲鲫）— 肉质很嫩，清蒸或烧均可；也可两面煎金黄后加水、木瓜花生或节瓜豆腐煮鱼汤；亦可加柠檬片"><strong>Tilapia</strong> 罗非鱼（吴郭鱼 / 非洲鲫）— 肉质很嫩，清蒸或烧均可；也可两面煎金黄后加水、木瓜花生或节瓜豆腐煮鱼汤；亦可加柠檬片</li>
+      </ul>
+      <h3 data-en="Crucian Carp Varieties" data-zh="鲫鱼品种">鲫鱼品种</h3>
+      <ul>
+        <li data-en="&lt;strong&gt;Crucian carp&lt;/strong&gt; (欧洲鲫) — Plumper than African carp (tilapia)." data-zh="&lt;strong&gt;Crucian&lt;/strong&gt; 欧洲鲫 — 比非洲鲫肥一些"><strong>Crucian</strong> 欧洲鲫 — 比非洲鲫肥一些</li>
+        <li data-en="&lt;strong&gt;Tilapia&lt;/strong&gt; (非洲鲫 — African carp)" data-zh="&lt;strong&gt;Tilapia&lt;/strong&gt; 非洲鲫"><strong>Tilapia</strong> 非洲鲫</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <span data-en="Built with care &mdash; Shara Wang &copy; 2026"
+          data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span>
+  </footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

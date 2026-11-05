@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="有机鸡蛋品牌对比 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organic Egg Brand Comparison &mdash; Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; --good:#4a8a4a; --ok:#b8902a; --bad:#b04a3a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 760px; margin: 0 auto 12px; }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 760px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 760px; margin: 8px auto 0; opacity: 0.92; font-size: 0.95rem; font-style: italic; }
+  main { max-width: 760px; margin: 0 auto; padding: 36px 24px 60px; }
+  .tldr { background: var(--card); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tldr h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .tldr p { margin: 0; }
+  h2.section { font-size: 1.35rem; margin: 36px 0 12px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 6px; }
+  p { margin: 12px 0; }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 16px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tier.best { border-left: 5px solid var(--good); }
+  .tier.better { border-left: 5px solid var(--ok); }
+  .tier.avoid { border-left: 5px solid var(--bad); }
+  .tier-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .tier-header h3 { margin: 0; font-size: 1.2rem; }
+  .tier.best h3 { color: var(--good); }
+  .tier.better h3 { color: var(--ok); }
+  .tier.avoid h3 { color: var(--bad); }
+  .stars { font-size: 1.1rem; letter-spacing: 2px; }
+  .tier .desc { color: var(--muted); margin: 4px 0 12px; font-size: 0.95rem; }
+  .brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 6px 14px; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.92rem; }
+  .brand-grid span { padding: 4px 0; border-bottom: 1px dotted var(--border); }
+  .callout { background: #fff4e0; padding: 14px 18px; border-radius: 6px; border: 1px dashed var(--border); margin: 18px 0; }
+  .callout strong { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); font-size: 0.95rem; }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--accent-soft); color: #6b3e16; font-family: 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  ul.clean { padding-left: 22px; }
+  ul.clean li { margin: 6px 0; }
+  .sources { margin-top: 40px; padding: 18px 22px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem; }
+  .sources h3 { margin: 0 0 10px; color: var(--accent); }
+  .sources ul { padding-left: 20px; margin: 0; }
+  .sources a { color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="eggs.html" data-en="&larr; All egg notes" data-zh="&larr; 所有鸡蛋笔记">&larr; All egg notes</a>
+      &middot; <a href="../index.html" data-en="Home" data-zh="首页" style="color:white;">Home</a>
+    </div>
+    <h1 data-en="Organic Egg Brand Comparison" data-zh="有机鸡蛋品牌对比">Organic Egg Brand Comparison</h1>
+    <div class="meta" data-en="Source: The Cornucopia Institute Organic Egg Scorecard &middot; May 21, 2026"
+         data-zh="来源：Cornucopia Institute 有机鸡蛋评分卡 &middot; 2026年5月21日">Source: The Cornucopia Institute Organic Egg Scorecard &middot; May 21, 2026</div>
+  </header>
+
+  <main>
+    <div class="tldr">
+      <h2 data-en="TL;DR" data-zh="摘要">TL;DR</h2>
+      <p data-en="The <strong>Cornucopia Institute</strong> is the most trusted independent rater of organic eggs in the US. It's a non-profit, accepts no industry funding, and rates 150+ organic egg brands on 28 criteria (flock size, real outdoor access, transparency, etc.) on a 1&ndash;5 egg scale. Its takeaway: many big-name &ldquo;organic&rdquo; brands rate only 1&ndash;2 eggs because they're effectively industrial operations with concrete porches passing as &ldquo;outdoor access.&rdquo;"
+         data-zh="<strong>Cornucopia Institute</strong> 是美国最受信赖的有机鸡蛋独立评分机构。它是非营利组织，不接受行业资助，根据 28 项标准（鸡群规模、真实户外活动、透明度等）以 1–5 颗鸡蛋的尺度对 150+ 个有机鸡蛋品牌进行评级。结论是：许多大牌&ldquo;有机&rdquo;鸡蛋只得 1–2 颗鸡蛋，因为它们其实是工业化运作，只是把混凝土阳台当作&ldquo;户外活动空间&rdquo;。">The <strong>Cornucopia Institute</strong> is the most trusted independent rater of organic eggs in the US. It's a non-profit, accepts no industry funding, and rates 150+ organic egg brands on 28 criteria (flock size, real outdoor access, transparency, etc.) on a 1&ndash;5 egg scale. Its takeaway: many big-name "organic" brands rate only 1&ndash;2 eggs because they're effectively industrial operations with concrete porches passing as "outdoor access."</p>
+    </div>
+
+    <h2 class="section" data-en="Why Cornucopia is the source to trust" data-zh="为什么 Cornucopia 是值得信赖的来源">Why Cornucopia is the source to trust</h2>
+    <p data-en="Cornucopia is a 501(c)(3) non-profit that has been auditing organic egg producers since 2010. They send detailed questionnaires to every certified organic egg brand, do on-site investigations, and publicly publish the methodology. The New York Times, NPR, and most food-journalism sources cite their scorecard as the standard."
+       data-zh="Cornucopia 是一家 501(c)(3) 非营利机构，从 2010 年起对有机鸡蛋生产者进行审计。他们向每个有机认证品牌发送详细问卷，进行实地调查，并公开方法论。《纽约时报》、NPR 等主流食物新闻来源都把它的评分卡视为行业标准。">Cornucopia is a 501(c)(3) non-profit that has been auditing organic egg producers since 2010. They send detailed questionnaires to every certified organic egg brand, do on-site investigations, and publicly publish the methodology. The New York Times, NPR, and most food-journalism sources cite their scorecard as the standard.</p>
+    <p data-en="The rating scale:" data-zh="评级体系：">The rating scale:</p>
+    <table>
+      <thead><tr><th data-en="Rating" data-zh="评级">Rating</th><th data-en="Meaning" data-zh="含义">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong data-en="5 eggs" data-zh="5 颗鸡蛋">5 eggs</strong></td><td data-en="Exemplary &mdash; beyond organic. Small/medium farms, mobile housing, ample real pasture." data-zh="典范——超越有机。小型至中型农场，移动鸡舍，真正充足的牧场。">Exemplary &mdash; beyond organic. Small/medium farms, mobile housing, ample real pasture.</td></tr>
+        <tr><td><strong data-en="4 eggs" data-zh="4 颗鸡蛋">4 eggs</strong></td><td data-en="Excellent &mdash; true outdoor access and high welfare." data-zh="优秀——有真正的户外活动空间，动物福利高。">Excellent &mdash; true outdoor access and high welfare.</td></tr>
+        <tr><td><strong data-en="3 eggs" data-zh="3 颗鸡蛋">3 eggs</strong></td><td data-en="Good &mdash; meets organic standards, family farms with outdoor runs." data-zh="良好——达到有机标准，家庭农场配备户外活动区。">Good &mdash; meets organic standards, family farms with outdoor runs.</td></tr>
+        <tr><td><strong data-en="2 eggs" data-zh="2 颗鸡蛋">2 eggs</strong></td><td data-en="Fair &mdash; some compliance questions." data-zh="一般——存在一些合规问题。">Fair &mdash; some compliance questions.</td></tr>
+        <tr><td><strong data-en="1 egg" data-zh="1 颗鸡蛋">1 egg</strong></td><td data-en="&ldquo;Industrial organic&rdquo; &mdash; no meaningful outdoor access, low transparency." data-zh="&ldquo;工业化有机&rdquo;——没有有意义的户外活动空间，透明度低。">"Industrial organic" &mdash; no meaningful outdoor access, low transparency.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="section" data-en="Best brands (5 eggs)" data-zh="最佳品牌（5 颗鸡蛋）">Best brands (5 eggs)</h2>
+    <div class="tier best">
+      <div class="tier-header">
+        <h3 data-en="Top tier &mdash; buy these if you can find them" data-zh="顶级——能买到就买">Top tier &mdash; buy these if you can find them</h3>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </div>
+      <p class="desc" data-en="Small to medium farms, mobile housing, well-managed pasture. Usually found at farmers markets, co-ops, or independent natural grocers &mdash; sometimes Whole Foods if local."
+         data-zh="小型至中型农场，移动鸡舍，管理良好的牧场。通常在农贸市场、合作社或独立的自然食品店出现——当地有时也能在 Whole Foods 找到。">Small to medium farms, mobile housing, well-managed pasture. Usually found at farmers markets, co-ops, or independent natural grocers &mdash; sometimes Whole Foods if local.</p>
+      <div class="brand-grid">
+        <span>Alexandre Family Farms</span>
+        <span>Apple Creek</span>
+        <span>Burroughs Family Farm</span>
+        <span>Clean Food Farm</span>
+        <span>Common Good Farm</span>
+        <span>Deck Family Farms</span>
+        <span>Eight Mile Creek Farm</span>
+        <span>Happy Hens</span>
+        <span>Kingbird Farms</span>
+        <span>Misty Meadows Farm</span>
+        <span><strong>PCC Organic</strong></span>
+        <span>Skagit River Ranch</span>
+        <span>Skokomish Valley Farms</span>
+        <span>Stueve's Certified Organic</span>
+        <span>Villageside Farm</span>
+        <span><strong>Vital Farms</strong></span>
+        <span>Wilcox Organic Pasture</span>
+        <span>Windy N Ranch</span>
+        <span>World's Best Eggs</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p data-en="<strong>If you shop at PCC Community Markets (Seattle area):</strong> You're in luck. PCC's <em>own private-label organic eggs</em> got a 5-egg rating &mdash; supplied by Wilcox Organic Pasture (also 5-egg). PCC also stocks Misty Meadows Farm, Skagit River Ranch, Windy N Ranch, and Skokomish Valley Farms, all 5-egg rated. PCC was one of the first major grocery chains to require all egg suppliers to give hens real outdoor access (vegetated cover, not just a concrete porch) &mdash; a standard adopted co-op-wide in 2020."
+         data-zh="<strong>如果你常去 PCC Community Markets（西雅图地区）：</strong>你很走运。PCC 自有品牌的有机鸡蛋获得 5 颗鸡蛋评级——由 Wilcox Organic Pasture（同为 5 颗）供应。PCC 还售卖 Misty Meadows Farm、Skagit River Ranch、Windy N Ranch、Skokomish Valley Farms，都是 5 颗鸡蛋评级。PCC 是首批要求所有鸡蛋供应商必须提供真实户外活动空间（有植被覆盖，而非混凝土阳台）的主要连锁超市之一，并于 2020 年在整个合作社范围内推行这一标准。"><strong>If you shop at PCC Community Markets (Seattle area):</strong> You're in luck. PCC's <em>own private-label organic eggs</em> got a 5-egg rating &mdash; supplied by Wilcox Organic Pasture (also 5-egg). PCC also stocks Misty Meadows Farm, Skagit River Ranch, Windy N Ranch, and Skokomish Valley Farms, all 5-egg rated. PCC was one of the first major grocery chains to require all egg suppliers to give hens real outdoor access (vegetated cover, not just a concrete porch) &mdash; a standard adopted co-op-wide in 2020.</p>
+    </div>
+
+    <h2 class="section" data-en="Better brands (3&ndash;4 eggs)" data-zh="较好品牌（3–4 颗鸡蛋）">Better brands (3&ndash;4 eggs)</h2>
+    <div class="tier better">
+      <div class="tier-header">
+        <h3 data-en="Solid choice &mdash; easier to find in stores" data-zh="稳妥之选——在商超更容易买到">Solid choice &mdash; easier to find in stores</h3>
+        <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+      </div>
+      <p class="desc" data-en="Comply with organic standards. Family farms with outdoor runs, or larger farms that still do an adequate job of outdoor access."
+         data-zh="符合有机标准。家庭农场配有户外活动区，或者较大规模农场也能提供合理的户外条件。">Comply with organic standards. Family farms with outdoor runs, or larger farms that still do an adequate job of outdoor access.</p>
+      <div class="brand-grid">
+        <span>Alderfer Eggs</span>
+        <span>Carol's (Pete &amp; Gerry's)</span>
+        <span>Clover Sonoma</span>
+        <span>Country Hen</span>
+        <span>Farmers Hen House</span>
+        <span>Happy Egg Co.</span>
+        <span>Handsome Brook Farm</span>
+        <span>Mary's Organic Eggs</span>
+        <span><strong>Organic Valley</strong></span>
+        <span><strong>Pete &amp; Gerry's</strong></span>
+        <span>Sauder's</span>
+        <span>Stiebrs</span>
+        <span>UTOPIHEN Farms</span>
+        <span>Wilcox Farms</span>
+      </div>
+    </div>
+
+    <h2 class="section" data-en="Avoid these (1&ndash;2 eggs)" data-zh="尽量避开（1–2 颗鸡蛋）">Avoid these (1&ndash;2 eggs)</h2>
+    <div class="tier avoid">
+      <div class="tier-header">
+        <h3 data-en="&ldquo;Industrial organic&rdquo; &mdash; technically true but misleading" data-zh="&ldquo;工业化有机&rdquo;——技术上合规但有误导性">"Industrial organic" &mdash; the label is technically true but misleading</h3>
+        <span class="stars">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+      </div>
+      <p class="desc" data-en="Organic feed, but minimal real outdoor access &mdash; usually a concrete porch that few hens ever use. Most generic store brands fall here."
+         data-zh="饲料是有机的，但真实的户外活动几乎没有——通常是一个鸡基本不会去的混凝土阳台。大部分超市自营品牌都属于这一类。">Organic feed, but minimal real outdoor access &mdash; usually a concrete porch that few hens ever use. Most generic store brands fall here.</p>
+      <div class="brand-grid">
+        <span>365 Organic (Whole Foods)</span>
+        <span>Chino Valley Ranchers</span>
+        <span>Eggland's Best</span>
+        <span>Good &amp; Gather (Target)</span>
+        <span>Great Value (Walmart)</span>
+        <span>Horizon Organic</span>
+        <span><strong>Kirkland Signature</strong></span>
+        <span>Kreher's Eggs</span>
+        <span>Land O'Lakes</span>
+        <span>Nature's Promise</span>
+        <span>Nest Fresh Eggs</span>
+        <span>O Organics (Safeway)</span>
+        <span>Publix</span>
+        <span>Simple Truth (Kroger)</span>
+        <span>Simply Nature (Aldi)</span>
+        <span>Sprouts Market</span>
+        <span>Trader Joe's</span>
+        <span>Wegman's</span>
+        <span>Wild Harvest</span>
+      </div>
+    </div>
+
+    <h2 class="section" data-en="How to use this" data-zh="怎么用这份指南">How to use this</h2>
+    <ul class="clean">
+      <li data-en="<strong>If price doesn't matter:</strong> Vital Farms or Alexandre &mdash; both 5-egg and broadly available."
+          data-zh="<strong>不在意价格：</strong>Vital Farms 或 Alexandre——都是 5 颗鸡蛋评级，且分布广泛。"><strong>If price doesn't matter:</strong> Vital Farms or Alexandre &mdash; both 5-egg and broadly available.</li>
+      <li data-en="<strong>For everyday value:</strong> Pete &amp; Gerry's or Organic Valley &mdash; solid middle tier, in nearly every store."
+          data-zh="<strong>日常性价比：</strong>Pete &amp; Gerry's 或 Organic Valley——可靠的中等档次，几乎每家超市都有。"><strong>For everyday value:</strong> Pete &amp; Gerry's or Organic Valley &mdash; solid middle tier, in nearly every store.</li>
+      <li data-en="<strong>Skip:</strong> Generic &ldquo;organic&rdquo; store brands &mdash; they look reassuring but rate near the bottom."
+          data-zh="<strong>避开：</strong>普通超市自营&ldquo;有机&rdquo;品牌——看起来让人放心，但评分接近垫底。"><strong>Skip:</strong> Generic "organic" store brands &mdash; they look reassuring but rate near the bottom.</li>
+      <li data-en="<strong>Check the full scorecard:</strong> <a href=&quot;https://www.cornucopia.org/scorecard/eggs/&quot; target=&quot;_blank&quot;>cornucopia.org/scorecard/eggs</a> &mdash; searchable by brand."
+          data-zh="<strong>查看完整评分卡：</strong><a href=&quot;https://www.cornucopia.org/scorecard/eggs/&quot; target=&quot;_blank&quot;>cornucopia.org/scorecard/eggs</a>——可按品牌搜索。"><strong>Check the full scorecard:</strong> <a href="https://www.cornucopia.org/scorecard/eggs/" target="_blank">cornucopia.org/scorecard/eggs</a> &mdash; searchable by brand, updated regularly.</li>
+    </ul>
+
+    <div class="sources">
+      <h3 data-en="Sources" data-zh="来源">Sources</h3>
+      <ul>
+        <li><a href="https://www.cornucopia.org/scorecard/eggs/" target="_blank">The Cornucopia Institute &mdash; Organic Egg Scorecard</a></li>
+        <li><a href="https://www.cornucopia.org/egg-scorecard-criteria/" target="_blank">Cornucopia &mdash; Scorecard Criteria</a></li>
+        <li><a href="https://mamavation.com/food/organic-eggs-best-worst-brands.html" target="_blank">Mamavation &mdash; Best &amp; Worst Organic Egg Brands</a></li>
+        <li><a href="https://www.pccmarkets.com/sound-consumer/2023-06/see-how-your-eggs-scored-in-watchdog-ratings/" target="_blank">PCC Sound Consumer &mdash; See how your eggs scored</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer><span data-en="Built with care &mdash; Shara Wang &copy; 2026" data-zh="用心打造 &mdash; Shara Wang &copy; 2026">Built with care &mdash; Shara Wang &copy; 2026</span></footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

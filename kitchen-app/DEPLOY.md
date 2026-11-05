@@ -2,7 +2,11 @@
 ### （中文说明，括号里是软件上的英文按钮名。全程约 20 分钟。）
 
 **要点**：直接对着你的原文件夹 **`D:\Claude Projects\Food`** 操作，不需要那个 zip。
-`.backups`（158MB 的备份）已被自动排除，只会上传约 12MB 的真正文件。
+`.backups`（备份快照）已被自动排除，只会上传约 4MB 的真正文件。
+
+**发布前注意**（网站会公开）：
+- 心愿单的访问密码由 Apps Script 核对（脚本属性 `WISH_PASSWORD`），不在网页源码里；没有正确密码的提交写不进表格。
+- `.gitignore` 只排除了 `.backups`；`Claude outputs/`、`__pycache__/` 这类杂项要么先删掉，要么加进 `.gitignore`。
 
 ---
 
@@ -89,13 +93,13 @@
 
 ## 以后怎么更新（非常简单）
 
-1. 直接在 `D:\Claude Projects\Food` 里改文件（或让我帮你改好）。
+1. 直接在 `D:\Claude Projects\Food` 里改文件（或让我帮你改好），改完运行 `python check.py`，确认 0 errors。
 2. 打开 GitHub Desktop，它会自动在左侧显示改动。
 3. 左下角填个 **Summary**（比如 `更新菜谱`）→ 点 **Commit to main**。
 4. 右上角点 **Push origin**（推送）。
 5. 网站约 1 分钟后更新;手机上的 app 下次打开会自动刷新。
 
-> **新增菜谱**时,还需要重新生成 app 的搜索索引(`python build-index.py`,要电脑装 Python)。
+> **新增或挪动页面**时,还需要重新生成 app 的数据(`cd kitchen-app && python build-index.py`,要电脑装 Python)。
 > 到时候直接找我,我帮你重新生成好再让你 Commit + Push。
 
 ---

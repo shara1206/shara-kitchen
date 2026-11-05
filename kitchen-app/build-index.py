@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build-index.py — generate assets/recipes.json from index.html.
+build-index.py — generate kitchen-app/data/recipes.json, recipes.js and precache.js from index.html.
 The index is the source of truth (per project rules), so we parse it
 rather than maintaining a separate list. Re-run after editing index.html.
 """
@@ -20,6 +20,9 @@ def attrs(tag):
     zh = re.search(r'data-zh="([^"]*)"', tag)
     return clean(en.group(1) if en else ""), clean(zh.group(1) if zh else "")
 
+def strip_tags(s):
+    return clean(re.sub(r"<[^>]+>", "", s or ""))
+
 def slug_of(path):
     return os.path.splitext(os.path.basename(path))[0]
 
@@ -28,8 +31,11 @@ def folder_of(path):
 
 def image_for(path):
     s = slug_of(path)
-    rel = f"recipes/images/{s}/Final.png"
-    return rel if os.path.isfile(os.path.join(ROOT, rel)) else None
+    for ext in ("jpg", "webp", "png"):          # prefer the small web copy (≤800px, ~100 KB)
+        rel = f"recipes/images/{s}/Final.{ext}"
+        if os.path.isfile(os.path.join(ROOT, rel)):
+            return rel
+    return None
 
 def page_zh_title(path):
     fp = os.path.join(ROOT, path)
@@ -65,6 +71,10 @@ for m in token.finditer(src):
             continue
         seen.add(path)
         en, zh = attrs(chunk)
+        st = re.search(r'data-status="([^"]*)"', chunk)
+        ty = re.search(r'data-type="([^"]*)"', chunk)
+        status = st.group(1) if st else ""          # "todo" = page exists, not tried yet
+        role = ty.group(1) if ty else "dish"        # dish | base (sauce/dough/prep) | guide
         if not en:
             inner = re.sub(r"<[^>]+>", "", m.group(2) or "")
             en = clean(inner)
@@ -76,6 +86,8 @@ for m in token.finditer(src):
             "type": "recipe", "category_en": current_group_en,
             "category_zh": current_group_zh, "image": image_for(path),
             "subtitle_en": "", "subtitle_zh": "",
+            "desc_en": "", "desc_zh": "", "sub": False,
+            "status": status, "role": role,
         })
 
 # --- Topic cards: study-topics + cooking-tips (+ a few recipe/ guides) ---
@@ -92,14 +104,52 @@ for m in card.finditer(src):
     seen.add(path)
     h3 = re.search(r'<h3\b[^>]*>.*?</h3>', inner, re.DOTALL)
     cnt = re.search(r'<div\s+class="count"[^>]*>.*?</div>', inner, re.DOTALL)
+    par = re.search(r'<p\b[^>]*>', inner)
     en, zh = attrs(h3.group(0)) if h3 else ("", "")
     sub_en, sub_zh = attrs(cnt.group(0)) if cnt else ("", "")
+    d_en, d_zh = attrs(par.group(0)) if par else ("", "")
     cat_en, cat_zh, typ = CAT.get(folder_of(path), ("Other", "其他", "study"))
     items.append({
         "title_en": en, "title_zh": zh, "path": path, "slug": slug_of(path),
         "type": typ, "category_en": cat_en, "category_zh": cat_zh,
         "image": image_for(path), "subtitle_en": sub_en, "subtitle_zh": sub_zh,
+        "desc_en": strip_tags(d_en), "desc_zh": strip_tags(d_zh), "sub": False,
+        "status": "", "role": "",
     })
+
+# --- Hub sub-notes: one level below the study-topic hubs. Search only —
+#     not in categories, not precached (they're cached once opened).
+note_re = re.compile(r'<a\b([^>]*\bclass="[^"]*\bnote-card\b[^"]*"[^>]*)>(.*?)</a>', re.DOTALL)
+hubs = [it for it in items if it["type"] == "study"]
+for hub in hubs:
+    fp = os.path.join(ROOT, hub["path"])
+    try:
+        with open(fp, encoding="utf-8") as fh:
+            hsrc = fh.read()
+    except OSError:
+        continue
+    for m in note_re.finditer(hsrc):
+        href = re.search(r'href="([^"#?]+)', m.group(1))
+        if not href:
+            continue
+        path = os.path.normpath(os.path.join(os.path.dirname(hub["path"]), href.group(1))).replace("\\", "/")
+        if path in seen or not os.path.isfile(os.path.join(ROOT, path)):
+            continue
+        seen.add(path)
+        inner = m.group(2)
+        h3 = re.search(r'<h3\b[^>]*>', inner)
+        par = re.search(r'<p\b[^>]*>', inner)
+        tags = [attrs(t) for t in re.findall(r'<span\s+class="tag"[^>]*>', inner)]
+        en, zh = attrs(h3.group(0)) if h3 else ("", "")
+        d_en, d_zh = attrs(par.group(0)) if par else ("", "")
+        items.append({
+            "title_en": strip_tags(en), "title_zh": strip_tags(zh) or strip_tags(en), "path": path, "slug": slug_of(path),
+            "type": "study", "category_en": hub["title_en"], "category_zh": hub["title_zh"],
+            "image": None, "subtitle_en": " · ".join(t[0] for t in tags if t[0]),
+            "subtitle_zh": " · ".join(t[1] for t in tags if t[1]),
+            "desc_en": strip_tags(d_en), "desc_zh": strip_tags(d_zh), "sub": True,
+            "status": "", "role": "",
+        })
 
 # --- Standalone pages ---
 for path, en, zh, sub_en, sub_zh in [
@@ -111,11 +161,15 @@ for path, en, zh, sub_en, sub_zh in [
             "title_en": en, "title_zh": zh, "path": path, "slug": slug_of(path),
             "type": "page", "category_en": "Pages", "category_zh": "页面",
             "image": None, "subtitle_en": sub_en, "subtitle_zh": sub_zh,
+            "desc_en": "", "desc_zh": "", "sub": False,
+            "status": "", "role": "",
         })
 
 # --- Category summary (ordered, with counts) ---
 cat_order, cats = [], {}
 for it in items:
+    if it.get("sub"):
+        continue
     key = (it["category_en"], it["category_zh"], it["type"])
     if key not in cats:
         cats[key] = 0
@@ -125,6 +179,8 @@ categories = [{"name_en": e, "name_zh": z, "type": t, "count": cats[(e, z, t)]}
               for (e, z, t) in cat_order]
 
 data = {"generated": True, "total": len(items),
+        "todo": sum(1 for it in items if it.get("status") == "todo"),
+        "sub_notes": sum(1 for it in items if it.get("sub")),
         "categories": categories, "items": items}
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w", encoding="utf-8") as f:
@@ -141,10 +197,10 @@ with open(JS_OUT, "w", encoding="utf-8") as f:
 import hashlib
 core = ["kitchen-app/index.html", "kitchen-app/manifest.webmanifest",
         "kitchen-app/data/recipes.js",
-        "assets/lang.css", "assets/lang.js", "assets/recipe-ui.js",
+        "assets/lang.css", "assets/lang.js", "assets/recipe-ui.js", "assets/scale.js", "assets/phone-tables.js",
         "kitchen-app/icons/icon-192.png", "kitchen-app/icons/icon-512.png",
         "kitchen-app/icons/icon-maskable-512.png", "kitchen-app/icons/apple-touch-icon.png"]
-pages = [it["path"] for it in items]
+pages = [it["path"] for it in items if not it.get("sub")]   # sub-notes: search only, not precached
 imgs  = [it["image"] for it in items if it.get("image")]
 precache = []
 for u in core + pages + imgs:
@@ -159,6 +215,7 @@ with open(PC_OUT, "w", encoding="utf-8") as f:
     f.write(";\n")
 print("   precache: %d urls (version %s)" % (len(precache), version))
 
-print(f"✅ {len(items)} items, {len(categories)} categories -> assets/recipes.json")
+print(f"✅ {len(items)} items ({data['todo']} to try, {data['sub_notes']} hub sub-notes for search only), "
+      f"{len(categories)} categories -> kitchen-app/data/recipes.json")
 for c in categories:
     print(f"   {c['count']:>3}  {c['name_en']}  ({c['type']})")

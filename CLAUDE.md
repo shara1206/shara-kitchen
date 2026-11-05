@@ -1,34 +1,116 @@
-# Food Recipe Site — Project Rules
+# Food site — maintainer rules
 
-## File writes
-Always write files via bash Python script (writing to `/sessions/.../mnt/Food/`).  
-The Edit/Write tools update the Windows side only — bash reads the Linux mount and will see stale content unless the file is written through bash.
+**This file is the single rulebook** for anyone editing this folder (any AI tool or a person).
+`README.md` says what the site is; `kitchen-app/DEPLOY.md` says how to publish it. When a rule changes, change it here.
+Last consolidated: 2026-11-04.
 
-## index.html — always keep in sync
-After **any** change to a file under `recipes/`, `topics/`, or the root folder:
-- **New file** → add a card/link in the correct index section
-- **Content changed** (new items, different scope, count changed) → update the card's count badge and description to match the actual page
-- **Title or category changed** → update the card header
+---
 
-The index is the source of truth. Descriptions must reflect reality, not aspirations.
+## 1. Every change — checklist
+1. `python backup.py save "说明这次改动"`
+2. Edit — put the page in the right place (§2) and follow the page conventions (§4)
+3. Sync navigation (§3): `index.html` always; `menu.html` only for dishes Shara has made
+4. `cd kitchen-app && python build-index.py` — rebuilds the app data from index.html
+5. `python check.py` → must end with **0 errors**
+6. Check layout at **412 / 810 / 1080 / 1440 / 2560 / 3440 px, in EN and 中文** (§6)
+7. Report what you verified. Don't ask Shara to check it for you.
 
-## CSS conventions
+---
 
-### Standard recipe/guide pages
+## 2. Where a page goes (分类规则)
+Decide by the **main question the page answers**. Some pages touch two; file them by the question they
+mainly answer and accept that the edge is a bit fuzzy.
+（按页面主要回答哪个问题来归；两边都沾的，按主要问题归，接受边界有点模糊。）
+
+| Place | Answers | Typical content |
+|---|---|---|
+| `study-topics/` · Study Topics | 是什么、买哪个 — what it is, which one to buy | varieties, labels, brands, sourcing, nutrition |
+| `cooking-tips/` · Cooking Tips | 怎么做 — how to do it | ratios, heat control, technique, substitutions |
+| `recipes/` · My Recipes | 有材料和步骤的具体做法 — a specific recipe | ingredient list + steps for one dish or component |
+| `menu.html` | 只放菜 — dishes only | only dishes Shara has made (§3.2) |
+
+- A subject that outgrows one page becomes a **hub** in `study-topics/` with sub-notes (§3.3).
+- A recipe for a component (frosting, dough, sauce, chili oil) is still a recipe: `recipes/` + `data-type="base"`.
+- **File names** (lowercase, hyphenated):
+  - Study-topic sub-notes: **`<hub>-<topic>.html`**, English hub name first — `chicken-label-guide.html`, `eggs-freshness.html`, `seafood-shrimp.html`.
+  - A study topic without sub-notes (or a hub itself): just the topic in English — `potato.html`, `starch.html`, `chicken.html`.
+  - Recipes and cooking tips: the dish or technique, usually pinyin — `zha-jichi.html`, `zhajiao-mianhu.html`. Well-known
+    English names stay English (`tiramisu`, `mochi`, `hot-n-juicy`, `boiling-shrimp`, `lemon-blueberry-cake`).
+  - Renaming or moving a page changes its URL — update every link to it, including links inside data-en/data-zh and
+    single-quoted ones (check.py lists any it misses), point its photo slot at `images/<new-slug>/`, and rebuild the app data.
+
+---
+
+## 3. Navigation & sync
+`index.html` is the **source of truth**. The kitchen app is generated from it; descriptions must match reality.
+
+### 3.1 index.html
+- **Recipes** — `<li><a href="recipes/x.html" data-en="…" data-zh="…">…</a></li>` in the right section.
+  `href` must be the **first attribute** (build-index.py matches `<a href="recipes/…`).
+- **Cooking Tips / Study Topics** — a `<a class="topic-card" href="…">` card (class first, then href) with icon,
+  `h3`, `div.count`, `p`, all bilingual. Keep the count badge and description true to the page.
+- New file → add its link/card. Content, scope or count changed → update badge + description. Title changed → update the text.
+
+### 3.2 Tried vs. to-try, and menu.html
+`menu.html` lists only dishes Shara has actually made (a `dish-item` is an `<a>` when a recipe page exists,
+a `<div>` when it doesn't; section counts are computed by its script). Untried recipe pages are marked on their
+index link:
+
+| marker on the index `<a>` | meaning | menu.html |
+|---|---|---|
+| *(none)* | a dish she has made | must be listed |
+| `data-status="todo"` | page exists, not tried yet (index shows a 待试 / To try tag) | must NOT be listed |
+| `data-type="base"` | sauce / dough / frosting / prep (油辣子, 大酱, 万能面团, 烫面, 裱花材料…) | never required |
+| `data-type="guide"` | a how-to note left in `recipes/` — better: move it to `cooking-tips/` (none at the moment) | not listed, no status |
+
+- New untried recipe → link with `data-status="todo"` (plus `data-type="base"` for a component).
+- After she tries a dish → remove `data-status="todo"` **and** add a `dish-item` to menu.html.
+
+### 3.3 Study-topic hubs and sub-notes
+Hubs: eggs, milk, flour, seafood, beef, chicken. Each lists its sub-notes as `.note-card` links.
+To add a sub-note:
+1. New page in `study-topics/` (back-link, photo slot, bilingual).
+2. Add a `.note-card` to the hub page (and its reading-order line, if it has one).
+3. Bump the hub card's count on index.html ("3 notes" → "4 notes" / "4 篇笔记"). check.py compares the badge with
+   the hub's note-cards. The count strings repeat across cards — edit inside that one card only.
+4. Rebuild the app data. build-index.py reads the hub's note-cards, so the sub-note becomes **searchable** in the app
+   (title, tags and card description) — it is not listed under a category and not precached; it is cached once opened.
+
+**Each fact lives in one note** — don't restate it in a sibling:
+- **Chicken** (read in order): `chicken-label-guide` = what each label legally guarantees · `chicken-sourcing-guide` = brands by
+  organic/pasture/breed/Cornucopia/price · `chicken-sanhuang` = the gap to a Cantonese 三黄鸡 · `chicken-buying-guide` = shops and
+  word of mouth only (names shops, links out; breed/certification facts stay in notes 2–3).
+- **Milk**: `milk-types` = science (fat %, A1/A2, processing basics) · `milk-label-guide` = regulation (label
+  definitions, grazing/heat-treatment numbers, raw-milk law) · `milk-brands` = verdicts (scorecard, tiers).
+
+### 3.4 The kitchen app stays separate
+Never add links, cards or banners for the app to index.html or any site page. The sync rules above are about
+recipes and topics, not the app. Details in §5.
+
+---
+
+## 4. Page conventions
+
+### 4.1 Start from an existing page of the same kind
+Recipe: copy `recipes/yan-su-ji.html` (the shared template ~60 recipe pages use, with bilingual headings). Guide or study note: copy a
+recent page in the same folder. Every page links `../assets/lang.css` and `../assets/lang.js`, has a
+`← Home` link to `../index.html` (sub-notes may link to their hub), and a footer.
+
+### 4.2 CSS
 ```css
 :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b;
         --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7; }
+/* optional semantic tints: --good:#2f7d4f --good-soft:#e6f3ea --warn:#b3541e --warn-soft:#fdeee2 */
 main { max-width: min(92vw, 900px); margin: 0 auto; padding: 36px 24px 60px; }
 header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); }
 ```
+**Wide table pages** (biaohua-cailiao, chicken-label-guide, chicken-sourcing-guide, milk-label-guide): `--page: min(92vw, 1500px)`.
+Below 1100px the table becomes stacked cards — `table{display:block} colgroup,thead{display:none}
+tbody{display:grid;grid-template-columns:repeat(2,1fr)} tr{display:flex;flex-direction:column} tr td:last-child{flex:1}`,
+one column ≤700px, with per-cell `.cell-label` spans hidden on desktop and shown in card mode. A small 2-column table
+inside a wide page opts out by re-asserting `display:table / table-row / table-cell` (see `.gap-wrap`).
 
-### Wide pages (e.g. biahua-cailiao.html)
-```css
-main { max-width: min(92vw, 1500px); }
-/* CSS Grid multi-column layout */
-```
-
-### Header photo slot (all pages)
+### 4.3 Header and photo slot
 ```html
 <div class="header-title">
   <div class="header-text">
@@ -36,68 +118,111 @@ main { max-width: min(92vw, 1500px); }
     <div class="meta" data-en="Category EN" data-zh="分类中文">Category EN</div>
   </div>
   <div class="final-photo">
-    <img src="images/{slug}/Final.png" alt="{slug}" onerror="this.parentElement.style.display='none'">
+    <img src="images/{slug}/Final.jpg" alt="{slug}" onerror="this.parentElement.style.display='none'">
   </div>
 </div>
 ```
-```css
-.header-title { max-width: min(92vw, 900px); margin: 0 auto; display: flex; align-items: center; gap: 16px; }
-.header-text { flex: 1; }
-.header-title h1 { max-width: none; margin: 0; font-size: 2rem; line-height: 1.3; }
-.header-title .meta { max-width: none; margin: 6px 0 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: 'Helvetica', sans-serif; }
-.final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
-.final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-```
-The `onerror` handler hides the photo slot when no image file exists yet.  
-Image files go in `recipes/images/{slug}/Final.png`.
+`.final-photo` is 180×180, `object-fit: cover`; `onerror` hides the slot until a photo exists.
+- Photos go in `images/{slug}/` next to the page: **JPEG, ~800px wide, ~100 KB**. Older placeholders say
+  `Final.png` — change the extension when you add the photo. Keep full-size originals outside this folder
+  (backups copy everything; the app precaches every photo). check.py warns on images > 500 KB.
+- Step photos (北海道面包): `.step-photo` stays hidden until its image loads, so missing step photos are invisible.
 
-## Bilingual system
-Every visible string uses `data-en` / `data-zh` attributes, driven by `../assets/lang.js` and `../assets/lang.css`.  
-Always include `<link rel="stylesheet" href="../assets/lang.css" />` and `<script src="../assets/lang.js"></script>`.  
-The lang toggle is:
-```html
-<div class="lang-toggle">
-  <button type="button" data-lang="en" class="active">EN</button>
-  <button type="button" data-lang="zh">中文</button>
-</div>
-```
+### 4.4 Bilingual (EN / 中文)
+- Toggle markup: `<div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>`
+- Guides, study notes, index, menu: **every visible string** carries `data-en` + `data-zh` (headings, table cells,
+  list items, tip boxes). Recipes: headings and labels bilingual; the recipe body may stay in Chinese.
+- lang.js sets `innerHTML` from the attribute, so markup inside it works — escape it **once**:
+  `data-en="See &lt;a href=&quot;x.html&quot;&gt;this&lt;/a&gt;"`. Never `&amp;quot;` (that broke a link).
+  Links inside the attributes are relative to the page's folder.
+- Labels can also come from CSS keyed on the page language (`html:lang(zh)`), as the 待试 tag does.
+- A name deliberately shown in Chinese in **both** modes (the Chinese name under an English one — crab, shrimp,
+  pepper cards) gets `lang="zh"` instead of a translation; check.py skips it.
+- `wishlist.html` switches languages with its own `STR` table + `setLang()` — edit both languages there.
 
-## New recipe page checklist
-1. Copy CSS + structure from an existing page (e.g. `niu-guide.html`)
-2. Add header photo slot with `onerror` hide
-3. Add bilingual `data-en` / `data-zh` on all visible text
-4. Link `../assets/lang.css` and `../assets/lang.js`
-5. Add link/card to `index.html` in the correct section
-6. Write file via bash to ensure it lands on disk
+### 4.5 Shared scripts
+- `assets/scale.js` — serving/batch scaler (21 flour recipes). Put `<div class="scaler" data-base="1" data-unit-zh="份"
+  data-unit-en=" batch"></div>` where the control goes, `data-scale` on each ingredient block, and load
+  `../assets/scale.js` **after** lang.js. Don't mark ratios or per-piece sizes (南瓜饼, 麻花 做法); protect one-offs
+  with `<span class='noscale'>…</span>` (热干面 "490-500g").
+- `assets/recipe-ui.js` — the milk-tea pages (anhua, boyajuexian, jasmine-zhenwang, matcha-bailan).
+- `assets/phone-tables.js` — **no sideways scrolling on phones**: at ≤640px, tables with a `<thead>` and ≥3 columns turn
+  into one card per row, each value labelled with its column header (labels follow the EN/中文 toggle). Add
+  `<script src="../assets/phone-tables.js"></script>` after lang.js on any normal-width page with such a table; opt a
+  table out with `data-no-cards`. Wide table pages keep their own ≤1100px card pattern (§4.2).
+- `assets/lang.css` also lets long links (e.g. a pasted URL) wrap on phones.
 
-## Backup
+---
+
+## 5. Kitchen app (`kitchen-app/`)
+- `build-index.py` parses `../index.html` → `data/recipes.json`, `data/recipes.js` (works on file://),
+  `data/precache.js`. It copies `data-status` / `data-type` (待试 badge + 待试 category) and picks
+  `Final.jpg` / `.webp` / `.png` as the card image. App search covers titles, count badges, card descriptions
+  (index cards and hub note-cards) and the hub sub-notes (search only, `"sub": true`, not precached).
+- `sw.js` must stay at the site root (a service worker's scope can't exceed its folder); the logic is in `kitchen-app/sw-core.js`.
+- `kitchen-app/index.html` uses `<base href="../">`, so its links are root-relative.
+- Favorites are stored by page path — moving a page drops it from favorites.
+- Publishing (GitHub Pages) and installing on a phone: `kitchen-app/DEPLOY.md`.
+
+---
+
+## 6. Verification
+- `python check.py` (standard library only, read-only). **Errors**: broken internal links (including links inside
+  data-en/data-zh), truncated files (an unclosed `<script>`), double-escaped markup (a literal `&amp;`/`&quot;` on the page, or `&amp;quot;` breaking an attribute),
+  recipe pages missing from index, the §3.2 menu rules, hub count badges. **Warnings**: untagged
+  Chinese text, images > 500 KB, stale app data, orphan pages, too many backup snapshots.
+- Layout: render at 412 (phone) / 810 & 1080 (iPad) / 1440 (laptop) / 2560 (27") / 3440 px (34" ultrawide), in both
+  languages, plus 375 and 430 for phones. **No horizontal overflow — nothing should need a sideways swipe on a phone**;
+  the header h1 clears the top-right controls; wide screens fill sensibly. A fixed-width element (180px icon slot,
+  `white-space:nowrap` label column, side-by-side flex row) needs a ≤640px rule.
+  Existing breakpoints sit around 640 / 860 / 1100 / 1300 / 1400 / 1800 px (phones also ≤380px).
+- Working on a mounted copy of this folder (Cowork / remote session): write files through the shell so the mount
+  sees them, then confirm (md5sum or re-read). Deleting may be blocked there — move files to `_to_delete/` instead.
+
+---
+
+## 7. Backup
 ```bash
-python backup.py save "描述改动"   # save snapshot
+python backup.py save "描述改动"   # snapshot before any edit
 python backup.py list              # list snapshots
 python backup.py restore <n>       # restore by number
 ```
-- Keeps 10 versions
-- Backs up everything except `.backups/` and `.git/`
-- Run a backup before any batch operation or major edit
+- Copies everything except `.backups/` and `.git/`, and keeps the **10 newest** snapshots (older ones are deleted).
+- Where deleting is blocked (a mounted copy), it can't prune and snapshots pile up — check.py warns; delete the
+  oldest in Explorer. When deleting is allowed, it prunes automatically, so save sparingly if older restore points matter.
 
-## Folder structure
+---
+
+## 8. Folder map
 ```
 Food/
-  index.html          # main hub — must always be up to date
-  menu.html
-  backup.py
-  assets/
-    lang.css          # bilingual toggle styles
-    lang.js           # bilingual toggle logic
-  recipes/            # 90+ individual recipe & guide pages
-    images/           # {slug}/Final.png for each dish
-  topics/             # ingredient deep-dives (eggs, crab, flour, milk, pepper, seafood)
-  notes/              # misc notes
-  .backups/           # auto-managed snapshots
+  index.html          # hub — source of truth (recipes, cooking tips, study topics)
+  menu.html           # dishes Shara has made
+  wishlist.html       # 心愿菜单 (Google Apps Script backend: wishlist-apps-script.js)
+  check.py            # consistency check — run after every change
+  backup.py           # snapshots → .backups/ (not published)
+  assets/             # lang.css, lang.js, scale.js, recipe-ui.js, icons/, logos
+  recipes/            # 有材料和步骤的具体做法 (92 pages); images/{slug}/
+  cooking-tips/       # 怎么做 (9 pages)
+  study-topics/       # 是什么、买哪个: 6 hubs + sub-notes + single topics; images/
+  kitchen-app/        # phone app (separate from the site); build-index.py, data/, DEPLOY.md
+  sw.js               # service-worker stub — must stay at the root
 ```
 
-## User preferences
-- Natural food coloring only (freeze-dried fruit powder, beet, matcha) — no synthetic dyes
-- US-based: ingredient names and sources reference US stores
-- 34-inch wide monitor — wide layouts are welcome
-- Recipe notes written in Chinese; page UI is bilingual
+---
+
+### Wish list backend
+`wishlist.html` → Apps Script project **"Wish List"** (web app, runs as Shara, access: Anyone) → Google Sheet
+**"Shara's Kitchen — 心愿菜单"**, tab `Wishes`. `SCRIPT_URL` in wishlist.html holds the `/exec` URL; the script's source is
+`wishlist-apps-script.js`. After changing the script: paste it into the project, then **Deploy → Manage deployments →
+edit → Version: New version** — saving alone does not update the live web app, and the URL stays the same.
+The page shows "已收到" only when the script answers `{"result":"success"}`.
+**Access password** lives only in the project's Script properties as `WISH_PASSWORD` (Project Settings → Script
+properties) — never in wishlist.html, the repo, or notes. The gate asks the script (`{action:'check', pw}`) and every
+submission carries `pw`; wrong or missing → `{"result":"denied"}`, nothing written. Changing the password needs no redeploy.
+
+## 9. Shara's preferences
+- Natural food coloring only (freeze-dried fruit powder, beet, matcha) — no synthetic dyes.
+- US-based: ingredients and sources reference US stores; she shops around Bellevue / Seattle.
+- Uses a 34-inch ultrawide monitor — wide layouts are welcome; also reads on phone and iPad.
+- Writes recipe notes in Chinese; the site UI is bilingual.

@@ -16,7 +16,8 @@
 //     and click ▶ Run. This creates the "Wishes" tab with headers automatically.
 //     (You only need to do this once.)
 //
-//  4. The spreadsheet ID is already filled in below.
+//  4. The spreadsheet ID is already filled in below
+//     (sheet "Shara's Kitchen — 心愿菜单"; this code lives in the Apps Script project "Wish List").
 //
 //  5. Click Deploy → New deployment → Web app
 //       Execute as: Me (your Google account)
@@ -32,12 +33,21 @@
 //     You'll also get an email notification (optional — see NOTIFY_EMAIL below).
 // ════════════════════════════════════════════════════════════════
 
+// The access password is NOT in this file. Set it in the Apps Script editor:
+//   Project Settings (gear) → Script properties → Add: WISH_PASSWORD = <password>
+// No property set → every request is refused (fails closed).
 const SPREADSHEET_ID = '1UZtf1vOAFRP5f5WyqGtnyz3jHLlbs2OWb3TZsrLMRu8';
 const SHEET_NAME     = 'Wishes';
 const NOTIFY_EMAIL   = '';  // ← optional: your email for notifications, e.g. 'you@gmail.com'
                             //   Leave empty '' to skip email notifications.
 
+function json_(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
+
 // ── Main handler ──
+// {action:'check', pw}  → {result:'ok'} | {result:'denied'}   (password gate)
+// {pw, name, dishes…}   → {result:'success'} | {result:'denied'} | {result:'error'}
 function doPost(e) {
   try {
     let data;
@@ -47,6 +57,10 @@ function doPost(e) {
       data = {};
     }
 
+    const expected = PropertiesService.getScriptProperties().getProperty('WISH_PASSWORD') || '';
+    if (!expected || String(data.pw || '') !== expected) return json_({ result: 'denied' });
+    if (data.action === 'check') return json_({ result: 'ok' });
+
     const name        = data.name         || '(no name)';
     const occasion    = data.occasion     || '';
     const dishes      = Array.isArray(data.dishes) ? data.dishes.join('、') : '';
@@ -55,7 +69,7 @@ function doPost(e) {
     const submittedAt = data.submitted_at || new Date().toLocaleString('zh-CN');
 
     const ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
-    const sheet = ss.getSheetByName(SHEET_NAME);
+    const sheet = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
     sheet.appendRow([submittedAt, name, occasion, dishes, special, lang]);
 
     // Optional email notification
@@ -71,14 +85,10 @@ function doPost(e) {
       MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
     }
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ result: 'success' }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return json_({ result: 'success' });
 
   } catch (err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ result: 'error', message: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return json_({ result: 'error', message: err.toString() });
   }
 }
 
@@ -111,7 +121,7 @@ function setup() {
 
   // ── 4. Freeze header & enable filter ──
   sheet.setFrozenRows(1);
-  sheet.getRange(1, 1, 1, headers.length).createFilter();
+  if (!sheet.getFilter()) sheet.getRange(1, 1, 1, headers.length).createFilter();  // safe to re-run
 
   // ── 5. Column widths ──
   sheet.setColumnWidth(1, 165); // 时间
@@ -154,6 +164,7 @@ function testDoPost() {
   const fake = {
     postData: {
       contents: JSON.stringify({
+        pw: PropertiesService.getScriptProperties().getProperty('WISH_PASSWORD'),
         name: '测试用户',
         occasion: '周末聚餐',
         dishes: ['白斩鸡', '醋溜土豆丝', '番茄牛腩'],

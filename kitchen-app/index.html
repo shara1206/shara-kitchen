@@ -37,6 +37,7 @@
   .search-wrap input { width:100%; border:none; border-radius:24px; padding:13px 44px 13px 44px;
     font-size:1.05rem; font-family:inherit; background:#fff; color:var(--ink); box-shadow:0 1px 6px rgba(0,0,0,0.12); }
   .search-wrap input:focus { outline:2px solid var(--accent-soft); }
+  .search-wrap input::-webkit-search-cancel-button { -webkit-appearance:none; appearance:none; display:none; } /* the app has its own × */
   .search-wrap .mag { position:absolute; left:16px; top:50%; transform:translateY(-50%); opacity:0.5; font-size:1.05rem; }
   .search-wrap .clr { position:absolute; right:12px; top:50%; transform:translateY(-50%);
     border:none; background:transparent; font-size:1.2rem; color:var(--muted); cursor:pointer; display:none; }
@@ -80,6 +81,11 @@
   .star { position:absolute; top:8px; right:8px; width:34px; height:34px; border-radius:50%;
     border:none; background:rgba(255,255,255,0.85); cursor:pointer; font-size:1.05rem; line-height:1;
     display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,0.15); }
+  .todo-pill { position:absolute; top:8px; left:8px; background:rgba(255,255,255,0.92); color:var(--accent);
+    border:1px dashed var(--accent); border-radius:10px; padding:2px 8px; font-size:0.72rem; line-height:1.4;
+    font-family:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; box-shadow:0 1px 4px rgba(0,0,0,0.12); }
+  .item-card.todo .item-title { color:var(--muted); }
+  .cat-card.todo-card { border-style:dashed; }
   .star.on { color:#e8a317; }
   .star.off { color:#bbb; }
 
@@ -178,11 +184,14 @@
 
   function itemCard(it){
     const fav = isFav(it.path);
+    const ic = it.sub ? '📚' : iconFor(it.category_en);   // hub sub-notes: category = their hub
     const thumb = it.image
-      ? '<div class="thumb"><img src="'+it.image+'" alt="" onerror="this.parentElement.innerHTML=\''+iconFor(it.category_en)+'\'"></div>'
-      : '<div class="thumb">'+iconFor(it.category_en)+'</div>';
+      ? '<div class="thumb"><img src="'+it.image+'" alt="" onerror="this.parentElement.innerHTML=\''+ic+'\'"></div>'
+      : '<div class="thumb">'+ic+'</div>';
     const sub = (L(it.subtitle_en,it.subtitle_zh)) ? '<div class="item-sub">'+L(it.subtitle_en,it.subtitle_zh)+'</div>' : '';
-    return '<a class="item-card" href="'+it.path+'">'
+    const todo = it.status==='todo';
+    return '<a class="item-card'+(todo?' todo':'')+'" href="'+it.path+'">'
+      + (todo ? '<span class="todo-pill">'+L('To try','待试')+'</span>' : '')
       + '<button class="star '+(fav?'on':'off')+'" data-path="'+it.path+'" aria-label="favorite">'+(fav?'★':'☆')+'</button>'
       + thumb
       + '<div class="item-body"><div class="item-title">'+T(it)+'</div>'+sub
@@ -205,7 +214,11 @@
       const cats = DATA.categories.filter(c=>c.type===typ);
       if(!cats.length) return;
       html += '<div class="section-label">'+L(labels[typ][0],labels[typ][1])+'</div>';
-      html += '<div class="cat-grid">'+cats.map(c=>{
+      const todoN = typ==='recipe' ? DATA.items.filter(it=>it.status==='todo').length : 0;
+      const todoCard = todoN ? '<button class="cat-card todo-card" data-todo="1">'
+          + '<span class="ico">🧪</span><span class="ct-txt"><span class="ct-name">'+L('To try','待试')+'</span>'
+          + '<span class="ct-count">'+todoN+' '+L('items','项')+'</span></span></button>' : '';
+      html += '<div class="cat-grid">'+todoCard+cats.map(c=>{
         const name = lang()==='zh' ? c.name_zh : c.name_en;
         const key = encodeURIComponent(c.name_en+'|'+c.type);
         return '<button class="cat-card" data-cat="'+key+'">'
@@ -231,11 +244,28 @@
     bindStars();
   }
 
+  function renderTodo(){
+    backBtn.classList.add('show');
+    const todo = DATA.items.filter(it=>it.status==='todo');
+    const groups = [['dish',['Dishes','菜']],['base',['Bases & sauces','底料与酱料']]];
+    let html = '<div class="view-title">🧪 '+L('To try','待试')+' · '+todo.length+'</div>';
+    groups.forEach(([role,lab])=>{
+      const g = todo.filter(it=>(it.role||'dish')===role);
+      if(!g.length) return;
+      html += '<div class="section-label">'+L(lab[0],lab[1])+' · '+g.length+'</div>';
+      html += '<div class="item-grid">'+g.map(itemCard).join('')+'</div>';
+    });
+    if(!todo.length) html += '<div class="empty">'+L('Everything has been tried','都试过了')+'</div>';
+    main.innerHTML = html;
+    bindStars();
+  }
+
   function renderSearch(q){
     backBtn.classList.add('show');
     const t = q.trim().toLowerCase();
     const hits = !t ? [] : DATA.items.filter(it=>{
-      return [it.title_en,it.title_zh,it.category_en,it.category_zh,it.subtitle_en,it.subtitle_zh]
+      return [it.title_en,it.title_zh,it.category_en,it.category_zh,it.subtitle_en,it.subtitle_zh,
+              it.desc_en,it.desc_zh, it.status==='todo' ? 'to try 待试' : '']
         .some(s=>(s||'').toLowerCase().includes(t));
     });
     let html = '<div class="view-title">'+L('Search','搜索')+(t?' · '+hits.length:'')+'</div>';
@@ -259,7 +289,7 @@
   }
   function bindCats(){
     main.querySelectorAll('.cat-card').forEach(b=>{
-      b.addEventListener('click',()=>{ location.hash = 'cat='+b.dataset.cat; });
+      b.addEventListener('click',()=>{ location.hash = b.dataset.todo ? 'todo' : 'cat='+b.dataset.cat; });
     });
   }
 
@@ -270,6 +300,8 @@
     if(h.startsWith('cat=')){
       const [en,typ] = decodeURIComponent(h.slice(4)).split('|');
       renderCategory(en, typ);
+    } else if(h==='todo'){
+      renderTodo();
     } else if(h==='search'){
       renderSearch(searchEl.value);
     } else {

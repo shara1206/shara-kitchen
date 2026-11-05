@@ -1,36 +1,25 @@
 # Shara's Study Notes & Kitchen App
 
-A personal, bilingual (English / 中文) collection of Chinese, Japanese and baking
-recipes, plus ingredient study notes and cooking-technique guides.
+A personal, bilingual (English / 中文) collection of Chinese, Japanese and baking recipes,
+ingredient study notes and cooking-technique guides — plus a phone app built from the same pages.
 
 ## Two ways to use it
+- **The website** — `index.html`: recipes, cooking tips, study topics; `menu.html` (dishes I've made); `wishlist.html`.
+- **The Kitchen App** — `kitchen-app/index.html`: phone-first search, categories, favorites, a 待试 list,
+  big-text reader with keep-screen-awake; installable and usable offline (see `kitchen-app/DEPLOY.md`).
 
-- **The website** — `index.html`: the full desktop hub (recipes, study topics, cooking tips, menu, wishlist).
-- **The Kitchen App** — `kitchen-app/index.html`: a phone-first app with search, category browsing,
-  favorites, an in-app recipe reader (big-text + keep-screen-awake), installable to your home screen and usable offline.
+## What goes where
+| Folder | Holds |
+|---|---|
+| `recipes/` | 有材料和步骤的具体做法 — recipes (untried ones are tagged 待试 on the index) |
+| `cooking-tips/` | 怎么做 — technique, ratios, heat |
+| `study-topics/` | 是什么、买哪个 — ingredients, labels, brands, where to buy |
 
-## Project layout
-
-```
-index.html            # website hub (source of truth for recipe listing)
-menu.html, wishlist.html
-assets/               # shared: lang.css, lang.js, recipe-ui.js
-recipes/              # individual recipe & guide pages (+ images/)
-study-topics/         # ingredient deep-dives
-cooking-tips/         # technique guides
-sw.js                 # service-worker stub (must stay at root for offline scope)
-kitchen-app/          # the app: index.html, manifest, sw-core.js, build-index.py, data/, icons/
-```
-
-## Regenerate the app index
-
-After adding or editing recipes in `index.html`:
-
+## Everyday commands
 ```bash
-cd kitchen-app
-python build-index.py     # rebuilds data/recipes.json, recipes.js, precache.js
+python backup.py save "说明"                 # snapshot before editing
+python check.py                              # links, index/menu rules, bilingual, image sizes
+cd kitchen-app && python build-index.py      # refresh the app after index.html changes
 ```
 
-## Bilingual
-
-Every visible string carries `data-en` / `data-zh`, toggled by `assets/lang.js`.
+**Editing rules** (page placement, index/menu sync, bilingual markup, photos, verification) live in **`CLAUDE.md`**.

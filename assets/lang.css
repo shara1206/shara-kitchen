@@ -36,3 +36,6 @@ header { position: relative; }
 body {
   font-family: 'Georgia', 'Times New Roman', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', serif;
 }
+
+/* phones: a long URL or word in a link never makes the page wider than the screen */
+@media (max-width: 640px) { a { overflow-wrap: anywhere; } }

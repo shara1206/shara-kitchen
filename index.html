@@ -100,6 +100,13 @@
   .recipe-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 4px 12px; }
   .recipe-list a { display: block; padding: 5px 6px; color: var(--ink); text-decoration: none; border-radius: 4px; font-size: 0.95rem; transition: background 0.12s ease, color 0.12s ease; }
   .recipe-list a:hover { background: var(--accent-soft); color: #6b3e16; }
+  /* untried recipes: data-status="todo" on the link; label follows page language (lang.js sets <html lang>) */
+  .recipe-list a[data-status="todo"] { color: var(--muted); }
+  .recipe-list a[data-status="todo"]::after { content: "To try"; display: inline-block; margin-left: 5px; padding: 0 5px;
+    font-size: 0.68em; line-height: 1.55; border: 1px dashed var(--accent); border-radius: 8px; color: var(--accent);
+    vertical-align: 0.12em; white-space: nowrap; font-family: 'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; }
+  html:lang(zh) .recipe-list a[data-status="todo"]::after { content: "待试"; }
+  .recipe-list a[data-status="todo"]:hover { color: #6b3e16; }
   .topics { display: grid; grid-template-columns: 1fr; gap: 12px; align-content: start; }
   .topic-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; text-decoration: none; color: inherit; display: flex; align-items: flex-start; gap: 12px; }
   .topic-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201,123,58,0.2); border-color: var(--accent); }
@@ -169,8 +176,8 @@
               <li><a href="recipes/xiaolongbao.html" data-en="Soup Dumplings" data-zh="小笼包">Soup Dumplings</a></li>
               <li><a href="recipes/mantou-huajuan.html" data-en="Mantou &amp; Hua Juan" data-zh="馒头花卷发面">Mantou &amp; Hua Juan</a></li>
               <li><a href="recipes/zongzi.html" data-en="Sticky Rice Dumplings" data-zh="粽子">Sticky Rice Dumplings</a></li>
-              <li><a href="recipes/wannen-miantuan.html" data-en="All-Purpose Dough" data-zh="万能面团">All-Purpose Dough</a></li>
-              <li><a href="recipes/tangmian.html" data-en="Hot Water Dough" data-zh="烫面">Hot Water Dough</a></li>
+              <li><a href="recipes/wannen-miantuan.html" data-en="All-Purpose Dough" data-zh="万能面团" data-status="todo" data-type="base">All-Purpose Dough</a></li>
+              <li><a href="recipes/tangmian.html" data-en="Hot Water Dough" data-zh="烫面" data-status="todo" data-type="base">Hot Water Dough</a></li>
             </ul>
           </div>
           <div class="recipe-section">
@@ -185,8 +192,8 @@
             <h4 data-en="Fried Dough (炸面食)" data-zh="炸面食">Fried Dough (炸面食)</h4>
             <ul class="recipe-list">
               <li><a href="recipes/youtiao.html" data-en="Youtiao" data-zh="油条">Youtiao</a></li>
-              <li><a href="recipes/mahua.html" data-en="Fried Twist" data-zh="麻花">Fried Twist</a></li>
-              <li><a href="recipes/da-mahua.html" data-en="Twist Breadsticks (NE)" data-zh="大麻花（东北）">Twist Breadsticks (NE)</a></li>
+              <li><a href="recipes/mahua.html" data-en="Fried Twist" data-zh="麻花" data-status="todo">Fried Twist</a></li>
+              <li><a href="recipes/da-mahua.html" data-en="Twist Breadsticks (NE)" data-zh="大麻花（东北）" data-status="todo">Twist Breadsticks (NE)</a></li>
               <li><a href="recipes/matuan.html" data-en="Sesame Balls" data-zh="麻团">Sesame Balls</a></li>
             </ul>
           </div>
@@ -219,10 +226,9 @@
             <h4 data-en="Beef &amp; Lamb (牛羊肉)" data-zh="牛羊肉">Beef &amp; Lamb (牛羊肉)</h4>
             <ul class="recipe-list">
               <li><a href="recipes/niurou-fu.html" data-en="Beef Jerky" data-zh="牛肉脯">Beef Jerky</a></li>
-              <li><a href="recipes/wuxiang-niurougan.html" data-en="Five-Spice Beef Jerky (T&amp;T)" data-zh="五香牛肉干（大统华）">Five-Spice Beef Jerky (T&amp;T)</a></li>
+              <li><a href="recipes/wuxiang-niurougan.html" data-en="Five-Spice Beef Jerky (T&amp;T)" data-zh="五香牛肉干（大统华）" data-status="todo">Five-Spice Beef Jerky (T&amp;T)</a></li>
               <li><a href="recipes/rishi-hambao.html" data-en="Japanese Hamburger Steak" data-zh="日式汉堡排">Japanese Hamburger Steak</a></li>
               <li><a href="recipes/yangrouchuan.html" data-en="Lamb Skewers" data-zh="羊肉串">Lamb Skewers</a></li>
-              <li><a href="recipes/yangrou.html" data-en="Lamb" data-zh="羊肉">Lamb</a></li>
               <li><a href="recipes/kao-yangtui.html" data-en="Roasted Lamb Leg" data-zh="烤羊腿">Roasted Lamb Leg</a></li>
             </ul>
           </div>
@@ -263,9 +269,10 @@
               <li><a href="recipes/tiramisu.html" data-en="Tiramisu" data-zh="提拉米苏">Tiramisu</a></li>
               <li><a href="recipes/paofu.html" data-en="Choux Puffs" data-zh="泡芙">Choux Puffs</a></li>
               <li><a href="recipes/danta.html" data-en="Egg Tarts" data-zh="蛋挞">Egg Tarts</a></li>
+              <li><a href="recipes/meigui.html" data-en="Apple Rose Pastry" data-zh="苹果玫瑰" data-status="todo">Apple Rose Pastry</a></li>
               <li><a href="recipes/huangyou-quqi.html" data-en="Butter Cookies" data-zh="黄油曲奇">Butter Cookies</a></li>
-              <li><a href="recipes/danbai-shuang.html" data-en="Egg White Sauce" data-zh="蛋白酱">Egg White Sauce</a></li>
-              <li><a href="recipes/biahua-cailiao.html" data-en="Piping &amp; Frosting" data-zh="裱花材料">Piping &amp; Frosting</a></li>
+              <li><a href="recipes/danbai-shuang.html" data-en="Egg White Sauce" data-zh="蛋白酱" data-status="todo" data-type="base">Egg White Sauce</a></li>
+              <li><a href="recipes/biaohua-cailiao.html" data-en="Piping &amp; Frosting" data-zh="裱花材料" data-status="todo" data-type="base">Piping &amp; Frosting</a></li>
               <li><a href="recipes/beihaidao-mianbao.html" data-en="Hokkaido Milk Bread" data-zh="北海道汤种面包">Hokkaido Milk Bread</a></li>
               <li><a href="recipes/xiao-mianbao.html" data-en="Dinner Rolls" data-zh="小面包">Dinner Rolls</a></li>
               <li><a href="recipes/danhuang-rousong.html" data-en="Mayo Pork Floss Roll" data-zh="蛋黄酱肉松卷">Mayo Pork Floss Roll</a></li>
@@ -292,34 +299,33 @@
             <ul class="recipe-list">
               <li><a href="recipes/mocha-naidong.html" data-en="Matcha Milk Jelly" data-zh="抹茶奶冻">Matcha Milk Jelly</a></li>
               <li><a href="recipes/jiaotang-buding.html" data-en="Caramel Pudding" data-zh="焦糖布丁">Caramel Pudding</a></li>
-              <li><a href="recipes/meigui.html" data-en="Rose Jelly" data-zh="玫瑰">Rose Jelly</a></li>
               <li><a href="recipes/huasheng-lao.html" data-en="Peanut Pudding" data-zh="花生酪">Peanut Pudding</a></li>
-              <li><a href="recipes/yangzhi-ganlue.html" data-en="Mango Sago Dessert" data-zh="杨枝甘露">Mango Sago Dessert</a></li>
+              <li><a href="recipes/yangzhi-ganlue.html" data-en="Mango Sago Dessert" data-zh="杨枝甘露" data-status="todo">Mango Sago Dessert</a></li>
             </ul>
           </div>
           <div class="recipe-section">
             <h4 data-en="Drinks (饮品)" data-zh="饮品">Drinks (饮品)</h4>
             <ul class="recipe-list">
-              <li><a href="recipes/boyajuexian-naicha.html" data-en="Boyajuexian Milk Tea" data-zh="伯牙绝弦奶茶">Boyajuexian Milk Tea</a></li>
-              <li><a href="recipes/anhua-naicha.html" data-en="Anhua Dark Tea Milk Tea" data-zh="安化黑茶奶茶">Anhua Dark Tea Milk Tea</a></li>
-              <li><a href="recipes/matcha-bailan-naicha.html" data-en="Matcha Jasmine White Tea Latte" data-zh="抹茶白兰">Matcha Jasmine White Tea Latte</a></li>
-              <li><a href="recipes/jasmine-zhenwang-naicha.html" data-en="Jasmine Silver Needle Milk Tea" data-zh="茉莉针王">Jasmine Silver Needle Milk Tea</a></li>
-              <li><a href="recipes/niuyouguo-mangmang-ganlu.html" data-en="Avocado Mango Ganlu" data-zh="牛油果芒芒甘露">Avocado Mango Ganlu</a></li>
+              <li><a href="recipes/boyajuexian-naicha.html" data-en="Boyajuexian Milk Tea" data-zh="伯牙绝弦奶茶" data-status="todo">Boyajuexian Milk Tea</a></li>
+              <li><a href="recipes/anhua-naicha.html" data-en="Anhua Dark Tea Milk Tea" data-zh="安化黑茶奶茶" data-status="todo">Anhua Dark Tea Milk Tea</a></li>
+              <li><a href="recipes/matcha-bailan-naicha.html" data-en="Matcha Jasmine White Tea Latte" data-zh="抹茶白兰" data-status="todo">Matcha Jasmine White Tea Latte</a></li>
+              <li><a href="recipes/jasmine-zhenwang-naicha.html" data-en="Jasmine Silver Needle Milk Tea" data-zh="茉莉针王" data-status="todo">Jasmine Silver Needle Milk Tea</a></li>
+              <li><a href="recipes/niuyouguo-mangmang-ganlu.html" data-en="Avocado Mango Ganlu" data-zh="牛油果芒芒甘露" data-status="todo">Avocado Mango Ganlu</a></li>
             </ul>
           </div>
           <div class="recipe-section">
             <h4 data-en="Condiments &amp; Preserved (小料腌制)" data-zh="小料腌制">Condiments &amp; Preserved (小料腌制)</h4>
             <ul class="recipe-list">
-              <li><a href="recipes/hong-congsu.html" data-en="Crispy Shallots" data-zh="红葱酥">Crispy Shallots</a></li>
-              <li><a href="recipes/you-lazi.html" data-en="Chili Oil" data-zh="油浸辣子">Chili Oil</a></li>
-              <li><a href="recipes/tangcu.html" data-en="Sweet &amp; Sour Sauce" data-zh="糖醋">Sweet &amp; Sour Sauce</a></li>
-              <li><a href="recipes/dajiang.html" data-en="Fermented Bean Paste" data-zh="大酱">Fermented Bean Paste</a></li>
-              <li><a href="recipes/rousong-jiang.html" data-en="Pork Floss Sauce" data-zh="肉松酱">Pork Floss Sauce</a></li>
+              <li><a href="recipes/hong-congsu.html" data-en="Crispy Shallots" data-zh="红葱酥" data-status="todo" data-type="base">Crispy Shallots</a></li>
+              <li><a href="recipes/you-lazi.html" data-en="Chili Oil" data-zh="油浸辣子" data-status="todo" data-type="base">Chili Oil</a></li>
+              <li><a href="recipes/tangcu.html" data-en="Sweet &amp; Sour Sauce" data-zh="糖醋" data-status="todo" data-type="base">Sweet &amp; Sour Sauce</a></li>
+              <li><a href="recipes/dajiang.html" data-en="Fermented Bean Paste" data-zh="大酱" data-status="todo" data-type="base">Fermented Bean Paste</a></li>
+              <li><a href="recipes/rousong-jiang.html" data-en="Pork Floss Sauce" data-zh="肉松酱" data-status="todo" data-type="base">Pork Floss Sauce</a></li>
               <li><a href="recipes/tangxin-dan.html" data-en="Soft-Boiled Soy Eggs" data-zh="溏心蛋">Soft-Boiled Soy Eggs</a></li>
               <li><a href="recipes/xian-yadan.html" data-en="Salted Duck Eggs" data-zh="咸鸭蛋">Salted Duck Eggs</a></li>
-              <li><a href="recipes/you-doufu.html" data-en="Fried Tofu Puffs" data-zh="油豆腐">Fried Tofu Puffs</a></li>
+              <li><a href="recipes/you-doufu.html" data-en="Fried Tofu Puffs" data-zh="油豆腐" data-status="todo" data-type="base">Fried Tofu Puffs</a></li>
               <li><a href="recipes/qiuli-gao.html" data-en="Autumn Pear Syrup" data-zh="秋梨膏">Autumn Pear Syrup</a></li>
-              <li><a href="recipes/huoguo-zhanjiang.html" data-en="Hot Pot Dipping Sauce" data-zh="火锅蘸酱">火锅蘸酱</a></li>
+              <li><a href="recipes/huoguo-zhanjiang.html" data-en="Hot Pot Dipping Sauce" data-zh="火锅蘸酱" data-status="todo" data-type="base">火锅蘸酱</a></li>
             </ul>
           </div>
         </div>
@@ -337,6 +343,14 @@
               <h3 data-en="Meat &amp; Aromatic Pairing Table" data-zh="肉类 × 辅料 搭配表">Meat &amp; Aromatic Pairing Table</h3>
               <div class="count" data-en="17 pairings" data-zh="17 组搭配">17 pairings</div>
               <p data-en="What to add to each cut, how much, when — and what it actually does. Plus the myths worth dropping." data-zh="每种肉配什么辅料、放多少、什么时候放，以及它真正的作用；附几个可以放下的常见说法。">What to add to each cut, how much, when — and what it actually does. Plus the myths worth dropping.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="cooking-tips/yangrou-qushan.html">
+            <span class="topic-icon">🐑</span>
+            <div class="topic-info">
+              <h3 data-en="Removing Lamb Gaminess" data-zh="羊肉去膻">Removing Lamb Gaminess</h3>
+              <div class="count" data-en="2 methods" data-zh="2 种方法">2 methods</div>
+              <p data-en="Angelica root (白芷), or soak out the blood, then vinegar and wine to cut the smell and tenderize." data-zh="白芷；或先泡出血水，再加醋和酒去膻、软化。">Angelica root (白芷), or soak out the blood, then vinegar and wine to cut the smell and tenderize.</p>
             </div>
           </a>
           <a class="topic-card" href="cooking-tips/zhajiao-mianhu.html">
@@ -371,15 +385,7 @@
               <p data-en="How to rehydrate dried tofu skin (腐竹) — warm water and salt." data-zh="腐竹泡发方法：温水加盐。">How to rehydrate dried tofu skin (腐竹) — warm water and salt.</p>
             </div>
           </a>
-          <a class="topic-card" href="cooking-tips/pepper.html">
-            <span class="topic-icon"><svg width="1em" height="1em" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;"><rect x="14.5" y="2" width="7" height="4.5" rx="2.2" fill="#c0b8a0" stroke="#908060" stroke-width="0.5"/><rect x="11" y="5.5" width="14" height="7" rx="4" fill="#d0c8b0" stroke="#a09070" stroke-width="0.6"/><rect x="10" y="11" width="16" height="16" rx="4" fill="#e8e0d0" stroke="#b0a080" stroke-width="0.7"/><rect x="11.5" y="13" width="13" height="10" rx="2" fill="#f8f4ec" stroke="#c0b090" stroke-width="0.5" opacity="0.95"/><circle cx="15" cy="16" r="1.8" fill="#2a2018"/><circle cx="18.5" cy="15" r="1.6" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/><circle cx="22" cy="16.5" r="1.8" fill="#2a2018"/><circle cx="16" cy="20" r="1.6" fill="#2a2018"/><circle cx="20.5" cy="19.5" r="1.5" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/><rect x="10.5" y="26" width="15" height="5" rx="2.5" fill="#c8c0a8" stroke="#a09070" stroke-width="0.6"/><circle cx="14" cy="33" r="1.1" fill="#2a2018" opacity="0.7"/><circle cx="18" cy="34.5" r="0.9" fill="#2a2018" opacity="0.6"/><circle cx="22" cy="32.5" r="0.9" fill="#2a2018" opacity="0.55"/></svg></span>
-            <div class="topic-info">
-              <h3 data-en="Pepper" data-zh="胡椒">Pepper</h3>
-              <div class="count" data-en="Black &amp; white" data-zh="黑胡椒与白胡椒">Black &amp; white</div>
-              <p data-en="Black pepper enhances aroma; white pepper adds spicy heat. Know when to use which." data-zh="黑胡椒提香，白胡椒有辣味。了解何时该用哪种。">Black pepper enhances aroma; white pepper adds spicy heat. Know when to use which.</p>
-            </div>
-          </a>
-          <a class="topic-card" href="recipes/jilidin.html">
+          <a class="topic-card" href="cooking-tips/jilidin.html">
             <span class="topic-icon">🧊</span>
             <div class="topic-info">
               <h3 data-en="Gelatin Guide" data-zh="吉利丁用法">Gelatin Guide</h3>
@@ -436,7 +442,7 @@
               <p data-en="Types of flour, protein content, top brands, Canada-Japan supply chain, plus a protein blend converter." data-zh="面粉种类、蛋白质含量、顶级品牌、加拿大—日本供应链，外加一个蛋白质混合计算器。">Types of flour, protein content, top brands, Canada-Japan supply chain, plus a protein blend converter.</p>
             </div>
           </a>
-          <a class="topic-card" href="study-topics/dianfen.html">
+          <a class="topic-card" href="study-topics/starch.html">
             <span class="topic-icon">&#127805;</span>
             <div class="topic-info">
               <h3 data-en="Starches" data-zh="淀粉">Starches</h3>
@@ -468,12 +474,20 @@
               <p data-en="Labels &rarr; which bird &rarr; the sanhuang gap &rarr; which shop: what each claim is legally worth, brands ranked by breed and Cornucopia score, why a US bird is 47.5 days old and a sanhuang is 120, and the Seattle channels." data-zh="标签 &rarr; 选哪只 &rarr; 跟土三黄鸡的差距 &rarr; 去哪买：每个标签在法律上值多少、按品种与 Cornucopia 评分排的品牌、为什么美国鸡 47.5 天而三黄鸡 120 天，以及西雅图的渠道。">Labels &rarr; which bird &rarr; the sanhuang gap &rarr; which shop: what each claim is legally worth, brands ranked by breed and Cornucopia score, why a US bird is 47.5 days old and a sanhuang is 120, and the Seattle channels.</p>
             </div>
           </a>
-          <a class="topic-card" href="study-topics/tudou-guide.html">
+          <a class="topic-card" href="study-topics/potato.html">
             <span class="topic-icon">&#129364;</span>
             <div class="topic-info">
               <h3 data-en="Potato" data-zh="土豆">Potato</h3>
               <div class="count" data-en="Varieties &amp; uses" data-zh="品种与用途">Varieties &amp; uses</div>
               <p data-en="Yukon Gold vs Russet vs red — which potato for mashing, frying, or stewing." data-zh="黄心、白心、红皮土豆的区别，以及哪种适合做泥、炸或炖。">Yukon Gold vs Russet vs red — which potato for mashing, frying, or stewing.</p>
+            </div>
+          </a>
+          <a class="topic-card" href="study-topics/pepper.html">
+            <span class="topic-icon"><svg width="1em" height="1em" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;"><rect x="14.5" y="2" width="7" height="4.5" rx="2.2" fill="#c0b8a0" stroke="#908060" stroke-width="0.5"/><rect x="11" y="5.5" width="14" height="7" rx="4" fill="#d0c8b0" stroke="#a09070" stroke-width="0.6"/><rect x="10" y="11" width="16" height="16" rx="4" fill="#e8e0d0" stroke="#b0a080" stroke-width="0.7"/><rect x="11.5" y="13" width="13" height="10" rx="2" fill="#f8f4ec" stroke="#c0b090" stroke-width="0.5" opacity="0.95"/><circle cx="15" cy="16" r="1.8" fill="#2a2018"/><circle cx="18.5" cy="15" r="1.6" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/><circle cx="22" cy="16.5" r="1.8" fill="#2a2018"/><circle cx="16" cy="20" r="1.6" fill="#2a2018"/><circle cx="20.5" cy="19.5" r="1.5" fill="#f0e8d0" stroke="#c0a870" stroke-width="0.4"/><rect x="10.5" y="26" width="15" height="5" rx="2.5" fill="#c8c0a8" stroke="#a09070" stroke-width="0.6"/><circle cx="14" cy="33" r="1.1" fill="#2a2018" opacity="0.7"/><circle cx="18" cy="34.5" r="0.9" fill="#2a2018" opacity="0.6"/><circle cx="22" cy="32.5" r="0.9" fill="#2a2018" opacity="0.55"/></svg></span>
+            <div class="topic-info">
+              <h3 data-en="Pepper" data-zh="胡椒">Pepper</h3>
+              <div class="count" data-en="Black &amp; white" data-zh="黑胡椒与白胡椒">Black &amp; white</div>
+              <p data-en="Black pepper enhances aroma; white pepper adds spicy heat. Know when to use which." data-zh="黑胡椒提香，白胡椒有辣味。了解何时该用哪种。">Black pepper enhances aroma; white pepper adds spicy heat. Know when to use which.</p>
             </div>
           </a>
           <a class="topic-card" href="study-topics/coffee.html">

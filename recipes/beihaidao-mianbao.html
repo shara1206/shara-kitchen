@@ -66,6 +66,11 @@
 
   .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.93rem; }
   footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Helvetica', sans-serif; }
+  @media (max-width: 640px) {
+    .ingredients-card { padding: 18px 16px; }
+    .ingredients-body { flex-direction: column; gap: 12px; }
+    td:first-child { width: auto; }
+  }
 </style>
 </head>
 <body>

@@ -1,6 +1,8 @@
 {
   "generated": true,
-  "total": 114,
+  "total": 133,
+  "todo": 21,
+  "sub_notes": 19,
   "categories": [
     {
       "name_en": "Noodles (面条)",
@@ -42,7 +44,7 @@
       "name_en": "Beef & Lamb (牛羊肉)",
       "name_zh": "牛羊肉",
       "type": "recipe",
-      "count": 6
+      "count": 5
     },
     {
       "name_en": "Seafood (海鲜)",
@@ -66,7 +68,7 @@
       "name_en": "Baking & Pastry (烘焙)",
       "name_zh": "烘焙",
       "type": "recipe",
-      "count": 12
+      "count": 13
     },
     {
       "name_en": "Chinese Sweets & Street Food (中式甜点小吃)",
@@ -78,7 +80,7 @@
       "name_en": "Puddings & Jellies (布丁冻品)",
       "name_zh": "布丁冻品",
       "type": "recipe",
-      "count": 5
+      "count": 4
     },
     {
       "name_en": "Drinks (饮品)",
@@ -96,19 +98,13 @@
       "name_en": "Cooking Tips",
       "name_zh": "烹饪技巧",
       "type": "tip",
-      "count": 8
-    },
-    {
-      "name_en": "Ingredient Notes",
-      "name_zh": "食材笔记",
-      "type": "recipe",
-      "count": 1
+      "count": 9
     },
     {
       "name_en": "Study Topics",
       "name_zh": "学习专题",
       "type": "study",
-      "count": 10
+      "count": 11
     },
     {
       "name_en": "Pages",
@@ -128,7 +124,12 @@
       "category_zh": "面条",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Scallion Noodles",
@@ -140,7 +141,12 @@
       "category_zh": "面条",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Hot Dry Noodles",
@@ -152,7 +158,12 @@
       "category_zh": "面条",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Dumplings",
@@ -164,7 +175,12 @@
       "category_zh": "包点",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Soup Dumplings",
@@ -176,7 +192,12 @@
       "category_zh": "包点",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Mantou & Hua Juan",
@@ -188,7 +209,12 @@
       "category_zh": "包点",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Sticky Rice Dumplings",
@@ -200,7 +226,12 @@
       "category_zh": "包点",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "All-Purpose Dough",
@@ -212,7 +243,12 @@
       "category_zh": "包点",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Hot Water Dough",
@@ -224,7 +260,12 @@
       "category_zh": "包点",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Egg Pancake",
@@ -236,7 +277,12 @@
       "category_zh": "饼类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Yogurt Pancake",
@@ -248,7 +294,12 @@
       "category_zh": "饼类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Jianbing Crepe",
@@ -260,7 +311,12 @@
       "category_zh": "饼类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Youtiao",
@@ -270,9 +326,14 @@
       "type": "recipe",
       "category_en": "Fried Dough (炸面食)",
       "category_zh": "炸面食",
-      "image": "recipes/images/youtiao/Final.png",
+      "image": "recipes/images/youtiao/Final.jpg",
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Fried Twist",
@@ -284,7 +345,12 @@
       "category_zh": "炸面食",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Twist Breadsticks (NE)",
@@ -296,7 +362,12 @@
       "category_zh": "炸面食",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Sesame Balls",
@@ -308,7 +379,12 @@
       "category_zh": "炸面食",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Salt Water Duck",
@@ -320,7 +396,12 @@
       "category_zh": "禽类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Soy Sauce Chicken",
@@ -332,7 +413,12 @@
       "category_zh": "禽类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "White Cut Chicken",
@@ -344,7 +430,12 @@
       "category_zh": "禽类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Fried Chicken Wings",
@@ -356,7 +447,12 @@
       "category_zh": "禽类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Garlic Chicken Wings",
@@ -368,7 +464,12 @@
       "category_zh": "禽类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Taiwanese Popcorn Chicken",
@@ -380,7 +481,12 @@
       "category_zh": "禽类",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Dongpo Pork",
@@ -392,7 +498,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Crispy Pork Belly",
@@ -404,7 +515,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Char Siu",
@@ -416,7 +532,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Beijing Pork Strips",
@@ -428,7 +549,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Salt & Pepper Ribs",
@@ -440,7 +566,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Grilled Pork Chop",
@@ -452,7 +583,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Cured Pork Belly",
@@ -464,7 +600,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Sichuan Sausage",
@@ -476,7 +617,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Crispy Sweet & Sour Pork",
@@ -488,7 +634,12 @@
       "category_zh": "猪肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Beef Jerky",
@@ -500,7 +651,12 @@
       "category_zh": "牛羊肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Five-Spice Beef Jerky (T&T)",
@@ -512,7 +668,12 @@
       "category_zh": "牛羊肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Japanese Hamburger Steak",
@@ -524,7 +685,12 @@
       "category_zh": "牛羊肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Lamb Skewers",
@@ -536,19 +702,12 @@
       "category_zh": "牛羊肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
-    },
-    {
-      "title_en": "Lamb",
-      "title_zh": "羊肉",
-      "path": "recipes/yangrou.html",
-      "slug": "yangrou",
-      "type": "recipe",
-      "category_en": "Beef & Lamb (牛羊肉)",
-      "category_zh": "牛羊肉",
-      "image": null,
-      "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Roasted Lamb Leg",
@@ -560,7 +719,12 @@
       "category_zh": "牛羊肉",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Grilled Yellow Croaker",
@@ -572,7 +736,12 @@
       "category_zh": "海鲜",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Grilled Fish",
@@ -584,7 +753,12 @@
       "category_zh": "海鲜",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Boiling Shrimp",
@@ -596,7 +770,12 @@
       "category_zh": "海鲜",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Hot n Juicy",
@@ -608,7 +787,12 @@
       "category_zh": "海鲜",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Air-Fried Fish Tofu",
@@ -620,7 +804,12 @@
       "category_zh": "海鲜",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Tomato & Egg Stir-fry",
@@ -632,7 +821,12 @@
       "category_zh": "素菜豆腐",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Vinegar Potato Shreds",
@@ -644,7 +838,12 @@
       "category_zh": "素菜豆腐",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Steamed Tofu & Egg",
@@ -656,7 +855,12 @@
       "category_zh": "素菜豆腐",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Konjac Tofu",
@@ -668,7 +872,12 @@
       "category_zh": "素菜豆腐",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Smashed Cucumber",
@@ -680,7 +889,12 @@
       "category_zh": "素菜豆腐",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Dried Radish",
@@ -692,7 +906,12 @@
       "category_zh": "素菜豆腐",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Clay Pot Rice",
@@ -704,7 +923,12 @@
       "category_zh": "米饭锅物",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Sukiyaki",
@@ -716,7 +940,12 @@
       "category_zh": "米饭锅物",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Chiffon Cake",
@@ -728,7 +957,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Matcha Chiffon Roll",
@@ -740,7 +974,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Lemon Blueberry Cake",
@@ -752,7 +991,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Tiramisu",
@@ -764,7 +1008,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Choux Puffs",
@@ -776,7 +1025,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Egg Tarts",
@@ -788,7 +1042,29 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
+    },
+    {
+      "title_en": "Apple Rose Pastry",
+      "title_zh": "苹果玫瑰",
+      "path": "recipes/meigui.html",
+      "slug": "meigui",
+      "type": "recipe",
+      "category_en": "Baking & Pastry (烘焙)",
+      "category_zh": "烘焙",
+      "image": null,
+      "subtitle_en": "",
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Butter Cookies",
@@ -800,7 +1076,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Egg White Sauce",
@@ -812,19 +1093,29 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Piping & Frosting",
       "title_zh": "裱花材料",
-      "path": "recipes/biahua-cailiao.html",
-      "slug": "biahua-cailiao",
+      "path": "recipes/biaohua-cailiao.html",
+      "slug": "biaohua-cailiao",
       "type": "recipe",
       "category_en": "Baking & Pastry (烘焙)",
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Hokkaido Milk Bread",
@@ -836,7 +1127,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Dinner Rolls",
@@ -848,7 +1144,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Mayo Pork Floss Roll",
@@ -860,7 +1161,12 @@
       "category_zh": "烘焙",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Mochi",
@@ -872,7 +1178,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Mochi Balls",
@@ -884,7 +1195,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Taro Balls",
@@ -896,7 +1212,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Taro Paste",
@@ -908,7 +1229,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Scallion Mochi Konjac Roll",
@@ -920,7 +1246,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Mooncakes",
@@ -932,7 +1263,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Pumpkin Cakes",
@@ -944,7 +1280,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Mung Bean Cake",
@@ -956,7 +1297,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Golden Cake",
@@ -968,7 +1314,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Fried Cake",
@@ -980,7 +1331,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Egg Waffles",
@@ -992,7 +1348,12 @@
       "category_zh": "中式甜点小吃",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Matcha Milk Jelly",
@@ -1004,7 +1365,12 @@
       "category_zh": "布丁冻品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Caramel Pudding",
@@ -1016,19 +1382,12 @@
       "category_zh": "布丁冻品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
-    },
-    {
-      "title_en": "Rose Jelly",
-      "title_zh": "玫瑰",
-      "path": "recipes/meigui.html",
-      "slug": "meigui",
-      "type": "recipe",
-      "category_en": "Puddings & Jellies (布丁冻品)",
-      "category_zh": "布丁冻品",
-      "image": null,
-      "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Peanut Pudding",
@@ -1040,7 +1399,12 @@
       "category_zh": "布丁冻品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Mango Sago Dessert",
@@ -1052,7 +1416,12 @@
       "category_zh": "布丁冻品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Boyajuexian Milk Tea",
@@ -1064,7 +1433,12 @@
       "category_zh": "饮品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Anhua Dark Tea Milk Tea",
@@ -1076,7 +1450,12 @@
       "category_zh": "饮品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Matcha Jasmine White Tea Latte",
@@ -1088,7 +1467,12 @@
       "category_zh": "饮品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Jasmine Silver Needle Milk Tea",
@@ -1100,7 +1484,12 @@
       "category_zh": "饮品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Avocado Mango Ganlu",
@@ -1112,7 +1501,12 @@
       "category_zh": "饮品",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "dish"
     },
     {
       "title_en": "Crispy Shallots",
@@ -1124,7 +1518,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Chili Oil",
@@ -1136,7 +1535,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Sweet & Sour Sauce",
@@ -1148,7 +1552,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Fermented Bean Paste",
@@ -1160,7 +1569,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Pork Floss Sauce",
@@ -1172,7 +1586,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Soft-Boiled Soy Eggs",
@@ -1184,7 +1603,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Salted Duck Eggs",
@@ -1196,7 +1620,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Fried Tofu Puffs",
@@ -1208,7 +1637,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Autumn Pear Syrup",
@@ -1220,7 +1654,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": "dish"
     },
     {
       "title_en": "Hot Pot Dipping Sauce",
@@ -1232,7 +1671,12 @@
       "category_zh": "小料腌制",
       "image": null,
       "subtitle_en": "",
-      "subtitle_zh": ""
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
+      "role": "base"
     },
     {
       "title_en": "Meat & Aromatic Pairing Table",
@@ -1244,7 +1688,29 @@
       "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "17 pairings",
-      "subtitle_zh": "17 组搭配"
+      "subtitle_zh": "17 组搭配",
+      "desc_en": "What to add to each cut, how much, when — and what it actually does. Plus the myths worth dropping.",
+      "desc_zh": "每种肉配什么辅料、放多少、什么时候放，以及它真正的作用；附几个可以放下的常见说法。",
+      "sub": false,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Removing Lamb Gaminess",
+      "title_zh": "羊肉去膻",
+      "path": "cooking-tips/yangrou-qushan.html",
+      "slug": "yangrou-qushan",
+      "type": "tip",
+      "category_en": "Cooking Tips",
+      "category_zh": "烹饪技巧",
+      "image": null,
+      "subtitle_en": "2 methods",
+      "subtitle_zh": "2 种方法",
+      "desc_en": "Angelica root (白芷), or soak out the blood, then vinegar and wine to cut the smell and tenderize.",
+      "desc_zh": "白芷；或先泡出血水，再加醋和酒去膻、软化。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Frying Batter Guide",
@@ -1256,7 +1722,12 @@
       "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "4 batter types",
-      "subtitle_zh": "4 种面糊"
+      "subtitle_zh": "4 种面糊",
+      "desc_en": "Crispy coating, hard-fry, and airy tempura-style batters — ratios and best uses for each.",
+      "desc_zh": "脆皮糊、硬炸糊、气泡糊的配方与适用场景。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Sugar Guide",
@@ -1268,7 +1739,12 @@
       "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "Types & techniques",
-      "subtitle_zh": "种类与技法"
+      "subtitle_zh": "种类与技法",
+      "desc_en": "糖色, 拔丝, caramel stages — sugar types and when to use each in Chinese cooking.",
+      "desc_zh": "糖色、拔丝、焦糖阶段——各种糖在中式烹饪中的用法。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Konjac Powder Guide",
@@ -1280,7 +1756,12 @@
       "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "Ratios & substitutes",
-      "subtitle_zh": "比例与代换"
+      "subtitle_zh": "比例与代换",
+      "desc_en": "Konjac powder glucomannan content, xanthan gum substitution ratio, and usage notes.",
+      "desc_zh": "魔芋粉葡聚糖含量、黄原胶换算比例与实际用量建议。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Rehydrating Yuba",
@@ -1292,31 +1773,29 @@
       "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "Tips & timing",
-      "subtitle_zh": "技巧与时间"
-    },
-    {
-      "title_en": "Pepper",
-      "title_zh": "胡椒",
-      "path": "cooking-tips/pepper.html",
-      "slug": "pepper",
-      "type": "tip",
-      "category_en": "Cooking Tips",
-      "category_zh": "烹饪技巧",
-      "image": null,
-      "subtitle_en": "Black & white",
-      "subtitle_zh": "黑胡椒与白胡椒"
+      "subtitle_zh": "技巧与时间",
+      "desc_en": "How to rehydrate dried tofu skin (腐竹) — warm water and salt.",
+      "desc_zh": "腐竹泡发方法：温水加盐。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Gelatin Guide",
       "title_zh": "吉利丁用法",
-      "path": "recipes/jilidin.html",
+      "path": "cooking-tips/jilidin.html",
       "slug": "jilidin",
-      "type": "recipe",
-      "category_en": "Ingredient Notes",
-      "category_zh": "食材笔记",
+      "type": "tip",
+      "category_en": "Cooking Tips",
+      "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "Powder & sheets",
-      "subtitle_zh": "吉利丁粉与片"
+      "subtitle_zh": "吉利丁粉与片",
+      "desc_en": "Gelatin powder vs. sheets — ratios, bloom method, and how to substitute one for the other.",
+      "desc_zh": "吉利丁粉与吉利丁片的区别、用量换算与泡发方法。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Chinese Soup Guide",
@@ -1328,7 +1807,12 @@
       "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "6 soup types",
-      "subtitle_zh": "6 种汤型"
+      "subtitle_zh": "6 种汤型",
+      "desc_en": "Heat control and the order ingredients go in — clear, milky, Cantonese slow-simmered, quick, thickened, double-boiled. Plus a 2-hour timeline and four rules.",
+      "desc_zh": "六种汤型的火候与下料顺序：清汤、奶白汤、老火汤、滚汤、羹、隔水炖；附 2 小时下料时间轴与四条铁律。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Hot Pot Dipping Sauces",
@@ -1340,7 +1824,12 @@
       "category_zh": "烹饪技巧",
       "image": null,
       "subtitle_en": "6 broth types",
-      "subtitle_zh": "6 种锅底"
+      "subtitle_zh": "6 种锅底",
+      "desc_en": "Match your dipping sauce to the broth — mala, clear, Beijing lamb, Chaoshan beef, seafood, dry dip.",
+      "desc_zh": "根据锅底选蘸料——麻辣、清汤、老北京涮羊肉、潮汕牛肉、海鲜、干碟。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Eggs",
@@ -1352,7 +1841,12 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "4 notes",
-      "subtitle_zh": "4 篇笔记"
+      "subtitle_zh": "4 篇笔记",
+      "desc_en": "Nutrition differences, brand quality, where to buy around Bellevue, and a decoder for the pack date stamped on the carton.",
+      "desc_zh": "营养差异、品牌质量、贝尔维尤一带去哪买，以及纸盒上装盒日期的解码工具。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Milk",
@@ -1364,7 +1858,12 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "3 notes",
-      "subtitle_zh": "3 篇笔记"
+      "subtitle_zh": "3 篇笔记",
+      "desc_en": "Whole vs skim, A2, grass-fed, organic — what every label on the carton guarantees, and which brands live up to theirs.",
+      "desc_zh": "全脂与脱脂、A2、草饲、有机——包装上每个标签到底保证了什么，以及哪些品牌名副其实。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Flour",
@@ -1376,19 +1875,29 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "3 notes + converter",
-      "subtitle_zh": "3 篇笔记 + 转换器"
+      "subtitle_zh": "3 篇笔记 + 转换器",
+      "desc_en": "Types of flour, protein content, top brands, Canada-Japan supply chain, plus a protein blend converter.",
+      "desc_zh": "面粉种类、蛋白质含量、顶级品牌、加拿大—日本供应链，外加一个蛋白质混合计算器。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Starches",
       "title_zh": "淀粉",
-      "path": "study-topics/dianfen.html",
-      "slug": "dianfen",
+      "path": "study-topics/starch.html",
+      "slug": "starch",
       "type": "study",
       "category_en": "Study Topics",
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "9 starches",
-      "subtitle_zh": "9 种淀粉"
+      "subtitle_zh": "9 种淀粉",
+      "desc_en": "Corn, potato, tapioca, wheat, sweet potato, mung bean and more — amylose, clarity and set compared, which starch for thickening, gels, frying or velveting, why custard turns watery, and a regional name decoder.",
+      "desc_zh": "玉米、土豆、木薯、澄粉、红薯、绿豆等淀粉的直链比例、透明度与凝固特性对比；勾芡、凝胶、炸物、上浆各用哪种；卡仕达为何变水；以及各地名称对照。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Seafood",
@@ -1400,7 +1909,12 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "Fish, crab & shrimp",
-      "subtitle_zh": "鱼、蟹与虾"
+      "subtitle_zh": "鱼、蟹与虾",
+      "desc_en": "Fish species, crab safety, and US shrimp varieties — identification, selection, and cooking methods.",
+      "desc_zh": "鱼类品种、螃蟹安全与美国虾种——识别、选购与烹饪指南。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Beef",
@@ -1412,7 +1926,12 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "2 notes",
-      "subtitle_zh": "2 篇笔记"
+      "subtitle_zh": "2 篇笔记",
+      "desc_en": "Cuts & grades, Cornucopia’s organic brand scorecard, and Bellevue buying tips including PCC sourcing standards.",
+      "desc_zh": "部位与等级、Cornucopia 有机品牌评分，以及含 PCC 采购标准的 Bellevue 购买建议。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Chicken",
@@ -1424,19 +1943,46 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "4 notes",
-      "subtitle_zh": "4 篇笔记"
+      "subtitle_zh": "4 篇笔记",
+      "desc_en": "Labels → which bird → the sanhuang gap → which shop: what each claim is legally worth, brands ranked by breed and Cornucopia score, why a US bird is 47.5 days old and a sanhuang is 120, and the Seattle channels.",
+      "desc_zh": "标签 → 选哪只 → 跟土三黄鸡的差距 → 去哪买：每个标签在法律上值多少、按品种与 Cornucopia 评分排的品牌、为什么美国鸡 47.5 天而三黄鸡 120 天，以及西雅图的渠道。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Potato",
       "title_zh": "土豆",
-      "path": "study-topics/tudou-guide.html",
-      "slug": "tudou-guide",
+      "path": "study-topics/potato.html",
+      "slug": "potato",
       "type": "study",
       "category_en": "Study Topics",
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "Varieties & uses",
-      "subtitle_zh": "品种与用途"
+      "subtitle_zh": "品种与用途",
+      "desc_en": "Yukon Gold vs Russet vs red — which potato for mashing, frying, or stewing.",
+      "desc_zh": "黄心、白心、红皮土豆的区别，以及哪种适合做泥、炸或炖。",
+      "sub": false,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Pepper",
+      "title_zh": "胡椒",
+      "path": "study-topics/pepper.html",
+      "slug": "pepper",
+      "type": "study",
+      "category_en": "Study Topics",
+      "category_zh": "学习专题",
+      "image": null,
+      "subtitle_en": "Black & white",
+      "subtitle_zh": "黑胡椒与白胡椒",
+      "desc_en": "Black pepper enhances aroma; white pepper adds spicy heat. Know when to use which.",
+      "desc_zh": "黑胡椒提香，白胡椒有辣味。了解何时该用哪种。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Coffee",
@@ -1448,7 +1994,12 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "Brewing & beans",
-      "subtitle_zh": "冲泡与豆子"
+      "subtitle_zh": "冲泡与豆子",
+      "desc_en": "Pour-over params with a built-in brew timer, a two-test bitterness troubleshooter, beans I own, and a roaster shortlist.",
+      "desc_zh": "手冲参数（内置冲煮计时器）、苦味两步自查、我的豆子清单与烘焙商推荐表。",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Drinking Water",
@@ -1460,7 +2011,335 @@
       "category_zh": "学习专题",
       "image": null,
       "subtitle_en": "Bellevue vs Newark",
-      "subtitle_zh": "Bellevue 与 Newark 对比"
+      "subtitle_zh": "Bellevue 与 Newark 对比",
+      "desc_en": "Is bottled water needed for drinking, boiling and soup? Hardness, PFAS, lead & copper data against US, EU and Swedish PFAS4 standards, plus what to do without a filter.",
+      "desc_zh": "饮用、烧水和煮汤要不要买瓶装水？软硬度、PFAS、铅铜数据对照美国、欧盟与瑞典 PFAS4 标准，以及不用过滤设备时的做法。",
+      "sub": false,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Not All Organic Eggs Are Equal: Nutrition & Quality",
+      "title_zh": "并非所有有机鸡蛋都一样：营养与品质",
+      "path": "study-topics/eggs-organic.html",
+      "slug": "eggs-organic",
+      "type": "study",
+      "category_en": "Eggs",
+      "category_zh": "鸡蛋",
+      "image": null,
+      "subtitle_en": "Nutrition",
+      "subtitle_zh": "营养",
+      "desc_en": "Why pasture-raised, free-range, and standard organic eggs differ in omega-3s, vitamins, yolk color, and more.",
+      "desc_zh": "放牧、散养与普通有机鸡蛋在欧米伽-3、维生素、蛋黄颜色等方面的差异。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Organic Egg Brand Comparison (Cornucopia Scorecard)",
+      "title_zh": "有机鸡蛋品牌对比（Cornucopia 评分卡）",
+      "path": "study-topics/eggs-organic-brands.html",
+      "slug": "eggs-organic-brands",
+      "type": "study",
+      "category_en": "Eggs",
+      "category_zh": "鸡蛋",
+      "image": null,
+      "subtitle_en": "Buying Guide",
+      "subtitle_zh": "选购指南",
+      "desc_en": "Which organic egg brands actually live up to the label — from the most trusted independent rating of 150+ brands.",
+      "desc_zh": "哪些有机鸡蛋品牌真正名副其实——来自最受信赖的独立机构对 150+ 品牌的评分。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Best Eggs Around Bellevue: Is PCC Mobile Pastured It?",
+      "title_zh": "贝尔维尤最好的鸡蛋：PCC Mobile Pastured 是最优解吗？",
+      "path": "study-topics/eggs-pcc-bellevue.html",
+      "slug": "eggs-pcc-bellevue",
+      "type": "study",
+      "category_en": "Eggs",
+      "category_zh": "鸡蛋",
+      "image": null,
+      "subtitle_en": "Local · Buying Guide",
+      "subtitle_zh": "本地 · 选购指南",
+      "desc_en": "The numbers behind PCC's 5-egg rating, the two caveats it hides, and a where-to-buy table with addresses and distances from Bellevue.",
+      "desc_zh": "PCC 5 颗鸡蛋评级背后的数字、它没写出来的两个问题，以及一张带地址和距离的贝尔维尤选购对照表。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Egg Date Decoder",
+      "title_zh": "鸡蛋日期解码器",
+      "path": "study-topics/eggs-freshness.html",
+      "slug": "eggs-freshness",
+      "type": "study",
+      "category_en": "Eggs",
+      "category_zh": "鸡蛋",
+      "image": null,
+      "subtitle_en": "Tool",
+      "subtitle_zh": "工具",
+      "desc_en": "Today's Julian day, and what the 3-digit stamp on a carton means — real age, peak-quality window, when it will finally peel hard-boiled. Keeps a purchase log.",
+      "desc_zh": "今天的儒略日，以及纸盒上那三位数到底代表什么——真实天数、最佳品质期限、什么时候水煮才好剥壳。还能记录每次购买。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Milk Types & Nutrition: Whole, Skim, A2, Grass-Fed, Organic",
+      "title_zh": "牛奶的种类与营养：全脂、脱脂、A2、草饲、有机",
+      "path": "study-topics/milk-types.html",
+      "slug": "milk-types",
+      "type": "study",
+      "category_en": "Milk",
+      "category_zh": "牛奶",
+      "image": null,
+      "subtitle_en": "Nutrition",
+      "subtitle_zh": "营养",
+      "desc_en": "What actually differs between milk types — fat, omega-3s, CLA, vitamins, and the A1 vs A2 protein question.",
+      "desc_zh": "不同牛奶之间真正的差异——脂肪、欧米伽-3、CLA、维生素，以及 A1 与 A2 蛋白的问题。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Milk Labels Decoded: Organic, 100% Grassfed, Pasture Raised & the Rest",
+      "title_zh": "牛奶标签解读：有机、100% 草饲、牧场放牧及其他",
+      "path": "study-topics/milk-label-guide.html",
+      "slug": "milk-label-guide",
+      "type": "study",
+      "category_en": "Milk",
+      "category_zh": "牛奶",
+      "image": null,
+      "subtitle_en": "Buying Guide",
+      "subtitle_zh": "选购指南",
+      "desc_en": "What each seal on the carton legally guarantees — feed, pasture, welfare, heat treatment and A2 — and which words mean nothing without a certifier behind them.",
+      "desc_zh": "包装上每个印章在法律上到底保证了什么——饲料、放牧、动物福利、杀菌工艺与 A2——以及哪些词没有认证机构背书时等于什么都没说。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Organic Milk Brand Comparison (Cornucopia Dairy Scorecard)",
+      "title_zh": "有机牛奶品牌对比（Cornucopia 乳品评分卡）",
+      "path": "study-topics/milk-brands.html",
+      "slug": "milk-brands",
+      "type": "study",
+      "category_en": "Milk",
+      "category_zh": "牛奶",
+      "image": null,
+      "subtitle_en": "Buying Guide",
+      "subtitle_zh": "选购指南",
+      "desc_en": "Which organic milk brands deliver on the label — from Cornucopia's 5-cow rating system covering 160+ brands.",
+      "desc_zh": "哪些有机牛奶品牌真正对得起标签——来自 Cornucopia 5 颗奶牛评分体系，覆盖 160+ 品牌。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Flour Types & Protein: When to Use What",
+      "title_zh": "面粉种类与蛋白质：何时用哪一种",
+      "path": "study-topics/flour-types.html",
+      "slug": "flour-types",
+      "type": "study",
+      "category_en": "Flour",
+      "category_zh": "面粉",
+      "image": null,
+      "subtitle_en": "Reference",
+      "subtitle_zh": "参考",
+      "desc_en": "All-purpose, bread, cake, pastry, 00, whole wheat — protein content, when each shines, and how to swap.",
+      "desc_zh": "通用粉、面包粉、蛋糕粉、糕点粉、00 号、全麦——各自的蛋白质含量、适合的用途，以及如何替换。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Flour Brands & Quality: King Arthur, Bob's Red Mill, Central Milling, and More",
+      "title_zh": "面粉品牌与品质：King Arthur、Bob's Red Mill、Central Milling 等",
+      "path": "study-topics/flour-brands.html",
+      "slug": "flour-brands",
+      "type": "study",
+      "category_en": "Flour",
+      "category_zh": "面粉",
+      "image": null,
+      "subtitle_en": "Buying Guide",
+      "subtitle_zh": "选购指南",
+      "desc_en": "How major flour brands stack up on consistency, protein content, organic certification, and what to buy for what.",
+      "desc_zh": "主要面粉品牌在稳定性、蛋白质含量、有机认证等方面的表现，以及不同用途该买哪一种。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Canadian Wheat → Japanese Flour: The Hidden Supply Chain",
+      "title_zh": "加拿大小麦 → 日本面粉：隐藏的供应链",
+      "path": "study-topics/flour-canada-japan.html",
+      "slug": "flour-canada-japan",
+      "type": "study",
+      "category_en": "Flour",
+      "category_zh": "面粉",
+      "image": null,
+      "subtitle_en": "Supply Chain",
+      "subtitle_zh": "供应链",
+      "desc_en": "How Nisshin's Camellia and other famous Japanese flour brands are actually made from Canadian wheat — and why CWRS is the gold standard.",
+      "desc_zh": "日清制粉的 Camellia 等日本知名面粉品牌为何其实是用加拿大小麦做的——以及 CWRS 为什么是行业的黄金标准。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Fish Guide — 30 Species",
+      "title_zh": "鱼类指南——30 种鱼",
+      "path": "study-topics/seafood-fish.html",
+      "slug": "seafood-fish",
+      "type": "study",
+      "category_en": "Seafood",
+      "category_zh": "海鲜",
+      "image": null,
+      "subtitle_en": "Reference",
+      "subtitle_zh": "参考",
+      "desc_en": "Fish classification, Chinese names, and best cooking methods for each variety — steaming, braising, frying, and more.",
+      "desc_zh": "鱼类分类与中文名，以及各品种最适合的烹饪方式——蒸、焖、炸等。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Crab Comparison — 5 Varieties",
+      "title_zh": "螃蟹对比——5 种蟹",
+      "path": "study-topics/seafood-crab.html",
+      "slug": "seafood-crab",
+      "type": "study",
+      "category_en": "Seafood",
+      "category_zh": "海鲜",
+      "image": null,
+      "subtitle_en": "Safety · Reference",
+      "subtitle_zh": "安全 · 参考",
+      "desc_en": "Stone crab, snow crab, blue crab, Dungeness, and hairy crab — contaminant risk ratings, habitat, and how to eat each safely.",
+      "desc_zh": "石蟹、雪蟹、蓝蟹、珍宝蟹、大闸蟹——污染风险评级、栖息地与安全食用建议。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Shrimp Varieties — 6 Species",
+      "title_zh": "虾的品种——6 种虾",
+      "path": "study-topics/seafood-shrimp.html",
+      "slug": "seafood-shrimp",
+      "type": "study",
+      "category_en": "Seafood",
+      "category_zh": "海鲜",
+      "image": null,
+      "subtitle_en": "Reference · US Sourcing",
+      "subtitle_zh": "参考 · 美国购买",
+      "desc_en": "Spot prawns, Arctic sweet shrimp, sesame shrimp, tiger shrimp and more — Pacific vs. Atlantic, fresh vs. frozen, East Coast live tanks explained.",
+      "desc_zh": "斑点虾、北极甜虾、芝麻虾、黑虎虾等——太平洋与大西洋品种、鲜活与冷冻的区别，东海岸游水虾解析。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Beef Cuts & Grades Guide",
+      "title_zh": "牛肉部位与等级指南",
+      "path": "study-topics/beef-guide.html",
+      "slug": "beef-guide",
+      "type": "study",
+      "category_en": "Beef",
+      "category_zh": "牛肉",
+      "image": null,
+      "subtitle_en": "Reference",
+      "subtitle_zh": "参考",
+      "desc_en": "Wagyu vs Prime vs Choice vs Select, which cuts suit which cooking methods, and how to choose at the store.",
+      "desc_zh": "和牛、Prime、Choice 与 Select 的区别，各部位适合的烹饪方式，以及如何在超市挑选牛肉。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Organic Beef Buying Guide",
+      "title_zh": "有机牛肉选购指南",
+      "path": "study-topics/beef-organic-scorecard.html",
+      "slug": "beef-organic-scorecard",
+      "type": "study",
+      "category_en": "Beef",
+      "category_zh": "牛肉",
+      "image": null,
+      "subtitle_en": "Buying Guide",
+      "subtitle_zh": "选购指南",
+      "desc_en": "Cornucopia’s 1–5 cow scorecard for 150+ brands, plus Bellevue shopping tips — PCC standards, top 3 picks, and brands to avoid.",
+      "desc_zh": "Cornucopia 对 150+ 个品牌的 1–5 头牛评分，加 Bellevue 本地购买建议——PCC 标准、最优三选及应避免的品牌。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Chicken Labels Decoded",
+      "title_zh": "鸡肉标签解读",
+      "path": "study-topics/chicken-label-guide.html",
+      "slug": "chicken-label-guide",
+      "type": "study",
+      "category_en": "Chicken",
+      "category_zh": "鸡肉",
+      "image": null,
+      "subtitle_en": "Label Guide · USDA & third-party",
+      "subtitle_zh": "标签解读 · USDA 与第三方认证",
+      "desc_en": "7 labels — Organic, Pasture-Raised, Free-Range, Air-Chilled, No Antibiotics Ever, Non-GMO, Certified Humane — what each one guarantees, why it’s worth paying for, and where it falls short. Plus what the origin line is worth.",
+      "desc_zh": "7 个标签——有机、牧场散养、走地、风冷、全程无抗、非转基因、动物福利认证——各自保证了什么、值不值得买、以及局限在哪。外加产地那一栏值多少。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Which Bird to Buy",
+      "title_zh": "选哪只鸡",
+      "path": "study-topics/chicken-sourcing-guide.html",
+      "slug": "chicken-sourcing-guide",
+      "type": "study",
+      "category_en": "Chicken",
+      "category_zh": "鸡肉",
+      "image": null,
+      "subtitle_en": "Brand comparison · 8 brands & farms",
+      "subtitle_zh": "品牌对照 · 8 个品牌与农场",
+      "desc_en": "Which brands actually clear Organic + Pasture-Raised, why no package carries all three labels, breed and Cornucopia scores, and the GAP Step 4 rule for reading a supermarket shelf.",
+      "desc_zh": "哪些品牌真能同时做到有机 + 散养、为什么没有一个包装能凑齐三个标签、品种与 Cornucopia 评分，以及在超市现场用的 GAP Step 4 判据。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "The Bird I Actually Want",
+      "title_zh": "真正要的那只鸡",
+      "path": "study-topics/chicken-sanhuang.html",
+      "slug": "chicken-sanhuang",
+      "type": "study",
+      "category_en": "Chicken",
+      "category_zh": "鸡肉",
+      "image": null,
+      "subtitle_en": "Sanhuang · Breed & age",
+      "subtitle_zh": "土三黄鸡 · 品种与日龄",
+      "desc_en": "47.5 days versus 120: how far a US bird sits from a Cantonese sanhuang, why Chinese-raised birds cannot be imported at all, how to judge one by hand in the store, and what closes the gap — buying versus cooking.",
+      "desc_zh": "47.5 天对 120 天：美国的鸡离两广土三黄鸡有多远、为什么中国养的鸡根本进不来、在店里怎么上手判，以及差距靠换渠道还是靠做法补。",
+      "sub": true,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Local Shops & Word of Mouth",
+      "title_zh": "本地渠道与口碑",
+      "path": "study-topics/chicken-buying-guide.html",
+      "slug": "chicken-buying-guide",
+      "type": "study",
+      "category_en": "Chicken",
+      "category_zh": "鸡肉",
+      "image": null,
+      "subtitle_en": "Seattle",
+      "subtitle_zh": "西雅图",
+      "desc_en": "8 local channels — T&T, PCC, Whole Foods, H Mart Redmond, Xiongda Seafood, Dongjiang BBQ, and two group-buy sellers — with community feedback on each. Shops only; breed and provenance live in the two notes above.",
+      "desc_zh": "8 个本地渠道——大统华、PCC、Whole Foods、H Mart Redmond、熊大海鲜、东江烧腊店与两个团购——附网友评价。只管店，品种与货源在上面两篇里。",
+      "sub": true,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "My Menu",
@@ -1472,7 +2351,12 @@
       "category_zh": "页面",
       "image": null,
       "subtitle_en": "All dishes I make",
-      "subtitle_zh": "我做的所有菜"
+      "subtitle_zh": "我做的所有菜",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": ""
     },
     {
       "title_en": "Wishlist",
@@ -1484,7 +2368,12 @@
       "category_zh": "页面",
       "image": null,
       "subtitle_en": "Things to try",
-      "subtitle_zh": "想尝试的"
+      "subtitle_zh": "想尝试的",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "",
+      "role": ""
     }
   ]
 }

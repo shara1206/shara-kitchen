@@ -294,7 +294,7 @@ main {
   <div class="gate-box">
     <div class="logo"><img src="assets/wishlist-logo.png" alt="wish well" style="width:90px;height:90px;object-fit:cover;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,0.15);" /></div>
     <h2 id="gate-title">Shara's Kitchen</h2>
-    <p id="gate-sub">请输入访问密码</p>
+    <p id="gate-sub">请输入访问密码 · Enter the password</p>
     <input type="password" id="pw-input" placeholder="密码 / Password" autocomplete="off" />
     <button onclick="checkPassword()" id="pw-btn">进入 / Enter</button>
     <div class="gate-error" id="gate-error"></div>
@@ -360,8 +360,8 @@ main {
 // ══════════════════════════════════════
 //  CONFIGURATION — edit these two lines
 // ══════════════════════════════════════
-const PASSWORD   = 'shara2026';        // change to your preferred password
-const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE'; // paste your deployed Apps Script URL here
+// The access password is checked by the Apps Script (Script property WISH_PASSWORD) — it is not in this page.
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdqCnyBGOogeJTFHZXJanf4lDMP6Xzy_eg6NvphwigmrzPvR9jItZjGRnE8-BtzJf7/exec'; // Apps Script project "Wish List" → sheet "Shara's Kitchen — 心愿菜单"
 // ══════════════════════════════════════
 
 // ── Menu Data: static snapshot from menu.html (source of truth)
@@ -578,14 +578,17 @@ async function loadMenuData() {
 // ── State ──
 let currentLang = 'zh';
 let selected = new Set();
+let accessPw = '';   // what the visitor typed; sent with the submission so the script can check it again
 
 // ── Strings ──
 const STR = {
   zh: {
-    gateSub:      '请输入访问密码',
+    gateSub:      '请输入访问密码 · Enter the password',
     pwPlaceholder:'密码 / Password',
     gateEnter:    '进入 / Enter',
-    gateError:    '密码不对，请再试一次',
+    gateError:    '密码不对，请再试一次 · Wrong password, please try again',
+    gateChecking: '验证中… · Checking…',
+    gateOffline:  '暂时连不上，请稍后再试 · Can\'t connect right now — please try again later',
     pageTitle:    '你的心愿菜单',
     pageSub:      '告诉我你想吃什么，我来做！',
     lblName:      '你的名字',
@@ -601,6 +604,7 @@ const STR = {
     successMsg:   'Shara 会尽快安排，期待和你一起吃好吃的！',
     submitting:   '提交中…',
     errorMsg:     '提交失败，请截图告诉 Shara 😅',
+    notReady:     '心愿单还没接上表格，暂时提交不了——请直接告诉 Shara 😅',
     selCount:     (n) => n > 0 ? `已选 ${n}` : '',
   },
   en: {
@@ -623,6 +627,7 @@ const STR = {
     successMsg:   'Shara will plan the menu soon. Can\'t wait to eat together!',
     submitting:   'Sending…',
     errorMsg:     'Submission failed — please screenshot and tell Shara 😅',
+    notReady:     'The wish list isn\'t connected yet — please tell Shara directly 😅',
     selCount:     (n) => n > 0 ? `${n} selected` : '',
   }
 };
@@ -632,15 +637,35 @@ document.getElementById('pw-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPassword();
 });
 
+function scriptReady() { return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(SCRIPT_URL); }
+async function callScript(body) {
+  const res = await fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },   // simple request: no CORS preflight
+    body: JSON.stringify(body)
+  });
+  return res.json();
+}
 async function checkPassword() {
   const val = document.getElementById('pw-input').value;
-  if (val === PASSWORD) {
+  const err = document.getElementById('gate-error');
+  const btn = document.getElementById('pw-btn');
+  if (!val) return;
+  if (!scriptReady()) { err.textContent = STR[currentLang].notReady; return; }
+  btn.disabled = true; err.textContent = STR.zh.gateChecking;
+  let out = {};
+  try { out = await callScript({ action: 'check', pw: val }); }
+  catch (e) { out = { result: 'offline' }; }
+  btn.disabled = false;
+  if (out.result === 'ok') {
+    accessPw = val;
+    err.textContent = '';
     document.getElementById('gate').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     await loadMenuData();
     buildMenu();
   } else {
-    document.getElementById('gate-error').textContent = STR[currentLang].gateError;
+    err.textContent = out.result === 'denied' ? STR.zh.gateError : STR.zh.gateOffline;
     document.getElementById('pw-input').value = '';
     document.getElementById('pw-input').focus();
   }
@@ -715,18 +740,16 @@ function buildMenu() {
         <span class="tick"></span>
         <span class="dish-name">${dish}</span>
       `;
-      label.addEventListener('click', () => toggleDish(label, key));
+      // listen to the checkbox itself: a click handler on the <label> fires twice (label + checkbox)
+      const cb = label.querySelector('input[type=checkbox]');
+      cb.addEventListener('change', () => toggleDish(label, key, cb.checked));
       grid.appendChild(label);
     });
     container.appendChild(section);
   });
 }
 
-function toggleDish(label, key) {
-  const cb = label.querySelector('input[type=checkbox]');
-  // The click on label will fire before the checkbox updates, so we invert
-  const nowChecked = !cb.checked;
-  // checkbox will be toggled by browser after this handler — we just track state
+function toggleDish(label, key, nowChecked) {
   if (nowChecked) {
     selected.add(key);
     label.classList.add('checked');
@@ -736,7 +759,6 @@ function toggleDish(label, key) {
     label.classList.remove('checked');
     label.querySelector('.tick').textContent = '';
   }
-  // Allow the default checkbox toggle
   updateSummary();
   updateSelCount(label.closest('.cat-section'));
 }
@@ -778,6 +800,7 @@ async function submitForm(e) {
   label.textContent = STR[currentLang].submitting;
 
   const payload = {
+    pw:       accessPw,
     name:     name,
     occasion: document.getElementById('f-occasion').value.trim(),
     dishes:   Array.from(selected).map(k => k.split('::')[1]),
@@ -786,13 +809,16 @@ async function submitForm(e) {
     submitted_at: new Date().toLocaleString('zh-CN', {timeZone:'America/Los_Angeles'})
   };
 
+  // Not connected yet → say so instead of pretending it worked
+  if (!scriptReady()) {
+    btn.disabled = false;
+    label.textContent = STR[currentLang].submitLabel;
+    alert(STR[currentLang].notReady);
+    return;
+  }
   try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+    const out = await callScript(payload);
+    if (out.result !== 'success') throw new Error(out.result + ' ' + (out.message || ''));
     showSuccess();
   } catch (err) {
     btn.disabled = false;
