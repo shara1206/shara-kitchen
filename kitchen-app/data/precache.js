@@ -1,4 +1,4 @@
-self.__CACHE_VERSION__ = "shara-kitchen-4382fc61";
+self.__CACHE_VERSION__ = "shara-kitchen-40d39f60";
 self.__PRECACHE__ = [
   "kitchen-app/index.html",
   "kitchen-app/manifest.webmanifest",

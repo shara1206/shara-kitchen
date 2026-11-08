@@ -206,7 +206,12 @@ precache = []
 for u in core + pages + imgs:
     if u not in precache and (u in core or os.path.isfile(os.path.join(ROOT, u))):
         precache.append(u)
-version = hashlib.md5(("|".join(precache)).encode("utf-8")).hexdigest()[:8]
+_h = hashlib.md5(("|".join(precache)).encode("utf-8"))
+# also hash the app icons: they are cache-first, so a replaced icon needs a new cache version
+for u in core:
+    if u.startswith("kitchen-app/icons/") and os.path.isfile(os.path.join(ROOT, u)):
+        with open(os.path.join(ROOT, u), "rb") as _f: _h.update(_f.read())
+version = _h.hexdigest()[:8]
 PC_OUT = os.path.join(DATA_DIR, "precache.js")
 with open(PC_OUT, "w", encoding="utf-8") as f:
     f.write("self.__CACHE_VERSION__ = %s;\n" % json.dumps("shara-kitchen-" + version))

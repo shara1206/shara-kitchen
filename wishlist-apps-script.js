@@ -29,8 +29,10 @@
 //     Replace YOUR_APPS_SCRIPT_URL_HERE with the URL you just copied.
 //     Save the file.
 //
-//  7. Done! Every wish list submission will appear as a new row in your Sheet.
-//     You'll also get an email notification (optional — see NOTIFY_EMAIL below).
+//  7. Done! Every wish list submission will appear as a new row in your Sheet,
+//     and an email goes to the Google account that runs this script (see notifyOwner_).
+//     Run "testNotify" once from the editor: it grants the send-email permission and
+//     sends you a sample email. Then Deploy → Manage deployments → edit → New version.
 // ════════════════════════════════════════════════════════════════
 
 // The access password is NOT in this file. Set it in the Apps Script editor:
@@ -38,8 +40,7 @@
 // No property set → every request is refused (fails closed).
 const SPREADSHEET_ID = '1UZtf1vOAFRP5f5WyqGtnyz3jHLlbs2OWb3TZsrLMRu8';
 const SHEET_NAME     = 'Wishes';
-const NOTIFY_EMAIL   = '';  // ← optional: your email for notifications, e.g. 'you@gmail.com'
-                            //   Leave empty '' to skip email notifications.
+// Notifications go to the account that runs the script (Execute as: Me) — no address is stored in this file.
 
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
@@ -72,17 +73,11 @@ function doPost(e) {
     const sheet = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
     sheet.appendRow([submittedAt, name, occasion, dishes, special, lang]);
 
-    // Optional email notification
-    if (NOTIFY_EMAIL) {
-      const subject = `🍜 新心愿单：${name}`;
-      const body = [
-        `姓名：${name}`,
-        `场合：${occasion || '未填写'}`,
-        `选择菜肴：${dishes || '（未选）'}`,
-        `特别要求：${special || '（无）'}`,
-        `提交时间：${submittedAt}`,
-      ].join('\n');
-      MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
+    // The row is saved; a failed email must not turn this into an error (the guest would resubmit → duplicate row).
+    try {
+      notifyOwner_({ name, occasion, dishList: Array.isArray(data.dishes) ? data.dishes : [], special, lang, submittedAt }, ss.getUrl());
+    } catch (mailErr) {
+      console.error('notify failed: ' + mailErr);
     }
 
     return json_({ result: 'success' });
@@ -90,6 +85,37 @@ function doPost(e) {
   } catch (err) {
     return json_({ result: 'error', message: err.toString() });
   }
+}
+
+// ── Email to the script owner for each new wish (plain text, so guest input can't inject markup) ──
+function notifyOwner_(w, sheetUrl) {
+  const to = Session.getEffectiveUser().getEmail();
+  if (!to) return;
+  const oneLine = t => String(t).replace(/[\r\n]+/g, ' ').trim();
+  const shortName = oneLine(w.name).slice(0, 40);
+  const n = w.dishList.length;
+  const subject = `🍜 新心愿：${shortName}（${n} 道菜）`;
+  const body = [
+    `名字：${w.name}`,
+    `场合：${w.occasion || '（未填）'}`,
+    `想吃的菜（${n} 道）：`,
+    n ? w.dishList.map(d => `  · ${d}`).join('\n') : '  （没有勾选菜单上的菜）',
+    `特别要求：${w.special || '（无）'}`,
+    `提交时间：${w.submittedAt}　语言：${w.lang || '-'}`,
+    '',
+    `打开表格：${sheetUrl}`,
+  ].join('\n');
+  MailApp.sendEmail(to, subject, body, { name: "Shara's Kitchen 心愿单" });
+}
+
+// Run once from the editor: grants the send-email permission and sends a sample (writes no row).
+function testNotify() {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  notifyOwner_({
+    name: '测试用户', occasion: '周末聚餐', dishList: ['白斩鸡', '醋溜土豆丝'],
+    special: '不吃香菜', lang: 'zh', submittedAt: new Date().toLocaleString('zh-CN')
+  }, ss.getUrl());
+  Logger.log('✅ sample email sent to ' + Session.getEffectiveUser().getEmail());
 }
 
 // ── One-time setup + full formatting ──

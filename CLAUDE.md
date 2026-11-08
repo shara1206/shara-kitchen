@@ -184,6 +184,9 @@ inside a wide page opts out by re-asserting `display:table / table-row / table-c
   are network-first (revalidated, so a pushed change shows on the next load; cache = offline fallback, or after 4 s);
   images are cache-first, refreshed in the background — a *replaced* image may show its old version once.
   After editing `sw-core.js`, bump the `?v=` in root `sw.js` so installed devices pick the new worker up on their next visit.
+- App icons (`kitchen-app/icons/`) are copies of the site icons in `assets/icons/`, made from `assets/index-logo.png`.
+  To change the icon, replace those files and re-run `build-index.py`: the cache version hashes the icon bytes, so
+  installed phones pick up the new files. An icon already on a home screen may only change after remove + re-add.
 - `kitchen-app/index.html` uses `<base href="../">`, so its links are root-relative.
 - Favorites are stored by page path — moving a page drops it from favorites.
 - Publishing (GitHub Pages) and installing on a phone: `kitchen-app/DEPLOY.md`.
@@ -246,6 +249,9 @@ The page shows "已收到" only when the script answers `{"result":"success"}`.
 **Access password** lives only in the project's Script properties as `WISH_PASSWORD` (Project Settings → Script
 properties) — never in wishlist.html, the repo, or notes. The gate asks the script (`{action:'check', pw}`) and every
 submission carries `pw`; wrong or missing → `{"result":"denied"}`, nothing written. Changing the password needs no redeploy.
+**New-wish email** goes to the account that runs the script (`Session.getEffectiveUser()`; no address stored in the repo),
+plain text, sent after the row is saved and in its own try/catch — a failed email never turns a saved wish into an error.
+`testNotify` (run in the editor) grants the send-mail permission and sends a sample without writing a row.
 
 ## 9. Shara's preferences
 - Natural food coloring only (freeze-dried fruit powder, beet, matcha) — no synthetic dyes.

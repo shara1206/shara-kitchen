@@ -271,6 +271,32 @@ main {
 .submit-btn:hover { background: #b56a2c; }
 .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
 
+/* ── Confirm screen (shown after 提交, before anything is sent) ── */
+#confirm-screen { display: none; }
+#confirm-screen h2 { margin: 6px 0 4px; color: var(--accent); font-size: 1.3rem; }
+.confirm-sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 16px; }
+.confirm-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 12px; padding: 4px 18px; margin-bottom: 20px; }
+.confirm-row { padding: 12px 0; border-bottom: 1px dashed var(--border); }
+.confirm-row:last-child { border-bottom: none; }
+.confirm-row .k { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.3px; margin-bottom: 4px; }
+.confirm-row .v { font-size: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.confirm-row .v.empty { color: var(--muted); font-style: italic; }
+.confirm-cat { margin: 2px 0 10px; }
+.confirm-cat:last-child { margin-bottom: 2px; }
+.confirm-cat .cat { font-size: 0.82rem; color: var(--accent); font-weight: 600; }
+.confirm-cat ul { margin: 4px 0 0; padding-left: 20px; }
+.confirm-cat li { margin: 2px 0; }
+.confirm-actions { display: flex; gap: 12px; }
+.confirm-actions .submit-btn { flex: 2; width: auto; }
+.back-btn {
+  flex: 1; padding: 14px; background: var(--card); color: var(--accent);
+  border: 1.5px solid var(--accent); border-radius: 10px;
+  font-size: 1rem; font-family: inherit; font-weight: 600; cursor: pointer;
+}
+.back-btn:hover { background: #fef8f0; }
+.back-btn:disabled { color: #aaa; border-color: #ccc; cursor: not-allowed; }
+@media (max-width: 420px) { .confirm-actions { flex-direction: column-reverse; } }
+
 /* ── Success screen ── */
 #success-screen {
   display: none;
@@ -345,6 +371,17 @@ main {
     </button>
 
   </form>
+
+  <!-- ══ Confirm (review before sending) ══ -->
+  <div id="confirm-screen">
+    <h2 id="confirm-title">请确认你的心愿单</h2>
+    <p class="confirm-sub" id="confirm-sub">确认无误再提交；要改的话点“返回修改”。</p>
+    <div class="confirm-card" id="confirm-body"></div>
+    <div class="confirm-actions">
+      <button type="button" class="back-btn" id="confirm-back" onclick="backToForm()">← 返回修改</button>
+      <button type="button" class="submit-btn" id="confirm-send" onclick="sendWish()"><span id="confirm-label">确认提交 ✉</span></button>
+    </div>
+  </div>
 
   <!-- ══ Success ══ -->
   <div id="success-screen">
@@ -605,6 +642,16 @@ const STR = {
     submitting:   '提交中…',
     errorMsg:     '提交失败，请截图告诉 Shara 😅',
     notReady:     '心愿单还没接上表格，暂时提交不了——请直接告诉 Shara 😅',
+    confirmTitle: '请确认你的心愿单',
+    confirmSub:   '确认无误再提交；要改的话点“返回修改”。',
+    confirmBack:  '← 返回修改',
+    confirmSend:  '确认提交 ✉',
+    kName:        '名字',
+    kOccasion:    '聚会 / 场合',
+    kDishes:      (n) => `想吃的菜（${n} 道）`,
+    kSpecial:     '特别要求 / 不在菜单里的菜',
+    noneText:     '（未填）',
+    noDishes:     '没有勾选菜单上的菜',
     selCount:     (n) => n > 0 ? `已选 ${n}` : '',
   },
   en: {
@@ -628,6 +675,16 @@ const STR = {
     submitting:   'Sending…',
     errorMsg:     'Submission failed — please screenshot and tell Shara 😅',
     notReady:     'The wish list isn\'t connected yet — please tell Shara directly 😅',
+    confirmTitle: 'Please check your wish list',
+    confirmSub:   'Send it if everything looks right — or go back to make changes.',
+    confirmBack:  '← Back to edit',
+    confirmSend:  'Confirm & send ✉',
+    kName:        'Name',
+    kOccasion:    'Occasion',
+    kDishes:      (n) => `Dishes you picked (${n})`,
+    kSpecial:     'Special requests / dishes not on the menu',
+    noneText:     '(none)',
+    noDishes:     'No dishes picked from the menu',
     selCount:     (n) => n > 0 ? `${n} selected` : '',
   }
 };
@@ -699,6 +756,11 @@ function applyStrings() {
   document.getElementById('submit-label').textContent  = s.submitLabel;
   document.getElementById('success-title').textContent = s.successTitle;
   document.getElementById('success-msg').textContent   = s.successMsg;
+  document.getElementById('confirm-title').textContent = s.confirmTitle;
+  document.getElementById('confirm-sub').textContent   = s.confirmSub;
+  document.getElementById('confirm-back').textContent  = s.confirmBack;
+  document.getElementById('confirm-label').textContent = s.confirmSend;
+  if (document.getElementById('confirm-screen').style.display === 'block') renderConfirm();
 
   // Category headers
   document.querySelectorAll('.cat-header .zh-name').forEach(el => {
@@ -788,15 +850,53 @@ function updateSummary() {
   }
 }
 
-// ── Submit ──
-async function submitForm(e) {
+// ── Submit: 提交 opens the confirm screen; nothing is sent until 确认提交 ──
+function esc(t) {
+  return String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function submitForm(e) {
   e.preventDefault();
   const name = document.getElementById('f-name').value.trim();
   if (!name) { document.getElementById('f-name').focus(); return; }
+  if (!scriptReady()) { alert(STR[currentLang].notReady); return; }
+  renderConfirm();
+  document.getElementById('wishform').style.display = 'none';
+  document.getElementById('confirm-screen').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-  const btn = document.getElementById('submit-btn');
-  const label = document.getElementById('submit-label');
-  btn.disabled = true;
+function renderConfirm() {
+  const s = STR[currentLang];
+  const val = id => document.getElementById(id).value.trim();
+  const row = (k, v) => `<div class="confirm-row"><div class="k">${esc(k)}</div>` +
+    (v ? `<div class="v">${esc(v)}</div>` : `<div class="v empty">${esc(s.noneText)}</div>`) + `</div>`;
+  // selected dishes, grouped by menu category in menu order
+  const groups = MENU_DATA.map(cat => ({
+    cat, dishes: Array.from(selected).filter(k => k.startsWith(cat.id + '::')).map(k => k.split('::')[1])
+  })).filter(g => g.dishes.length);
+  const dishesHtml = groups.length
+    ? groups.map(g => `<div class="confirm-cat"><div class="cat">${esc(currentLang === 'en' ? (g.cat.en + ' · ' + g.cat.zh) : g.cat.zh)}</div>` +
+        `<ul>${g.dishes.map(d => `<li>${esc(d)}</li>`).join('')}</ul></div>`).join('')
+    : `<div class="v empty">${esc(s.noDishes)}</div>`;
+  document.getElementById('confirm-body').innerHTML =
+    row(s.kName, val('f-name')) +
+    row(s.kOccasion, val('f-occasion')) +
+    `<div class="confirm-row"><div class="k">${esc(s.kDishes(selected.size))}</div>${dishesHtml}</div>` +
+    row(s.kSpecial, val('f-special'));
+}
+
+function backToForm() {
+  document.getElementById('confirm-screen').style.display = 'none';
+  document.getElementById('wishform').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+async function sendWish() {
+  const name = document.getElementById('f-name').value.trim();
+  const btn = document.getElementById('confirm-send');
+  const back = document.getElementById('confirm-back');
+  const label = document.getElementById('confirm-label');
+  btn.disabled = true; back.disabled = true;
   label.textContent = STR[currentLang].submitting;
 
   const payload = {
@@ -809,26 +909,20 @@ async function submitForm(e) {
     submitted_at: new Date().toLocaleString('zh-CN', {timeZone:'America/Los_Angeles'})
   };
 
-  // Not connected yet → say so instead of pretending it worked
-  if (!scriptReady()) {
-    btn.disabled = false;
-    label.textContent = STR[currentLang].submitLabel;
-    alert(STR[currentLang].notReady);
-    return;
-  }
   try {
     const out = await callScript(payload);
     if (out.result !== 'success') throw new Error(out.result + ' ' + (out.message || ''));
     showSuccess();
   } catch (err) {
-    btn.disabled = false;
-    label.textContent = STR[currentLang].submitLabel;
+    btn.disabled = false; back.disabled = false;
+    label.textContent = STR[currentLang].confirmSend;
     alert(STR[currentLang].errorMsg);
   }
 }
 
 function showSuccess() {
   document.getElementById('wishform').style.display = 'none';
+  document.getElementById('confirm-screen').style.display = 'none';
   document.getElementById('success-screen').style.display = 'block';
   document.getElementById('success-title').textContent = STR[currentLang].successTitle;
   document.getElementById('success-msg').textContent   = STR[currentLang].successMsg;
