@@ -180,6 +180,10 @@ inside a wide page opts out by re-asserting `display:table / table-row / table-c
   `Final.jpg` / `.webp` / `.png` as the card image. App search covers titles, count badges, card descriptions
   (index cards and hub note-cards) and the hub sub-notes (search only, `"sub": true`, not precached).
 - `sw.js` must stay at the site root (a service worker's scope can't exceed its folder); the logic is in `kitchen-app/sw-core.js`.
+- The service worker (installed when the app is opened on a phone/iPad) covers the **whole site**. Pages, CSS, JS and JSON
+  are network-first (revalidated, so a pushed change shows on the next load; cache = offline fallback, or after 4 s);
+  images are cache-first, refreshed in the background — a *replaced* image may show its old version once.
+  After editing `sw-core.js`, bump the `?v=` in root `sw.js` so installed devices pick the new worker up on their next visit.
 - `kitchen-app/index.html` uses `<base href="../">`, so its links are root-relative.
 - Favorites are stored by page path — moving a page drops it from favorites.
 - Publishing (GitHub Pages) and installing on a phone: `kitchen-app/DEPLOY.md`.
