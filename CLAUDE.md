@@ -236,6 +236,8 @@ Food/
   study-topics/       # 是什么、买哪个: 6 hubs + sub-notes + single topics; images/
   kitchen-app/        # phone app (separate from the site); build-index.py, data/, DEPLOY.md
   sw.js               # service-worker stub — must stay at the root
+  site.webmanifest    # home-screen install from index.html → opens index.html ("Study Notes")
+  menu.webmanifest    # home-screen install from menu.html → opens menu.html ("Shara's Menu"); same icons
 ```
 
 ---
