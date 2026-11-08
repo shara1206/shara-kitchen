@@ -271,6 +271,36 @@
     font-size: 0.85rem; padding: 20px;
     border-top: 1px solid var(--border); margin-top: 20px;
   }
+
+  /* ── Dish stickers (assets/stickers/sm/NNN.webp) ──
+     below 1800px : small sticker inside each pill (list view)
+     1800px +     : picture cards (27" / 34" monitors)
+     data-en / data-zh sit on .dish-name, not on .dish-item — lang.js replaces
+     innerHTML, which would otherwise wipe the <img>. */
+  .dish-item { position: relative; padding: 3px 10px 3px 3px; gap: 8px; min-height: 44px; }
+  .dish-item::before { display: none; }
+  .dish-pic { display: block; width: 52px; height: 39px; flex-shrink: 0; object-fit: contain; transition: transform 0.15s; }
+  .dish-item:hover .dish-pic { transform: scale(1.12) rotate(-3deg); }
+  .dish-grid { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 6px; }
+  @media (min-width: 1300px) { .dish-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } }
+  @media (min-width: 1800px) {
+    .dish-grid { grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 8px; }
+    .dish-item { flex-direction: column; justify-content: flex-start; gap: 2px; min-height: 0;
+                 padding: 6px 6px 8px; text-align: center; font-size: 0.8rem; line-height: 1.25; }
+    a.dish-item::after { position: absolute; top: 4px; right: 6px; margin: 0; }
+    .dish-pic { width: 100%; height: auto; aspect-ratio: 4 / 3; }
+    .dish-item:hover .dish-pic { transform: scale(1.06) rotate(-2deg); }
+  }
+  @media (max-width: 640px) {
+    .dish-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .dish-item { padding: 3px 8px 3px 2px; gap: 6px; min-height: 48px; font-size: 0.88rem; }
+    .dish-pic { width: 56px; height: 42px; }
+  }
+  @media (max-width: 380px) {   /* keep 2 columns: 1-column pills with stickers get very long */
+    .dish-grid { grid-template-columns: repeat(2, 1fr); }
+    .dish-item { padding: 3px 6px 3px 2px; gap: 4px; font-size: 0.84rem; }
+    .dish-pic { width: 46px; height: 35px; }
+  }
 </style>
 </head>
 <body>
@@ -318,38 +348,38 @@
     </div>
     <div class="dish-grid">
       <div class="dish-label" data-en="Leafy Greens" data-zh="叶菜">叶菜</div>
-      <div class="dish-item" data-en="Romaine with oyster sauce" data-zh="蚝油生菜">蚝油生菜</div>
-      <div class="dish-item" data-en="Hand-torn cabbage" data-zh="手撕包菜">手撕包菜</div>
-      <div class="dish-item" data-en="Stir-fried Napa cabbage" data-zh="炝炒白菜">炝炒白菜</div>
-      <div class="dish-item" data-en="Baby cabbage in superior broth" data-zh="上汤娃娃菜">上汤娃娃菜</div>
-      <div class="dish-item" data-en="Sautéed rapeseed flowers" data-zh="炒油菜花">炒油菜花</div>
-      <div class="dish-item" data-en="Stir-fried cauliflower" data-zh="炒花菜">炒花菜</div>
-      <div class="dish-item" data-en="Water spinach with fermented tofu" data-zh="腐乳空心菜">腐乳空心菜</div>
-      <div class="dish-item" data-en="Sautéed pea shoots" data-zh="清炒豆苗">清炒豆苗</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/001.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Romaine with oyster sauce" data-zh="蚝油生菜">蚝油生菜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/002.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Hand-torn cabbage" data-zh="手撕包菜">手撕包菜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/003.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stir-fried Napa cabbage" data-zh="炝炒白菜">炝炒白菜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/004.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Baby cabbage in superior broth" data-zh="上汤娃娃菜">上汤娃娃菜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/005.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sautéed rapeseed flowers" data-zh="炒油菜花">炒油菜花</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/006.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stir-fried cauliflower" data-zh="炒花菜">炒花菜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/007.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Water spinach with fermented tofu" data-zh="腐乳空心菜">腐乳空心菜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/008.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sautéed pea shoots" data-zh="清炒豆苗">清炒豆苗</span></div>
       <div class="dish-label" data-en="Stems, Pods &amp; Squash" data-zh="茎叶瓜">茎叶瓜</div>
-      <div class="dish-item" data-en="Stir-fried lettuce stems" data-zh="素炒莴笋">素炒莴笋</div>
-      <div class="dish-item" data-en="Sautéed luffa" data-zh="素炒丝瓜">素炒丝瓜</div>
-      <div class="dish-item" data-en="Dry-fried green beans" data-zh="干煸四季豆">干煸四季豆</div>
-      <div class="dish-item" data-en="Stir-fried bean sprouts" data-zh="炒豆芽">炒豆芽</div>
-      <div class="dish-item" data-en="Celery with lily bulbs" data-zh="西芹百合">西芹百合</div>
-      <div class="dish-item" data-en="Asparagus with pork or shrimp" data-zh="芦笋炒肉/虾">芦笋炒肉/虾</div>
-      <div class="dish-item" data-en="Green peppers with black bean sauce" data-zh="青椒+豆豉">青椒+豆豉</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/009.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stir-fried lettuce stems" data-zh="素炒莴笋">素炒莴笋</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/010.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sautéed luffa" data-zh="素炒丝瓜">素炒丝瓜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/011.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Dry-fried green beans" data-zh="干煸四季豆">干煸四季豆</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/012.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stir-fried bean sprouts" data-zh="炒豆芽">炒豆芽</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/013.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Celery with lily bulbs" data-zh="西芹百合">西芹百合</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/014.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Asparagus with pork or shrimp" data-zh="芦笋炒肉/虾">芦笋炒肉/虾</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/015.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Green peppers with black bean sauce" data-zh="青椒+豆豉">青椒+豆豉</span></div>
       <div class="dish-label" data-en="Eggplant &amp; Bitter Melon" data-zh="茄子苦瓜">茄子苦瓜</div>
-      <div class="dish-item" data-en="Garlic-roasted eggplant" data-zh="蒜香烤茄子">蒜香烤茄子</div>
-      <div class="dish-item" data-en="Spicy eggplant" data-zh="香辣茄子">香辣茄子</div>
-      <div class="dish-item" data-en="Stir-fried bitter melon" data-zh="炒苦瓜">炒苦瓜</div>
-      <div class="dish-item" data-en="Stuffed bitter melon" data-zh="酿苦瓜">酿苦瓜</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/016.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Garlic-roasted eggplant" data-zh="蒜香烤茄子">蒜香烤茄子</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/017.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Spicy eggplant" data-zh="香辣茄子">香辣茄子</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/018.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stir-fried bitter melon" data-zh="炒苦瓜">炒苦瓜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/019.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stuffed bitter melon" data-zh="酿苦瓜">酿苦瓜</span></div>
       <div class="dish-label" data-en="Root Vegetables" data-zh="根茎瓜">根茎瓜</div>
-      <a class="dish-item" href="recipes/culiu-tudousi.html" data-en="Vinegar potato shreds" data-zh="醋溜土豆丝">醋溜土豆丝</a>
-      <div class="dish-item" data-en="Stir-fried lotus root" data-zh="炒莲藕">炒莲藕</div>
-      <div class="dish-item" data-en="Braised pumpkin" data-zh="烧南瓜">烧南瓜</div>
-      <div class="dish-item" data-en="Pumpkin with salted egg yolk" data-zh="咸蛋黄焗南瓜">咸蛋黄焗南瓜</div>
-      <div class="dish-item" data-en="Braised winter melon" data-zh="烧冬瓜">烧冬瓜</div>
+      <a class="dish-item" href="recipes/culiu-tudousi.html"><img class="dish-pic" src="assets/stickers/sm/020.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Vinegar potato shreds" data-zh="醋溜土豆丝">醋溜土豆丝</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/021.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stir-fried lotus root" data-zh="炒莲藕">炒莲藕</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/022.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised pumpkin" data-zh="烧南瓜">烧南瓜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/023.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pumpkin with salted egg yolk" data-zh="咸蛋黄焗南瓜">咸蛋黄焗南瓜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/024.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised winter melon" data-zh="烧冬瓜">烧冬瓜</span></div>
       <div class="dish-label" data-en="Home-style" data-zh="家常菜">家常菜</div>
-      <a class="dish-item" href="recipes/xihongshi-chaodan.html" data-en="Tomato and egg" data-zh="西红柿鸡蛋">西红柿鸡蛋</a>
-      <div class="dish-item" data-en="Garlic chives with egg" data-zh="韭菜鸡蛋">韭菜鸡蛋</div>
-      <div class="dish-item" data-en="Chinese toon with scrambled egg" data-zh="香椿炒鸡蛋">香椿炒鸡蛋</div>
-      <div class="dish-item" data-en="Steamed taro with sugar" data-zh="糖拌蒸芋头">糖拌蒸芋头</div>
+      <a class="dish-item" href="recipes/xihongshi-chaodan.html"><img class="dish-pic" src="assets/stickers/sm/025.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tomato and egg" data-zh="西红柿鸡蛋">西红柿鸡蛋</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/026.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Garlic chives with egg" data-zh="韭菜鸡蛋">韭菜鸡蛋</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/027.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chinese toon with scrambled egg" data-zh="香椿炒鸡蛋">香椿炒鸡蛋</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/028.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed taro with sugar" data-zh="糖拌蒸芋头">糖拌蒸芋头</span></div>
     </div>
   </div>
 
@@ -362,50 +392,50 @@
     </div>
     <div class="dish-grid">
       <!-- 米饭 rice -->
-      <div class="dish-item" data-en="Egg fried rice" data-zh="蛋炒饭">蛋炒饭</div>
-      <div class="dish-item" data-en="Yangzhou fried rice" data-zh="扬州炒饭">扬州炒饭</div>
-      <a class="dish-item" href="recipes/baozai-fan.html" data-en="Claypot rice" data-zh="煲仔饭">煲仔饭</a>
-      <div class="dish-item" data-en="Braised pork rice" data-zh="卤肉饭">卤肉饭</div>
-      <div class="dish-item" data-en="Yoshinoya-style beef rice" data-zh="吉野家肥牛饭">吉野家肥牛饭</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/029.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Egg fried rice" data-zh="蛋炒饭">蛋炒饭</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/030.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Yangzhou fried rice" data-zh="扬州炒饭">扬州炒饭</span></div>
+      <a class="dish-item" href="recipes/baozai-fan.html"><img class="dish-pic" src="assets/stickers/sm/031.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Claypot rice" data-zh="煲仔饭">煲仔饭</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/032.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised pork rice" data-zh="卤肉饭">卤肉饭</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/033.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Yoshinoya-style beef rice" data-zh="吉野家肥牛饭">吉野家肥牛饭</span></div>
       <!-- 粥 porridge -->
-      <div class="dish-item" data-en="Century egg &amp; pork congee" data-zh="皮蛋瘦肉粥">皮蛋瘦肉粥</div>
-      <div class="dish-item" data-en="Fresh beef congee" data-zh="生滚牛肉粥">生滚牛肉粥</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/034.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Century egg &amp; pork congee" data-zh="皮蛋瘦肉粥">皮蛋瘦肉粥</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/035.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Fresh beef congee" data-zh="生滚牛肉粥">生滚牛肉粥</span></div>
       <!-- 面条粉 noodles -->
-      <div class="dish-item" data-en="Beef noodle soup" data-zh="牛肉面">牛肉面</div>
-      <div class="dish-item" data-en="Dry-fried beef ho fun" data-zh="干炒牛河">干炒牛河</div>
-      <div class="dish-item" data-en="Stir-fried noodles" data-zh="炒面">炒面</div>
-      <div class="dish-item" data-en="Grilled cold noodles" data-zh="烤冷面">烤冷面</div>
-      <div class="dish-item" data-en="Sour and spicy vermicelli" data-zh="酸辣粉">酸辣粉</div>
-      <div class="dish-item" data-en="Guilin rice noodles" data-zh="桂林米粉">桂林米粉</div>
-      <div class="dish-item" data-en="Lanzhou beef noodles" data-zh="兰州牛肉面">兰州牛肉面</div>
-      <div class="dish-item" data-en="Hengyang rice noodles" data-zh="衡阳米粉">衡阳米粉</div>
-      <a class="dish-item" href="recipes/reganmian.html" data-en="Wuhan hot dry noodles" data-zh="热干面">热干面</a>
-      <a class="dish-item" href="recipes/congmian.html" data-en="Scallion noodles" data-zh="葱面">葱面</a>
-      <a class="dish-item" href="recipes/lamian.html" data-en="Hand-pulled noodles" data-zh="拉面">拉面</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/036.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Beef noodle soup" data-zh="牛肉面">牛肉面</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/037.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Dry-fried beef ho fun" data-zh="干炒牛河">干炒牛河</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/038.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Stir-fried noodles" data-zh="炒面">炒面</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/039.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Grilled cold noodles" data-zh="烤冷面">烤冷面</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/040.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sour and spicy vermicelli" data-zh="酸辣粉">酸辣粉</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/041.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Guilin rice noodles" data-zh="桂林米粉">桂林米粉</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/042.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Lanzhou beef noodles" data-zh="兰州牛肉面">兰州牛肉面</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/043.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Hengyang rice noodles" data-zh="衡阳米粉">衡阳米粉</span></div>
+      <a class="dish-item" href="recipes/reganmian.html"><img class="dish-pic" src="assets/stickers/sm/044.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Wuhan hot dry noodles" data-zh="热干面">热干面</span></a>
+      <a class="dish-item" href="recipes/congmian.html"><img class="dish-pic" src="assets/stickers/sm/045.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Scallion noodles" data-zh="葱面">葱面</span></a>
+      <a class="dish-item" href="recipes/lamian.html"><img class="dish-pic" src="assets/stickers/sm/046.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Hand-pulled noodles" data-zh="拉面">拉面</span></a>
       <!-- 包子馒头饺子 buns, breads & dumplings -->
-      <a class="dish-item" href="recipes/mantou-huajuan.html" data-en="Steamed buns" data-zh="馒头">馒头</a>
-      <a class="dish-item" href="recipes/mantou-huajuan.html" data-en="Flower rolls" data-zh="花卷">花卷</a>
-      <div class="dish-item" data-en="Red bean buns" data-zh="豆包">豆包</div>
-      <div class="dish-item" data-en="Molten salted egg custard buns" data-zh="流沙包">流沙包</div>
-      <div class="dish-item" data-en="BBQ pork buns" data-zh="叉烧包">叉烧包</div>
-      <div class="dish-item" data-en="Chinese pulled pork sandwich" data-zh="肉夹馍">肉夹馍</div>
-      <a class="dish-item" href="recipes/youtiao.html" data-en="Crullers (prep 1 week ahead)" data-zh="油条（提前一周）">油条（提前一周）</a>
-      <a class="dish-item" href="recipes/da-mahua.html" data-en="Twist breadsticks (Northeast)" data-zh="大麻花（东北）">大麻花（东北）</a>
-      <a class="dish-item" href="recipes/jiaozi.html" data-en="Dumplings" data-zh="饺子">饺子</a>
-      <a class="dish-item" href="recipes/xiaolongbao.html" data-en="Soup dumplings" data-zh="小笼包">小笼包</a>
-      <a class="dish-item" href="recipes/beihaidao-mianbao.html" data-en="Hokkaido milk bread (tangzhong)" data-zh="北海道汤种面包">北海道汤种面包</a>
-      <a class="dish-item" href="recipes/xiao-mianbao.html" data-en="Dinner rolls" data-zh="小面包">小面包</a>
+      <a class="dish-item" href="recipes/mantou-huajuan.html"><img class="dish-pic" src="assets/stickers/sm/047.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed buns" data-zh="馒头">馒头</span></a>
+      <a class="dish-item" href="recipes/mantou-huajuan.html"><img class="dish-pic" src="assets/stickers/sm/048.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Flower rolls" data-zh="花卷">花卷</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/049.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Red bean buns" data-zh="豆包">豆包</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/050.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Molten salted egg custard buns" data-zh="流沙包">流沙包</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/051.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="BBQ pork buns" data-zh="叉烧包">叉烧包</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/052.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chinese pulled pork sandwich" data-zh="肉夹馍">肉夹馍</span></div>
+      <a class="dish-item" href="recipes/youtiao.html"><img class="dish-pic" src="assets/stickers/sm/053.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Crullers (prep 1 week ahead)" data-zh="油条（提前一周）">油条（提前一周）</span></a>
+      <a class="dish-item" href="recipes/da-mahua.html"><img class="dish-pic" src="assets/stickers/sm/054.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Twist breadsticks (Northeast)" data-zh="大麻花（东北）">大麻花（东北）</span></a>
+      <a class="dish-item" href="recipes/jiaozi.html"><img class="dish-pic" src="assets/stickers/sm/055.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Dumplings" data-zh="饺子">饺子</span></a>
+      <a class="dish-item" href="recipes/xiaolongbao.html"><img class="dish-pic" src="assets/stickers/sm/056.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Soup dumplings" data-zh="小笼包">小笼包</span></a>
+      <a class="dish-item" href="recipes/beihaidao-mianbao.html"><img class="dish-pic" src="assets/stickers/sm/057.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Hokkaido milk bread (tangzhong)" data-zh="北海道汤种面包">北海道汤种面包</span></a>
+      <a class="dish-item" href="recipes/xiao-mianbao.html"><img class="dish-pic" src="assets/stickers/sm/058.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Dinner rolls" data-zh="小面包">小面包</span></a>
       <!-- 饼 flatbreads & pancakes -->
-      <div class="dish-item" data-en="Scallion pancake" data-zh="葱油饼">葱油饼</div>
-      <a class="dish-item" href="recipes/jidan-bing.html" data-en="Egg crepe" data-zh="鸡蛋饼">鸡蛋饼</a>
-      <div class="dish-item" data-en="Zucchini egg pancake" data-zh="糊塌子">糊塌子</div>
-      <a class="dish-item" href="recipes/jianbing-guozi.html" data-en="Jianbing (savory crepe)" data-zh="煎饼果子">煎饼果子</a>
-      <div class="dish-item" data-en="Pan-fried rice cakes" data-zh="煎年糕">煎年糕</div>
-      <a class="dish-item" href="recipes/suannai-bing.html" data-en="Yogurt pancakes" data-zh="酸奶饼">酸奶饼</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/059.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Scallion pancake" data-zh="葱油饼">葱油饼</span></div>
+      <a class="dish-item" href="recipes/jidan-bing.html"><img class="dish-pic" src="assets/stickers/sm/060.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Egg crepe" data-zh="鸡蛋饼">鸡蛋饼</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/061.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Zucchini egg pancake" data-zh="糊塌子">糊塌子</span></div>
+      <a class="dish-item" href="recipes/jianbing-guozi.html"><img class="dish-pic" src="assets/stickers/sm/062.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Jianbing (savory crepe)" data-zh="煎饼果子">煎饼果子</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/063.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pan-fried rice cakes" data-zh="煎年糕">煎年糕</span></div>
+      <a class="dish-item" href="recipes/suannai-bing.html"><img class="dish-pic" src="assets/stickers/sm/064.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Yogurt pancakes" data-zh="酸奶饼">酸奶饼</span></a>
       <!-- 其它 other -->
-      <a class="dish-item" href="recipes/zongzi.html" data-en="Glutinous rice dumplings (mung bean / salted egg / red date)" data-zh="绿豆/咸蛋黄/红枣粽子">绿豆/咸蛋黄/红枣粽子</a>
-      <div class="dish-item" data-en="Baked potato" data-zh="烤土豆">烤土豆</div>
-      <div class="dish-item" data-en="Baked sweet potato / purple yam" data-zh="烤红薯/紫薯">烤红薯/紫薯</div>
+      <a class="dish-item" href="recipes/zongzi.html"><img class="dish-pic" src="assets/stickers/sm/065.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Glutinous rice dumplings (mung bean / salted egg / red date)" data-zh="绿豆/咸蛋黄/红枣粽子">绿豆/咸蛋黄/红枣粽子</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/066.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Baked potato" data-zh="烤土豆">烤土豆</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/067.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Baked sweet potato / purple yam" data-zh="烤红薯/紫薯">烤红薯/紫薯</span></div>
     </div>
   </div>
 
@@ -418,28 +448,28 @@
     </div>
     <div class="dish-grid">
       <div class="dish-label" data-en="Whole Chicken" data-zh="整鸡">整鸡</div>
-      <a class="dish-item" href="recipes/baizhan-ji.html" data-en="Poached white-cut chicken" data-zh="白斩鸡">白斩鸡</a>
-      <a class="dish-item" href="recipes/chiyou-ji.html" data-en="Soy sauce chicken" data-zh="豉油鸡">豉油鸡</a>
-      <div class="dish-item" data-en="Mouthwatering chicken (very spicy)" data-zh="口水鸡（很辣）">口水鸡（很辣）</div>
-      <div class="dish-item" data-en="Yellow braised chicken" data-zh="黄焖鸡">黄焖鸡</div>
-      <div class="dish-item" data-en="Chongqing crispy chili chicken" data-zh="辣子鸡">辣子鸡</div>
-      <div class="dish-item" data-en="Big plate chicken (Xinjiang)" data-zh="大盘鸡">大盘鸡</div>
-      <div class="dish-item" data-en="Chicken with chestnuts" data-zh="板栗鸡">板栗鸡</div>
-      <div class="dish-item" data-en="Chicken with shiitake" data-zh="香菇鸡">香菇鸡</div>
-      <div class="dish-item" data-en="Spicy chicken claypot" data-zh="鸡公煲">鸡公煲</div>
+      <a class="dish-item" href="recipes/baizhan-ji.html"><img class="dish-pic" src="assets/stickers/sm/068.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Poached white-cut chicken" data-zh="白斩鸡">白斩鸡</span></a>
+      <a class="dish-item" href="recipes/chiyou-ji.html"><img class="dish-pic" src="assets/stickers/sm/069.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Soy sauce chicken" data-zh="豉油鸡">豉油鸡</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/070.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Mouthwatering chicken (very spicy)" data-zh="口水鸡（很辣）">口水鸡（很辣）</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/071.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Yellow braised chicken" data-zh="黄焖鸡">黄焖鸡</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/072.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chongqing crispy chili chicken" data-zh="辣子鸡">辣子鸡</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/073.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Big plate chicken (Xinjiang)" data-zh="大盘鸡">大盘鸡</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/074.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chicken with chestnuts" data-zh="板栗鸡">板栗鸡</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/075.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chicken with shiitake" data-zh="香菇鸡">香菇鸡</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/076.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Spicy chicken claypot" data-zh="鸡公煲">鸡公煲</span></div>
       <div class="dish-label" data-en="Wings &amp; Legs" data-zh="鸡翅腿">鸡翅腿</div>
-      <div class="dish-item" data-en="Steamed chicken wings" data-zh="蒸鸡翼">蒸鸡翼</div>
-      <a class="dish-item" href="recipes/chashao.html" data-en="Char siu chicken / wings / legs" data-zh="叉烧鸡/鸡翅/鸡腿">叉烧鸡/鸡翅/鸡腿</a>
-      <div class="dish-item" data-en="Braised chicken wings / legs" data-zh="红烧鸡翅/鸡腿">红烧鸡翅/鸡腿</div>
-      <a class="dish-item" href="recipes/suanxiang-jichi.html" data-en="Garlic chicken wings" data-zh="蒜香鸡翅">蒜香鸡翅</a>
-      <div class="dish-item" data-en="Cola chicken wings" data-zh="可乐鸡翅">可乐鸡翅</div>
-      <div class="dish-item" data-en="New Orleans chicken wings" data-zh="奥尔良鸡翅">奥尔良鸡翅</div>
-      <a class="dish-item" href="recipes/zha-jichi.html" data-en="Air fryer fried chicken wings" data-zh="空气炸锅炸鸡翅">空气炸锅炸鸡翅</a>
-      <a class="dish-item" href="recipes/yan-su-ji.html" data-en="Taiwanese popcorn chicken" data-zh="盐酥鸡">盐酥鸡</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/077.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed chicken wings" data-zh="蒸鸡翼">蒸鸡翼</span></div>
+      <a class="dish-item" href="recipes/chashao.html"><img class="dish-pic" src="assets/stickers/sm/078.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Char siu chicken / wings / legs" data-zh="叉烧鸡/鸡翅/鸡腿">叉烧鸡/鸡翅/鸡腿</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/079.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised chicken wings / legs" data-zh="红烧鸡翅/鸡腿">红烧鸡翅/鸡腿</span></div>
+      <a class="dish-item" href="recipes/suanxiang-jichi.html"><img class="dish-pic" src="assets/stickers/sm/080.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Garlic chicken wings" data-zh="蒜香鸡翅">蒜香鸡翅</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/081.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Cola chicken wings" data-zh="可乐鸡翅">可乐鸡翅</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/082.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="New Orleans chicken wings" data-zh="奥尔良鸡翅">奥尔良鸡翅</span></div>
+      <a class="dish-item" href="recipes/zha-jichi.html"><img class="dish-pic" src="assets/stickers/sm/083.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Air fryer fried chicken wings" data-zh="空气炸锅炸鸡翅">空气炸锅炸鸡翅</span></a>
+      <a class="dish-item" href="recipes/yan-su-ji.html"><img class="dish-pic" src="assets/stickers/sm/084.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Taiwanese popcorn chicken" data-zh="盐酥鸡">盐酥鸡</span></a>
       <div class="dish-label" data-en="Duck" data-zh="鸭">鸭</div>
-      <a class="dish-item" href="recipes/yanshui-ya.html" data-en="Salt-brined duck" data-zh="盐水鸭">盐水鸭</a>
-      <div class="dish-item" data-en="Beer duck" data-zh="啤酒鸭">啤酒鸭</div>
-      <div class="dish-item" data-en="Braised duck" data-zh="炖鸭子">炖鸭子</div>
+      <a class="dish-item" href="recipes/yanshui-ya.html"><img class="dish-pic" src="assets/stickers/sm/085.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Salt-brined duck" data-zh="盐水鸭">盐水鸭</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/086.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Beer duck" data-zh="啤酒鸭">啤酒鸭</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/087.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised duck" data-zh="炖鸭子">炖鸭子</span></div>
     </div>
   </div>
 
@@ -452,21 +482,21 @@
     </div>
     <div class="dish-grid">
       <!-- 烤/煎 grilled & seared -->
-      <div class="dish-item" data-en="Pan-seared / grilled short ribs" data-zh="煎/烤 BBQ 牛仔骨">煎/烤 BBQ 牛仔骨</div>
-      <div class="dish-item" data-en="Grilled beef ribs (BBQ style)" data-zh="烤牛排骨（烧烤式）">烤牛排骨（烧烤式）</div>
-      <div class="dish-item" data-en="Roasted lamb rack" data-zh="烤羊排">烤羊排</div>
-      <a class="dish-item" href="recipes/kao-yangtui.html" data-en="Roasted lamb leg" data-zh="烤羊腿">烤羊腿</a>
-      <a class="dish-item" href="recipes/yangrouchuan.html" data-en="Lamb skewers" data-zh="羊肉串">羊肉串</a>
-      <a class="dish-item" href="recipes/rishi-hambao.html" data-en="Japanese hamburger steak" data-zh="日式汉堡排">日式汉堡排</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/088.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pan-seared / grilled short ribs" data-zh="煎/烤 BBQ 牛仔骨">煎/烤 BBQ 牛仔骨</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/089.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Grilled beef ribs (BBQ style)" data-zh="烤牛排骨（烧烤式）">烤牛排骨（烧烤式）</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/090.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Roasted lamb rack" data-zh="烤羊排">烤羊排</span></div>
+      <a class="dish-item" href="recipes/kao-yangtui.html"><img class="dish-pic" src="assets/stickers/sm/091.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Roasted lamb leg" data-zh="烤羊腿">烤羊腿</span></a>
+      <a class="dish-item" href="recipes/yangrouchuan.html"><img class="dish-pic" src="assets/stickers/sm/092.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Lamb skewers" data-zh="羊肉串">羊肉串</span></a>
+      <a class="dish-item" href="recipes/rishi-hambao.html"><img class="dish-pic" src="assets/stickers/sm/093.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Japanese hamburger steak" data-zh="日式汉堡排">日式汉堡排</span></a>
       <!-- 红烧/炖 braised & stewed -->
-      <div class="dish-item" data-en="Braised beef" data-zh="红烧牛肉">红烧牛肉</div>
-      <div class="dish-item" data-en="Tomato beef brisket" data-zh="番茄牛腩">番茄牛腩</div>
-      <div class="dish-item" data-en="Potato beef stew" data-zh="土豆炖牛肉">土豆炖牛肉</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/094.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised beef" data-zh="红烧牛肉">红烧牛肉</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/095.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tomato beef brisket" data-zh="番茄牛腩">番茄牛腩</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/096.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Potato beef stew" data-zh="土豆炖牛肉">土豆炖牛肉</span></div>
       <!-- 其它 other cuts -->
-      <div class="dish-item" data-en="Tomato beef tendon" data-zh="番茄牛筋">番茄牛筋</div>
-      <div class="dish-item" data-en="Spicy numbing beef tendon" data-zh="麻辣牛筋">麻辣牛筋</div>
-      <div class="dish-item" data-en="Enoki mushrooms with beef" data-zh="金针菇肥牛">金针菇肥牛</div>
-      <a class="dish-item" href="recipes/niurou-fu.html" data-en="Beef jerky" data-zh="牛肉脯">牛肉脯</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/097.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tomato beef tendon" data-zh="番茄牛筋">番茄牛筋</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/098.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Spicy numbing beef tendon" data-zh="麻辣牛筋">麻辣牛筋</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/099.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Enoki mushrooms with beef" data-zh="金针菇肥牛">金针菇肥牛</span></div>
+      <a class="dish-item" href="recipes/niurou-fu.html"><img class="dish-pic" src="assets/stickers/sm/100.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Beef jerky" data-zh="牛肉脯">牛肉脯</span></a>
     </div>
   </div>
 
@@ -479,30 +509,30 @@
     </div>
     <div class="dish-grid">
       <!-- 蒸/白灼 steamed & poached -->
-      <div class="dish-item" data-en="Steamed sea bass / other fish" data-zh="清蒸鲈鱼/其它">清蒸鲈鱼/其它</div>
-      <a class="dish-item" href="recipes/boiling-shrimp.html" data-en="Blanched shrimp" data-zh="白灼虾">白灼虾</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/101.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed sea bass / other fish" data-zh="清蒸鲈鱼/其它">清蒸鲈鱼/其它</span></div>
+      <a class="dish-item" href="recipes/boiling-shrimp.html"><img class="dish-pic" src="assets/stickers/sm/102.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Blanched shrimp" data-zh="白灼虾">白灼虾</span></a>
       <!-- 红烧/炖 braised & stewed -->
-      <div class="dish-item" data-en="Braised fish" data-zh="红烧鱼">红烧鱼</div>
-      <div class="dish-item" data-en="Sauerkraut fish" data-zh="酸菜鱼">酸菜鱼</div>
-      <div class="dish-item" data-en="Tomato hairtail fish" data-zh="番茄带鱼">番茄带鱼</div>
-      <div class="dish-item" data-en="Braised eel" data-zh="黄焖黄鳝">黄焖黄鳝</div>
-      <div class="dish-item" data-en="Beer fish" data-zh="啤酒鱼">啤酒鱼</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/103.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised fish" data-zh="红烧鱼">红烧鱼</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/104.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sauerkraut fish" data-zh="酸菜鱼">酸菜鱼</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/105.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tomato hairtail fish" data-zh="番茄带鱼">番茄带鱼</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/106.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised eel" data-zh="黄焖黄鳝">黄焖黄鳝</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/107.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Beer fish" data-zh="啤酒鱼">啤酒鱼</span></div>
       <!-- 煎/烤 pan-fried & grilled -->
-      <div class="dish-item" data-en="Pan-fried crucian carp" data-zh="香煎鲫鱼">香煎鲫鱼</div>
-      <div class="dish-item" data-en="Pan-fried hairtail fish" data-zh="香煎带鱼">香煎带鱼</div>
-      <div class="dish-item" data-en="Foil-baked sweet and sour sea bass" data-zh="锡纸鲈鱼糖醋">锡纸鲈鱼糖醋</div>
-      <a class="dish-item" href="recipes/kao-yu.html" data-en="Grilled fish" data-zh="烤鱼">烤鱼</a>
-      <a class="dish-item" href="recipes/kao-huangyu.html" data-en="Grilled yellow croaker" data-zh="烤黄鱼">烤黄鱼</a>
-      <a class="dish-item" href="recipes/kongqi-yudoufu.html" data-en="Air fryer fish tofu" data-zh="空气炸锅鱼豆腐">空气炸锅鱼豆腐</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/108.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pan-fried crucian carp" data-zh="香煎鲫鱼">香煎鲫鱼</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/109.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pan-fried hairtail fish" data-zh="香煎带鱼">香煎带鱼</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/110.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Foil-baked sweet and sour sea bass" data-zh="锡纸鲈鱼糖醋">锡纸鲈鱼糖醋</span></div>
+      <a class="dish-item" href="recipes/kao-yu.html"><img class="dish-pic" src="assets/stickers/sm/111.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Grilled fish" data-zh="烤鱼">烤鱼</span></a>
+      <a class="dish-item" href="recipes/kao-huangyu.html"><img class="dish-pic" src="assets/stickers/sm/112.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Grilled yellow croaker" data-zh="烤黄鱼">烤黄鱼</span></a>
+      <a class="dish-item" href="recipes/kongqi-yudoufu.html"><img class="dish-pic" src="assets/stickers/sm/113.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Air fryer fish tofu" data-zh="空气炸锅鱼豆腐">空气炸锅鱼豆腐</span></a>
       <!-- 鱼头 fish head -->
-      <div class="dish-item" data-en="Fish head with chopped chilies" data-zh="剁椒鱼头">剁椒鱼头</div>
-      <div class="dish-item" data-en="Fish head and tofu soup" data-zh="鱼头豆腐锅">鱼头豆腐锅</div>
-      <div class="dish-item" data-en="Fish head broth (simmered)" data-zh="鱼头汤（炖）">鱼头汤（炖）</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/114.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Fish head with chopped chilies" data-zh="剁椒鱼头">剁椒鱼头</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/115.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Fish head and tofu soup" data-zh="鱼头豆腐锅">鱼头豆腐锅</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/116.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Fish head broth (simmered)" data-zh="鱼头汤（炖）">鱼头汤（炖）</span></div>
       <!-- 虾蟹 shrimp & seafood -->
-      <div class="dish-item" data-en="Tempura" data-zh="天妇罗">天妇罗</div>
-      <div class="dish-item" data-en="Mayo shrimp balls" data-zh="美乃滋炸虾球">美乃滋炸虾球</div>
-      <div class="dish-item" data-en="Garlic lobster" data-zh="蒜蓉龙虾">蒜蓉龙虾</div>
-      <a class="dish-item" href="recipes/hot-n-juicy.html" data-en="Hot n Juicy" data-zh="Hot n Juicy">Hot n Juicy</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/117.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tempura" data-zh="天妇罗">天妇罗</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/118.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Mayo shrimp balls" data-zh="美乃滋炸虾球">美乃滋炸虾球</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/119.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Garlic lobster" data-zh="蒜蓉龙虾">蒜蓉龙虾</span></div>
+      <a class="dish-item" href="recipes/hot-n-juicy.html"><img class="dish-pic" src="assets/stickers/sm/120.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Hot n Juicy" data-zh="Hot n Juicy">Hot n Juicy</span></a>
     </div>
   </div>
 
@@ -515,40 +545,40 @@
     </div>
     <div class="dish-grid">
       <!-- 排骨 ribs -->
-      <div class="dish-item" data-en="Wuxi sweet and sour pork ribs" data-zh="无锡糖醋小排">无锡糖醋小排</div>
-      <div class="dish-item" data-en="Golden crispy sweet and sour ribs" data-zh="糖醋排骨 金黄">糖醋排骨 金黄</div>
-      <div class="dish-item" data-en="Garlic pork ribs" data-zh="蒜香排骨">蒜香排骨</div>
-      <div class="dish-item" data-en="Braised ribs with bamboo shoots" data-zh="笋尖烧排骨">笋尖烧排骨</div>
-      <a class="dish-item" href="recipes/jiaoyan-paigu.html" data-en="Salt-and-pepper pork ribs" data-zh="椒盐排骨">椒盐排骨</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/121.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Wuxi sweet and sour pork ribs" data-zh="无锡糖醋小排">无锡糖醋小排</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/122.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Golden crispy sweet and sour ribs" data-zh="糖醋排骨 金黄">糖醋排骨 金黄</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/123.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Garlic pork ribs" data-zh="蒜香排骨">蒜香排骨</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/124.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised ribs with bamboo shoots" data-zh="笋尖烧排骨">笋尖烧排骨</span></div>
+      <a class="dish-item" href="recipes/jiaoyan-paigu.html"><img class="dish-pic" src="assets/stickers/sm/125.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Salt-and-pepper pork ribs" data-zh="椒盐排骨">椒盐排骨</span></a>
       <!-- 红烧/扣肉 braised pork belly -->
-      <div class="dish-item" data-en="Red-braised pork belly with tofu skin / egg" data-zh="红烧肉+腐竹/鸡蛋">红烧肉+腐竹/鸡蛋</div>
-      <a class="dish-item" href="recipes/dongpo-rou.html" data-en="Dongpo braised pork belly" data-zh="东坡肉">东坡肉</a>
-      <div class="dish-item" data-en="Steamed pork with preserved mustard greens" data-zh="梅菜扣肉">梅菜扣肉</div>
-      <div class="dish-item" data-en="Steamed pork belly with taro" data-zh="芋头扣肉">芋头扣肉</div>
-      <div class="dish-item" data-en="Steamed pork with rice flour" data-zh="粉蒸肉">粉蒸肉</div>
-      <div class="dish-item" data-en="Steamed pork patty" data-zh="蒸肉饼">蒸肉饼</div>
-      <div class="dish-item" data-en="Braised pork / eggs" data-zh="卤肉/鸡蛋">卤肉/鸡蛋</div>
-      <a class="dish-item" href="recipes/chashao.html" data-en="BBQ pork (char siu)" data-zh="叉烧">叉烧</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/126.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Red-braised pork belly with tofu skin / egg" data-zh="红烧肉+腐竹/鸡蛋">红烧肉+腐竹/鸡蛋</span></div>
+      <a class="dish-item" href="recipes/dongpo-rou.html"><img class="dish-pic" src="assets/stickers/sm/127.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Dongpo braised pork belly" data-zh="东坡肉">东坡肉</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/128.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed pork with preserved mustard greens" data-zh="梅菜扣肉">梅菜扣肉</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/129.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed pork belly with taro" data-zh="芋头扣肉">芋头扣肉</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/130.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed pork with rice flour" data-zh="粉蒸肉">粉蒸肉</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/131.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Steamed pork patty" data-zh="蒸肉饼">蒸肉饼</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/132.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised pork / eggs" data-zh="卤肉/鸡蛋">卤肉/鸡蛋</span></div>
+      <a class="dish-item" href="recipes/chashao.html"><img class="dish-pic" src="assets/stickers/sm/133.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="BBQ pork (char siu)" data-zh="叉烧">叉烧</span></a>
       <!-- 猪蹄 trotters -->
-      <div class="dish-item" data-en="Roasted pig's feet" data-zh="烤猪蹄">烤猪蹄</div>
-      <div class="dish-item" data-en="Spicy braised pig's feet" data-zh="香辣美容蹄">香辣美容蹄</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/134.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Roasted pig's feet" data-zh="烤猪蹄">烤猪蹄</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/135.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Spicy braised pig's feet" data-zh="香辣美容蹄">香辣美容蹄</span></div>
       <!-- 腊肉香肠 cured & sausage -->
-      <a class="dish-item" href="recipes/la-rou.html" data-en="Celery with cured pork" data-zh="西芹腊肉">西芹腊肉</a>
-      <a class="dish-item" href="recipes/sichuan-xiangchang.html" data-en="Pan-fried sausage whole / sliced" data-zh="煎香肠 整/切片">煎香肠 整/切片</a>
-      <div class="dish-item" data-en="Pan-seared pork belly" data-zh="香煎五花肉">香煎五花肉</div>
+      <a class="dish-item" href="recipes/la-rou.html"><img class="dish-pic" src="assets/stickers/sm/136.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Celery with cured pork" data-zh="西芹腊肉">西芹腊肉</span></a>
+      <a class="dish-item" href="recipes/sichuan-xiangchang.html"><img class="dish-pic" src="assets/stickers/sm/137.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pan-fried sausage whole / sliced" data-zh="煎香肠 整/切片">煎香肠 整/切片</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/138.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pan-seared pork belly" data-zh="香煎五花肉">香煎五花肉</span></div>
       <!-- 炸 deep-fried -->
-      <div class="dish-item" data-en="Deep-fried lotus root balls" data-zh="炸莲藕丸子">炸莲藕丸子</div>
-      <div class="dish-item" data-en="Deep-fried lotus root sandwiches" data-zh="炸藕盒">炸藕盒</div>
-      <div class="dish-item" data-en="Deep-fried eggplant sandwiches" data-zh="炸茄盒">炸茄盒</div>
-      <div class="dish-item" data-en="Tofu puff meatballs" data-zh="油豆腐丸子">油豆腐丸子</div>
-      <a class="dish-item" href="recipes/guobaorou.html" data-en="Crispy sweet and sour pork (Manchurian)" data-zh="锅包肉">锅包肉</a>
-      <a class="dish-item" href="recipes/cuipi-surou.html" data-en="Crispy fried pork strips" data-zh="脆皮酥肉">脆皮酥肉</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/139.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Deep-fried lotus root balls" data-zh="炸莲藕丸子">炸莲藕丸子</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/140.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Deep-fried lotus root sandwiches" data-zh="炸藕盒">炸藕盒</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/141.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Deep-fried eggplant sandwiches" data-zh="炸茄盒">炸茄盒</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/142.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tofu puff meatballs" data-zh="油豆腐丸子">油豆腐丸子</span></div>
+      <a class="dish-item" href="recipes/guobaorou.html"><img class="dish-pic" src="assets/stickers/sm/143.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Crispy sweet and sour pork (Manchurian)" data-zh="锅包肉">锅包肉</span></a>
+      <a class="dish-item" href="recipes/cuipi-surou.html"><img class="dish-pic" src="assets/stickers/sm/144.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Crispy fried pork strips" data-zh="脆皮酥肉">脆皮酥肉</span></a>
       <!-- 其它 other -->
-      <a class="dish-item" href="recipes/kao-zhupai.html" data-en="Grilled pork chops" data-zh="烤猪排">烤猪排</a>
-      <a class="dish-item" href="recipes/jingjiang-rousi.html" data-en="Shredded pork in sweet bean sauce" data-zh="京酱肉丝">京酱肉丝</a>
-      <div class="dish-item" data-en="Bacon-wrapped asparagus (grilled)" data-zh="培根卷芦笋（烤）">培根卷芦笋（烤）</div>
-      <div class="dish-item" data-en="Bacon-wrapped enoki mushrooms" data-zh="培根卷金针菇">培根卷金针菇</div>
-      <div class="dish-item" data-en="Pork mince with pickled cabbage" data-zh="酸菜肉末">酸菜肉末</div>
+      <a class="dish-item" href="recipes/kao-zhupai.html"><img class="dish-pic" src="assets/stickers/sm/145.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Grilled pork chops" data-zh="烤猪排">烤猪排</span></a>
+      <a class="dish-item" href="recipes/jingjiang-rousi.html"><img class="dish-pic" src="assets/stickers/sm/146.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Shredded pork in sweet bean sauce" data-zh="京酱肉丝">京酱肉丝</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/147.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Bacon-wrapped asparagus (grilled)" data-zh="培根卷芦笋（烤）">培根卷芦笋（烤）</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/148.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Bacon-wrapped enoki mushrooms" data-zh="培根卷金针菇">培根卷金针菇</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/149.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pork mince with pickled cabbage" data-zh="酸菜肉末">酸菜肉末</span></div>
     </div>
   </div>
 
@@ -560,13 +590,13 @@
       <span class="count"></span>
     </div>
     <div class="dish-grid">
-      <div class="dish-item" data-en="Mapo tofu" data-zh="麻婆豆腐">麻婆豆腐</div>
-      <div class="dish-item" data-en="Tofu with minced pork and scallions" data-zh="葱香肉末豆腐">葱香肉末豆腐</div>
-      <div class="dish-item" data-en="Braised Japanese tofu" data-zh="烧日本豆腐">烧日本豆腐</div>
-      <div class="dish-item" data-en="Pan-fried tofu" data-zh="香煎豆腐">香煎豆腐</div>
-      <div class="dish-item" data-en="Korean spicy tofu stew" data-zh="韩式豆腐煲">韩式豆腐煲</div>
-      <a class="dish-item" href="recipes/nen-doufu-jidan.html" data-en="Silken tofu with steamed egg" data-zh="嫩豆腐蒸鸡蛋">嫩豆腐蒸鸡蛋</a>
-      <a class="dish-item" href="recipes/moyu-doufu.html" data-en="Konjac tofu" data-zh="魔芋豆腐">魔芋豆腐</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/150.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Mapo tofu" data-zh="麻婆豆腐">麻婆豆腐</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/151.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tofu with minced pork and scallions" data-zh="葱香肉末豆腐">葱香肉末豆腐</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/152.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised Japanese tofu" data-zh="烧日本豆腐">烧日本豆腐</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/153.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pan-fried tofu" data-zh="香煎豆腐">香煎豆腐</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/154.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Korean spicy tofu stew" data-zh="韩式豆腐煲">韩式豆腐煲</span></div>
+      <a class="dish-item" href="recipes/nen-doufu-jidan.html"><img class="dish-pic" src="assets/stickers/sm/155.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Silken tofu with steamed egg" data-zh="嫩豆腐蒸鸡蛋">嫩豆腐蒸鸡蛋</span></a>
+      <a class="dish-item" href="recipes/moyu-doufu.html"><img class="dish-pic" src="assets/stickers/sm/156.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Konjac tofu" data-zh="魔芋豆腐">魔芋豆腐</span></a>
     </div>
   </div>
 
@@ -579,44 +609,44 @@
     </div>
     <div class="dish-grid">
       <!-- 甜汤 sweet soups -->
-      <div class="dish-item" data-en="Sweet mung bean soup" data-zh="绿豆沙">绿豆沙</div>
-      <div class="dish-item" data-en="Sweet red bean soup" data-zh="红豆沙">红豆沙</div>
-      <div class="dish-item" data-en="Rock sugar snow pear soup" data-zh="冰糖雪梨汤">冰糖雪梨汤</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/157.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sweet mung bean soup" data-zh="绿豆沙">绿豆沙</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/158.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sweet red bean soup" data-zh="红豆沙">红豆沙</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/159.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Rock sugar snow pear soup" data-zh="冰糖雪梨汤">冰糖雪梨汤</span></div>
       <!-- 冷点 chilled & cold -->
-      <div class="dish-item" data-en="White grass jelly" data-zh="白凉粉">白凉粉</div>
-      <div class="dish-item" data-en="Guilin turtle jelly" data-zh="龟苓膏">龟苓膏</div>
-      <div class="dish-item" data-en="Double-layered milk pudding" data-zh="双皮奶">双皮奶</div>
-      <a class="dish-item" href="recipes/jiaotang-buding.html" data-en="Pudding (matcha / coconut / mango)" data-zh="布丁（抹茶/椰香/芒果）">布丁（抹茶/椰香/芒果）</a>
-      <a class="dish-item" href="recipes/mocha-naidong.html" data-en="Matcha panna cotta" data-zh="抹茶奶冻">抹茶奶冻</a>
-      <a class="dish-item" href="recipes/mochi.html" data-en="Mochi" data-zh="Mochi">Mochi</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/160.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="White grass jelly" data-zh="白凉粉">白凉粉</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/161.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Guilin turtle jelly" data-zh="龟苓膏">龟苓膏</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/162.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Double-layered milk pudding" data-zh="双皮奶">双皮奶</span></div>
+      <a class="dish-item" href="recipes/jiaotang-buding.html"><img class="dish-pic" src="assets/stickers/sm/163.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pudding (matcha / coconut / mango)" data-zh="布丁（抹茶/椰香/芒果）">布丁（抹茶/椰香/芒果）</span></a>
+      <a class="dish-item" href="recipes/mocha-naidong.html"><img class="dish-pic" src="assets/stickers/sm/164.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Matcha panna cotta" data-zh="抹茶奶冻">抹茶奶冻</span></a>
+      <a class="dish-item" href="recipes/mochi.html"><img class="dish-pic" src="assets/stickers/sm/165.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Mochi" data-zh="Mochi">Mochi</span></a>
       <!-- 糯米/米制 rice-based -->
-      <div class="dish-item" data-en="Sesame-filled glutinous rice balls" data-zh="芝麻馅汤圆">芝麻馅汤圆</div>
-      <a class="dish-item" href="recipes/nuomici.html" data-en="Sticky rice cake with red bean" data-zh="糯米糍">糯米糍</a>
-      <a class="dish-item" href="recipes/nangua-bing.html" data-en="Pumpkin pancake" data-zh="南瓜饼">南瓜饼</a>
-      <a class="dish-item" href="recipes/matuan.html" data-en="Sesame balls" data-zh="麻团">麻团</a>
-      <a class="dish-item" href="recipes/jidan-zai.html" data-en="Egg waffle (gai daan jai)" data-zh="鸡蛋仔">鸡蛋仔</a>
-      <a class="dish-item" href="recipes/yu-ni.html" data-en="Taro paste" data-zh="芋泥">芋泥</a>
-      <a class="dish-item" href="recipes/yuyuan.html" data-en="Taro balls" data-zh="芋圆">芋圆</a>
-      <a class="dish-item" href="recipes/moshu-moyu-juan.html" data-en="Scallion mochi konjac roll" data-zh="香葱麻薯魔芋卷">香葱麻薯魔芋卷</a>
-      <div class="dish-item" data-en="Snowflake candy" data-zh="雪花酥">雪花酥</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/166.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sesame-filled glutinous rice balls" data-zh="芝麻馅汤圆">芝麻馅汤圆</span></div>
+      <a class="dish-item" href="recipes/nuomici.html"><img class="dish-pic" src="assets/stickers/sm/167.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sticky rice cake with red bean" data-zh="糯米糍">糯米糍</span></a>
+      <a class="dish-item" href="recipes/nangua-bing.html"><img class="dish-pic" src="assets/stickers/sm/168.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pumpkin pancake" data-zh="南瓜饼">南瓜饼</span></a>
+      <a class="dish-item" href="recipes/matuan.html"><img class="dish-pic" src="assets/stickers/sm/169.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sesame balls" data-zh="麻团">麻团</span></a>
+      <a class="dish-item" href="recipes/jidan-zai.html"><img class="dish-pic" src="assets/stickers/sm/170.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Egg waffle (gai daan jai)" data-zh="鸡蛋仔">鸡蛋仔</span></a>
+      <a class="dish-item" href="recipes/yu-ni.html"><img class="dish-pic" src="assets/stickers/sm/171.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Taro paste" data-zh="芋泥">芋泥</span></a>
+      <a class="dish-item" href="recipes/yuyuan.html"><img class="dish-pic" src="assets/stickers/sm/172.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Taro balls" data-zh="芋圆">芋圆</span></a>
+      <a class="dish-item" href="recipes/moshu-moyu-juan.html"><img class="dish-pic" src="assets/stickers/sm/173.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Scallion mochi konjac roll" data-zh="香葱麻薯魔芋卷">香葱麻薯魔芋卷</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/174.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Snowflake candy" data-zh="雪花酥">雪花酥</span></div>
       <!-- 烘焙 baked & pastry -->
-      <a class="dish-item" href="recipes/qifeng-dangao.html" data-en="Chiffon cake" data-zh="戚风蛋糕">戚风蛋糕</a>
-      <a class="dish-item" href="recipes/matcha-dangao-juan.html" data-en="Matcha chiffon roll cake" data-zh="抹茶戚风蛋糕卷">抹茶戚风蛋糕卷</a>
-      <a class="dish-item" href="recipes/tiramisu.html" data-en="Tiramisu" data-zh="提拉米苏">提拉米苏</a>
-      <a class="dish-item" href="recipes/paofu.html" data-en="Cream puffs (choux)" data-zh="泡芙">泡芙</a>
-      <a class="dish-item" href="recipes/danta.html" data-en="Egg tarts" data-zh="蛋挞">蛋挞</a>
-      <a class="dish-item" href="recipes/huangjin-gao.html" data-en="Golden cake (water chestnut)" data-zh="黄金糕">黄金糕</a>
-      <a class="dish-item" href="recipes/huangyou-quqi.html" data-en="Butter cookies" data-zh="黄油曲奇">黄油曲奇</a>
-      <a class="dish-item" href="recipes/danhuang-rousong.html" data-en="Egg yolk mayo pork floss roll" data-zh="蛋黄酱肉松卷">蛋黄酱肉松卷</a>
-      <a class="dish-item" href="recipes/lemon-blueberry-cake.html" data-en="Lemon Blueberry Cake" data-zh="Lemon Blueberry Cake">Lemon Blueberry Cake</a>
+      <a class="dish-item" href="recipes/qifeng-dangao.html"><img class="dish-pic" src="assets/stickers/sm/175.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chiffon cake" data-zh="戚风蛋糕">戚风蛋糕</span></a>
+      <a class="dish-item" href="recipes/matcha-dangao-juan.html"><img class="dish-pic" src="assets/stickers/sm/176.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Matcha chiffon roll cake" data-zh="抹茶戚风蛋糕卷">抹茶戚风蛋糕卷</span></a>
+      <a class="dish-item" href="recipes/tiramisu.html"><img class="dish-pic" src="assets/stickers/sm/177.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tiramisu" data-zh="提拉米苏">提拉米苏</span></a>
+      <a class="dish-item" href="recipes/paofu.html"><img class="dish-pic" src="assets/stickers/sm/178.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Cream puffs (choux)" data-zh="泡芙">泡芙</span></a>
+      <a class="dish-item" href="recipes/danta.html"><img class="dish-pic" src="assets/stickers/sm/179.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Egg tarts" data-zh="蛋挞">蛋挞</span></a>
+      <a class="dish-item" href="recipes/huangjin-gao.html"><img class="dish-pic" src="assets/stickers/sm/180.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Golden cake (water chestnut)" data-zh="黄金糕">黄金糕</span></a>
+      <a class="dish-item" href="recipes/huangyou-quqi.html"><img class="dish-pic" src="assets/stickers/sm/181.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Butter cookies" data-zh="黄油曲奇">黄油曲奇</span></a>
+      <a class="dish-item" href="recipes/danhuang-rousong.html"><img class="dish-pic" src="assets/stickers/sm/182.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Egg yolk mayo pork floss roll" data-zh="蛋黄酱肉松卷">蛋黄酱肉松卷</span></a>
+      <a class="dish-item" href="recipes/lemon-blueberry-cake.html"><img class="dish-pic" src="assets/stickers/sm/183.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Lemon Blueberry Cake" data-zh="Lemon Blueberry Cake">Lemon Blueberry Cake</span></a>
       <!-- 月饼 mooncakes -->
-      <a class="dish-item" href="recipes/yuebing.html" data-en="Traditional mooncakes (lotus paste / red bean)" data-zh="传统月饼（莲蓉/豆沙）">传统月饼（莲蓉/豆沙）</a>
-      <div class="dish-item" data-en="Snow skin mooncakes with custard" data-zh="冰皮月饼 奶黄">冰皮月饼 奶黄</div>
+      <a class="dish-item" href="recipes/yuebing.html"><img class="dish-pic" src="assets/stickers/sm/184.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Traditional mooncakes (lotus paste / red bean)" data-zh="传统月饼（莲蓉/豆沙）">传统月饼（莲蓉/豆沙）</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/185.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Snow skin mooncakes with custard" data-zh="冰皮月饼 奶黄">冰皮月饼 奶黄</span></div>
       <!-- 其它 other -->
-      <a class="dish-item" href="recipes/zha-gao.html" data-en="Deep-fried sticky rice cake" data-zh="炸糕">炸糕</a>
-      <a class="dish-item" href="recipes/lvdou-gao.html" data-en="Mung bean cake" data-zh="绿豆糕">绿豆糕</a>
-      <a class="dish-item" href="recipes/qiuli-gao.html" data-en="Autumn pear syrup" data-zh="秋梨膏">秋梨膏</a>
-      <div class="dish-item" data-en="Fried banana" data-zh="炸香蕉">炸香蕉</div>
+      <a class="dish-item" href="recipes/zha-gao.html"><img class="dish-pic" src="assets/stickers/sm/186.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Deep-fried sticky rice cake" data-zh="炸糕">炸糕</span></a>
+      <a class="dish-item" href="recipes/lvdou-gao.html"><img class="dish-pic" src="assets/stickers/sm/187.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Mung bean cake" data-zh="绿豆糕">绿豆糕</span></a>
+      <a class="dish-item" href="recipes/qiuli-gao.html"><img class="dish-pic" src="assets/stickers/sm/188.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Autumn pear syrup" data-zh="秋梨膏">秋梨膏</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/189.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Fried banana" data-zh="炸香蕉">炸香蕉</span></div>
     </div>
   </div>
 
@@ -629,28 +659,28 @@
     </div>
     <div class="dish-grid">
       <div class="dish-label" data-en="Nuts &amp; Legumes" data-zh="坚果豆类">坚果豆类</div>
-      <div class="dish-item" data-en="Boiled salted peanuts" data-zh="盐水花生">盐水花生</div>
-      <div class="dish-item" data-en="Boiled salted edamame" data-zh="盐水毛豆">盐水毛豆</div>
-      <div class="dish-item" data-en="Fried peanuts" data-zh="炸花生米">炸花生米</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/190.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Boiled salted peanuts" data-zh="盐水花生">盐水花生</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/191.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Boiled salted edamame" data-zh="盐水毛豆">盐水毛豆</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/192.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Fried peanuts" data-zh="炸花生米">炸花生米</span></div>
       <div class="dish-label" data-en="Cold-tossed" data-zh="凉拌">凉拌</div>
-      <a class="dish-item" href="recipes/cuipi-huanggua.html" data-en="Crunchy smashed cucumber" data-zh="脆皮黄瓜">脆皮黄瓜</a>
-      <div class="dish-item" data-en="Smashed cucumber" data-zh="拍黄瓜">拍黄瓜</div>
-      <div class="dish-item" data-en="Century egg salad" data-zh="凉拌皮蛋">凉拌皮蛋</div>
-      <div class="dish-item" data-en="Century egg with tofu" data-zh="皮蛋豆腐">皮蛋豆腐</div>
-      <div class="dish-item" data-en="Spinach and peanut salad" data-zh="凉拌菠菜花生">凉拌菠菜花生</div>
-      <div class="dish-item" data-en="Chinese yam with blueberry" data-zh="蓝莓山药">蓝莓山药</div>
-      <a class="dish-item" href="recipes/huasheng-lao.html" data-en="Peanut pudding" data-zh="花生酪">花生酪</a>
-      <a class="dish-item" href="recipes/luobo-gan.html" data-en="Pickled radish strips" data-zh="萝卜干">萝卜干</a>
+      <a class="dish-item" href="recipes/cuipi-huanggua.html"><img class="dish-pic" src="assets/stickers/sm/193.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Crunchy smashed cucumber" data-zh="脆皮黄瓜">脆皮黄瓜</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/194.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Smashed cucumber" data-zh="拍黄瓜">拍黄瓜</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/195.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Century egg salad" data-zh="凉拌皮蛋">凉拌皮蛋</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/196.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Century egg with tofu" data-zh="皮蛋豆腐">皮蛋豆腐</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/197.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Spinach and peanut salad" data-zh="凉拌菠菜花生">凉拌菠菜花生</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/198.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chinese yam with blueberry" data-zh="蓝莓山药">蓝莓山药</span></div>
+      <a class="dish-item" href="recipes/huasheng-lao.html"><img class="dish-pic" src="assets/stickers/sm/199.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Peanut pudding" data-zh="花生酪">花生酪</span></a>
+      <a class="dish-item" href="recipes/luobo-gan.html"><img class="dish-pic" src="assets/stickers/sm/200.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pickled radish strips" data-zh="萝卜干">萝卜干</span></a>
       <div class="dish-label" data-en="Braised &amp; Marinated" data-zh="卤味">卤味</div>
-      <div class="dish-item" data-en="Five-spice tea eggs" data-zh="五香茶叶蛋">五香茶叶蛋</div>
-      <a class="dish-item" href="recipes/tangxin-dan.html" data-en="Soft-boiled soy eggs" data-zh="溏心蛋">溏心蛋</a>
-      <a class="dish-item" href="recipes/xian-yadan.html" data-en="Salted duck eggs" data-zh="咸鸭蛋">咸鸭蛋</a>
-      <div class="dish-item" data-en="Braised beef shank" data-zh="卤牛腱">卤牛腱</div>
-      <div class="dish-item" data-en="Braised pig ears" data-zh="卤猪耳">卤猪耳</div>
-      <div class="dish-item" data-en="Braised chicken feet" data-zh="卤鸡爪">卤鸡爪</div>
-      <div class="dish-item" data-en="Wine-marinated chicken feet" data-zh="糟鸡爪">糟鸡爪</div>
-      <div class="dish-item" data-en="Pickled chili chicken feet" data-zh="泡椒凤爪">泡椒凤爪</div>
-      <div class="dish-item" data-en="Wine-marinated duck tongues" data-zh="糟鸭舌">糟鸭舌</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/201.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Five-spice tea eggs" data-zh="五香茶叶蛋">五香茶叶蛋</span></div>
+      <a class="dish-item" href="recipes/tangxin-dan.html"><img class="dish-pic" src="assets/stickers/sm/202.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Soft-boiled soy eggs" data-zh="溏心蛋">溏心蛋</span></a>
+      <a class="dish-item" href="recipes/xian-yadan.html"><img class="dish-pic" src="assets/stickers/sm/203.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Salted duck eggs" data-zh="咸鸭蛋">咸鸭蛋</span></a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/204.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised beef shank" data-zh="卤牛腱">卤牛腱</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/205.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised pig ears" data-zh="卤猪耳">卤猪耳</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/206.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Braised chicken feet" data-zh="卤鸡爪">卤鸡爪</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/207.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Wine-marinated chicken feet" data-zh="糟鸡爪">糟鸡爪</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/208.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pickled chili chicken feet" data-zh="泡椒凤爪">泡椒凤爪</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/209.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Wine-marinated duck tongues" data-zh="糟鸭舌">糟鸭舌</span></div>
     </div>
   </div>
 
@@ -663,23 +693,23 @@
     </div>
     <div class="dish-grid">
       <!-- 猪骨汤 pork bone -->
-      <div class="dish-item" data-en="Lotus root and pork rib soup" data-zh="莲藕排骨汤">莲藕排骨汤</div>
-      <div class="dish-item" data-en="Radish and pork rib soup" data-zh="萝卜排骨汤">萝卜排骨汤</div>
-      <div class="dish-item" data-en="Seaweed and pork rib soup" data-zh="海带排骨汤">海带排骨汤</div>
-      <div class="dish-item" data-en="Pork marrow bone soup" data-zh="筒骨汤">筒骨汤</div>
-      <div class="dish-item" data-en="Pig's feet and soybean soup" data-zh="猪蹄黄豆汤">猪蹄黄豆汤</div>
-      <div class="dish-item" data-en="Gastrodia and pork brain soup" data-zh="天麻猪脑汤">天麻猪脑汤</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/210.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Lotus root and pork rib soup" data-zh="莲藕排骨汤">莲藕排骨汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/211.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Radish and pork rib soup" data-zh="萝卜排骨汤">萝卜排骨汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/212.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Seaweed and pork rib soup" data-zh="海带排骨汤">海带排骨汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/213.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pork marrow bone soup" data-zh="筒骨汤">筒骨汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/214.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pig's feet and soybean soup" data-zh="猪蹄黄豆汤">猪蹄黄豆汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/215.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Gastrodia and pork brain soup" data-zh="天麻猪脑汤">天麻猪脑汤</span></div>
       <!-- 鸡汤 chicken -->
-      <div class="dish-item" data-en="Yellow chicken soup" data-zh="三黄鸡汤">三黄鸡汤</div>
-      <div class="dish-item" data-en="Black silkie chicken soup" data-zh="乌鸡汤">乌鸡汤</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/216.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Yellow chicken soup" data-zh="三黄鸡汤">三黄鸡汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/217.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Black silkie chicken soup" data-zh="乌鸡汤">乌鸡汤</span></div>
       <!-- 牛羊汤 beef & lamb -->
-      <div class="dish-item" data-en="Oxtail and yam soup" data-zh="牛尾山药汤">牛尾山药汤</div>
-      <div class="dish-item" data-en="Lamb and radish soup" data-zh="羊肉萝卜汤">羊肉萝卜汤</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/218.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Oxtail and yam soup" data-zh="牛尾山药汤">牛尾山药汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/219.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Lamb and radish soup" data-zh="羊肉萝卜汤">羊肉萝卜汤</span></div>
       <!-- 其它 light soups -->
-      <div class="dish-item" data-en="Chinese yam and bone soup" data-zh="山药骨头汤">山药骨头汤</div>
-      <div class="dish-item" data-en="Tomato and bone soup" data-zh="番茄骨头汤">番茄骨头汤</div>
-      <div class="dish-item" data-en="Meatball soup" data-zh="丸子汤">丸子汤</div>
-      <div class="dish-item" data-en="Egg drop and seaweed soup" data-zh="蛋花紫菜汤">蛋花紫菜汤</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/220.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Chinese yam and bone soup" data-zh="山药骨头汤">山药骨头汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/221.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tomato and bone soup" data-zh="番茄骨头汤">番茄骨头汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/222.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Meatball soup" data-zh="丸子汤">丸子汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/223.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Egg drop and seaweed soup" data-zh="蛋花紫菜汤">蛋花紫菜汤</span></div>
     </div>
   </div>
 
@@ -691,10 +721,10 @@
       <span class="count"></span>
     </div>
     <div class="dish-grid">
-      <div class="dish-item" data-en="Sour plum drink" data-zh="酸梅汤">酸梅汤</div>
-      <div class="dish-item" data-en="Pear and osmanthus tea" data-zh="小吊梨汤">小吊梨汤</div>
-      <div class="dish-item" data-en="Dalgona coffee (400-whisk)" data-zh="400次咖啡">400次咖啡</div>
-      <div class="dish-item" data-en="Wang Lao Ji herbal drink" data-zh="王老吉">王老吉</div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/224.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sour plum drink" data-zh="酸梅汤">酸梅汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/225.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pear and osmanthus tea" data-zh="小吊梨汤">小吊梨汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/226.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Dalgona coffee (400-whisk)" data-zh="400次咖啡">400次咖啡</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/227.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Wang Lao Ji herbal drink" data-zh="王老吉">王老吉</span></div>
     </div>
   </div>
 
@@ -706,11 +736,11 @@
       <span class="count"></span>
     </div>
     <div class="dish-grid">
-      <div class="dish-item" data-en="Pork bone broth" data-zh="骨汤">骨汤</div>
-      <div class="dish-item" data-en="Tomato broth" data-zh="番茄">番茄</div>
-      <div class="dish-item" data-en="Spicy broth" data-zh="香辣">香辣</div>
-      <div class="dish-item" data-en="Mushroom broth" data-zh="菌菇">菌菇</div>
-      <a class="dish-item" href="recipes/shouxi-guo.html" data-en="Sukiyaki" data-zh="寿喜锅">寿喜锅</a>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/228.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Pork bone broth" data-zh="骨汤">骨汤</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/229.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Tomato broth" data-zh="番茄">番茄</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/230.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Spicy broth" data-zh="香辣">香辣</span></div>
+      <div class="dish-item"><img class="dish-pic" src="assets/stickers/sm/231.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Mushroom broth" data-zh="菌菇">菌菇</span></div>
+      <a class="dish-item" href="recipes/shouxi-guo.html"><img class="dish-pic" src="assets/stickers/sm/232.webp" alt="" width="160" height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="Sukiyaki" data-zh="寿喜锅">寿喜锅</span></a>
     </div>
   </div>
 

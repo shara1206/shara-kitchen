@@ -1,6 +1,6 @@
 window.__RECIPES__ = {
   "generated": true,
-  "total": 133,
+  "total": 134,
   "todo": 16,
   "sub_notes": 19,
   "categories": [
@@ -104,7 +104,7 @@ window.__RECIPES__ = {
       "name_en": "Study Topics",
       "name_zh": "学习专题",
       "type": "study",
-      "count": 11
+      "count": 12
     },
     {
       "name_en": "Pages",
@@ -2014,6 +2014,23 @@ window.__RECIPES__ = {
       "subtitle_zh": "Bellevue 与 Newark 对比",
       "desc_en": "Is bottled water needed for drinking, boiling and soup? Hardness, PFAS, lead & copper data against US, EU and Swedish PFAS4 standards, plus what to do without a filter.",
       "desc_zh": "饮用、烧水和煮汤要不要买瓶装水？软硬度、PFAS、铅铜数据对照美国、欧盟与瑞典 PFAS4 标准，以及不用过滤设备时的做法。",
+      "sub": false,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Water for Coffee & Tea",
+      "title_zh": "咖啡与茶用水",
+      "path": "study-topics/water-coffee-tea.html",
+      "slug": "water-coffee-tea",
+      "type": "study",
+      "category_en": "Study Topics",
+      "category_zh": "学习专题",
+      "image": null,
+      "subtitle_en": "Seattle vs Delaware",
+      "subtitle_zh": "西雅图与 Delaware 对比",
+      "desc_en": "Why coffee wants a little bicarbonate and tea almost none, which tap or bottled water to brew with in each home, two-water blends with nothing added, and a KH test for Deer Park.",
+      "desc_zh": "为什么咖啡要一点碳酸氢根、茶几乎不要；两处住所各用哪种自来水或瓶装水；不加任何东西的两种水兑法；以及 Deer Park 的 KH 测试。",
       "sub": false,
       "status": "",
       "role": ""

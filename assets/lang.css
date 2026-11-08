@@ -39,3 +39,32 @@ body {
 
 /* phones: a long URL or word in a link never makes the page wider than the screen */
 @media (max-width: 640px) { a { overflow-wrap: anywhere; } }
+
+/* ── Dish sticker in the recipe header slot ──────────────────────────────────
+   <div class="final-photo sticker"><img src="../assets/stickers/lg/NNN.webp"></div>
+   two dishes on one page: class="final-photo sticker duo" + img.back + img.front
+   (a real Final.jpg photo keeps the plain .final-photo frame) */
+.final-photo.sticker { width: 232px; height: 174px; border: 0; border-radius: 0; box-shadow: none; overflow: visible; position: relative; }
+.final-photo.sticker img { width: 100%; height: 100%; object-fit: contain; transform: rotate(-4deg);
+                           filter: drop-shadow(0 6px 10px rgba(80, 40, 0, 0.28)); }
+.final-photo.sticker.duo { width: 300px; height: 200px; }
+.final-photo.sticker.duo img { position: absolute; height: auto; }
+.final-photo.sticker.duo .back  { width: 72%; right: 0; top: 0; transform: rotate(7deg); }
+.final-photo.sticker.duo .front { width: 78%; left: 0; bottom: 0; transform: rotate(-5deg); }
+@media (min-width: 1400px) {
+  .final-photo.sticker { width: 260px; height: 195px; }
+  .final-photo.sticker.duo { width: 330px; height: 220px; }
+}
+@media (max-width: 640px) {
+  header:has(.final-photo.sticker) { padding: 28px 18px 22px; }
+  .header-title:has(.final-photo.sticker) { gap: 10px; }
+  .header-title:has(.final-photo.sticker) h1 { font-size: 1.55rem; }
+  .final-photo.sticker { width: 128px; height: 96px; }
+  .final-photo.sticker.duo { width: 172px; height: 112px; }   /* wider on phones so the back sticker shows */
+  .final-photo.sticker.duo .back  { width: 64%; }
+  .final-photo.sticker.duo .front { width: 70%; }
+}
+@media (max-width: 380px) {
+  .final-photo.sticker { width: 104px; height: 78px; }
+  .final-photo.sticker.duo { width: 140px; height: 92px; }
+}

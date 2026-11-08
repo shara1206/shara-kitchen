@@ -65,6 +65,11 @@ index link:
 
 - New untried recipe → link with `data-status="todo"` (plus `data-type="base"` for a component).
 - After she tries a dish → remove `data-status="todo"` **and** add a `dish-item` to menu.html.
+- Every `dish-item` carries its sticker, and the bilingual attributes sit on the inner span (lang.js replaces
+  `innerHTML`, which would wipe the `<img>` if they were on the item itself):
+  `<a class="dish-item" href="recipes/x.html"><img class="dish-pic" src="assets/stickers/sm/NNN.webp" alt="" width="160"
+  height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="…" data-zh="…">…</span></a>`.
+  Below 1800px the sticker is a small icon in each pill; at 1800px+ (27"/34") the grid turns into picture cards.
 
 ### 3.3 Study-topic hubs and sub-notes
 Hubs: eggs, milk, flour, seafood, beef, chicken. Each lists its sub-notes as `.note-card` links.
@@ -128,6 +133,21 @@ inside a wide page opts out by re-asserting `display:table / table-row / table-c
   (backups copy everything; the app precaches every photo). check.py warns on images > 500 KB.
 - Step photos (北海道面包): `.step-photo` stays hidden until its image loads, so missing step photos are invisible.
 
+**Dish stickers (插画贴纸)** — when there is no real photo, the slot shows the dish's sticker instead:
+```html
+<div class="final-photo sticker"><img src="../assets/stickers/lg/NNN.webp" alt="" width="640" height="480" onerror="this.parentElement.style.display='none'"></div>
+<!-- a page that covers two menu dishes (chashao, mantou-huajuan): staggered pair -->
+<div class="final-photo sticker duo"><img class="back" src="../assets/stickers/lg/078.webp" …><img class="front" src="../assets/stickers/lg/133.webp" …></div>
+```
+- Styles are shared in `assets/lang.css` (no frame, `contain`, tilted, drop shadow; 232×174 → 260×195 at ≥1400px,
+  128×96 on phones, 104×78 ≤380px). A real `Final.jpg` keeps the plain photo frame and wins over the sticker (youtiao).
+- Files: `assets/stickers/sm/NNN.webp` (160×120, every menu dish) and `lg/NNN.webp` (640×480, only dishes with a recipe
+  page). `NNN` and the dish ↔ page mapping are in `assets/stickers/index.csv`. Never name a sticker `Final.*` — the app
+  would take it as the dish photo.
+- Source PNGs (1254², ~1.8 MB each — never copy them in): `G:\My Drive\Photo\手帐素材\menu-stickers\`.
+  Web copies are made by `assets/stickers/make_stickers.py` (trim → 4:3 → WebP); a new recipe page for a menu dish
+  needs its `lg/NNN.webp`: `python assets/stickers/make_stickers.py "<source folder>" --lg NNN`.
+
 ### 4.4 Bilingual (EN / 中文)
 - Toggle markup: `<div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>`
 - Guides, study notes, index, menu: **every visible string** carries `data-en` + `data-zh` (headings, table cells,
@@ -177,7 +197,8 @@ inside a wide page opts out by re-asserting `display:table / table-row / table-c
   `white-space:nowrap` label column, side-by-side flex row) needs a ≤640px rule.
   Existing breakpoints sit around 640 / 860 / 1100 / 1300 / 1400 / 1800 px (phones also ≤380px).
 - Working on a mounted copy of this folder (Cowork / remote session): write files through the shell so the mount
-  sees them, then confirm (md5sum or re-read). Deleting may be blocked there — move files to `_to_delete/` instead.
+  sees them, then confirm (md5sum or re-read). Deleting may be blocked there — move files to `.trash/` instead
+  (git-ignored and skipped by check.py, so retired pages are neither published nor checked; empty it in Explorer).
 
 ---
 
@@ -202,6 +223,7 @@ Food/
   check.py            # consistency check — run after every change
   backup.py           # snapshots → .backups/ (not published)
   assets/             # lang.css, lang.js, scale.js, recipe-ui.js, icons/, logos
+    stickers/         # dish stickers: sm/ (menu), lg/ (recipe headers), index.csv, make_stickers.py
   recipes/            # 有材料和步骤的具体做法 (92 pages); images/{slug}/
   cooking-tips/       # 怎么做 (9 pages)
   study-topics/       # 是什么、买哪个: 6 hubs + sub-notes + single topics; images/

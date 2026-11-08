@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" data-zh-title="咖啡与茶用水 — Shara的学习笔记">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Water for Coffee &amp; Tea — Shara's Study Notes</title>
+<link rel="stylesheet" href="../assets/lang.css" />
+<style>
+  :root { --bg:#fdf6ec; --card:#fff; --ink:#2b2b2b; --muted:#6b6b6b; --accent:#c97b3a; --accent-soft:#f3d9b1; --border:#ead7b7;
+          --ok-bg:#dff0d2; --ok-ink:#3a6010; --warn-bg:#f3d9b1; --warn-ink:#7a4a12; --info-bg:#dceefb; --info-ink:#154e8a; --bad-bg:#f8dcd6; --bad-ink:#8a2a1a;
+          --sans:'Helvetica','PingFang SC','Microsoft YaHei',sans-serif; --mono:'SFMono-Regular',Menlo,Consolas,'Courier New',monospace; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif; }
+
+  /* ── Header ── */
+  header { background: linear-gradient(135deg, var(--accent) 0%, #e0a060 100%); color: white; padding: 36px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  header .nav { max-width: 1600px; margin: 0 auto 12px; font-family: var(--sans); }
+  header .nav a { color: white; text-decoration: none; opacity: 0.9; font-size: 0.95rem; }
+  header .nav a:hover { opacity: 1; text-decoration: underline; }
+  header h1 { max-width: 1600px; margin: 0 auto; font-size: 2rem; line-height: 1.3; }
+  header .meta { max-width: 1600px; margin: 8px auto 0; opacity: 0.88; font-size: 0.9rem; font-style: italic; font-family: var(--sans); }
+  .header-title { max-width: 1600px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .header-text { flex: 1; min-width: 0; }
+  .header-title h1 { max-width: none; margin: 0; }
+  .header-title .meta { max-width: none; margin: 6px 0 0; }
+  .final-photo { width: 180px; height: 180px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.35); }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ── Main layout ── */
+  main { max-width: 900px; margin: 0 auto; padding: 36px 24px 60px; }
+  @media (min-width: 1100px) { main { max-width: 1100px; padding: 40px 36px 72px; } }
+  @media (min-width: 1400px) { main { max-width: 1400px; padding: 48px 48px 80px; } }
+  @media (min-width: 1800px) { main { max-width: 1700px; padding: 56px 56px 88px; } }
+
+  h2.section-title { font-family: var(--sans); font-size: 1.08rem; font-weight: 700; margin: 36px 0 12px; display: flex; align-items: baseline; gap: 10px; }
+  h2.section-title:first-child { margin-top: 0; }
+  h2.section-title .num { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.1em; font-weight: 700; }
+  .lede { font-size: 0.93rem; color: var(--muted); margin: -4px 0 14px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 900px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+  .grid3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 900px) { .grid3 { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1400px) { .grid3 { grid-template-columns: 1fr 1fr 1fr; } }
+  .grid2 > *, .grid3 > * { min-width: 0; }
+  .card { min-width: 0; }
+  .stack > * + * { margin-top: 20px; }
+
+  /* ── Cards ── */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .card h3 { color: var(--accent); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px; font-family: var(--sans); padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
+  .card h4 { font-family: var(--sans); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
+  .card p { margin: 6px 0; font-size: 0.93rem; line-height: 1.6; }
+  .card ul, .card ol { margin: 6px 0 6px 20px; padding: 0; }
+  .card li { margin: 4px 0; font-size: 0.93rem; line-height: 1.6; }
+  .card .note { font-size: 0.84rem; color: var(--muted); }
+  .card .note b { color: var(--warn-ink); }
+  .card a { color: var(--accent); }
+
+  /* ── Verdict cards ── */
+  .verdict { border-top: 5px solid var(--ok-ink); }
+  .verdict.delaware { border-top-color: var(--accent); }
+  .verdict .place { font-family: var(--sans); font-size: 1.3rem; font-weight: 700; margin: 0; line-height: 1.3; }
+  .verdict .sub { color: var(--muted); font-size: 0.84rem; font-family: var(--sans); margin: 2px 0 12px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { display: inline-block; font-family: var(--sans); font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; line-height: 1.5; }
+  .pill-ok { background: var(--ok-bg); color: var(--ok-ink); }
+  .pill-warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .pill-info { background: var(--info-bg); color: var(--info-ink); }
+  .pill-bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .pill-muted { background: #ede9e3; color: #555; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0 6px; }
+  .stat { background: #fffdf9; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: var(--sans); }
+  .stat .v { font-size: 1.15rem; font-weight: 700; color: var(--ink); line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; margin-top: 3px; line-height: 1.3; }
+  .verdict ul li { font-size: 0.9rem; }
+
+  /* ── Tip / callout ── */
+  .tip { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 20px; font-size: 0.93rem; }
+  .tip h4 { font-family: var(--sans); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #8a541f; margin: 0 0 8px; }
+  .tip ul { margin: 0 0 0 18px; padding: 0; }
+  .tip li { margin: 5px 0; line-height: 1.6; }
+
+  /* ── Tables ── */
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.t { width: 100%; border-collapse: collapse; font-size: 0.86rem; font-family: var(--sans); }
+  .t th { text-align: left; font-size: 0.70rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; white-space: nowrap; }
+  .t td { padding: 9px 10px; border-bottom: 1px solid #f3e8d6; vertical-align: top; line-height: 1.5; }
+  .t tr:last-child td { border-bottom: none; }
+  .t tr:hover td { background: #fdf0e0; }
+  .t td.n, .t th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .t td.b { font-weight: 700; }
+  .t .sm { color: var(--muted); font-size: 0.78rem; display: block; font-weight: 400; }
+  .t .pill { white-space: nowrap; }
+  .t.wide { min-width: 680px; }
+  .t.mid { min-width: 560px; }
+
+  @media (max-width: 1100px) {
+    .t.wide, .t.mid { min-width: 0; }
+    .t th { white-space: normal; }
+    .t .pill { white-space: normal; }
+    .t td, .t th { padding-left: 7px; padding-right: 7px; }
+  }
+
+  /* ── Bottle ID card ── */
+  .bottle { display: flex; gap: 24px; align-items: flex-start; }
+  .bottle-photo { flex: 0 0 200px; height: 260px; border-radius: 10px; overflow: hidden; background: #f6efe3; border: 1px solid var(--border); }
+  .bottle-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .bottle-text { flex: 1; min-width: 0; }
+  .bottle-text h3 { margin-top: 0; }
+
+  .calc { font-family: var(--mono); font-size: 0.84rem; background: #fffdf9; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 12px 0 6px; white-space: pre-wrap; line-height: 1.6; }
+  .calc b { color: var(--accent); }
+  .units { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 16px; font-family: var(--sans); }
+  .units .lbl { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+  .units .u { font-size: 0.8rem; font-variant-numeric: tabular-nums; background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; color: var(--ink); white-space: nowrap; }
+  .units .u b { color: var(--accent); }
+
+  /* ── Sources ── */
+  .sources ol { margin: 4px 0 0 20px; padding: 0; }
+  @media (min-width: 1100px) { .sources ol { columns: 2; column-gap: 36px; } }
+  .sources li { break-inside: avoid; font-size: 0.88rem; font-family: var(--sans); margin: 5px 0; line-height: 1.5; }
+  .sources a { color: var(--accent); text-decoration: none; word-break: break-word; }
+  .sources a:hover { text-decoration: underline; }
+
+  /* ── Wide screens ── */
+  @media (min-width: 1400px) {
+    .card { padding: 28px 32px; }
+    .card p, .card li { font-size: 0.97rem; }
+    table.t { font-size: 0.9rem; }
+    .t th { font-size: 0.72rem; padding: 7px 12px; }
+    .t td { padding: 11px 12px; }
+    .stat .v { font-size: 1.3rem; }
+    .stat .k { font-size: 0.7rem; }
+  }
+  @media (min-width: 1800px) {
+    .card h3 { font-size: 0.87rem; }
+    .card p, .card li { font-size: 1rem; }
+    table.t { font-size: 0.94rem; }
+    .t td { padding: 13px 14px; }
+  }
+
+  /* ── Phones ── */
+  @media (max-width: 640px) {
+    header { padding: 32px 16px 26px; }
+    header h1 { font-size: 1.55rem; }
+    header .meta { font-size: 0.84rem; }
+    main { padding: 22px 14px 48px; }
+    .card { padding: 18px 16px; }
+    .verdict .place { font-size: 1.15rem; }
+    .stat-row { gap: 6px; }
+    .stat { padding: 8px 8px; }
+    .stat .v { font-size: 1rem; }
+    .stat .k { font-size: 0.62rem; }
+    h2.section-title { font-size: 1rem; margin-top: 28px; }
+    .header-title { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .final-photo { width: 120px; height: 120px; }
+    .bottle { flex-direction: column; gap: 14px; }
+    .t td.n, .t th.n { text-align: left; }
+    .bottle-photo { flex: none; width: 100%; max-width: 240px; height: 240px; }
+  }
+  @media (max-width: 380px) {
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .stat:last-child { grid-column: 1 / -1; }
+  }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; font-family: var(--sans); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="lang-toggle"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button></div>
+    <div class="nav">
+      <a href="../index.html" data-en="&larr; Home" data-zh="&larr; 首页">&larr; Home</a>
+    </div>
+    <div class="header-title">
+      <div class="header-text">
+        <h1 data-en="Water for Coffee &amp; Tea" data-zh="咖啡与茶用水">Water for Coffee &amp; Tea</h1>
+        <div class="meta" data-en="Seattle / Bellevue vs Delaware &mdash; which water to brew with, no added minerals &middot; assessed 2026-11-05" data-zh="西雅图 / Bellevue 与 Delaware —— 冲咖啡、泡茶用什么水，不额外添加矿物质 · 评估日期 2026-11-05">Seattle / Bellevue vs Delaware &mdash; which water to brew with, no added minerals &middot; assessed 2026-11-05</div>
+      </div>
+      <div class="final-photo">
+        <img src="images/water-coffee-tea/Final.jpg" alt="water-coffee-tea" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 1. Short answer ── -->
+    <h2 class="section-title"><span class="num">01</span><span data-en="Short answer" data-zh="结论">Short answer</span></h2>
+    <div class="grid2">
+
+      <div class="card verdict seattle">
+        <p class="place" data-en="Seattle / Bellevue" data-zh="西雅图 / Bellevue">Seattle / Bellevue</p>
+        <div class="sub" data-en="Cedar &amp; Tolt tap water &middot; soft, low in bicarbonate" data-zh="Cedar 与 Tolt 自来水 · 软水，碳酸氢根低">Cedar &amp; Tolt tap water &middot; soft, low in bicarbonate</div>
+        <div class="pills">
+          <span class="pill pill-ok" data-en="Tea: filtered tap water" data-zh="茶：滤后自来水">Tea: filtered tap water</span>
+          <span class="pill pill-ok" data-en="Coffee: filtered tap is fine" data-zh="咖啡：滤后自来水可以">Coffee: filtered tap is fine</span>
+          <span class="pill pill-info" data-en="Rounder coffee: Fiji 1 : tap 2" data-zh="想更圆润：Fiji 1 : 自来水 2">Rounder coffee: Fiji 1 : tap 2</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="v">20&ndash;30</div><div class="k" data-en="Alkalinity, mg/L as CaCO₃ (SPU, May 2026)" data-zh="碱度 mg/L，以 CaCO₃ 计（SPU 2026-05）">Alkalinity, mg/L as CaCO₃ (SPU, May 2026)</div></div>
+          <div class="stat"><div class="v">&asymp;25</div><div class="k" data-en="Calcium hardness, mg/L as CaCO₃" data-zh="钙硬度 mg/L，以 CaCO₃ 计">Calcium hardness, mg/L as CaCO₃</div></div>
+          <div class="stat"><div class="v">0.47&ndash;1.75</div><div class="k" data-en="Free chlorine, mg/L (Feb 2026)" data-zh="游离氯 mg/L（2026-02）">Free chlorine, mg/L (Feb 2026)</div></div>
+        </div>
+        <h4 data-en="Coffee" data-zh="咖啡">Coffee</h4>
+        <ul>
+          <li data-en="Carbon-filtered tap water works. Its alkalinity is below the SCA target of 40, so cups lean bright and a little thin." data-zh="活性炭过滤后的自来水可以直接用。碱度低于 SCA 目标 40，咖啡会偏亮、略薄。">Carbon-filtered tap water works. Its alkalinity is below the SCA target of 40, so cups lean bright and a little thin.</li>
+          <li data-en="Rounder without adding anything: 1 part Fiji + 2 parts filtered tap (alkalinity &asymp;58, hardness &asymp;52)." data-zh="想更圆润又不加任何东西：1 份 Fiji + 2 份滤后自来水（碱度约 58，硬度约 52）。">Rounder without adding anything: 1 part Fiji + 2 parts filtered tap (alkalinity &asymp;58, hardness &asymp;52).</li>
+          <li data-en="Skip Kirkland purified water for coffee &mdash; it is even softer than the tap." data-zh="冲咖啡别用 Kirkland 纯净水，它比自来水还软。">Skip Kirkland purified water for coffee &mdash; it is even softer than the tap.</li>
+        </ul>
+        <h4 data-en="Tea" data-zh="茶">Tea</h4>
+        <ul>
+          <li data-en="Filtered tap water is close to ideal for green, white and oolong tea: soft and low in bicarbonate." data-zh="滤后自来水对绿茶、白茶、乌龙几乎是理想用水：软，碳酸氢根低。">Filtered tap water is close to ideal for green, white and oolong tea: soft and low in bicarbonate.</li>
+          <li data-en="Remove the chlorine first &mdash; carbon filter, or leave the water uncovered overnight." data-zh="先去余氯：活性炭过滤，或敞口放一夜。">Remove the chlorine first &mdash; carbon filter, or leave the water uncovered overnight.</li>
+        </ul>
+      </div>
+
+      <div class="card verdict delaware">
+        <p class="place" data-en="Delaware (Newark)" data-zh="Delaware（Newark）">Delaware (Newark)</p>
+        <div class="sub" data-en="1970 house &middot; tap water ruled out because of PFAS" data-zh="1970 年老房 · 因 PFAS 不用自来水">1970 house &middot; tap water ruled out because of PFAS</div>
+        <div class="pills">
+          <span class="pill pill-bad" data-en="Tap: not for coffee or tea" data-zh="自来水：不用于咖啡和茶">Tap: not for coffee or tea</span>
+          <span class="pill pill-warn" data-en="Coffee: Fiji 1 : Kirkland 2" data-zh="咖啡：Fiji 1 : Kirkland 2">Coffee: Fiji 1 : Kirkland 2</span>
+          <span class="pill pill-ok" data-en="Tea: a soft bottled water alone" data-zh="茶：单用一种软的瓶装水">Tea: a soft bottled water alone</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="v">&asymp;48</div><div class="k" data-en="Alkalinity of Fiji 1 : Kirkland 2, mg/L" data-zh="Fiji 1 : Kirkland 2 的碱度 mg/L">Alkalinity of Fiji 1 : Kirkland 2, mg/L</div></div>
+          <div class="stat"><div class="v">&asymp;40</div><div class="k" data-en="Hardness of the same blend, mg/L" data-zh="同一兑法的硬度 mg/L">Hardness of the same blend, mg/L</div></div>
+          <div class="stat"><div class="v">ND</div><div class="k" data-en="Deer Park PFOA &amp; PFOS (2025 report)" data-zh="Deer Park 的 PFOA 与 PFOS（2025 报告）">Deer Park PFOA &amp; PFOS (2025 report)</div></div>
+        </div>
+        <h4 data-en="Coffee" data-zh="咖啡">Coffee</h4>
+        <ul>
+          <li data-en="1 part Fiji + 2 parts Kirkland lands near the SCA alkalinity target with nothing added." data-zh="1 份 Fiji + 2 份 Kirkland，不加任何东西就接近 SCA 碱度目标。">1 part Fiji + 2 parts Kirkland lands near the SCA alkalinity target with nothing added.</li>
+          <li data-en="Deer Park on its own: test its KH first (section 05) &mdash; its springs vary too much to guess." data-zh="单用 Deer Park：先测 KH（见第 05 节），各泉源差别太大，猜不准。">Deer Park on its own: test its KH first (section 05) &mdash; its springs vary too much to guess.</li>
+        </ul>
+        <h4 data-en="Tea" data-zh="茶">Tea</h4>
+        <ul>
+          <li data-en="Use one soft bottled water alone: Deer Park if it tests soft; Kirkland also works for green tea." data-zh="单用一种软的瓶装水：Deer Park 测出来偏软就用它；绿茶也可以用 Kirkland。">Use one soft bottled water alone: Deer Park if it tests soft; Kirkland also works for green tea.</li>
+          <li data-en="Don&rsquo;t brew green tea with Fiji or Evian straight &mdash; their bicarbonate darkens and dulls it." data-zh="绿茶不要直接用 Fiji 或 Evian，碳酸氢根会让茶汤变暗、发闷。">Don&rsquo;t brew green tea with Fiji or Evian straight &mdash; their bicarbonate darkens and dulls it.</li>
+          <li data-en="Why the tap is out: see the PFAS data on the &lt;a href=&quot;water.html&quot;&gt;Drinking Water&lt;/a&gt; page." data-zh="为什么不用自来水：见&lt;a href=&quot;water.html&quot;&gt;饮用水&lt;/a&gt;页的 PFAS 数据。">Why the tap is out: see the PFAS data on the <a href="water.html">Drinking Water</a> page.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <h4 data-en="In one line" data-zh="一句话">In one line</h4>
+      <ul>
+        <li data-en="Coffee wants a little buffer (alkalinity &asymp;40); tea wants as little bicarbonate as possible, but not zero minerals. One water rarely suits both &mdash; so coffee gets a blend, and tea gets the softest clean water on hand." data-zh="咖啡要一点缓冲（碱度约 40）；茶要碳酸氢根越低越好，但不要零矿物质。同一种水很难两头兼顾——所以咖啡用兑出来的水，茶用手边最软的干净水。">Coffee wants a little buffer (alkalinity &asymp;40); tea wants as little bicarbonate as possible, but not zero minerals. One water rarely suits both &mdash; so coffee gets a blend, and tea gets the softest clean water on hand.</li>
+      </ul>
+    </div>
+
+    <!-- ── 2. Why they differ ── -->
+    <h2 class="section-title"><span class="num">02</span><span data-en="Why coffee and tea want different water" data-zh="为什么咖啡和茶要的水不一样">Why coffee and tea want different water</span></h2>
+    <p class="lede" data-en="The same two numbers &mdash; alkalinity and hardness &mdash; push the two drinks in opposite directions." data-zh="同样两个指标——碱度和硬度——对咖啡和茶的作用方向相反。">The same two numbers &mdash; alkalinity and hardness &mdash; push the two drinks in opposite directions.</p>
+    <div class="stack">
+      <div class="card">
+        <h3 data-en="Targets" data-zh="目标值">Targets</h3>
+        <div class="table-scroll">
+          <table class="t mid">
+            <thead><tr>
+              <th data-en="Item" data-zh="项目">Item</th>
+              <th data-en="Coffee (SCA 2009)" data-zh="咖啡（SCA 2009）">Coffee (SCA 2009)</th>
+              <th data-en="Tea, general" data-zh="茶，通用">Tea, general</th>
+              <th data-en="Green / white tea" data-zh="绿茶 / 白茶">Green / white tea</th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="b">TDS</td><td data-en="150 (75&ndash;250) mg/L" data-zh="150（75–250）mg/L">150 (75&ndash;250) mg/L</td><td>50&ndash;150 ppm</td><td>30&ndash;80 ppm</td></tr>
+              <tr><td class="b" data-en="Alkalinity (as CaCO₃)" data-zh="碱度（以 CaCO₃ 计）">Alkalinity (as CaCO₃)</td><td data-en="&asymp;40 mg/L" data-zh="约 40 mg/L">&asymp;40 mg/L</td><td data-en="Low &mdash; no agreed number" data-zh="低——没有公认数值">Low &mdash; no agreed number</td><td data-en="As low as practical" data-zh="尽量低">As low as practical</td></tr>
+              <tr><td class="b" data-en="Calcium hardness (as CaCO₃)" data-zh="钙硬度（以 CaCO₃ 计）">Calcium hardness (as CaCO₃)</td><td data-en="68 (17&ndash;85) mg/L" data-zh="68（17–85）mg/L">68 (17&ndash;85) mg/L</td><td>&mdash;</td><td data-en="Low" data-zh="低">Low</td></tr>
+              <tr><td class="b">pH</td><td data-en="7.0 (6.5&ndash;7.5)" data-zh="7.0（6.5–7.5）">7.0 (6.5&ndash;7.5)</td><td>6&ndash;8</td><td data-en="&asymp;7" data-zh="约 7">&asymp;7</td></tr>
+              <tr><td class="b" data-en="Chlorine" data-zh="余氯">Chlorine</td><td>0</td><td data-en="None" data-zh="无">None</td><td data-en="None" data-zh="无">None</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" data-en="Coffee: SCAA brewing water standard (2009). Tea, general: Tea Association of the USA, as quoted by Barista Hustle. Green / white: common Japanese-tea retailer guidance (e.g. Kettl)." data-zh="咖啡：SCAA 冲煮用水标准（2009）。茶通用：美国茶叶协会，转引自 Barista Hustle。绿茶 / 白茶：日本茶零售商的常见建议（如 Kettl）。">Coffee: SCAA brewing water standard (2009). Tea, general: Tea Association of the USA, as quoted by Barista Hustle. Green / white: common Japanese-tea retailer guidance (e.g. Kettl).</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3 data-en="Coffee: alkalinity is the dial" data-zh="咖啡：碱度是旋钮">Coffee: alkalinity is the dial</h3>
+          <ul>
+            <li data-en="Bicarbonate neutralizes part of coffee&rsquo;s acids. Near 0 &rarr; sharp and sour; around 40 &rarr; balanced; above about 80 &rarr; flat and muted." data-zh="碳酸氢根会中和咖啡里的一部分酸。接近 0 → 尖酸；40 左右 → 平衡；高于约 80 → 发平、发闷。">Bicarbonate neutralizes part of coffee&rsquo;s acids. Near 0 &rarr; sharp and sour; around 40 &rarr; balanced; above about 80 &rarr; flat and muted.</li>
+            <li data-en="Calcium and magnesium carry body and sweetness; very soft water tastes thin." data-zh="钙、镁带来醇厚感和甜感；太软的水喝起来薄。">Calcium and magnesium carry body and sweetness; very soft water tastes thin.</li>
+            <li data-en="Seattle tap has some buffer (20&ndash;30); purified water has almost none (&asymp;10 or less)." data-zh="西雅图自来水有一点缓冲（20–30）；纯净水几乎没有（约 10 或更低）。">Seattle tap has some buffer (20&ndash;30); purified water has almost none (&asymp;10 or less).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 data-en="Tea: bicarbonate is the problem" data-zh="茶：问题在碳酸氢根">Tea: bicarbonate is the problem</h3>
+          <ul>
+            <li data-en="Bicarbonate keeps the brew slightly alkaline, which oxidizes tea polyphenols &mdash; darker color and lower antioxidant activity (Beijing tap-water study)." data-zh="碳酸氢根让茶汤保持弱碱性，茶多酚被氧化——颜色变深，抗氧化能力下降（北京自来水研究）。">Bicarbonate keeps the brew slightly alkaline, which oxidizes tea polyphenols &mdash; darker color and lower antioxidant activity (Beijing tap-water study).</li>
+            <li data-en="Harder water gives more white precipitate, a darker infusion, and less EGC, EGCG and vitamin C; amino acids, caffeine and sugars barely change (Japanese green-tea study)." data-zh="水越硬，白色沉淀越多、茶汤越深，EGC、EGCG 和维生素 C 越少；氨基酸、咖啡因和糖基本不变（日本绿茶研究）。">Harder water gives more white precipitate, a darker infusion, and less EGC, EGCG and vitamin C; amino acids, caffeine and sugars barely change (Japanese green-tea study).</li>
+            <li data-en="Calcium, magnesium and bicarbonate together form the film on the surface (tea scum)." data-zh="钙、镁和碳酸氢根一起形成茶汤表面的那层膜（茶垢膜）。">Calcium, magnesium and bicarbonate together form the film on the surface (tea scum).</li>
+            <li data-en="Zero minerals is not best either: in the same Japanese study, tasters preferred green tea made with a soft mineral water over distilled water." data-zh="零矿物质也不是最好：同一项日本研究里，品鉴者更喜欢用软矿泉水泡的绿茶，而不是蒸馏水。">Zero minerals is not best either: in the same Japanese study, tasters preferred green tea made with a soft mineral water over distilled water.</li>
+          </ul>
+          <p class="note" data-en="Black tea and oolong tolerate more minerals than green or white tea. Some fermented dark teas even taste less sour in harder water." data-zh="红茶、乌龙比绿茶、白茶更耐矿物质。部分后发酵黑茶用硬一点的水，酸味反而更低。">Black tea and oolong tolerate more minerals than green or white tea. Some fermented dark teas even taste less sour in harder water.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. Water options ── -->
+    <h2 class="section-title"><span class="num">03</span><span data-en="The waters you can actually get" data-zh="手边能买到的水">The waters you can actually get</span></h2>
+    <div class="units">
+      <span class="lbl" data-en="Conversions (as CaCO₃)" data-zh="换算（以 CaCO₃ 计）">Conversions (as CaCO₃)</span>
+      <span class="u" data-en="&lt;b&gt;Alkalinity&lt;/b&gt; &asymp; HCO₃⁻ &times; 0.82" data-zh="&lt;b&gt;碱度&lt;/b&gt; ≈ HCO₃⁻ × 0.82"><b>Alkalinity</b> &asymp; HCO₃⁻ &times; 0.82</span>
+      <span class="u" data-en="&lt;b&gt;Hardness&lt;/b&gt; &asymp; Ca &times; 2.5 + Mg &times; 4.1" data-zh="&lt;b&gt;硬度&lt;/b&gt; ≈ Ca × 2.5 + Mg × 4.1"><b>Hardness</b> &asymp; Ca &times; 2.5 + Mg &times; 4.1</span>
+      <span class="u"><b>1 dKH</b> &asymp; 17.9 mg/L</span>
+    </div>
+    <div class="card">
+      <div class="table-scroll">
+        <table class="t wide">
+          <thead><tr>
+            <th data-en="Water" data-zh="水">Water</th>
+            <th class="n" data-en="Alkalinity" data-zh="碱度">Alkalinity</th>
+            <th class="n" data-en="Hardness" data-zh="硬度">Hardness</th>
+            <th class="n">TDS</th>
+            <th data-en="Coffee" data-zh="咖啡">Coffee</th>
+            <th data-en="Green / white tea" data-zh="绿茶 / 白茶">Green / white tea</th>
+            <th data-en="Black / oolong" data-zh="红茶 / 乌龙">Black / oolong</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="b" data-en="Seattle / Bellevue tap, filtered&lt;span class=&quot;sm&quot;&gt;SPU quarterly analysis, May 2026&lt;/span&gt;" data-zh="西雅图 / Bellevue 自来水（过滤）&lt;span class=&quot;sm&quot;&gt;SPU 季度分析，2026-05&lt;/span&gt;">Seattle / Bellevue tap, filtered<span class="sm">SPU quarterly analysis, May 2026</span></td>
+              <td class="n">20&ndash;30</td>
+              <td class="n" data-en="&asymp;25 (Ca)" data-zh="约 25（钙）">&asymp;25 (Ca)</td>
+              <td class="n">&mdash;</td>
+              <td><span class="pill pill-warn" data-en="OK, bright" data-zh="可以，偏亮">OK, bright</span></td>
+              <td><span class="pill pill-ok" data-en="Very good" data-zh="很好">Very good</span></td>
+              <td><span class="pill pill-ok" data-en="Good" data-zh="好">Good</span></td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Kirkland Signature purified&lt;span class=&quot;sm&quot;&gt;Costco; one plant&rsquo;s report&lt;/span&gt;" data-zh="Kirkland Signature 纯净水&lt;span class=&quot;sm&quot;&gt;Costco；单一灌装厂报告&lt;/span&gt;">Kirkland Signature purified<span class="sm">Costco; one plant&rsquo;s report</span></td>
+              <td class="n">&asymp;10</td>
+              <td class="n">&asymp;7</td>
+              <td class="n">&asymp;32</td>
+              <td><span class="pill pill-bad" data-en="Sour, thin" data-zh="偏酸、薄">Sour, thin</span></td>
+              <td><span class="pill pill-ok" data-en="OK" data-zh="可以">OK</span></td>
+              <td><span class="pill pill-warn" data-en="Thin" data-zh="偏薄">Thin</span></td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Deer Park spring&lt;span class=&quot;sm&quot;&gt;Delaware Costco; PA/NJ/MD Frontier Springs&lt;/span&gt;" data-zh="Deer Park 泉水&lt;span class=&quot;sm&quot;&gt;Delaware Costco；宾州/新泽西/马里兰 Frontier Springs&lt;/span&gt;">Deer Park spring<span class="sm">Delaware Costco; PA/NJ/MD Frontier Springs</span></td>
+              <td class="n">ND&ndash;160</td>
+              <td class="n">ND&ndash;190</td>
+              <td class="n">ND&ndash;240</td>
+              <td><span class="pill pill-muted" data-en="Test KH first" data-zh="先测 KH">Test KH first</span></td>
+              <td><span class="pill pill-muted" data-en="Test KH first" data-zh="先测 KH">Test KH first</span></td>
+              <td><span class="pill pill-muted" data-en="Test KH first" data-zh="先测 KH">Test KH first</span></td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Volvic&lt;span class=&quot;sm&quot;&gt;Hard to find in US stores&lt;/span&gt;" data-zh="Volvic&lt;span class=&quot;sm&quot;&gt;美国门店不容易买到&lt;/span&gt;">Volvic<span class="sm">Hard to find in US stores</span></td>
+              <td class="n">&asymp;61</td>
+              <td class="n">&asymp;63</td>
+              <td class="n">130</td>
+              <td><span class="pill pill-ok" data-en="Closest to SCA" data-zh="最接近 SCA">Closest to SCA</span></td>
+              <td><span class="pill pill-warn" data-en="A bit full" data-zh="略重">A bit full</span></td>
+              <td><span class="pill pill-ok" data-en="Good" data-zh="好">Good</span></td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Fiji&lt;span class=&quot;sm&quot;&gt;Square bottle, blue cap &mdash; &lt;a href=&quot;#fiji&quot;&gt;see 04&lt;/a&gt;&lt;/span&gt;" data-zh="Fiji&lt;span class=&quot;sm&quot;&gt;方瓶蓝盖——&lt;a href=&quot;#fiji&quot;&gt;见第 04 节&lt;/a&gt;&lt;/span&gt;">Fiji<span class="sm">Square bottle, blue cap &mdash; <a href="#fiji">see 04</a></span></td>
+              <td class="n">&asymp;125&ndash;130</td>
+              <td class="n">&asymp;107</td>
+              <td class="n">222</td>
+              <td><span class="pill pill-warn" data-en="Flat alone &mdash; blend" data-zh="单用发闷——用来兑">Flat alone &mdash; blend</span></td>
+              <td><span class="pill pill-bad" data-en="Avoid alone" data-zh="不要单用">Avoid alone</span></td>
+              <td><span class="pill pill-warn" data-en="Heavy" data-zh="偏重">Heavy</span></td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Evian" data-zh="Evian">Evian</td>
+              <td class="n">&asymp;295</td>
+              <td class="n">&asymp;307</td>
+              <td class="n">345</td>
+              <td><span class="pill pill-bad" data-en="Too hard &mdash; blend 1:6" data-zh="太硬——按 1:6 兑">Too hard &mdash; blend 1:6</span></td>
+              <td><span class="pill pill-bad" data-en="Avoid" data-zh="不用">Avoid</span></td>
+              <td><span class="pill pill-bad" data-en="Avoid" data-zh="不用">Avoid</span></td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Distilled / RO water" data-zh="蒸馏水 / RO 水">Distilled / RO water</td>
+              <td class="n">&asymp;0</td>
+              <td class="n">&asymp;0</td>
+              <td class="n">&lt;10</td>
+              <td><span class="pill pill-bad" data-en="Sour, thin" data-zh="偏酸、薄">Sour, thin</span></td>
+              <td><span class="pill pill-warn" data-en="Flat" data-zh="寡淡">Flat</span></td>
+              <td><span class="pill pill-warn" data-en="Flat" data-zh="寡淡">Flat</span></td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Newark tap" data-zh="Newark 自来水">Newark tap</td>
+              <td class="n">&mdash;</td>
+              <td class="n">&mdash;</td>
+              <td class="n">&mdash;</td>
+              <td colspan="3"><span class="pill pill-bad" data-en="Not used &mdash; PFAS" data-zh="不用——PFAS">Not used &mdash; PFAS</span> <span data-en="see &lt;a href=&quot;water.html&quot;&gt;Drinking Water&lt;/a&gt;" data-zh="见&lt;a href=&quot;water.html&quot;&gt;饮用水&lt;/a&gt;页">see <a href="water.html">Drinking Water</a></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" data-en="All values mg/L. Bottled-water figures are label or report values converted with the formulas above (Fiji&rsquo;s own report gives total alkalinity 130). Seattle hardness is calcium hardness only. Deer Park is a range across every spring in its 2025 report, not one bottle." data-zh="单位均为 mg/L。瓶装水数值来自标签或报告，用上面的公式换算（Fiji 自己的报告写总碱度 130）。西雅图硬度只计钙硬度。Deer Park 是 2025 报告里所有泉源的范围，不是某一瓶的数。">All values mg/L. Bottled-water figures are label or report values converted with the formulas above (Fiji&rsquo;s own report gives total alkalinity 130). Seattle hardness is calcium hardness only. Deer Park is a range across every spring in its 2025 report, not one bottle.</p>
+    </div>
+
+    <!-- ── 4. Blends ── -->
+    <h2 class="section-title"><span class="num">04</span><span data-en="Blend two ready-made waters (coffee)" data-zh="两种现成的水兑着用（咖啡）">Blend two ready-made waters (coffee)</span></h2>
+    <p class="lede" data-en="No salts, no drops &mdash; just two waters you can buy. For tea, use the softer water alone." data-zh="不加盐，不加滴剂，只用两种能买到的水。泡茶就单用较软的那种。">No salts, no drops &mdash; just two waters you can buy. For tea, use the softer water alone.</p>
+    <div class="stack">
+    <div class="card bottle" id="fiji">
+      <div class="bottle-photo">
+        <img src="images/water-coffee-tea/fiji.jpg" alt="FIJI Water bottle" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="bottle-text">
+        <h3 data-en="The blending base: which bottle is FIJI" data-zh="兑水用的底：FIJI 长什么样">The blending base: which bottle is FIJI</h3>
+        <p data-en="FIJI Water is bottled artesian water from the Fiji Islands in the South Pacific, common in US grocery stores." data-zh="FIJI Water 是来自南太平洋斐济群岛的自流井瓶装水，美国超市很常见。">FIJI Water is bottled artesian water from the Fiji Islands in the South Pacific, common in US grocery stores.</p>
+        <h4 data-en="How to spot it" data-zh="怎么认">How to spot it</h4>
+        <ul>
+          <li data-en="Square, clear bottle with a blue cap." data-zh="方形透明瓶，蓝色瓶盖。">Square, clear bottle with a blue cap.</li>
+          <li data-en="The label art is printed on the back, so a pink hibiscus flower shows through the water." data-zh="图案印在瓶子背面，隔着水能看到一朵粉色扶桑花。">The label art is printed on the back, so a pink hibiscus flower shows through the water.</li>
+          <li data-en="The front reads FIJI &middot; Natural Artesian Water. Common sizes: 500 mL (16.9 fl oz) and 1 L." data-zh="正面写着 FIJI · Natural Artesian Water。常见 500 mL（16.9 fl oz）和 1 L 装。">The front reads FIJI &middot; Natural Artesian Water. Common sizes: 500 mL (16.9 fl oz) and 1 L.</li>
+        </ul>
+        <p class="note" data-en="Why it works for blending: the label lists bicarbonate 152 mg/L (calcium 18, magnesium 15, silica 93). That is enough buffer for one part to lift two parts of a softer water into the coffee range." data-zh="为什么适合兑水：标签上碳酸氢根 152 mg/L（钙 18，镁 15，二氧化硅 93）。缓冲足够，1 份就能把 2 份软水拉到适合冲咖啡的范围。">Why it works for blending: the label lists bicarbonate 152 mg/L (calcium 18, magnesium 15, silica 93). That is enough buffer for one part to lift two parts of a softer water into the coffee range.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="calc" data-en="Blend value = (value₁ &times; parts₁ + value₂ &times; parts₂) &divide; total parts
+Works for alkalinity and hardness alike. Mix by volume.
+
+Example  Fiji 1 + Kirkland 2
+Alkalinity  (125 + 2 &times; 10) &divide; 3 = &lt;b&gt;&asymp;48&lt;/b&gt;
+Hardness    (107 + 2 &times; 7)  &divide; 3 = &lt;b&gt;&asymp;40&lt;/b&gt;" data-zh="兑后数值 =（数值₁ × 份数₁ + 数值₂ × 份数₂）÷ 总份数
+碱度和硬度都这样算，按体积兑。
+
+例  Fiji 1 + Kirkland 2
+碱度  (125 + 2 × 10) ÷ 3 = &lt;b&gt;约 48&lt;/b&gt;
+硬度  (107 + 2 × 7)  ÷ 3 = &lt;b&gt;约 40&lt;/b&gt;">Blend value = (value₁ &times; parts₁ + value₂ &times; parts₂) &divide; total parts
+Works for alkalinity and hardness alike. Mix by volume.
+
+Example  Fiji 1 + Kirkland 2
+Alkalinity  (125 + 2 &times; 10) &divide; 3 = <b>&asymp;48</b>
+Hardness    (107 + 2 &times; 7)  &divide; 3 = <b>&asymp;40</b></div>
+      <div class="table-scroll">
+        <table class="t mid">
+          <thead><tr>
+            <th data-en="Where" data-zh="地点">Where</th>
+            <th data-en="Blend (by volume)" data-zh="兑法（按体积）">Blend (by volume)</th>
+            <th class="n" data-en="Alkalinity" data-zh="碱度">Alkalinity</th>
+            <th class="n" data-en="Hardness" data-zh="硬度">Hardness</th>
+            <th data-en="Cup" data-zh="杯中效果">Cup</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="b" data-en="Seattle" data-zh="西雅图">Seattle</td>
+              <td data-en="Fiji 1 + filtered tap 2" data-zh="Fiji 1 + 滤后自来水 2">Fiji 1 + filtered tap 2</td>
+              <td class="n">&asymp;58</td><td class="n">&asymp;52</td>
+              <td data-en="Rounder, acidity still lively" data-zh="更圆润，酸度仍然明亮">Rounder, acidity still lively</td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Seattle" data-zh="西雅图">Seattle</td>
+              <td data-en="Fiji 1 + filtered tap 3" data-zh="Fiji 1 + 滤后自来水 3">Fiji 1 + filtered tap 3</td>
+              <td class="n">&asymp;50</td><td class="n">&asymp;46</td>
+              <td data-en="Closer to tap character, less sharp" data-zh="更接近自来水本身，少一点尖酸">Closer to tap character, less sharp</td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Delaware" data-zh="Delaware">Delaware</td>
+              <td data-en="Fiji 1 + Kirkland 2" data-zh="Fiji 1 + Kirkland 2">Fiji 1 + Kirkland 2</td>
+              <td class="n">&asymp;48</td><td class="n">&asymp;40</td>
+              <td data-en="Near SCA alkalinity" data-zh="接近 SCA 碱度">Near SCA alkalinity</td>
+            </tr>
+            <tr>
+              <td class="b" data-en="Delaware" data-zh="Delaware">Delaware</td>
+              <td data-en="Evian 1 + Kirkland 6" data-zh="Evian 1 + Kirkland 6">Evian 1 + Kirkland 6</td>
+              <td class="n">&asymp;51</td><td class="n">&asymp;50</td>
+              <td data-en="If there&rsquo;s no Fiji" data-zh="没有 Fiji 时的替代">If there&rsquo;s no Fiji</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" data-en="Seattle rows assume filtered tap at alkalinity &asymp;25 and hardness &asymp;25. For a 300 mL pour-over, 1 : 2 means 100 mL + 200 mL." data-zh="西雅图两行按滤后自来水碱度约 25、硬度约 25 计算。冲 300 mL 手冲时，1 : 2 就是 100 mL + 200 mL。">Seattle rows assume filtered tap at alkalinity &asymp;25 and hardness &asymp;25. For a 300 mL pour-over, 1 : 2 means 100 mL + 200 mL.</p>
+    </div>
+    </div>
+
+    <!-- ── 5. Deer Park ── -->
+    <h2 class="section-title"><span class="num">05</span><span data-en="Deer Park: test once, then decide" data-zh="Deer Park：先测一次再决定">Deer Park: test once, then decide</span></h2>
+    <p class="lede" data-en="Deer Park mixes many springs, so its report range tells you nothing about your bottle. One KH test settles it." data-zh="Deer Park 混用多个泉源，报告里的范围说明不了你手上这瓶。测一次 KH 就清楚了。">Deer Park mixes many springs, so its report range tells you nothing about your bottle. One KH test settles it.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3 data-en="How to test" data-zh="怎么测">How to test</h3>
+        <ol>
+          <li data-en="Buy an aquarium KH (carbonate hardness) drop-test kit." data-zh="买一盒鱼缸用的 KH（碳酸盐硬度）滴定试剂。">Buy an aquarium KH (carbonate hardness) drop-test kit.</li>
+          <li data-en="Follow the kit: count drops until the color changes. On most kits one drop &asymp; 1 dKH." data-zh="按说明滴，数到变色为止。多数试剂一滴约等于 1 dKH。">Follow the kit: count drops until the color changes. On most kits one drop &asymp; 1 dKH.</li>
+          <li data-en="Convert: dKH &times; 17.9 = alkalinity in mg/L as CaCO₃." data-zh="换算：dKH × 17.9 = 碱度（mg/L，以 CaCO₃ 计）。">Convert: dKH &times; 17.9 = alkalinity in mg/L as CaCO₃.</li>
+          <li data-en="Retest when you buy a new case &mdash; the spring may have changed." data-zh="买新的一箱时再测一次，泉源可能变了。">Retest when you buy a new case &mdash; the spring may have changed.</li>
+        </ol>
+        <p class="note" data-en="No kit? Call the number on the label (1-800-288-8281) and ask for the analysis of the spring printed on your bottle." data-zh="没有试剂的话，可以打标签上的电话（1-800-288-8281），问瓶身上那个泉源的分析数据。">No kit? Call the number on the label (1-800-288-8281) and ask for the analysis of the spring printed on your bottle.</p>
+      </div>
+      <div class="card">
+        <h3 data-en="What the result means" data-zh="结果怎么用">What the result means</h3>
+        <div class="table-scroll">
+          <table class="t">
+            <thead><tr>
+              <th>KH</th>
+              <th data-en="Coffee" data-zh="咖啡">Coffee</th>
+              <th data-en="Green / white" data-zh="绿茶 / 白茶">Green / white</th>
+              <th data-en="Black / oolong" data-zh="红茶 / 乌龙">Black / oolong</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td class="b" data-en="&lt; 1.5 dKH&lt;span class=&quot;sm&quot;&gt;&lt; 27 mg/L&lt;/span&gt;" data-zh="&lt; 1.5 dKH&lt;span class=&quot;sm&quot;&gt;&lt; 27 mg/L&lt;/span&gt;">&lt; 1.5 dKH<span class="sm">&lt; 27 mg/L</span></td>
+                <td data-en="Too soft &mdash; Fiji 1 : Deer Park 2" data-zh="太软——Fiji 1 : Deer Park 2">Too soft &mdash; Fiji 1 : Deer Park 2</td>
+                <td><span class="pill pill-ok" data-en="Good" data-zh="好">Good</span></td>
+                <td><span class="pill pill-ok" data-en="Good" data-zh="好">Good</span></td>
+              </tr>
+              <tr>
+                <td class="b" data-en="1.5&ndash;3 dKH&lt;span class=&quot;sm&quot;&gt;27&ndash;54 mg/L&lt;/span&gt;" data-zh="1.5–3 dKH&lt;span class=&quot;sm&quot;&gt;27–54 mg/L&lt;/span&gt;">1.5&ndash;3 dKH<span class="sm">27&ndash;54 mg/L</span></td>
+                <td data-en="Use as is" data-zh="直接用">Use as is</td>
+                <td><span class="pill pill-warn" data-en="OK" data-zh="可以">OK</span></td>
+                <td><span class="pill pill-ok" data-en="Good" data-zh="好">Good</span></td>
+              </tr>
+              <tr>
+                <td class="b" data-en="&gt; 3 dKH&lt;span class=&quot;sm&quot;&gt;&gt; 54 mg/L&lt;/span&gt;" data-zh="&gt; 3 dKH&lt;span class=&quot;sm&quot;&gt;&gt; 54 mg/L&lt;/span&gt;">&gt; 3 dKH<span class="sm">&gt; 54 mg/L</span></td>
+                <td data-en="Dilute 1 : 1 with Kirkland" data-zh="与 Kirkland 1 : 1 兑">Dilute 1 : 1 with Kirkland</td>
+                <td><span class="pill pill-bad" data-en="Avoid" data-zh="不用">Avoid</span></td>
+                <td><span class="pill pill-warn" data-en="OK" data-zh="可以">OK</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 6. Practical notes ── -->
+    <h2 class="section-title"><span class="num">06</span><span data-en="Practical notes" data-zh="实用提醒">Practical notes</span></h2>
+    <div class="grid3">
+      <div class="card">
+        <h3 data-en="Chlorine" data-zh="余氯">Chlorine</h3>
+        <ul>
+          <li data-en="Seattle disinfects with free chlorine, which hurts the aroma of both coffee and tea." data-zh="西雅图用游离氯消毒，会影响咖啡和茶的香气。">Seattle disinfects with free chlorine, which hurts the aroma of both coffee and tea.</li>
+          <li data-en="Fix: an activated-carbon filter, or leave the water uncovered overnight. Boiling a few minutes longer also drives it off." data-zh="办法：活性炭过滤，或敞口放一夜。多煮几分钟也能赶走。">Fix: an activated-carbon filter, or leave the water uncovered overnight. Boiling a few minutes longer also drives it off.</li>
+          <li data-en="Some pitcher cartridges also contain ion-exchange resin, which strips bicarbonate &mdash; fine for tea, but it makes coffee water even softer." data-zh="有些滤水壶滤芯含离子交换树脂，会去掉碳酸氢根——对茶无妨，但冲咖啡会更软。">Some pitcher cartridges also contain ion-exchange resin, which strips bicarbonate &mdash; fine for tea, but it makes coffee water even softer.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-en="Measuring" data-zh="测量">Measuring</h3>
+        <ul>
+          <li data-en="A TDS pen reads the total only; it cannot tell bicarbonate from calcium or sodium." data-zh="TDS 笔只读总量，分不出是碳酸氢根、钙还是钠。">A TDS pen reads the total only; it cannot tell bicarbonate from calcium or sodium.</li>
+          <li data-en="For brewing, KH (alkalinity) is the one number worth testing." data-zh="对冲煮来说，最值得测的是 KH（碱度）。">For brewing, KH (alkalinity) is the one number worth testing.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-en="Delaware: safety before taste" data-zh="Delaware：先看安全再看口味">Delaware: safety before taste</h3>
+        <ul>
+          <li data-en="Choose bottled water by its finished-product PFAS and lead report first, minerals second &mdash; criteria on the &lt;a href=&quot;water.html&quot;&gt;Drinking Water&lt;/a&gt; page." data-zh="选瓶装水先看成品的 PFAS 和铅检测报告，再看矿物质——标准见&lt;a href=&quot;water.html&quot;&gt;饮用水&lt;/a&gt;页。">Choose bottled water by its finished-product PFAS and lead report first, minerals second &mdash; criteria on the <a href="water.html">Drinking Water</a> page.</li>
+          <li data-en="Deer Park&rsquo;s 2025 report lists PFOA, PFOS, PFHxS and PFBS as not detected (per Complete Water Guide&rsquo;s summary)." data-zh="Deer Park 2025 报告中 PFOA、PFOS、PFHxS 和 PFBS 均为未检出（据 Complete Water Guide 汇总）。">Deer Park&rsquo;s 2025 report lists PFOA, PFOS, PFHxS and PFBS as not detected (per Complete Water Guide&rsquo;s summary).</li>
+          <li data-en="Kirkland and Fiji PFAS data: not checked here &mdash; look up their latest reports before relying on them." data-zh="Kirkland 和 Fiji 的 PFAS 数据这里没有核实，长期使用前先查它们的最新报告。">Kirkland and Fiji PFAS data: not checked here &mdash; look up their latest reports before relying on them.</li>
+          <li data-en="Boiling does not remove PFAS." data-zh="煮沸去不掉 PFAS。">Boiling does not remove PFAS.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── 7. Caveats ── -->
+    <h2 class="section-title"><span class="num">07</span><span data-en="Caveats" data-zh="限制与说明">Caveats</span></h2>
+    <div class="card">
+      <ol>
+        <li data-en="Bottled water varies by source and batch; recheck the label when you switch brands or cases." data-zh="瓶装水随泉源和批次变化；换品牌或换一箱时重新看标签。">Bottled water varies by source and batch; recheck the label when you switch brands or cases.</li>
+        <li data-en="Kirkland&rsquo;s numbers come from one Southern California plant&rsquo;s report posted online; Washington and Delaware bottles may come from other plants." data-zh="Kirkland 的数据来自网友转贴的南加州灌装厂报告；华盛顿州和 Delaware 卖的可能来自别的厂。">Kirkland&rsquo;s numbers come from one Southern California plant&rsquo;s report posted online; Washington and Delaware bottles may come from other plants.</li>
+        <li data-en="SPU figures are system-level, not a test of your tap; Cedar and Tolt differ slightly." data-zh="SPU 数据是供水系统层面的，不等于你家龙头实测；Cedar 和 Tolt 两个水源略有差别。">SPU figures are system-level, not a test of your tap; Cedar and Tolt differ slightly.</li>
+        <li data-en="Blend values are averages by volume from rounded label figures &mdash; good to about &plusmn;5 mg/L." data-zh="兑水数值是用四舍五入后的标签数按体积平均算的，误差大约 ±5 mg/L。">Blend values are averages by volume from rounded label figures &mdash; good to about &plusmn;5 mg/L.</li>
+        <li data-en="SCA targets are for specialty coffee, and taste is personal. Tea-water research is small, and there is no consensus on a single best tea water." data-zh="SCA 目标针对精品咖啡，口味因人而异。茶用水的研究规模小，目前没有公认的“最佳茶水”。">SCA targets are for specialty coffee, and taste is personal. Tea-water research is small, and there is no consensus on a single best tea water.</li>
+      </ol>
+    </div>
+
+    <!-- ── 8. Sources ── -->
+    <h2 class="section-title"><span class="num">08</span><span data-en="Sources" data-zh="来源">Sources</span></h2>
+    <div class="card sources">
+      <ol>
+        <li><a href="https://cdn.shopify.com/s/files/1/0561/9102/5336/files/water-standards.pdf" target="_blank" rel="noopener" data-en="SCAA &mdash; Water for Brewing Specialty Coffee standard (2009, PDF)" data-zh="SCAA —— 精品咖啡冲煮用水标准（2009，PDF）">SCAA &mdash; Water for Brewing Specialty Coffee standard (2009, PDF)</a></li>
+        <li><a href="https://www.waterworld.com/residential-commercial/article/14309734/third-wave-water-new-technologies-for-specialty-cafes-improve-water-quality" target="_blank" rel="noopener" data-en="WaterWorld &mdash; SCA water targets summarized" data-zh="WaterWorld —— SCA 用水目标汇总">WaterWorld &mdash; SCA water targets summarized</a></li>
+        <li><a href="https://www.adc.seattle.gov/documents/Departments/SPU/Services/Water/Analyses/SPU_Quarterly-Surface-Water-Analysis_05-20-2026.pdf" target="_blank" rel="noopener" data-en="Seattle Public Utilities &mdash; Quarterly Surface Water Analysis, May 2026" data-zh="Seattle Public Utilities —— 季度地表水分析，2026 年 5 月">Seattle Public Utilities &mdash; Quarterly Surface Water Analysis, May 2026</a></li>
+        <li><a href="https://www.seattle.gov/documents/Departments/SPU/Services/Water/Analyses/SPU_Quarterly-Surface-Water-Analysis_02-24-2026.pdf" target="_blank" rel="noopener" data-en="Seattle Public Utilities &mdash; Quarterly Surface Water Analysis, Feb 2026" data-zh="Seattle Public Utilities —— 季度地表水分析，2026 年 2 月">Seattle Public Utilities &mdash; Quarterly Surface Water Analysis, Feb 2026</a></li>
+        <li><a href="https://www.home-barista.com/water/best-bottled-water-for-espresso-machine-t51688-40.html" target="_blank" rel="noopener" data-en="Home-Barista &mdash; Kirkland purified water analysis (Southern California plant)" data-zh="Home-Barista —— Kirkland 纯净水分析（南加州灌装厂）">Home-Barista &mdash; Kirkland purified water analysis (Southern California plant)</a></li>
+        <li><a href="https://world.openfoodfacts.org/product/0096619756803/water-bottled-kirkland-signature" target="_blank" rel="noopener" data-en="Open Food Facts &mdash; Kirkland Signature water ingredients" data-zh="Open Food Facts —— Kirkland Signature 瓶装水配料">Open Food Facts &mdash; Kirkland Signature water ingredients</a></li>
+        <li><a href="https://www.deerparkwater.com/sites/g/files/zmtnxh156/files/2026-02/DeerPark_WQR_2025_EN.pdf" target="_blank" rel="noopener" data-en="Deer Park &mdash; 2025 Water Analysis Report (PDF)" data-zh="Deer Park —— 2025 年水质分析报告（PDF）">Deer Park &mdash; 2025 Water Analysis Report (PDF)</a></li>
+        <li><a href="https://foodlion.com/groceries/beverages/water/deer-park-100-natural-spring-water-1-ltr-btl.html" target="_blank" rel="noopener" data-en="Food Lion &mdash; Deer Park label spring sources (Mid-Atlantic)" data-zh="Food Lion —— Deer Park 标签上的泉源（中大西洋地区）">Food Lion &mdash; Deer Park label spring sources (Mid-Atlantic)</a></li>
+        <li><a href="https://completewaterguide.com/does-deer-park-have-pfas/" target="_blank" rel="noopener" data-en="Complete Water Guide &mdash; Does Deer Park have PFAS?" data-zh="Complete Water Guide —— Deer Park 含 PFAS 吗？">Complete Water Guide &mdash; Does Deer Park have PFAS?</a></li>
+        <li><a href="https://www.volvic.co.uk/products/natural-mineral-water/volvic-natural-mineral-water/natural-mineral-water-15l/" target="_blank" rel="noopener" data-en="Volvic UK &mdash; mineral composition" data-zh="Volvic 英国官网 —— 矿物质成分">Volvic UK &mdash; mineral composition</a></li>
+        <li><a href="https://Www.Gwern.net/doc/tea/2014-fijiwater-bottledwaterqualityreport.pdf" target="_blank" rel="noopener" data-en="FIJI Water &mdash; Bottled Water Quality Report (2014, PDF)" data-zh="FIJI Water —— 瓶装水水质报告（2014，PDF）">FIJI Water &mdash; Bottled Water Quality Report (2014, PDF)</a></li>
+        <li><a href="https://business.jewelosco.com/shop/product-details.208200624.html" target="_blank" rel="noopener" data-en="Jewel-Osco &mdash; FIJI label mineral analysis" data-zh="Jewel-Osco —— FIJI 标签矿物质分析">Jewel-Osco &mdash; FIJI label mineral analysis</a></li>
+        <li><a href="https://www.publix.com/pd/evian-natural-spring-water/RIO-PCI-150812" target="_blank" rel="noopener" data-en="Publix &mdash; evian label mineral composition" data-zh="Publix —— evian 标签矿物质成分">Publix &mdash; evian label mineral composition</a></li>
+        <li><a href="https://www.baristahustle.com/?p=363365" target="_blank" rel="noopener" data-en="Barista Hustle &mdash; Water for tea" data-zh="Barista Hustle —— 泡茶用水">Barista Hustle &mdash; Water for tea</a></li>
+        <li><a href="https://www.jstage.jst.go.jp/article/cookeryscience/49/3/49_216/_article/-char/en" target="_blank" rel="noopener" data-en="Mitsuhashi &amp; Tajima (2016) &mdash; Effect of water hardness on green tea infusions" data-zh="Mitsuhashi 与 Tajima（2016）—— 水硬度对绿茶茶汤的影响">Mitsuhashi &amp; Tajima (2016) &mdash; Effect of water hardness on green tea infusions</a></li>
+        <li><a href="https://mdpi.com/1420-3049/26/12/3485" target="_blank" rel="noopener" data-en="Molecules (2021) &mdash; Water hardness and catechin &amp; caffeine in green tea" data-zh="Molecules（2021）—— 水硬度与绿茶儿茶素、咖啡因">Molecules (2021) &mdash; Water hardness and catechin &amp; caffeine in green tea</a></li>
+        <li><a href="https://opaj.napstic.cn/periodicalArticle/0120120808660079" target="_blank" rel="noopener" data-en="Chen, Zhang &amp; Fan (2012) &mdash; Beijing tap water and green tea color" data-zh="陈然、张季艾、范志红（2012）—— 北京自来水冲泡绿茶的颜色变化">Chen, Zhang &amp; Fan (2012) &mdash; Beijing tap water and green tea color</a></li>
+        <li><a href="https://pubs.rsc.org/en/content/articlepdf/2023/sm/d3sm00169e" target="_blank" rel="noopener" data-en="Soft Matter (2023) &mdash; Water composition and tea film" data-zh="Soft Matter（2023）—— 水成分与茶汤表面膜">Soft Matter (2023) &mdash; Water composition and tea film</a></li>
+        <li><a href="https://agris.fao.org/search/fr/records/675ac2200ce2cede71d05f15" target="_blank" rel="noopener" data-en="Minamoto et al. (2023) &mdash; Water hardness and Ishizuchi dark tea" data-zh="Minamoto 等（2023）—— 水硬度与石鎚黑茶">Minamoto et al. (2023) &mdash; Water hardness and Ishizuchi dark tea</a></li>
+        <li><a href="https://kettl.co/blogs/kettl-tea-blog/choose-perfect-water-for-japanese-tea" target="_blank" rel="noopener" data-en="Kettl &mdash; Water for Japanese tea" data-zh="Kettl —— 日本茶用水">Kettl &mdash; Water for Japanese tea</a></li>
+        <li><a href="https://freshcup.com/water-for-tea/" target="_blank" rel="noopener" data-en="Fresh Cup &mdash; A closer look at water for tea" data-zh="Fresh Cup —— 细看泡茶用水">Fresh Cup &mdash; A closer look at water for tea</a></li>
+      </ol>
+    </div>
+
+  </main>
+
+  <footer data-en="Shara's Study Notes" data-zh="Shara的学习笔记">Shara's Study Notes</footer>
+  <script src="../assets/lang.js"></script>
+  <script src="../assets/phone-tables.js"></script>
+</body>
+</html>
