@@ -257,6 +257,15 @@ The page shows "已收到" only when the script answers `{"result":"success"}`.
 **Access password** lives only in the project's Script properties as `WISH_PASSWORD` (Project Settings → Script
 properties) — never in wishlist.html, the repo, or notes. The gate asks the script (`{action:'check', pw}`) and every
 submission carries `pw`; wrong or missing → `{"result":"denied"}`, nothing written. Changing the password needs no redeploy.
+**Usernames, ❤ and 点过几次 (2026-11):** the gate asks for a username, then the shared password; the page remembers the
+username on that device ("换人" clears it). The first time a username is used it also asks for a 名字. Sheet tabs (created
+by the script): `Users` (用户名 | 名字 | 第一次 | 最近一次 — edit 名字 here), `Hearts` (用户名 | 名字 | 菜名 | 时间, one row per
+❤), and `Wishes` column G 用户名. 点过几次 = Wishes rows with that username, plus older rows (no username) whose 姓名 equals
+the 名字. Usernames compare case-insensitively. ❤ / counts / the filter chips show in 中文 mode only. Unsaved ❤ changes wait in
+the browser and are retried on the next change or login. Login is sent as `{action:'check', v:2, …}` so a not-yet-updated
+script answers a bare `ok` and writes nothing (the page then says the backend needs an update); any other unknown action
+returns an error and never writes a wish row. **Deploy order: paste the script + New version first, then push the page.**
+❤ and counts are keyed by the Chinese dish name — renaming a dish in menu.html drops its ❤ and restarts its count.
 **New-wish email** goes to the account that runs the script (`Session.getEffectiveUser()`; no address stored in the repo),
 plain text, sent after the row is saved and in its own try/catch — a failed email never turns a saved wish into an error.
 `testNotify` (run in the editor) grants the send-mail permission and sends a sample without writing a row.
