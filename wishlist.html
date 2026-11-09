@@ -79,6 +79,11 @@ body {
   transition: background 0.2s;
 }
 .gate-box button:hover { background: #b56a2c; }
+.gate-back {
+  display: inline-block; margin-top: 6px; padding: 8px 12px;
+  color: var(--muted); font-size: 0.85rem; text-decoration: none;
+}
+.gate-back:hover { color: var(--accent); }
 .gate-error {
   color: #c0392b;
   font-size: 0.83rem;
@@ -112,6 +117,21 @@ header p  { margin: 5px 0 0; opacity: 0.9; font-style: italic; font-size: 0.9rem
   transition: background 0.15s;
 }
 .lang-toggle button.active { background: rgba(255,255,255,0.45); font-weight: 600; }
+.back-link {
+  position: absolute; top: 10px; left: 10px; padding: 8px;   /* padding = bigger tap area; text sits at 18px/18px */
+  color: rgba(255,255,255,0.92); text-decoration: none;
+  font-size: 0.85rem; display: flex; align-items: center; gap: 5px;
+  transition: opacity 0.15s;
+}
+.back-link:hover { opacity: 0.7; }
+@media (max-width: 640px) {
+  /* extra top padding so the centered title clears the top control row (← 菜单 / lang toggle) */
+  header { padding: 54px 14px 18px; }
+  header h1 { font-size: 1.5rem; }
+  header p  { font-size: 0.82rem; }
+  .back-link { top: 6px; left: 2px; padding: 10px; font-size: 0.82rem; }
+  .lang-toggle { top: 14px; right: 12px; }
+}
 
 /* ── Main ── */
 main {
@@ -325,6 +345,7 @@ main {
     <input type="password" id="pw-input" placeholder="密码 / Password" autocomplete="off" />
     <button onclick="checkPassword()" id="pw-btn">进入 / Enter</button>
     <div class="gate-error" id="gate-error"></div>
+    <a class="gate-back" href="menu.html">← 返回菜单 · Back to menu</a>
   </div>
 </div>
 
@@ -332,6 +353,7 @@ main {
 <div id="app" style="display:none">
 
 <header>
+  <a class="back-link" id="back-menu" href="menu.html">← 菜单</a>
   <h1 id="page-title">你的心愿菜单</h1>
   <p id="page-sub">告诉我你想吃什么，我来做！</p>
   <div class="lang-toggle">
@@ -629,6 +651,7 @@ const STR = {
     gateOffline:  '暂时连不上，请稍后再试 · Can\'t connect right now — please try again later',
     pageTitle:    '你的心愿菜单',
     pageSub:      '告诉我你想吃什么，我来做！',
+    backMenu:     '← 菜单',
     lblName:      '你的名字',
     lblOccasion:  '聚会 / 场合（选填）',
     occPlaceholder:'例：周末家庭聚餐',
@@ -662,6 +685,7 @@ const STR = {
     gateError:    'Wrong password, please try again',
     pageTitle:    'Your Wish List',
     pageSub:      'Tell me what you want to eat — I\'ll cook it!',
+    backMenu:     '← Menu',
     lblName:      'Your name',
     lblOccasion:  'Occasion (optional)',
     occPlaceholder:'e.g. Weekend family dinner',
@@ -748,6 +772,7 @@ function applyStrings() {
   document.getElementById('pw-btn').textContent        = s.gateEnter;
   document.getElementById('page-title').textContent    = s.pageTitle;
   document.getElementById('page-sub').textContent      = s.pageSub;
+  document.getElementById('back-menu').textContent     = s.backMenu;
   document.getElementById('lbl-name').innerHTML        = s.lblName + ' <span style="color:#c97b3a">*</span>';
   document.getElementById('lbl-occasion').textContent  = s.lblOccasion;
   document.getElementById('f-occasion').placeholder    = s.occPlaceholder;
