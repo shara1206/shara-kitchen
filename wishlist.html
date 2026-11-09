@@ -54,7 +54,7 @@ body {
   color: var(--muted);
   font-size: 0.9rem;
 }
-.gate-box input[type="password"] {
+.gate-box input {
   width: 100%;
   padding: 11px 14px;
   border: 1.5px solid var(--border);
@@ -65,7 +65,22 @@ body {
   transition: border-color 0.2s;
   margin-bottom: 12px;
 }
-.gate-box input[type="password"]:focus { border-color: var(--accent); }
+.gate-box input:focus { border-color: var(--accent); }
+.gate-new { margin: 2px 0 12px; padding: 12px 12px 14px; border-radius: 10px; background: #fdf6ec;
+            border: 1px solid var(--border); text-align: left; }
+.gate-box .gate-new p { margin: 0 0 10px; color: var(--ink); font-size: 0.88rem; line-height: 1.45; }
+.gate-new-actions { display: flex; gap: 8px; }
+.gate-box .gate-new-actions button { flex: 1; width: auto; padding: 10px 6px; font-size: 0.88rem; white-space: nowrap; }
+.gate-box .gate-new-actions button.ghost { background: #fff; color: var(--accent); border: 1.5px solid var(--accent); }
+.gate-box .gate-new-actions button.ghost:hover { background: #fef8f0; }
+/* logged-in user, in place of the old 你的名字 input */
+.user-box { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 6px 6px 13px;
+            border: 1.5px solid var(--border); border-radius: 8px; background: var(--card); }
+.user-box .who { flex: 1; min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
+.user-box .uname { font-weight: 400; color: var(--muted); font-size: 0.82rem; margin-left: 6px; }
+.switch-user { flex-shrink: 0; border: 0; background: none; color: var(--accent); font: inherit; font-size: 0.86rem;
+               cursor: pointer; padding: 8px 8px; border-radius: 6px; white-space: nowrap; }
+.switch-user:hover { background: #fef8f0; }
 .gate-box button {
   width: 100%;
   padding: 12px;
@@ -254,6 +269,46 @@ main {
   .dish-check { padding: 3px 5px; gap: 4px; font-size: 0.82rem; }
   .dish-pic { width: 40px; height: 30px; }
 }
+/* ── ❤ favourites + order counts (saved in this browser: localStorage) ── */
+.pic-wrap { position: relative; display: block; flex-shrink: 0; }
+.cnt {
+  position: absolute; left: -3px; bottom: -5px; min-width: 19px; height: 17px; padding: 0 4px;
+  border-radius: 9px; background: var(--accent); color: #fff; font-size: 10.5px; font-weight: 700;
+  line-height: 17px; text-align: center; box-shadow: 0 0 0 1.5px #fff; pointer-events: none;
+}
+.heart {
+  margin-left: auto; flex-shrink: 0; width: 32px; height: 32px; padding: 0; border: 0; background: none;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%;
+}
+.heart svg { width: 19px; height: 19px; fill: none; stroke: #cdb9a3; stroke-width: 1.8; transition: transform 0.15s; }
+.heart:hover svg { stroke: #e0245e; }
+.heart.on svg { fill: #e0245e; stroke: #e0245e; }
+.heart.pop svg { animation: pop 0.3s ease; }
+@keyframes pop { 50% { transform: scale(1.35); } }
+.fav-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 22px; }
+.chip {
+  border: 1.5px solid var(--border); background: var(--card); color: var(--ink); border-radius: 18px;
+  padding: 6px 13px; font: inherit; font-size: 0.84rem; cursor: pointer; display: flex; align-items: center; gap: 5px;
+}
+.chip.active { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.chip .h { color: #e0245e; }
+.chip .n { color: var(--muted); font-weight: 400; }
+.fav-note { flex-basis: 100%; font-size: 0.76rem; color: var(--muted); }
+.cat-section.empty { display: none; }
+.dish-check.hide { display: none; }
+/* ♡, counts and the filter bar are a 中文-mode feature: hidden in EN (data is kept, it shows again in 中文) */
+.en-mode .heart, .en-mode .cnt, .en-mode .fav-bar { display: none; }
+@media (max-width: 640px) {
+  .zh-mode .dish-check { gap: 4px; padding: 3px 0 3px 6px; }
+  .zh-mode .dish-pic { width: 44px; height: 33px; }
+  .heart { width: 28px; height: 36px; }
+  .heart svg { width: 17px; height: 17px; }
+}
+@media (max-width: 380px) {
+  .zh-mode .dish-check { padding-left: 4px; }
+  .zh-mode .dish-pic { width: 38px; height: 28px; }
+  .heart { width: 26px; }
+}
 /* English names run ~3× longer than Chinese: on phones, EN mode gets a slightly smaller label + sticker
    (412px: pills with 4+ lines 30 → 10, page ~13% shorter) */
 @media (max-width: 640px) {
@@ -370,9 +425,21 @@ main {
   <div class="gate-box">
     <div class="logo"><img src="assets/wishlist-logo.png" alt="wish well" style="width:90px;height:90px;object-fit:cover;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,0.15);" /></div>
     <h2 id="gate-title">Shara's Kitchen</h2>
-    <p id="gate-sub">请输入访问密码 · Enter the password</p>
-    <input type="password" id="pw-input" placeholder="密码 / Password" autocomplete="off" />
-    <button onclick="checkPassword()" id="pw-btn">进入 / Enter</button>
+    <p id="gate-sub">请输入用户名和密码 · Enter your username and password</p>
+    <form id="gate-form" onsubmit="event.preventDefault(); login(false);">
+      <input type="text" id="user-input" placeholder="用户名 / Username" autocomplete="username"
+             autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="30" />
+      <input type="password" id="pw-input" placeholder="密码 / Password" autocomplete="current-password" />
+      <div class="gate-new" id="gate-new" hidden>
+        <p id="gate-new-msg"></p>
+        <input type="text" id="name-input" placeholder="你的名字 / Your name" autocomplete="name" maxlength="30" />
+        <div class="gate-new-actions">
+          <button type="button" class="ghost" id="gate-new-no" onclick="cancelNewUser()">改用户名 / Edit</button>
+          <button type="button" id="gate-new-yes" onclick="login(true)">新建 / Create</button>
+        </div>
+      </div>
+      <button type="submit" id="pw-btn">进入 / Enter</button>
+    </form>
     <div class="gate-error" id="gate-error"></div>
     <a class="gate-back" href="menu.html">← 返回菜单 · Back to menu</a>
   </div>
@@ -398,8 +465,8 @@ main {
 
     <div class="info-row">
       <div class="field">
-        <label id="lbl-name">你的名字 <span style="color:#c97b3a">*</span></label>
-        <input type="text" id="f-name" required placeholder="请输入姓名" />
+        <label id="lbl-name">你的名字</label>
+        <div class="user-box"><span class="who"><span id="user-name"></span><span class="uname" id="user-uname"></span></span><button type="button" class="switch-user" id="switch-user" onclick="switchUser()">换人</button></div>
       </div>
       <div class="field">
         <label id="lbl-occasion">聚会 / 场合（选填）</label>
@@ -407,6 +474,7 @@ main {
       </div>
     </div>
 
+    <div class="fav-bar" id="fav-bar"></div>
     <div id="menu-sections"></div>
 
     <div class="summary-bar" id="summary-bar">
@@ -767,6 +835,52 @@ function dishLabel(key) {
   return currentLang === 'en' && DISH_EN[key] ? DISH_EN[key] : zh;
 }
 
+// ── User + ❤ favourites + order counts ──
+// The sheet is the record: Users (用户名 → 名字), Hearts (one row per ❤ dish), Wishes (counts). This browser keeps
+// only the last username and ❤ changes not saved yet (retried on the next change / next login). Keyed by Chinese dish name.
+const USER_KEY = 'shara-kitchen:wishlist:user';
+const PENDING_KEY = u => 'shara-kitchen:wishlist:pending:' + String(u).toLowerCase();
+let currentUser = '', currentName = '';
+let fav = { hearts: {}, counts: {} };
+let pending = { add: {}, remove: {} };
+function savePending() {
+  try {
+    const empty = !Object.keys(pending.add).length && !Object.keys(pending.remove).length;
+    if (empty) localStorage.removeItem(PENDING_KEY(currentUser));
+    else localStorage.setItem(PENDING_KEY(currentUser), JSON.stringify(pending));
+  } catch (e) {}
+}
+function loadUserData(out) {
+  try { pending = JSON.parse(localStorage.getItem(PENDING_KEY(currentUser)) || 'null') || { add: {}, remove: {} }; }
+  catch (e) { pending = { add: {}, remove: {} }; }
+  fav.hearts = {};
+  (out.hearts || []).forEach(d => { fav.hearts[d] = 1; });
+  Object.keys(pending.add).forEach(d => { fav.hearts[d] = 1; });
+  Object.keys(pending.remove).forEach(d => { delete fav.hearts[d]; });
+  fav.counts = out.counts || {};
+}
+let flushTimer = null, flushing = false;
+function scheduleFlush(ms) { clearTimeout(flushTimer); flushTimer = setTimeout(flushHearts, ms == null ? 1200 : ms); }
+async function flushHearts() {
+  if (!currentUser) return;
+  if (flushing) { scheduleFlush(); return; }
+  const add = Object.keys(pending.add), remove = Object.keys(pending.remove);
+  if (!add.length && !remove.length) return;
+  flushing = true;
+  try {
+    const out = await callScript({ action: 'hearts', pw: accessPw, user: currentUser, add, remove });
+    if (out.result === 'ok') {
+      add.forEach(d => delete pending.add[d]);
+      remove.forEach(d => delete pending.remove[d]);
+      savePending();
+    }
+  } catch (e) { /* offline: stays pending, saved with the next change or the next login */ }
+  flushing = false;
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flushHearts(); });
+let favFilter = 'all';
+const HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.6-4.6-9.4-9.3C1.4 7.9 3.5 4.5 6.9 4.5c2 0 3.4 1.1 4.4 2.6.3.4.9.4 1.2 0 1-1.5 2.4-2.6 4.4-2.6 3.4 0 5.5 3.4 4.3 6.7-1.8 4.7-9.2 9.3-9.2 9.3z"/></svg>';
+
 // ── State ──
 let currentLang = 'zh';
 let selected = new Set();
@@ -775,7 +889,13 @@ let accessPw = '';   // what the visitor typed; sent with the submission so the 
 // ── Strings ──
 const STR = {
   zh: {
-    gateSub:      '请输入访问密码 · Enter the password',
+    gateSub:      '请输入用户名和密码 · Enter your username and password',
+    userPlaceholder:'用户名 / Username',
+    newUser:      (u) => `「${u}」是新用户名，第一次用请填你的名字（会写进 Shara 的表格）。 · "${u}" is a new username — please add your name.`,
+    needName:     '请先填你的名字 · Please enter your name',
+    needUser:     '请填用户名 · Please enter a username',
+    oldScript:    '心愿单的表格脚本还没更新，暂时登录不了——请告诉 Shara 😅 · The wish list backend needs an update — please tell Shara.',
+    switchUser:   '换人',
     pwPlaceholder:'密码 / Password',
     gateEnter:    '进入 / Enter',
     gateError:    '密码不对，请再试一次 · Wrong password, please try again',
@@ -784,6 +904,12 @@ const STR = {
     pageTitle:    '你的心愿菜单',
     pageSub:      '告诉我你想吃什么，我来做！',
     backMenu:     '← 菜单',
+    chipAll:      '全部',
+    chipFav:      '我喜欢的',
+    chipOrdered:  '点过的',
+    favNote:      '点 ♡ 收藏；角上的数字是你点过几次。存在 Shara 的表格里，换手机登录同一个用户名也都在。',
+    heartAria:    '喜欢',
+    cntTitle:     (n) => `点过 ${n} 次`,
     lblName:      '你的名字',
     lblOccasion:  '聚会 / 场合（选填）',
     occPlaceholder:'例：周末家庭聚餐',
@@ -811,13 +937,21 @@ const STR = {
     selCount:     (n) => n > 0 ? `已选 ${n}` : '',
   },
   en: {
-    gateSub:      'Enter the password to continue',
+    gateSub:      'Enter your username and password',
+    userPlaceholder:'Username',
+    switchUser:   'Switch user',
     pwPlaceholder:'Password',
     gateEnter:    'Enter',
     gateError:    'Wrong password, please try again',
     pageTitle:    'Your Wish List',
     pageSub:      'Tell me what you want to eat — I\'ll cook it!',
     backMenu:     '← Menu',
+    chipAll:      'All',          // ♡ / counts are hidden in EN mode; these keep renderFavBar safe
+    chipFav:      'My favorites',
+    chipOrdered:  'Ordered before',
+    favNote:      'Tap ♡ to save a favorite; the number on a picture is how many times you ordered it. Saved in this browser only.',
+    heartAria:    'Favorite',
+    cntTitle:     (n) => `Ordered ${n}×`,
     lblName:      'Your name',
     lblOccasion:  'Occasion (optional)',
     occPlaceholder:'e.g. Weekend family dinner',
@@ -846,9 +980,19 @@ const STR = {
   }
 };
 
-// ── Password gate ──
-document.getElementById('pw-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') checkPassword();
+// ── Login gate: username, then password; the username is remembered on this device ──
+(function prefillUser() {
+  let u = '';
+  try { u = localStorage.getItem(USER_KEY) || ''; } catch (e) {}
+  const ui = document.getElementById('user-input');
+  ui.value = u;
+  setTimeout(() => (u ? document.getElementById('pw-input') : ui).focus(), 0);
+})();
+document.getElementById('name-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); login(true); }
+});
+document.getElementById('user-input').addEventListener('input', () => {   // a different username: drop the new-user panel
+  if (!document.getElementById('gate-new').hidden) cancelNewUser(true);
 });
 
 function scriptReady() { return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(SCRIPT_URL); }
@@ -860,29 +1004,60 @@ async function callScript(body) {
   });
   return res.json();
 }
-async function checkPassword() {
-  const val = document.getElementById('pw-input').value;
+let loggingIn = false;
+async function login(create) {
+  if (loggingIn) return;
+  const ui = document.getElementById('user-input'), pi = document.getElementById('pw-input'), ni = document.getElementById('name-input');
   const err = document.getElementById('gate-error');
-  const btn = document.getElementById('pw-btn');
-  if (!val) return;
-  if (!scriptReady()) { err.textContent = STR[currentLang].notReady; return; }
-  btn.disabled = true; err.textContent = STR.zh.gateChecking;
+  const user = ui.value.trim().replace(/\s+/g, ' '), pw = pi.value, name = ni.value.trim().replace(/\s+/g, ' ');
+  if (!user) { err.textContent = STR.zh.needUser; ui.focus(); return; }
+  if (!pw) { pi.focus(); return; }
+  if (create && !name) { err.textContent = STR.zh.needName; ni.focus(); return; }
+  if (!scriptReady()) { err.textContent = STR.zh.notReady; return; }
+  const btns = document.querySelectorAll('#gate button');
+  loggingIn = true; btns.forEach(b => b.disabled = true); err.textContent = STR.zh.gateChecking;
   let out = {};
-  try { out = await callScript({ action: 'check', pw: val }); }
+  // sent as action 'check' + v:2 — a not-yet-updated script answers a bare {result:'ok'} and writes nothing
+  try { out = await callScript({ action: 'check', v: 2, pw, user, create: !!create, name: create ? name : '' }); }
   catch (e) { out = { result: 'offline' }; }
-  btn.disabled = false;
-  if (out.result === 'ok') {
-    accessPw = val;
-    err.textContent = '';
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    await loadMenuData();
-    buildMenu();
-  } else {
-    err.textContent = out.result === 'denied' ? STR.zh.gateError : STR.zh.gateOffline;
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-input').focus();
+  loggingIn = false; btns.forEach(b => b.disabled = false);
+  if (out.result === 'ok' && out.v !== 2) { err.textContent = STR.zh.oldScript; return; }
+  if (out.result === 'new' || out.result === 'needname') {
+    err.textContent = out.result === 'needname' ? STR.zh.needName : '';
+    document.getElementById('gate-new-msg').textContent = STR.zh.newUser(user);
+    document.getElementById('gate-new').hidden = false;
+    document.getElementById('pw-btn').hidden = true;
+    ni.focus();
+    return;
   }
+  if (out.result !== 'ok') {
+    err.textContent = out.result === 'denied' ? STR.zh.gateError : STR.zh.gateOffline;
+    if (out.result === 'denied') { pi.value = ''; pi.focus(); }
+    return;
+  }
+  accessPw = pw; currentUser = out.user; currentName = out.name || out.user;
+  try { localStorage.setItem(USER_KEY, currentUser); } catch (e) {}
+  loadUserData(out);
+  err.textContent = '';
+  document.getElementById('user-name').textContent = currentName;
+  document.getElementById('user-uname').textContent = currentName.toLowerCase() === currentUser.toLowerCase() ? '' : '@' + currentUser;
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  await loadMenuData();
+  buildMenu();
+  scheduleFlush(0);   // ♡ changes left over from an earlier visit
+}
+function cancelNewUser(keepFocus) {
+  document.getElementById('gate-new').hidden = true;
+  document.getElementById('pw-btn').hidden = false;
+  document.getElementById('name-input').value = '';
+  document.getElementById('gate-error').textContent = '';
+  if (!keepFocus) { const ui = document.getElementById('user-input'); ui.focus(); ui.select(); }
+}
+async function switchUser() {
+  await flushHearts();
+  try { localStorage.removeItem(USER_KEY); } catch (e) {}
+  location.reload();
 }
 
 // ── Language ──
@@ -901,14 +1076,15 @@ function applyStrings() {
   const s = STR[currentLang];
   document.getElementById('gate-sub').textContent      = s.gateSub;
   document.getElementById('pw-input').placeholder      = s.pwPlaceholder;
+  document.getElementById('user-input').placeholder    = s.userPlaceholder;
   document.getElementById('pw-btn').textContent        = s.gateEnter;
   document.getElementById('page-title').textContent    = s.pageTitle;
   document.getElementById('page-sub').textContent      = s.pageSub;
   document.getElementById('back-menu').textContent     = s.backMenu;
-  document.getElementById('lbl-name').innerHTML        = s.lblName + ' <span style="color:#c97b3a">*</span>';
+  document.getElementById('lbl-name').textContent     = s.lblName;
+  document.getElementById('switch-user').textContent  = s.switchUser;
   document.getElementById('lbl-occasion').textContent  = s.lblOccasion;
   document.getElementById('f-occasion').placeholder    = s.occPlaceholder;
-  document.getElementById('f-name').placeholder        = s.namePlaceholder;
   document.getElementById('lbl-special').textContent   = s.lblSpecial;
   document.getElementById('f-special').placeholder     = s.specPlaceholder;
   document.getElementById('submit-label').textContent  = s.submitLabel;
@@ -922,6 +1098,7 @@ function applyStrings() {
   document.querySelectorAll('.dish-check').forEach(l => {
     l.querySelector('.dish-name').textContent = dishLabel(l.dataset.key);
   });
+  if (document.getElementById('fav-bar').innerHTML) renderFavBar();
 
   // Category headers
   document.querySelectorAll('.cat-header .zh-name').forEach(el => {
@@ -958,19 +1135,65 @@ function buildMenu() {
       const label = document.createElement('label');
       label.className = 'dish-check';
       label.dataset.key = key;
-      const pic = DISH_PIC[key];
+      const pic = DISH_PIC[key], n = fav.counts[dish] || 0, on = !!fav.hearts[dish];
       label.innerHTML = `
         <input type="checkbox" value="${key}" />
         <span class="tick"></span>
-        ${pic ? `<img class="dish-pic" src="${esc(pic)}" alt="" width="160" height="120" loading="lazy" decoding="async" onerror="this.remove()">` : ''}
+        <span class="pic-wrap">${pic ? `<img class="dish-pic" src="${esc(pic)}" alt="" width="160" height="120" loading="lazy" decoding="async" onerror="this.remove()">` : ''}${n ? `<span class="cnt" title="${esc(STR[currentLang].cntTitle(n))}">${n}</span>` : ''}</span>
         <span class="dish-name">${esc(dishLabel(key))}</span>
+        <button type="button" class="heart${on ? ' on' : ''}" aria-pressed="${on}" aria-label="${esc(STR[currentLang].heartAria)}">${HEART_SVG}</button>
       `;
+      label.querySelector('.heart').addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();          // ♡ never toggles the dish selection
+        toggleHeart(label.querySelector('.heart'), dish);
+      });
       // listen to the checkbox itself: a click handler on the <label> fires twice (label + checkbox)
       const cb = label.querySelector('input[type=checkbox]');
       cb.addEventListener('change', () => toggleDish(label, key, cb.checked));
       grid.appendChild(label);
     });
     container.appendChild(section);
+  });
+  renderFavBar();
+}
+
+function toggleHeart(btn, zh) {
+  if (fav.hearts[zh]) { delete fav.hearts[zh]; delete pending.add[zh]; pending.remove[zh] = 1; }
+  else { fav.hearts[zh] = 1; delete pending.remove[zh]; pending.add[zh] = 1; }
+  savePending();
+  scheduleFlush();
+  const on = !!fav.hearts[zh];
+  btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on);
+  btn.classList.remove('pop'); void btn.offsetWidth; if (on) btn.classList.add('pop');
+  renderFavBar();
+}
+
+function renderFavBar() {
+  const s = STR[currentLang];
+  const all = MENU_DATA.flatMap(c => c.dishes);
+  const nFav = all.filter(d => fav.hearts[d]).length, nOrd = all.filter(d => fav.counts[d]).length;
+  if (favFilter === 'fav' && !nFav) favFilter = 'all';
+  if (favFilter === 'ordered' && !nOrd) favFilter = 'all';
+  const chip = (id, html) => `<button type="button" class="chip${favFilter === id ? ' active' : ''}" data-f="${id}">${html}</button>`;
+  document.getElementById('fav-bar').innerHTML =
+    chip('all', esc(s.chipAll)) +
+    (nFav ? chip('fav', `<span class="h">❤</span>${esc(s.chipFav)} <span class="n">${nFav}</span>`) : '') +
+    (nOrd ? chip('ordered', `${esc(s.chipOrdered)} <span class="n">${nOrd}</span>`) : '') +
+    `<div class="fav-note">${esc(s.favNote)}</div>`;
+  document.querySelectorAll('#fav-bar .chip').forEach(b => b.addEventListener('click', () => { favFilter = b.dataset.f; renderFavBar(); }));
+  applyFavFilter();
+}
+
+function applyFavFilter() {
+  const f = currentLang === 'en' ? 'all' : favFilter;
+  document.querySelectorAll('.cat-section').forEach(sec => {
+    let shown = 0;
+    sec.querySelectorAll('.dish-check').forEach(l => {
+      const zh = l.dataset.key.split('::')[1];
+      const ok = f === 'all' || (f === 'fav' && fav.hearts[zh]) || (f === 'ordered' && fav.counts[zh]);
+      l.classList.toggle('hide', !ok); if (ok) shown++;
+    });
+    sec.classList.toggle('empty', shown === 0);
   });
 }
 
@@ -1019,8 +1242,6 @@ function esc(t) {
 }
 function submitForm(e) {
   e.preventDefault();
-  const name = document.getElementById('f-name').value.trim();
-  if (!name) { document.getElementById('f-name').focus(); return; }
   if (!scriptReady()) { alert(STR[currentLang].notReady); return; }
   renderConfirm();
   document.getElementById('wishform').style.display = 'none';
@@ -1045,7 +1266,7 @@ function renderConfirm() {
         }).join('')}</ul></div>`).join('')
     : `<div class="v empty">${esc(s.noDishes)}</div>`;
   document.getElementById('confirm-body').innerHTML =
-    row(s.kName, val('f-name')) +
+    row(s.kName, currentName) +
     row(s.kOccasion, val('f-occasion')) +
     `<div class="confirm-row"><div class="k">${esc(s.kDishes(selected.size))}</div>${dishesHtml}</div>` +
     row(s.kSpecial, val('f-special'));
@@ -1058,7 +1279,6 @@ function backToForm() {
 }
 
 async function sendWish() {
-  const name = document.getElementById('f-name').value.trim();
   const btn = document.getElementById('confirm-send');
   const back = document.getElementById('confirm-back');
   const label = document.getElementById('confirm-label');
@@ -1067,7 +1287,8 @@ async function sendWish() {
 
   const payload = {
     pw:       accessPw,
-    name:     name,
+    name:     currentName,
+    user:     currentUser,
     occasion: document.getElementById('f-occasion').value.trim(),
     dishes:   Array.from(selected).map(k => k.split('::')[1]),
     special:  document.getElementById('f-special').value.trim(),
@@ -1078,6 +1299,7 @@ async function sendWish() {
   try {
     const out = await callScript(payload);
     if (out.result !== 'success') throw new Error(out.result + ' ' + (out.message || ''));
+    selected.forEach(k => { const zh = k.split('::')[1]; fav.counts[zh] = (fav.counts[zh] || 0) + 1; });   // the sheet counts it too
     showSuccess();
   } catch (err) {
     btn.disabled = false; back.disabled = false;
