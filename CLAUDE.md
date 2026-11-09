@@ -8,7 +8,8 @@ Last consolidated: 2026-11-04.
 
 ## 1. Every change — checklist
 1. `python backup.py save "说明这次改动"`
-2. Edit — put the page in the right place (§2) and follow the page conventions (§4)
+2. Edit — put the page in the right place (§2) and follow the page conventions (§4); every new page needs the
+   noindex meta (§4.1)
 3. Sync navigation (§3): `index.html` always; `menu.html` only for dishes Shara has made
 4. `cd kitchen-app && python build-index.py` — rebuilds the app data from index.html
 5. `python check.py` → must end with **0 errors**
@@ -100,6 +101,11 @@ recipes and topics, not the app. Details in §5.
 Recipe: copy `recipes/yan-su-ji.html` (the shared template ~60 recipe pages use, with bilingual headings). Guide or study note: copy a
 recent page in the same folder. Every page links `../assets/lang.css` and `../assets/lang.js`, has a
 `← Home` link to `../index.html` (sub-notes may link to their hub), and a footer.
+**No page is in search engines (project rule, 2026-11-08):** every HTML page — index, menu, wishlist, recipes,
+cooking-tips, study-topics, kitchen-app — carries `<meta name="robots" content="noindex" />` right after
+`<meta charset>`. Copying an existing page keeps it; check.py errors if any page lacks it. This only keeps the site
+out of Google/Bing — anyone with a link can still open pages, and the repo is public. Don't add a robots.txt: on a
+GitHub project site it would not be at the domain root, so crawlers ignore it.
 
 ### 4.2 CSS
 ```css

@@ -7,7 +7,8 @@ check.py — read-only consistency check for the Food site (standard library onl
 ERROR  broken internal links (incl. links inside data-en / data-zh), double-escaped markup
        (a literal &amp; / &quot; shows on the page, or &amp;quot; breaks an attribute), recipe pages missing
        from index.html, tried/untried vs menu.html rules, hub note-count badges that don't
-       match the hub page, bad data-status / data-type values
+       match the hub page, bad data-status / data-type values, any page without
+       <meta name="robots" content="noindex"> (the whole site stays out of search engines)
 WARN   untagged Chinese text (guides/topics; recipe pages: headings only), images > 500 KB,
        kitchen-app data older than index.html, orphan pages, backup snapshots over the limit
 
@@ -190,6 +191,8 @@ for rel in html_files:
         err(f"truncated file  {rel}: a <script>/<style> is never closed (the file may have been cut off)")
     elif rel.endswith(".html") and not raw_tail.rstrip().lower().endswith("</html>"):
         warn(f"truncated file?  {rel} does not end with </html>")
+    if rel.endswith(".html") and not re.search(r'<meta\s+name="robots"\s+content="[^"]*noindex', raw, re.I):
+        err(f"missing noindex  {rel}: add <meta name=\"robots\" content=\"noindex\" /> after <meta charset>")
     for tag, url, tolerated in p.refs + [("a", u, False) for u in p.frag_links]:
         target = resolve(rel, p.base, url)
         if target is None:
