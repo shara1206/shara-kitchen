@@ -71,6 +71,11 @@ index link:
   `<a class="dish-item" href="recipes/x.html"><img class="dish-pic" src="assets/stickers/sm/NNN.webp" alt="" width="160"
   height="120" loading="lazy" decoding="async"><span class="dish-name" data-en="…" data-zh="…">…</span></a>`.
   Below 1800px the sticker is a small icon in each pill; at 1800px+ (27"/34") the grid turns into picture cards.
+- **Search (搜索, 2026-11):** the 「搜索」 button at the left of the category bar opens a search row above the chips;
+  with text in it, row + chips stay sticky. It filters by each dish's `.dish-name` data-zh / data-en, so a new
+  dish is searchable right away. Pinyin ("hsr" / "hongshao" → 红烧肉) uses the `PINYIN` map in the page script:
+  after adding or renaming a dish run `python assets/menu_pinyin.py` (needs `pip install pypinyin` once).
+  Keep the nav inside `<div class="sticky-bar">` and the dish markup above — the search relies on both.
 
 ### 3.3 Study-topic hubs and sub-notes
 Hubs: eggs, milk, flour, seafood, beef, chicken. Each lists its sub-notes as `.note-card` links.
@@ -235,7 +240,7 @@ Food/
   wishlist.html       # 心愿菜单 (Google Apps Script backend: wishlist-apps-script.js)
   check.py            # consistency check — run after every change
   backup.py           # snapshots → .backups/ (not published)
-  assets/             # lang.css, lang.js, scale.js, recipe-ui.js, icons/, logos
+  assets/             # lang.css, lang.js, scale.js, recipe-ui.js, icons/, logos, menu_pinyin.py (menu search index)
     stickers/         # dish stickers: sm/ (menu), lg/ (recipe headers), index.csv, make_stickers.py
   recipes/            # 有材料和步骤的具体做法 (92 pages); images/{slug}/
   cooking-tips/       # 怎么做 (9 pages)
