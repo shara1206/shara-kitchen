@@ -1,7 +1,7 @@
 window.__RECIPES__ = {
   "generated": true,
-  "total": 135,
-  "todo": 16,
+  "total": 136,
+  "todo": 17,
   "sub_notes": 19,
   "categories": [
     {
@@ -44,7 +44,7 @@ window.__RECIPES__ = {
       "name_en": "Beef & Lamb (牛羊肉)",
       "name_zh": "牛羊肉",
       "type": "recipe",
-      "count": 5
+      "count": 6
     },
     {
       "name_en": "Seafood (海鲜)",
@@ -690,6 +690,23 @@ window.__RECIPES__ = {
       "desc_zh": "",
       "sub": false,
       "status": "",
+      "role": "dish"
+    },
+    {
+      "title_en": "Chaoshan Beef Balls",
+      "title_zh": "潮汕牛肉丸",
+      "path": "recipes/chaoshan-niurouwan.html",
+      "slug": "chaoshan-niurouwan",
+      "type": "recipe",
+      "category_en": "Beef & Lamb (牛羊肉)",
+      "category_zh": "牛羊肉",
+      "image": null,
+      "subtitle_en": "",
+      "subtitle_zh": "",
+      "desc_en": "",
+      "desc_zh": "",
+      "sub": false,
+      "status": "todo",
       "role": "dish"
     },
     {

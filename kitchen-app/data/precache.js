@@ -1,4 +1,4 @@
-self.__CACHE_VERSION__ = "shara-kitchen-95bbd68c";
+self.__CACHE_VERSION__ = "shara-kitchen-1871722f";
 self.__PRECACHE__ = [
   "kitchen-app/index.html",
   "kitchen-app/manifest.webmanifest",
@@ -46,6 +46,7 @@ self.__PRECACHE__ = [
   "recipes/niurou-fu.html",
   "recipes/wuxiang-niurougan.html",
   "recipes/rishi-hambao.html",
+  "recipes/chaoshan-niurouwan.html",
   "recipes/yangrouchuan.html",
   "recipes/kao-yangtui.html",
   "recipes/kao-huangyu.html",
