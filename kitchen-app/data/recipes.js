@@ -1,6 +1,6 @@
 window.__RECIPES__ = {
   "generated": true,
-  "total": 134,
+  "total": 135,
   "todo": 16,
   "sub_notes": 19,
   "categories": [
@@ -104,7 +104,7 @@ window.__RECIPES__ = {
       "name_en": "Study Topics",
       "name_zh": "学习专题",
       "type": "study",
-      "count": 12
+      "count": 13
     },
     {
       "name_en": "Pages",
@@ -1963,6 +1963,23 @@ window.__RECIPES__ = {
       "subtitle_zh": "品种与用途",
       "desc_en": "Yukon Gold vs Russet vs red — which potato for mashing, frying, or stewing.",
       "desc_zh": "黄心、白心、红皮土豆的区别，以及哪种适合做泥、炸或炖。",
+      "sub": false,
+      "status": "",
+      "role": ""
+    },
+    {
+      "title_en": "Picking Vegetables",
+      "title_zh": "蔬菜挑选图解",
+      "path": "study-topics/vegetable-picking.html",
+      "slug": "vegetable-picking",
+      "type": "study",
+      "category_en": "Study Topics",
+      "category_zh": "学习专题",
+      "image": null,
+      "subtitle_en": "9 vegetables",
+      "subtitle_zh": "9 种蔬菜",
+      "desc_en": "What the look of a tomato, potato, baby napa, broccoli, loofah, corn, onion, shiitake or green pepper says about texture and use, with each tip marked reliable or not.",
+      "desc_zh": "番茄、土豆、娃娃菜、西兰花、丝瓜、玉米、洋葱、香菇、辣椒：外观说明什么口感和用法，每条技巧标注是否靠谱。",
       "sub": false,
       "status": "",
       "role": ""

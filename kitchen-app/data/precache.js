@@ -1,4 +1,4 @@
-self.__CACHE_VERSION__ = "shara-kitchen-40d39f60";
+self.__CACHE_VERSION__ = "shara-kitchen-95bbd68c";
 self.__PRECACHE__ = [
   "kitchen-app/index.html",
   "kitchen-app/manifest.webmanifest",
@@ -121,6 +121,7 @@ self.__PRECACHE__ = [
   "study-topics/beef.html",
   "study-topics/chicken.html",
   "study-topics/potato.html",
+  "study-topics/vegetable-picking.html",
   "study-topics/pepper.html",
   "study-topics/coffee.html",
   "study-topics/water.html",
